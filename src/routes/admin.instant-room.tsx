@@ -99,7 +99,7 @@ function InstantRoom() {
       <div className="grid lg:grid-cols-[1.15fr_1fr] gap-4">
         {/* LEFT — form / created panel */}
         {!created ? (
-          <Panel title="Create manual consultation" meta="Secure · HIPAA">
+          <Panel title="Create manual consultation" action={<span className="text-[10px] uppercase tracking-widest text-navy/45">Secure · HIPAA</span>}>
             <div className="grid gap-4">
               <Field label="Patient">
                 <div className="flex items-center gap-2">
@@ -160,7 +160,7 @@ function InstantRoom() {
             </div>
           </Panel>
         ) : (
-          <Panel title="Room ready" meta={<Badge tone="Active">Waiting for patient</Badge>}>
+          <Panel title="Room ready" action={<Badge tone="Active">Waiting for patient</Badge>}>
             <div className="border border-navy/10 bg-mist/30 p-4 rounded-sm">
               <div className="eyebrow text-gold text-[10px] mb-1">Secure join link</div>
               <div className="flex items-center gap-2">
@@ -196,7 +196,7 @@ function InstantRoom() {
         )}
 
         {/* RIGHT — recent rooms */}
-        <Panel title="Recent rooms" meta={`${rooms.length} total`}>
+        <Panel title="Recent rooms" action={<span className="text-[10px] uppercase tracking-widest text-navy/45">{`${rooms.length} total`}</span>}>
           {rooms.length === 0 ? (
             <div className="text-center py-10 text-sm text-navy/50">No rooms yet.</div>
           ) : (

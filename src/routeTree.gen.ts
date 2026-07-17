@@ -54,6 +54,7 @@ import { Route as AdminRecordsRouteImport } from './routes/admin.records'
 import { Route as AdminNotificationsRouteImport } from './routes/admin.notifications'
 import { Route as AdminMessagesRouteImport } from './routes/admin.messages'
 import { Route as AdminLabsRouteImport } from './routes/admin.labs'
+import { Route as AdminInstantRoomRouteImport } from './routes/admin.instant-room'
 import { Route as AdminInsightsRouteImport } from './routes/admin.insights'
 import { Route as AdminDocumentsRouteImport } from './routes/admin.documents'
 import { Route as AdminCrmRouteImport } from './routes/admin.crm'
@@ -305,6 +306,11 @@ const AdminLabsRoute = AdminLabsRouteImport.update({
   path: '/labs',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminInstantRoomRoute = AdminInstantRoomRouteImport.update({
+  id: '/instant-room',
+  path: '/instant-room',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminInsightsRoute = AdminInsightsRouteImport.update({
   id: '/insights',
   path: '/insights',
@@ -456,6 +462,7 @@ export interface FileRoutesByFullPath {
   '/admin/crm': typeof AdminCrmRoute
   '/admin/documents': typeof AdminDocumentsRoute
   '/admin/insights': typeof AdminInsightsRoute
+  '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/notifications': typeof AdminNotificationsRoute
@@ -526,6 +533,7 @@ export interface FileRoutesByTo {
   '/admin/crm': typeof AdminCrmRoute
   '/admin/documents': typeof AdminDocumentsRoute
   '/admin/insights': typeof AdminInsightsRoute
+  '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/notifications': typeof AdminNotificationsRoute
@@ -599,6 +607,7 @@ export interface FileRoutesById {
   '/admin/crm': typeof AdminCrmRoute
   '/admin/documents': typeof AdminDocumentsRoute
   '/admin/insights': typeof AdminInsightsRoute
+  '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/notifications': typeof AdminNotificationsRoute
@@ -673,6 +682,7 @@ export interface FileRouteTypes {
     | '/admin/crm'
     | '/admin/documents'
     | '/admin/insights'
+    | '/admin/instant-room'
     | '/admin/labs'
     | '/admin/messages'
     | '/admin/notifications'
@@ -743,6 +753,7 @@ export interface FileRouteTypes {
     | '/admin/crm'
     | '/admin/documents'
     | '/admin/insights'
+    | '/admin/instant-room'
     | '/admin/labs'
     | '/admin/messages'
     | '/admin/notifications'
@@ -815,6 +826,7 @@ export interface FileRouteTypes {
     | '/admin/crm'
     | '/admin/documents'
     | '/admin/insights'
+    | '/admin/instant-room'
     | '/admin/labs'
     | '/admin/messages'
     | '/admin/notifications'
@@ -1209,6 +1221,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLabsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/instant-room': {
+      id: '/admin/instant-room'
+      path: '/instant-room'
+      fullPath: '/admin/instant-room'
+      preLoaderRoute: typeof AdminInstantRoomRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/insights': {
       id: '/admin/insights'
       path: '/insights'
@@ -1397,6 +1416,7 @@ interface AdminRouteChildren {
   AdminCrmRoute: typeof AdminCrmRoute
   AdminDocumentsRoute: typeof AdminDocumentsRoute
   AdminInsightsRoute: typeof AdminInsightsRoute
+  AdminInstantRoomRoute: typeof AdminInstantRoomRoute
   AdminLabsRoute: typeof AdminLabsRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
   AdminNotificationsRoute: typeof AdminNotificationsRoute
@@ -1426,6 +1446,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminCrmRoute: AdminCrmRoute,
   AdminDocumentsRoute: AdminDocumentsRoute,
   AdminInsightsRoute: AdminInsightsRoute,
+  AdminInstantRoomRoute: AdminInstantRoomRoute,
   AdminLabsRoute: AdminLabsRoute,
   AdminMessagesRoute: AdminMessagesRoute,
   AdminNotificationsRoute: AdminNotificationsRoute,
