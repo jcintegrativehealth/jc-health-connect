@@ -177,8 +177,8 @@ type HistoryEntry = { status: CommentStatus; label: string; detail: string; at: 
 const STATUS_META: Record<CommentStatus, { label: string; tone: string; dot: string }> = {
   submitted: { label: "Submitted", tone: "text-navy", dot: "bg-gold" },
   pending:   { label: "Pending review", tone: "text-navy/70", dot: "bg-gold/60" },
-  approved:  { label: "Approved", tone: "text-forest", dot: "bg-forest" },
-  rejected:  { label: "Not published", tone: "text-terracotta", dot: "bg-terracotta" },
+  approved:  { label: "Approved", tone: "text-navy", dot: "bg-teal" },
+  rejected:  { label: "Not published", tone: "text-gold", dot: "bg-gold" },
 };
 
 function formatTime(d: Date) {
