@@ -70,7 +70,7 @@ function AdminPage() {
   );
 }
 
-function AdminDashboard() {
+function AdminDashboard({ onOpen }: { onOpen: (key: string) => void }) {
   return (
     <div>
       <div className="eyebrow text-gold mb-3">Overview</div>
