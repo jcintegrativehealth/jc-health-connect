@@ -191,7 +191,7 @@ function CommentBox() {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const current = history[history.length - 1];
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!submitted) return;
     const t = setTimeout(() => {
       setHistory((h) =>
