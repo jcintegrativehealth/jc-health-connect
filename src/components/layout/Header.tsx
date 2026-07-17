@@ -54,6 +54,7 @@ export function Header() {
   const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isActive = (to: string) => pathname === to || pathname.startsWith(`${to}/`);
 
   // Auto-close the drawer on any route change (link tap, back button, programmatic nav).
   useEffect(() => {
