@@ -122,13 +122,6 @@ function AdminFooter() {
     </footer>
   );
 }
-      </div>
-
-      {cmdOpen && <CommandPalette onClose={() => setCmdOpen(false)} />}
-      {notifOpen && <NotificationsDrawer onClose={() => setNotifOpen(false)} />}
-    </div>
-  );
-}
 
 function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; isActive: (to: string) => boolean; onCollapse?: () => void }) {
   return (
