@@ -258,7 +258,12 @@ function CommentBox() {
 
   return (
     <form
-      onSubmit={(e) => { e.preventDefault(); if (value.trim()) setSubmitted(true); }}
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (!value.trim()) return;
+        setHistory([{ status: "submitted", label: "Submitted", detail: "Your comment was received and logged in the moderation queue.", at: new Date() }]);
+        setSubmitted(true);
+      }}
       className="mt-12 p-6 bg-paper border border-navy/10"
     >
       <label htmlFor="comment" className="block text-sm font-medium text-navy mb-3">Contribute to the discussion</label>
