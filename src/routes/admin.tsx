@@ -104,10 +104,24 @@ function AdminLayout() {
         <main className="p-5 md:p-8 lg:p-10 max-w-[1440px] mx-auto">
           <Outlet />
         </main>
-        <footer className="border-t border-navy/8 mt-12 py-5 px-5 md:px-10 flex flex-col md:flex-row justify-between gap-2 text-[11px] uppercase tracking-widest text-navy/40">
-          <span>© {new Date().getFullYear()} {clinic.name} · Private admin</span>
-          <span>Preview build · Frontend only · Not for clinical use</span>
-        </footer>
+        <AdminFooter />
+      </div>
+
+      {cmdOpen && <CommandPalette onClose={() => setCmdOpen(false)} />}
+      {notifOpen && <NotificationsDrawer onClose={() => setNotifOpen(false)} />}
+    </div>
+  );
+}
+
+function AdminFooter() {
+  const { t } = useTranslation();
+  return (
+    <footer className="border-t border-navy/8 mt-12 py-5 px-5 md:px-10 flex flex-col md:flex-row justify-between gap-2 text-[11px] uppercase tracking-widest text-navy/40">
+      <span>© {new Date().getFullYear()} {clinic.name} · {t("admin.footer.private")}</span>
+      <span>{t("admin.footer.preview")}</span>
+    </footer>
+  );
+}
       </div>
 
       {cmdOpen && <CommandPalette onClose={() => setCmdOpen(false)} />}
