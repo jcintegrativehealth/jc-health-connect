@@ -264,20 +264,20 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
   ];
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4">
-      <div className="absolute inset-0 bg-navy/20" onClick={onClose} />
-      <div className="relative w-full max-w-xl bg-paper border border-navy/15 shadow-2xl">
-        <div className="flex items-center gap-2 px-4 h-12 border-b border-navy/10">
-          <Search size={14} strokeWidth={1.5} className="text-navy/50" />
+      <div className="absolute inset-0 bg-navy/15" onClick={onClose} />
+      <div className="relative w-full max-w-xl bg-card border border-navy/10 shadow-sm">
+        <div className="flex items-center gap-2 px-4 h-12 border-b border-navy/8">
+          <Search size={14} strokeWidth={1.5} className="text-navy/45" />
           <input autoFocus placeholder="Search patients, appointments, messages…" className="flex-1 bg-transparent outline-none text-sm placeholder:text-navy/40" />
-          <kbd className="text-[10px] uppercase tracking-widest border border-navy/15 px-1.5 py-0.5 text-navy/45">Esc</kbd>
+          <kbd className="text-[10px] uppercase tracking-widest border border-navy/10 px-1.5 py-0.5 text-navy/40">Esc</kbd>
         </div>
         <div className="max-h-[60vh] overflow-y-auto">
           {groups.map((g) => (
-            <div key={g.label} className="border-b border-navy/10 last:border-b-0">
-              <div className="px-4 py-2 eyebrow text-navy/45">{g.label}</div>
+            <div key={g.label} className="border-b border-navy/8 last:border-b-0">
+              <div className="px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-navy/40 font-medium">{g.label}</div>
               {g.items.map((i) => (
-                <Link key={i.to + i.label} to={i.to} onClick={onClose} className="flex items-center justify-between px-4 py-2 text-sm text-navy/75 hover:bg-mist/60 hover:text-navy">
-                  {i.label} <span className="text-[10px] text-navy/40">↵</span>
+                <Link key={i.to + i.label} to={i.to} onClick={onClose} className="flex items-center justify-between px-4 py-2 text-sm text-navy/70 hover:bg-mist/40 hover:text-navy transition-colors">
+                  {i.label} <span className="text-[10px] text-navy/35">↵</span>
                 </Link>
               ))}
             </div>
