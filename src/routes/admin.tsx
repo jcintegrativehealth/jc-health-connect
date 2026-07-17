@@ -150,3 +150,111 @@ function AdminStub({ label }: { label: string }) {
     </div>
   );
 }
+
+type PendingComment = {
+  id: string;
+  author: string;
+  email: string;
+  article: string;
+  submitted: string;
+  body: string;
+  status: "pending" | "approved" | "rejected";
+};
+
+const INITIAL_COMMENTS: PendingComment[] = [
+  { id: "c1", author: "Marta Alves", email: "m.alves@example.com", article: "Rethinking mTOR in longevity practice", submitted: "2h ago", status: "pending", body: "Curious how you weigh rapalogs against lifestyle-based mTOR modulation in early-stage patients — any framework you follow in clinic?" },
+  { id: "c2", author: "David Chen", email: "d.chen@example.com", article: "Continuous glucose monitoring beyond diabetes", submitted: "5h ago", status: "pending", body: "Great overview. Would love a follow-up on interpreting nocturnal variability in metabolically healthy adults." },
+  { id: "c3", author: "Anon.", email: "hidden@example.com", article: "Integrative approaches to chronic fatigue", submitted: "1d ago", status: "pending", body: "Removed — includes personal medical detail. Flag for privacy." },
+  { id: "c4", author: "Priya Nair", email: "p.nair@example.com", article: "The evidence base for adaptogens", submitted: "2d ago", status: "pending", body: "Appreciate the balanced tone. Any thoughts on standardization variability between suppliers?" },
+];
+
+function CommentModeration() {
+  const [comments, setComments] = useState<PendingComment[]>(INITIAL_COMMENTS);
+  const [filter, setFilter] = useState<"pending" | "approved" | "rejected">("pending");
+
+  const act = (id: string, status: PendingComment["status"]) =>
+    setComments((cs) => cs.map((c) => (c.id === id ? { ...c, status } : c)));
+
+  const visible = comments.filter((c) => c.status === filter);
+  const counts = {
+    pending: comments.filter((c) => c.status === "pending").length,
+    approved: comments.filter((c) => c.status === "approved").length,
+    rejected: comments.filter((c) => c.status === "rejected").length,
+  };
+
+  return (
+    <div>
+      <div className="eyebrow text-gold mb-3">Moderation</div>
+      <h1 className="font-serif text-4xl text-navy">Comments & Moderation</h1>
+      <p className="text-navy/60 mt-2 max-w-2xl">
+        Every reader comment on Insights is held for review. Approve, reject, or archive before it appears publicly on the article page.
+      </p>
+
+      <div className="mt-8 flex flex-wrap items-center gap-2 border-b border-navy/10">
+        {(["pending", "approved", "rejected"] as const).map((k) => (
+          <button
+            key={k}
+            onClick={() => setFilter(k)}
+            className={`px-4 py-2 text-xs uppercase tracking-widest transition-colors ${filter === k ? "text-navy border-b-2 border-gold -mb-px" : "text-navy/50 hover:text-navy"}`}
+          >
+            {k} <span className="ml-1 text-navy/40">({counts[k]})</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="mt-6 space-y-3">
+        {visible.length === 0 && (
+          <div className="p-8 border border-navy/10 bg-mist/40 text-center text-sm text-navy/55">
+            No {filter} comments.
+          </div>
+        )}
+        {visible.map((c) => (
+          <article key={c.id} className="border border-navy/10 bg-paper p-5">
+            <header className="flex flex-wrap items-start justify-between gap-2 pb-3 border-b border-navy/10">
+              <div>
+                <div className="text-sm font-medium text-navy">{c.author}</div>
+                <div className="text-xs text-navy/50">{c.email} · {c.submitted}</div>
+              </div>
+              <div className="text-xs text-navy/55">
+                on <span className="text-navy">{c.article}</span>
+              </div>
+            </header>
+            <p className="mt-3 text-sm text-navy/80 leading-relaxed">{c.body}</p>
+            {c.status === "pending" ? (
+              <div className="mt-4 flex flex-col-reverse sm:flex-row justify-end gap-2">
+                <button
+                  onClick={() => act(c.id, "rejected")}
+                  className="w-full sm:w-auto px-4 py-2 text-xs uppercase tracking-widest text-navy/60 border border-navy/15 hover:text-navy hover:border-navy/40 transition-colors"
+                >
+                  Reject
+                </button>
+                <button
+                  onClick={() => act(c.id, "approved")}
+                  className="w-full sm:w-auto px-5 py-2 bg-navy text-paper text-xs font-semibold uppercase tracking-widest hover:bg-academic transition-colors"
+                >
+                  Approve & publish
+                </button>
+              </div>
+            ) : (
+              <div className="mt-4 flex items-center justify-between text-xs">
+                <span className={`uppercase tracking-widest font-semibold ${c.status === "approved" ? "text-teal" : "text-gold"}`}>
+                  {c.status === "approved" ? "Approved" : "Rejected"}
+                </span>
+                <button
+                  onClick={() => act(c.id, "pending")}
+                  className="text-navy/55 hover:text-navy uppercase tracking-widest"
+                >
+                  Return to queue
+                </button>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+
+      <p className="mt-8 text-xs text-navy/45">
+        Moderation actions are illustrative — persistence will be wired to Dr. Chen's dashboard when the backend is enabled.
+      </p>
+    </div>
+  );
+}
