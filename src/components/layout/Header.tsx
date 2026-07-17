@@ -216,8 +216,8 @@ export function Header() {
                             className={[
                               "flex items-center gap-2.5 py-2.5 text-sm border-b border-navy/5 transition-colors",
                               active
-                                ? "text-gold bg-mist/60 -mx-2 px-2 rounded-sm"
-                                : "text-navy/80 hover:text-gold",
+                                ? "text-gold"
+                                : "text-navy/60 hover:text-gold",
                             ].join(" ")}
                           >
                             {active && (
