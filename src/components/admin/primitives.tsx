@@ -58,15 +58,15 @@ export function Btn({
 export function StatCard({
   label, value, sub, tone = "navy", trend,
 }: { label: string; value: string | number; sub?: string; tone?: "navy" | "teal" | "gold"; trend?: string }) {
-  const accent = tone === "teal" ? "border-teal/40" : tone === "gold" ? "border-gold/40" : "border-navy/10";
+  const accent = tone === "teal" ? "border-teal/30" : tone === "gold" ? "border-gold/35" : "border-navy/8";
   return (
-    <div className={`bg-card border ${accent} p-5`}>
-      <div className="eyebrow text-navy/45">{label}</div>
+    <div className={`bg-card border ${accent} p-5 transition-colors hover:border-navy/15`}>
+      <div className="text-[10px] uppercase tracking-[0.24em] text-navy/40 font-medium">{label}</div>
       <div className="mt-3 flex items-baseline gap-2">
-        <div className="font-serif text-3xl md:text-4xl text-navy leading-none">{value}</div>
-        {trend && <span className="text-[10px] uppercase tracking-widest text-teal">{trend}</span>}
+        <div className="font-serif text-3xl md:text-4xl text-navy leading-none tracking-tight">{value}</div>
+        {trend && <span className="text-[10px] uppercase tracking-widest text-teal/80 font-medium">{trend}</span>}
       </div>
-      {sub && <div className="text-xs text-navy/50 mt-2">{sub}</div>}
+      {sub && <div className="text-[11px] text-navy/45 mt-2 leading-relaxed">{sub}</div>}
     </div>
   );
 }
@@ -74,36 +74,36 @@ export function StatCard({
 /* -------------------------------- Badges --------------------------------- */
 
 const badgeMap: Record<string, string> = {
-  Confirmed: "text-teal border-teal/40",
-  "Checked In": "text-navy border-navy/30",
-  "In Progress": "text-gold border-gold/40",
-  Completed: "text-navy/60 border-navy/20",
+  Confirmed: "text-teal/90 border-teal/30",
+  "Checked In": "text-navy/70 border-navy/20",
+  "In Progress": "text-gold/90 border-gold/30",
+  Completed: "text-navy/55 border-navy/15",
   Cancelled: "text-navy/40 border-navy/10",
-  "No Show": "text-destructive border-destructive/40",
-  Active: "text-teal border-teal/40",
-  New: "text-gold border-gold/40",
-  "Follow-Up": "text-gold border-gold/40",
-  "Follow-Up Required": "text-gold border-gold/40",
+  "No Show": "text-destructive/90 border-destructive/30",
+  Active: "text-teal/90 border-teal/30",
+  New: "text-gold/90 border-gold/30",
+  "Follow-Up": "text-gold/90 border-gold/30",
+  "Follow-Up Required": "text-gold/90 border-gold/30",
   Inactive: "text-navy/40 border-navy/10",
   Archived: "text-navy/40 border-navy/10",
-  Draft: "text-navy/50 border-navy/15",
-  "In Review": "text-gold border-gold/40",
-  Approved: "text-teal border-teal/40",
-  Scheduled: "text-navy border-navy/30",
-  Published: "text-teal border-teal/40",
-  Sent: "text-navy border-navy/30",
-  Paid: "text-teal border-teal/40",
-  Partial: "text-gold border-gold/40",
-  Overdue: "text-destructive border-destructive/40",
+  Draft: "text-navy/50 border-navy/12",
+  "In Review": "text-gold/90 border-gold/30",
+  Approved: "text-teal/90 border-teal/30",
+  Scheduled: "text-navy/70 border-navy/20",
+  Published: "text-teal/90 border-teal/30",
+  Sent: "text-navy/70 border-navy/20",
+  Paid: "text-teal/90 border-teal/30",
+  Partial: "text-gold/90 border-gold/30",
+  Overdue: "text-destructive/90 border-destructive/30",
   Refunded: "text-navy/40 border-navy/10",
-  "To Do": "text-navy border-navy/30",
-  Waiting: "text-navy/50 border-navy/15",
-  Reviewed: "text-teal border-teal/40",
-  "Requires Follow-Up": "text-gold border-gold/40",
+  "To Do": "text-navy/70 border-navy/20",
+  Waiting: "text-navy/50 border-navy/12",
+  Reviewed: "text-teal/90 border-teal/30",
+  "Requires Follow-Up": "text-gold/90 border-gold/30",
 };
 
 export function Badge({ children, tone }: { children: React.ReactNode; tone?: Status | string }) {
-  const cls = (tone && badgeMap[tone as string]) || "text-navy/60 border-navy/20";
+  const cls = (tone && badgeMap[tone as string]) || "text-navy/55 border-navy/15";
   return (
     <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 border text-[10px] uppercase tracking-[0.18em] font-medium ${cls}`}>
       <span className="h-1 w-1 rounded-full bg-current" />
@@ -280,15 +280,15 @@ export function LineChart({ data, height = 140 }: { data: number[]; height?: num
 export function Donut({ segments }: { segments: { value: number; color: string; label: string }[] }) {
   const total = segments.reduce((s, x) => s + x.value, 0);
   let acc = 0;
-  const R = 40, C = 2 * Math.PI * R;
+  const R = 42, C = 2 * Math.PI * R;
   return (
-    <div className="flex items-center gap-6">
-      <svg viewBox="0 0 100 100" width="120" height="120" className="-rotate-90">
-        <circle cx="50" cy="50" r={R} fill="none" stroke="var(--mist)" strokeWidth="14" />
+    <div className="flex items-center gap-5">
+      <svg viewBox="0 0 100 100" width="100" height="100" className="-rotate-90">
+        <circle cx="50" cy="50" r={R} fill="none" stroke="var(--mist)" strokeWidth="10" />
         {segments.map((s, i) => {
           const len = (s.value / total) * C;
           const el = (
-            <circle key={i} cx="50" cy="50" r={R} fill="none" stroke={s.color} strokeWidth="14" strokeDasharray={`${len} ${C - len}`} strokeDashoffset={-acc} />
+            <circle key={i} cx="50" cy="50" r={R} fill="none" stroke={s.color} strokeWidth="10" strokeDasharray={`${len} ${C - len}`} strokeDashoffset={-acc} />
           );
           acc += len;
           return el;
@@ -297,9 +297,9 @@ export function Donut({ segments }: { segments: { value: number; color: string; 
       <ul className="text-xs space-y-1.5">
         {segments.map((s, i) => (
           <li key={i} className="flex items-center gap-2">
-            <span className="h-2 w-2" style={{ background: s.color }} />
-            <span className="text-navy/70">{s.label}</span>
-            <span className="text-navy/45">{Math.round((s.value / total) * 100)}%</span>
+            <span className="h-1.5 w-1.5 rounded-sm" style={{ background: s.color }} />
+            <span className="text-navy/65">{s.label}</span>
+            <span className="text-navy/40">{Math.round((s.value / total) * 100)}%</span>
           </li>
         ))}
       </ul>
@@ -311,10 +311,10 @@ export function Donut({ segments }: { segments: { value: number; color: string; 
 
 export function Panel({ title, action, children, className = "" }: { title?: string; action?: React.ReactNode; children: React.ReactNode; className?: string }) {
   return (
-    <section className={`bg-card border border-navy/10 ${className}`}>
+    <section className={`bg-card border border-navy/8 ${className}`}>
       {(title || action) && (
-        <header className="flex items-center justify-between p-4 border-b border-navy/10">
-          {title && <div className="eyebrow text-navy/50">{title}</div>}
+        <header className="flex items-center justify-between px-4 py-3.5 border-b border-navy/8">
+          {title && <div className="text-[10px] uppercase tracking-[0.24em] text-navy/40 font-medium">{title}</div>}
           {action}
         </header>
       )}
