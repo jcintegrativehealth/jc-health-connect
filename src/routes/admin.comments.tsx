@@ -132,7 +132,7 @@ function Comments() {
                 )}
 
                 {error && !isBusy && (
-                  <div className="mt-3 border border-terracotta/40 bg-terracotta/5 px-3 py-2 text-xs text-terracotta flex flex-wrap items-center justify-between gap-2">
+                  <div className="mt-3 border border-gold/40 bg-gold/5 px-3 py-2 text-xs text-gold flex flex-wrap items-center justify-between gap-2">
                     <span>{error}</span>
                     <button
                       type="button"
