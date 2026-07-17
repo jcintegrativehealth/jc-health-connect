@@ -291,31 +291,31 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
 function NotificationsDrawer({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-50">
-      <div className="absolute inset-0 bg-navy/20" onClick={onClose} />
-      <aside className="absolute inset-y-0 right-0 w-full sm:w-96 bg-paper border-l border-navy/10 flex flex-col">
-        <header className="flex items-center justify-between p-4 border-b border-navy/10">
+      <div className="absolute inset-0 bg-navy/15" onClick={onClose} />
+      <aside className="absolute inset-y-0 right-0 w-full sm:w-96 bg-card border-l border-navy/8 flex flex-col">
+        <header className="flex items-center justify-between p-4 border-b border-navy/8">
           <div>
-            <div className="eyebrow text-gold">Notifications</div>
-            <div className="font-serif text-lg text-navy">Recent activity</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] text-gold font-semibold">Notifications</div>
+            <div className="font-serif text-lg text-navy mt-0.5">Recent activity</div>
           </div>
-          <button onClick={onClose} className="text-navy/60 hover:text-navy"><X size={18} /></button>
+          <button onClick={onClose} className="text-navy/55 hover:text-navy transition-colors"><X size={18} /></button>
         </header>
         <div className="flex-1 overflow-y-auto">
           {demoNotifs.map((n) => (
-            <div key={n.id} className="p-4 border-b border-navy/5 hover:bg-mist/40">
+            <div key={n.id} className="p-4 border-b border-navy/5 hover:bg-mist/30 transition-colors">
               <div className="flex items-start gap-3">
-                <span className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${n.read ? "bg-navy/20" : "bg-gold"}`} />
+                <span className={`mt-1.5 h-1.5 w-1.5 rounded-full shrink-0 ${n.read ? "bg-navy/20" : "bg-gold/80"}`} />
                 <div className="min-w-0">
-                  <div className="text-sm text-navy">{n.text}</div>
-                  <div className="text-[10px] uppercase tracking-widest text-navy/45 mt-1">{n.type} · {n.time}</div>
+                  <div className="text-sm text-navy/80">{n.text}</div>
+                  <div className="text-[10px] uppercase tracking-widest text-navy/40 mt-1">{n.type} · {n.time}</div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <div className="p-3 border-t border-navy/10 flex items-center justify-between text-xs">
-          <button className="text-navy/60 hover:text-navy uppercase tracking-widest">Mark all as read</button>
-          <Link to="/admin/notifications" onClick={onClose} className="text-navy/60 hover:text-navy uppercase tracking-widest">Open center →</Link>
+        <div className="p-3 border-t border-navy/8 flex items-center justify-between text-xs">
+          <button className="text-navy/55 hover:text-navy uppercase tracking-widest transition-colors">Mark all as read</button>
+          <Link to="/admin/notifications" onClick={onClose} className="text-navy/55 hover:text-navy uppercase tracking-widest transition-colors">Open center →</Link>
         </div>
       </aside>
     </div>
