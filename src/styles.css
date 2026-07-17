@@ -172,3 +172,9 @@
 @utility rule-thin {
   border-color: color-mix(in oklab, var(--foreground) 10%, transparent);
 }
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar { display: none; }
+}
