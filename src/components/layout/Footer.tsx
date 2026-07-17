@@ -54,12 +54,12 @@ export function Footer() {
 
         <div className="pt-10 border-t border-paper/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <p className="text-[10px] uppercase tracking-[0.2em] text-paper/40">{t("footer.rights")}</p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-[10px] uppercase tracking-[0.2em] text-paper/40">
+          <div className="w-full md:w-auto grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap gap-x-6 gap-y-3 text-[10px] uppercase tracking-[0.2em] text-paper/40">
             <Link to="/legal/$slug" params={{ slug: "privacy" }} className="hover:text-paper">{t("footer.privacy")}</Link>
             <Link to="/legal/$slug" params={{ slug: "terms" }} className="hover:text-paper">{t("footer.terms")}</Link>
             <Link to="/legal/$slug" params={{ slug: "hipaa" }} className="hover:text-paper">{t("footer.hipaa")}</Link>
             <Link to="/legal/$slug" params={{ slug: "medical-disclaimer" }} className="hover:text-paper">{t("footer.disclaimer")}</Link>
-            <Link to="/legal/$slug" params={{ slug: "accessibility" }} className="hover:text-paper">Accessibility</Link>
+            <Link to="/legal/$slug" params={{ slug: "accessibility" }} className="hover:text-paper col-span-2 sm:col-span-1 md:col-span-auto">Accessibility</Link>
           </div>
         </div>
       </div>
