@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TelehealthRouteImport } from './routes/telehealth'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as PatientResourcesRouteImport } from './routes/patient-resources'
+import { Route as PatientRouteImport } from './routes/patient'
 import { Route as MedicationsRouteImport } from './routes/medications'
 import { Route as InnovationRouteImport } from './routes/innovation'
 import { Route as FaqRouteImport } from './routes/faq'
@@ -72,6 +73,11 @@ const PortalRoute = PortalRouteImport.update({
 const PatientResourcesRoute = PatientResourcesRouteImport.update({
   id: '/patient-resources',
   path: '/patient-resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PatientRoute = PatientRouteImport.update({
+  id: '/patient',
+  path: '/patient',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MedicationsRoute = MedicationsRouteImport.update({
@@ -315,6 +321,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/innovation': typeof InnovationRoute
   '/medications': typeof MedicationsRoute
+  '/patient': typeof PatientRoute
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
   '/telehealth': typeof TelehealthRoute
@@ -365,6 +372,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/innovation': typeof InnovationRoute
   '/medications': typeof MedicationsRoute
+  '/patient': typeof PatientRoute
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
   '/telehealth': typeof TelehealthRoute
@@ -417,6 +425,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/innovation': typeof InnovationRoute
   '/medications': typeof MedicationsRoute
+  '/patient': typeof PatientRoute
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
   '/telehealth': typeof TelehealthRoute
@@ -470,6 +479,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/innovation'
     | '/medications'
+    | '/patient'
     | '/patient-resources'
     | '/portal'
     | '/telehealth'
@@ -520,6 +530,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/innovation'
     | '/medications'
+    | '/patient'
     | '/patient-resources'
     | '/portal'
     | '/telehealth'
@@ -571,6 +582,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/innovation'
     | '/medications'
+    | '/patient'
     | '/patient-resources'
     | '/portal'
     | '/telehealth'
@@ -623,6 +635,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   InnovationRoute: typeof InnovationRoute
   MedicationsRoute: typeof MedicationsRoute
+  PatientRoute: typeof PatientRoute
   PatientResourcesRoute: typeof PatientResourcesRoute
   PortalRoute: typeof PortalRoute
   TelehealthRoute: typeof TelehealthRoute
@@ -660,6 +673,13 @@ declare module '@tanstack/react-router' {
       path: '/patient-resources'
       fullPath: '/patient-resources'
       preLoaderRoute: typeof PatientResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/patient': {
+      id: '/patient'
+      path: '/patient'
+      fullPath: '/patient'
+      preLoaderRoute: typeof PatientRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/medications': {
@@ -1057,6 +1077,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   InnovationRoute: InnovationRoute,
   MedicationsRoute: MedicationsRoute,
+  PatientRoute: PatientRoute,
   PatientResourcesRoute: PatientResourcesRoute,
   PortalRoute: PortalRoute,
   TelehealthRoute: TelehealthRoute,
