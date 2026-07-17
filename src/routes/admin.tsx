@@ -174,9 +174,11 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
 }
 
 function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => void; onOpenCmd: () => void; onOpenNotif: () => void }) {
+  const { t, i18n } = useTranslation();
   const unread = demoNotifs.filter((n) => !n.read).length;
-  const [lang, setLang] = useState("EN");
-  const today = new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+  const localeMap: Record<LangCode, string> = { en: "en-US", es: "es-ES", pt: "pt-BR", zh: "zh-CN" };
+  const active = (i18n.language.split("-")[0] as LangCode) || "en";
+  const today = new Date().toLocaleDateString(localeMap[active] ?? "en-US", { weekday: "long", month: "long", day: "numeric" });
 
   return (
     <header className="sticky top-0 z-30 border-b border-navy/8 bg-paper/90 backdrop-blur">
@@ -190,7 +192,7 @@ function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => 
           className="hidden md:flex items-center gap-2 h-9 border border-navy/10 bg-card px-3 min-w-0 flex-1 max-w-md text-navy/45 hover:border-navy/25 transition-colors"
         >
           <Search size={13} strokeWidth={1.5} />
-          <span className="text-sm truncate">Search patients, appointments, invoices…</span>
+          <span className="text-sm truncate">{t("admin.topbar.search")}</span>
           <span className="ml-auto text-[10px] uppercase tracking-widest border border-navy/10 px-1.5 py-0.5 flex items-center gap-1 text-navy/40"><Command size={10} /> K</span>
         </button>
 
@@ -198,22 +200,28 @@ function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => 
 
         <div className="ml-auto flex items-center gap-1 md:gap-1.5">
           <span className="hidden xl:inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-navy/45 mr-3">
-            <span className="h-1.5 w-1.5 rounded-full bg-teal/80" /> Clinic online · {today}
+            <span className="h-1.5 w-1.5 rounded-full bg-teal/80" /> {t("admin.topbar.clinicOnline")} · {today}
           </span>
 
           <QuickActions />
 
-          <button onClick={onOpenNotif} className="relative h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label="Notifications">
+          <button onClick={onOpenNotif} className="relative h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label={t("admin.topbar.notifications")}>
             <Bell size={16} strokeWidth={1.5} />
             {unread > 0 && <span className="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-gold" />}
           </button>
 
-          <button className="h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label="Help"><HelpCircle size={15} strokeWidth={1.5} /></button>
+          <button className="h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label={t("admin.topbar.help")}><HelpCircle size={15} strokeWidth={1.5} /></button>
 
           <div className="hidden md:flex items-center gap-0.5 h-9 border border-navy/10 px-2 text-[11px] uppercase tracking-widest text-navy/50">
             <Globe size={12} strokeWidth={1.5} className="mr-1" />
-            {(["EN", "ES", "PT", "ZH"] as const).map((l) => (
-              <button key={l} onClick={() => setLang(l)} className={`px-1.5 py-0.5 transition-colors ${lang === l ? "text-navy" : "hover:text-navy"}`}>{l}</button>
+            {SUPPORTED_LANGUAGES.map((l) => (
+              <button
+                key={l.code}
+                onClick={() => { i18n.changeLanguage(l.code); try { localStorage.setItem("jc.lang", l.code); } catch {} }}
+                className={`px-1.5 py-0.5 transition-colors ${active === l.code ? "text-navy" : "hover:text-navy"}`}
+              >
+                {l.short}
+              </button>
             ))}
           </div>
 
@@ -221,7 +229,7 @@ function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => 
             <div className="h-7 w-7 rounded-full border border-navy/15 grid place-items-center text-[10px] font-semibold text-navy bg-paper">JC</div>
             <div className="hidden sm:block leading-tight">
               <div className="text-xs font-medium text-navy">Dr. Jason Chen</div>
-              <div className="text-[10px] uppercase tracking-widest text-navy/40">Medical Director</div>
+              <div className="text-[10px] uppercase tracking-widest text-navy/40">{t("admin.topbar.role")}</div>
             </div>
           </div>
         </div>
