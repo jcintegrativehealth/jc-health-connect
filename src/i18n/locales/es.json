@@ -59,5 +59,108 @@
     "newsletterLanguage": "Idioma preferido",
     "newsletterSubmit": "Suscribirse"
   },
-  "demo": "Contenido de demostración — sin datos médicos ni personales reales."
+  "demo": "Contenido de demostración — sin datos médicos ni personales reales.",
+  "admin": {
+    "topbar": {
+      "search": "Buscar pacientes, citas, facturas…",
+      "clinicOnline": "Clínica en línea",
+      "new": "Nuevo",
+      "role": "Director Médico",
+      "notifications": "Notificaciones",
+      "help": "Ayuda"
+    },
+    "groups": {
+      "practice": "Práctica",
+      "clinical": "Clínico",
+      "relations": "Relaciones",
+      "editorial": "Editorial",
+      "operations": "Operaciones"
+    },
+    "nav": {
+      "overview": "Resumen",
+      "patients": "Pacientes",
+      "appointments": "Citas",
+      "calendar": "Agenda",
+      "clinical": "Clínico",
+      "records": "Historias clínicas",
+      "labs": "Resultados de laboratorio",
+      "carePlans": "Planes de cuidado",
+      "messages": "Mensajes",
+      "billing": "Facturación",
+      "crm": "CRM",
+      "research": "Investigación",
+      "insights": "Insights Médicos",
+      "website": "Contenido del sitio",
+      "comments": "Comentarios",
+      "analytics": "Analítica",
+      "reports": "Informes",
+      "documents": "Documentos",
+      "tasks": "Tareas",
+      "notifications": "Notificaciones",
+      "settings": "Configuración"
+    },
+    "sidebar": { "collapse": "Contraer", "backToSite": "Volver al sitio", "privateAdmin": "Admin privado" },
+    "quick": {
+      "title": "Acciones rápidas",
+      "newPatient": "Nuevo paciente",
+      "newAppointment": "Nueva cita",
+      "scheduleAppointment": "Agendar Cita",
+      "createCarePlan": "Crear Plan de Cuidado",
+      "sendMessage": "Enviar Mensaje",
+      "newResearch": "Nueva investigación",
+      "newResearchPost": "Nueva Publicación de Investigación",
+      "recordPayment": "Registrar pago",
+      "uploadDocument": "Subir Documento",
+      "openPalette": "Abrir paleta de comandos (⌘K)"
+    },
+    "cmd": {
+      "placeholder": "Buscar pacientes, citas, mensajes…",
+      "pages": "Páginas",
+      "patients": "Pacientes",
+      "appointments": "Citas"
+    },
+    "notif": { "eyebrow": "Notificaciones", "title": "Actividad reciente", "markAll": "Marcar todas como leídas", "openCenter": "Abrir centro →" },
+    "footer": { "private": "Admin privado", "preview": "Build de vista previa · Solo frontend · No para uso clínico" },
+    "overview": {
+      "eyebrow": "Resumen",
+      "morning": "Buenos días",
+      "afternoon": "Buenas tardes",
+      "evening": "Buenas noches",
+      "greeting": "{{greet}}, Dr. Chen.",
+      "lede": "Esto es lo que sucede hoy en JC Integrative Health — {{appts}} citas agendadas, {{requests}} nuevas solicitudes de pacientes por revisar y {{messages}} mensajes en la cola.",
+      "kpi": {
+        "today": "Citas de hoy",
+        "todaySub": "2 telemedicina · 4 presenciales · 6 confirmadas",
+        "active": "Pacientes activos",
+        "activeSub": "+12 este mes",
+        "requests": "Nuevas solicitudes",
+        "requestsSub": "En espera de revisión",
+        "pendingMsgs": "Mensajes pendientes",
+        "pendingMsgsSub": "3 marcados como prioritarios",
+        "pendingPay": "Pagos pendientes",
+        "onTrack": "Al día",
+        "overdue": "{{amount}} vencidos",
+        "newLabs": "Nuevos resultados de laboratorio",
+        "newLabsSub": "2 marcados como anormales",
+        "carePlans": "Planes de cuidado por revisar",
+        "carePlansSub": "Vencen esta semana",
+        "drafts": "Borradores de investigación",
+        "draftsSub": "2 listos para revisión"
+      },
+      "agenda": { "title": "Agenda de hoy", "open": "Abrir" },
+      "activity": { "title": "Actividad de pacientes", "all": "Todas" },
+      "charts": {
+        "byWeek": "Citas por semana",
+        "tvi": "Telemedicina vs presencial",
+        "telehealth": "Telemedicina",
+        "inPerson": "Presencial",
+        "langDist": "Distribución de idiomas de pacientes",
+        "english": "Inglés",
+        "portuguese": "Portugués",
+        "spanish": "Español",
+        "mandarin": "Mandarín"
+      },
+      "tasks": { "title": "Tareas", "openAll": "Abrir todas", "due": "Vence" }
+    }
+  }
 }
