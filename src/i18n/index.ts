@@ -27,11 +27,12 @@ if (!i18n.isInitialized) {
         pt: { translation: pt },
         zh: { translation: zh },
       },
+      lng: typeof window !== "undefined" ? (window.localStorage.getItem("jc.lang") ?? "en") : "en",
       fallbackLng: "en",
       supportedLngs: ["en", "es", "pt", "zh"],
       interpolation: { escapeValue: false },
       detection: {
-        order: ["localStorage", "navigator"],
+        order: ["localStorage"],
         caches: ["localStorage"],
         lookupLocalStorage: "jc.lang",
       },

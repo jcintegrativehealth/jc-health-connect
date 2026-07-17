@@ -4,15 +4,20 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
+// Hero nav: essentials only. Secondary pages live in the footer.
 const NAV: { to: string; key: string }[] = [
   { to: "/about", key: "nav.about" },
   { to: "/services", key: "nav.services" },
-  { to: "/research", key: "nav.research" },
   { to: "/insights", key: "nav.insights" },
+  { to: "/contact", key: "nav.contact" },
+];
+
+// Full sitemap surfaces in the mobile drawer for discoverability.
+const DRAWER_MORE: { to: string; key: string }[] = [
+  { to: "/research", key: "nav.research" },
   { to: "/innovation", key: "nav.innovation" },
   { to: "/physicians", key: "nav.physicians" },
   { to: "/patient-resources", key: "nav.patientResources" },
-  { to: "/contact", key: "nav.contact" },
 ];
 
 export function Header() {
@@ -94,10 +99,21 @@ export function Header() {
                   {t(n.key)}
                 </Link>
               ))}
-              <Link to="/portal" onClick={() => setMobileOpen(false)} className="py-3 text-lg font-medium text-navy border-b border-navy/5">
+              <div className="eyebrow text-navy/40 mt-8 mb-2">More</div>
+              {DRAWER_MORE.map((n) => (
+                <Link
+                  key={n.to}
+                  to={n.to}
+                  onClick={() => setMobileOpen(false)}
+                  className="py-3 text-base font-medium text-navy/80 border-b border-navy/5 hover:text-teal"
+                >
+                  {t(n.key)}
+                </Link>
+              ))}
+              <Link to="/portal" onClick={() => setMobileOpen(false)} className="py-3 text-base font-medium text-navy/80 border-b border-navy/5">
                 {t("nav.portal")}
               </Link>
-              <Link to="/admin" onClick={() => setMobileOpen(false)} className="py-3 text-lg font-medium text-navy border-b border-navy/5">
+              <Link to="/admin" onClick={() => setMobileOpen(false)} className="py-3 text-base font-medium text-navy/80 border-b border-navy/5">
                 Admin
               </Link>
             </nav>
