@@ -44,6 +44,7 @@ import { Route as PatientCarePlanRouteImport } from './routes/patient.care-plan'
 import { Route as PatientBillingRouteImport } from './routes/patient.billing'
 import { Route as LocationsStateRouteImport } from './routes/locations.$state'
 import { Route as LegalSlugRouteImport } from './routes/legal.$slug'
+import { Route as JoinRoomIdRouteImport } from './routes/join.$roomId'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 import { Route as ConditionsSlugRouteImport } from './routes/conditions.$slug'
 import { Route as AdminWebsiteRouteImport } from './routes/admin.website'
@@ -54,6 +55,7 @@ import { Route as AdminRecordsRouteImport } from './routes/admin.records'
 import { Route as AdminNotificationsRouteImport } from './routes/admin.notifications'
 import { Route as AdminMessagesRouteImport } from './routes/admin.messages'
 import { Route as AdminLabsRouteImport } from './routes/admin.labs'
+import { Route as AdminInstantRoomRouteImport } from './routes/admin.instant-room'
 import { Route as AdminInsightsRouteImport } from './routes/admin.insights'
 import { Route as AdminDocumentsRouteImport } from './routes/admin.documents'
 import { Route as AdminCrmRouteImport } from './routes/admin.crm'
@@ -255,6 +257,11 @@ const LegalSlugRoute = LegalSlugRouteImport.update({
   path: '/legal/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JoinRoomIdRoute = JoinRoomIdRouteImport.update({
+  id: '/join/$roomId',
+  path: '/join/$roomId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
   id: '/insights/$slug',
   path: '/insights/$slug',
@@ -303,6 +310,11 @@ const AdminMessagesRoute = AdminMessagesRouteImport.update({
 const AdminLabsRoute = AdminLabsRouteImport.update({
   id: '/labs',
   path: '/labs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminInstantRoomRoute = AdminInstantRoomRouteImport.update({
+  id: '/instant-room',
+  path: '/instant-room',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminInsightsRoute = AdminInsightsRouteImport.update({
@@ -456,6 +468,7 @@ export interface FileRoutesByFullPath {
   '/admin/crm': typeof AdminCrmRoute
   '/admin/documents': typeof AdminDocumentsRoute
   '/admin/insights': typeof AdminInsightsRoute
+  '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/notifications': typeof AdminNotificationsRoute
@@ -466,6 +479,7 @@ export interface FileRoutesByFullPath {
   '/admin/website': typeof AdminWebsiteRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/join/$roomId': typeof JoinRoomIdRoute
   '/legal/$slug': typeof LegalSlugRoute
   '/locations/$state': typeof LocationsStateRoute
   '/patient/billing': typeof PatientBillingRoute
@@ -526,6 +540,7 @@ export interface FileRoutesByTo {
   '/admin/crm': typeof AdminCrmRoute
   '/admin/documents': typeof AdminDocumentsRoute
   '/admin/insights': typeof AdminInsightsRoute
+  '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/notifications': typeof AdminNotificationsRoute
@@ -536,6 +551,7 @@ export interface FileRoutesByTo {
   '/admin/website': typeof AdminWebsiteRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/join/$roomId': typeof JoinRoomIdRoute
   '/legal/$slug': typeof LegalSlugRoute
   '/locations/$state': typeof LocationsStateRoute
   '/patient/billing': typeof PatientBillingRoute
@@ -599,6 +615,7 @@ export interface FileRoutesById {
   '/admin/crm': typeof AdminCrmRoute
   '/admin/documents': typeof AdminDocumentsRoute
   '/admin/insights': typeof AdminInsightsRoute
+  '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/notifications': typeof AdminNotificationsRoute
@@ -609,6 +626,7 @@ export interface FileRoutesById {
   '/admin/website': typeof AdminWebsiteRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/join/$roomId': typeof JoinRoomIdRoute
   '/legal/$slug': typeof LegalSlugRoute
   '/locations/$state': typeof LocationsStateRoute
   '/patient/billing': typeof PatientBillingRoute
@@ -673,6 +691,7 @@ export interface FileRouteTypes {
     | '/admin/crm'
     | '/admin/documents'
     | '/admin/insights'
+    | '/admin/instant-room'
     | '/admin/labs'
     | '/admin/messages'
     | '/admin/notifications'
@@ -683,6 +702,7 @@ export interface FileRouteTypes {
     | '/admin/website'
     | '/conditions/$slug'
     | '/insights/$slug'
+    | '/join/$roomId'
     | '/legal/$slug'
     | '/locations/$state'
     | '/patient/billing'
@@ -743,6 +763,7 @@ export interface FileRouteTypes {
     | '/admin/crm'
     | '/admin/documents'
     | '/admin/insights'
+    | '/admin/instant-room'
     | '/admin/labs'
     | '/admin/messages'
     | '/admin/notifications'
@@ -753,6 +774,7 @@ export interface FileRouteTypes {
     | '/admin/website'
     | '/conditions/$slug'
     | '/insights/$slug'
+    | '/join/$roomId'
     | '/legal/$slug'
     | '/locations/$state'
     | '/patient/billing'
@@ -815,6 +837,7 @@ export interface FileRouteTypes {
     | '/admin/crm'
     | '/admin/documents'
     | '/admin/insights'
+    | '/admin/instant-room'
     | '/admin/labs'
     | '/admin/messages'
     | '/admin/notifications'
@@ -825,6 +848,7 @@ export interface FileRouteTypes {
     | '/admin/website'
     | '/conditions/$slug'
     | '/insights/$slug'
+    | '/join/$roomId'
     | '/legal/$slug'
     | '/locations/$state'
     | '/patient/billing'
@@ -881,6 +905,7 @@ export interface RootRouteChildren {
   TelehealthRoute: typeof TelehealthRoute
   ConditionsSlugRoute: typeof ConditionsSlugRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
+  JoinRoomIdRoute: typeof JoinRoomIdRoute
   LegalSlugRoute: typeof LegalSlugRoute
   LocationsStateRoute: typeof LocationsStateRoute
   PhysiciansSlugRoute: typeof PhysiciansSlugRoute
@@ -1139,6 +1164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LegalSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/join/$roomId': {
+      id: '/join/$roomId'
+      path: '/join/$roomId'
+      fullPath: '/join/$roomId'
+      preLoaderRoute: typeof JoinRoomIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/insights/$slug': {
       id: '/insights/$slug'
       path: '/insights/$slug'
@@ -1207,6 +1239,13 @@ declare module '@tanstack/react-router' {
       path: '/labs'
       fullPath: '/admin/labs'
       preLoaderRoute: typeof AdminLabsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/instant-room': {
+      id: '/admin/instant-room'
+      path: '/instant-room'
+      fullPath: '/admin/instant-room'
+      preLoaderRoute: typeof AdminInstantRoomRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/insights': {
@@ -1397,6 +1436,7 @@ interface AdminRouteChildren {
   AdminCrmRoute: typeof AdminCrmRoute
   AdminDocumentsRoute: typeof AdminDocumentsRoute
   AdminInsightsRoute: typeof AdminInsightsRoute
+  AdminInstantRoomRoute: typeof AdminInstantRoomRoute
   AdminLabsRoute: typeof AdminLabsRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
   AdminNotificationsRoute: typeof AdminNotificationsRoute
@@ -1426,6 +1466,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminCrmRoute: AdminCrmRoute,
   AdminDocumentsRoute: AdminDocumentsRoute,
   AdminInsightsRoute: AdminInsightsRoute,
+  AdminInstantRoomRoute: AdminInstantRoomRoute,
   AdminLabsRoute: AdminLabsRoute,
   AdminMessagesRoute: AdminMessagesRoute,
   AdminNotificationsRoute: AdminNotificationsRoute,
@@ -1512,6 +1553,7 @@ const rootRouteChildren: RootRouteChildren = {
   TelehealthRoute: TelehealthRoute,
   ConditionsSlugRoute: ConditionsSlugRoute,
   InsightsSlugRoute: InsightsSlugRoute,
+  JoinRoomIdRoute: JoinRoomIdRoute,
   LegalSlugRoute: LegalSlugRoute,
   LocationsStateRoute: LocationsStateRoute,
   PhysiciansSlugRoute: PhysiciansSlugRoute,

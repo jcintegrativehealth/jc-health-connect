@@ -130,7 +130,8 @@ function RootComponent() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
   const isPatient = pathname === "/patient" || pathname.startsWith("/patient/");
-  const hideChrome = isAdmin || isPatient;
+  const isJoin = pathname.startsWith("/join/");
+  const hideChrome = isAdmin || isPatient || isJoin;
 
   return (
     <QueryClientProvider client={queryClient}>

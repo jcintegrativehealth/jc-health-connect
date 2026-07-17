@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Users, Calendar, CalendarDays, Stethoscope, FileHeart, FlaskConical, ClipboardList,
   MessageSquare, Receipt, Contact, Beaker, Newspaper, PanelsTopLeft, MessageSquareWarning,
   BarChart3, FilePieChart, Files, ListChecks, Bell, Settings, Search, ChevronsLeft, ChevronsRight,
-  Plus, HelpCircle, Globe, LogOut, X, Menu, Command,
+  Plus, HelpCircle, Globe, LogOut, X, Menu, Command, Video,
 } from "lucide-react";
 import { clinic, notifications as demoNotifs } from "@/data/admin";
 
@@ -27,6 +27,7 @@ const NAV: Item[] = [
   { to: "/admin/patients", label: "patients", icon: Users, group: "practice" },
   { to: "/admin/appointments", label: "appointments", icon: Calendar, group: "practice" },
   { to: "/admin/calendar", label: "calendar", icon: CalendarDays, group: "practice" },
+  { to: "/admin/instant-room", label: "instantRoom", icon: Video, group: "practice" },
 
   { to: "/admin/clinical", label: "clinical", icon: Stethoscope, group: "clinical" },
   { to: "/admin/records", label: "records", icon: FileHeart, group: "clinical" },
@@ -244,6 +245,7 @@ function QuickActions() {
   const items = [
     { label: t("admin.quick.newPatient"), to: "/admin/patients/new" },
     { label: t("admin.quick.scheduleAppointment"), to: "/admin/appointments/new" },
+    { label: "Start Instant Room", to: "/admin/instant-room" },
     { label: t("admin.quick.createCarePlan"), to: "/admin/care-plans" },
     { label: t("admin.quick.sendMessage"), to: "/admin/messages" },
     { label: t("admin.quick.newResearchPost"), to: "/admin/research" },
