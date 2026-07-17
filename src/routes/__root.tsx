@@ -129,15 +129,17 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
+  const isPatient = pathname === "/patient" || pathname.startsWith("/patient/");
+  const hideChrome = isAdmin || isPatient;
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={`min-h-screen flex flex-col bg-paper ${isAdmin ? "" : ""}`}>
-        {!isAdmin && <Header />}
-        <main className={`flex-1 ${isAdmin ? "" : ""}`}>
+      <div className={`min-h-screen flex flex-col bg-paper`}>
+        {!hideChrome && <Header />}
+        <main className={`flex-1`}>
           <Outlet />
         </main>
-        {!isAdmin && <Footer />}
+        {!hideChrome && <Footer />}
       </div>
       <Toaster />
     </QueryClientProvider>
