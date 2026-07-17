@@ -276,10 +276,11 @@ function QuickActions() {
 }
 
 function CommandPalette({ onClose }: { onClose: () => void }) {
+  const { t } = useTranslation();
   const groups = [
-    { label: "Pages", items: NAV.slice(0, 12).map((n) => ({ label: n.label, to: n.to })) },
-    { label: "Patients", items: [{ label: "Amelia Reyes · P-1042", to: "/admin/patients/P-1042" }, { label: "Rafael Marques · P-1043", to: "/admin/patients/P-1043" }, { label: "Sofía Lopez · P-1044", to: "/admin/patients/P-1044" }] },
-    { label: "Appointments", items: [{ label: "A-8801 · Amelia Reyes", to: "/admin/appointments/A-8801" }, { label: "A-8802 · Rafael Marques", to: "/admin/appointments/A-8802" }] },
+    { label: t("admin.cmd.pages"), items: NAV.slice(0, 12).map((n) => ({ label: t(`admin.nav.${n.label}`), to: n.to })) },
+    { label: t("admin.cmd.patients"), items: [{ label: "Amelia Reyes · P-1042", to: "/admin/patients/P-1042" }, { label: "Rafael Marques · P-1043", to: "/admin/patients/P-1043" }, { label: "Sofía Lopez · P-1044", to: "/admin/patients/P-1044" }] },
+    { label: t("admin.cmd.appointments"), items: [{ label: "A-8801 · Amelia Reyes", to: "/admin/appointments/A-8801" }, { label: "A-8802 · Rafael Marques", to: "/admin/appointments/A-8802" }] },
   ];
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4">
@@ -287,7 +288,7 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
       <div className="relative w-full max-w-xl bg-card border border-navy/10 shadow-sm">
         <div className="flex items-center gap-2 px-4 h-12 border-b border-navy/8">
           <Search size={14} strokeWidth={1.5} className="text-navy/45" />
-          <input autoFocus placeholder="Search patients, appointments, messages…" className="flex-1 bg-transparent outline-none text-sm placeholder:text-navy/40" />
+          <input autoFocus placeholder={t("admin.cmd.placeholder")} className="flex-1 bg-transparent outline-none text-sm placeholder:text-navy/40" />
           <kbd className="text-[10px] uppercase tracking-widest border border-navy/10 px-1.5 py-0.5 text-navy/40">Esc</kbd>
         </div>
         <div className="max-h-[60vh] overflow-y-auto">
@@ -308,14 +309,15 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
 }
 
 function NotificationsDrawer({ onClose }: { onClose: () => void }) {
+  const { t } = useTranslation();
   return (
     <div className="fixed inset-0 z-50">
       <div className="absolute inset-0 bg-navy/15" onClick={onClose} />
       <aside className="absolute inset-y-0 right-0 w-full sm:w-96 bg-card border-l border-navy/8 flex flex-col">
         <header className="flex items-center justify-between p-4 border-b border-navy/8">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-gold font-semibold">Notifications</div>
-            <div className="font-serif text-lg text-navy mt-0.5">Recent activity</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] text-gold font-semibold">{t("admin.notif.eyebrow")}</div>
+            <div className="font-serif text-lg text-navy mt-0.5">{t("admin.notif.title")}</div>
           </div>
           <button onClick={onClose} className="text-navy/55 hover:text-navy transition-colors"><X size={18} /></button>
         </header>
@@ -333,10 +335,11 @@ function NotificationsDrawer({ onClose }: { onClose: () => void }) {
           ))}
         </div>
         <div className="p-3 border-t border-navy/8 flex items-center justify-between text-xs">
-          <button className="text-navy/55 hover:text-navy uppercase tracking-widest transition-colors">Mark all as read</button>
-          <Link to="/admin/notifications" onClick={onClose} className="text-navy/55 hover:text-navy uppercase tracking-widest transition-colors">Open center →</Link>
+          <button className="text-navy/55 hover:text-navy uppercase tracking-widest transition-colors">{t("admin.notif.markAll")}</button>
+          <Link to="/admin/notifications" onClick={onClose} className="text-navy/55 hover:text-navy uppercase tracking-widest transition-colors">{t("admin.notif.openCenter")}</Link>
         </div>
       </aside>
     </div>
   );
+}
 }
