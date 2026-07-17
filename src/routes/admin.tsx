@@ -77,16 +77,16 @@ function AdminDashboard({ onOpen }: { onOpen: (key: string) => void }) {
       <h1 className="font-serif text-4xl text-navy">Editorial dashboard</h1>
       <div className="grid md:grid-cols-4 gap-4 mt-10">
         {[
-          ["Pending articles", "3", "Awaiting review"],
-          ["Comments to moderate", "12", "In queue"],
-          ["Appointment requests", "8", "This week"],
-          ["Contact messages", "5", "Unassigned"],
-        ].map(([l, v, s]) => (
-          <div key={l} className="bg-card p-6 border border-navy/10">
+          ["Pending articles", "3", "Awaiting review", "articles"],
+          ["Comments to moderate", "12", "Awaiting Dr. Chen", "comments"],
+          ["Appointment requests", "8", "This week", "appointments"],
+          ["Contact messages", "5", "Unassigned", "messages"],
+        ].map(([l, v, s, key]) => (
+          <button key={l} onClick={() => onOpen(key)} className="text-left bg-card p-6 border border-navy/10 hover:border-gold/50 transition-colors">
             <div className="eyebrow text-navy/45">{l}</div>
             <div className="font-serif text-4xl text-navy mt-3">{v}</div>
             <div className="text-xs text-navy/50 mt-1">{s}</div>
-          </div>
+          </button>
         ))}
       </div>
       <div className="grid lg:grid-cols-2 gap-5 mt-6">
