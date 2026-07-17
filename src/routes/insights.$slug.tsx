@@ -172,14 +172,57 @@ function Comment({ name, title, date, children, verified, editor, pending }: { n
 }
 
 function CommentBox() {
+  const [submitted, setSubmitted] = useState(false);
+  const [value, setValue] = useState("");
+
+  if (submitted) {
+    return (
+      <div className="mt-12 p-6 border border-teal/40 bg-mist/40">
+        <div className="flex items-start gap-3">
+          <span className="mt-1 inline-block h-2 w-2 rounded-full bg-gold" aria-hidden />
+          <div>
+            <p className="text-sm font-medium text-navy">Submitted for review</p>
+            <p className="mt-2 text-xs text-navy/60 leading-relaxed">
+              Thank you. Your contribution is pending editorial review by Dr. Jason Chen before it appears publicly.
+              Comments are moderated to protect patient privacy and maintain clinical accuracy.
+            </p>
+            <button
+              type="button"
+              onClick={() => { setSubmitted(false); setValue(""); }}
+              className="mt-4 text-xs uppercase tracking-widest text-navy/60 hover:text-navy transition-colors"
+            >
+              Write another
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="mt-12 p-6 bg-paper border border-navy/10">
-      <label className="block text-sm font-medium text-navy mb-3">Contribute to the discussion</label>
-      <textarea rows={4} className="w-full border border-navy/10 p-3 text-sm outline-none focus:border-teal" placeholder="Your comment..." />
-      <p className="mt-3 text-xs text-navy/50">Do not include personal medical information. Comments are for educational discussion only.</p>
+    <form
+      onSubmit={(e) => { e.preventDefault(); if (value.trim()) setSubmitted(true); }}
+      className="mt-12 p-6 bg-paper border border-navy/10"
+    >
+      <label htmlFor="comment" className="block text-sm font-medium text-navy mb-3">Contribute to the discussion</label>
+      <textarea
+        id="comment"
+        rows={4}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        className="w-full border border-navy/10 p-3 text-sm outline-none focus:border-teal"
+        placeholder="Your comment..."
+      />
+      <div className="mt-3 flex items-start gap-2 text-xs text-navy/50">
+        <span className="mt-[3px] inline-block h-1.5 w-1.5 rounded-full bg-gold/70" aria-hidden />
+        <p>
+          Comments are reviewed by Dr. Jason Chen before publication. Do not include personal medical information —
+          this space is for educational discussion only.
+        </p>
+      </div>
       <div className="mt-4 flex flex-col-reverse sm:flex-row justify-center gap-3">
-        <button type="reset" className="w-full sm:w-auto px-4 py-2 text-xs uppercase tracking-widest text-navy/60 hover:text-navy transition-colors">Cancel</button>
-        <button type="submit" className="w-full sm:w-auto px-5 py-2 bg-navy text-paper text-xs font-semibold uppercase tracking-widest hover:bg-academic transition-colors">Submit</button>
+        <button type="reset" onClick={() => setValue("")} className="w-full sm:w-auto px-4 py-2 text-xs uppercase tracking-widest text-navy/60 hover:text-navy transition-colors">Cancel</button>
+        <button type="submit" className="w-full sm:w-auto px-5 py-2 bg-navy text-paper text-xs font-semibold uppercase tracking-widest hover:bg-academic transition-colors">Submit for review</button>
       </div>
     </form>
   );
