@@ -1,0 +1,32 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { conditions } from "@/data/site";
+import { Container, PageHeader } from "@/components/site/primitives";
+
+export const Route = createFileRoute("/conditions/")({
+  head: () => ({
+    meta: [
+      { title: "Conditions & Health Goals — JC Integrative Health" },
+      { name: "description", content: "Educational information on conditions and health goals commonly addressed at JC Integrative Health." },
+      { property: "og:url", content: "/conditions" },
+    ],
+    links: [{ rel: "canonical", href: "/conditions" }],
+  }),
+  component: () => (
+    <div>
+      <PageHeader eyebrow="Conditions & Goals" title="Educational overviews of common health concerns." lede="Not a substitute for medical evaluation — these pages describe how we think about each area of care." />
+      <Container className="pb-24">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-navy/10 ring-1 ring-navy/10 border-t border-navy/10">
+          {conditions.map((c, i) => (
+            <li key={c.slug} className="bg-paper">
+              <Link to="/conditions/$slug" params={{ slug: c.slug }} className="block p-8 hover:bg-navy hover:text-paper transition-colors group">
+                <div className="font-mono text-[10px] text-navy/40 group-hover:text-paper/50 mb-4">{String(i + 1).padStart(2, "0")}</div>
+                <h2 className="text-lg font-medium mb-2">{c.name}</h2>
+                <p className="text-sm text-navy/55 group-hover:text-paper/55 line-clamp-2">{c.summary}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Container>
+    </div>
+  ),
+});
