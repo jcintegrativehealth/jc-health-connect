@@ -35,9 +35,9 @@ export const Route = createFileRoute("/locations/$state")({
               <Row label="Telehealth information" value="Available for follow-up and select initial visits." />
               <Row label="Address" value="Address placeholder — to be published." />
               <Row label="Contact" value="Available through the Contact page." />
-              <div className="flex gap-3 pt-4">
-                <Link to="/book" className="px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic">Book Appointment</Link>
-                <Link to="/contact" className="px-5 py-3 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:bg-navy/5">Contact</Link>
+              <div className="flex flex-col sm:flex-row gap-3 pt-4 justify-center">
+                <Link to="/book" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic transition-colors">Book Appointment</Link>
+                <Link to="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:bg-navy/5 transition-colors">Contact</Link>
               </div>
             </div>
             <div className="aspect-square bg-linear-to-br from-mist to-navy/10 grid place-items-center">
