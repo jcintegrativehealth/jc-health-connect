@@ -84,8 +84,8 @@ export function Header() {
   return (
     <>
       {/* Utility bar */}
-      <div className="hidden md:block border-b border-navy/5 bg-paper">
-        <div className="max-w-[1440px] mx-auto px-6 h-9 flex items-center justify-between text-[11px] font-medium uppercase tracking-[0.18em] text-navy/55">
+      <div className="hidden md:block border-b border-navy/10">
+        <div className="max-w-[1440px] mx-auto px-6 h-9 flex items-center justify-between text-[11px] font-medium uppercase tracking-[0.18em] text-navy/60">
           <LanguageSwitcher variant="inline" />
           <div className="flex items-center gap-6">
             <Link to="/portal" className="hover:text-navy transition-colors">{t("nav.portal")}</Link>
