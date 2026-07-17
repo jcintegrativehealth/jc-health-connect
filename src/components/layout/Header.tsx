@@ -95,24 +95,33 @@ export function Header() {
       </div>
 
       {/* Main header */}
-      <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur border-b border-navy/5">
+      <header className="sticky top-0 z-40 border-b border-navy/10">
         <div className="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between gap-4">
           <Link to="/" className="flex items-baseline gap-2 shrink-0">
             <span className="font-serif text-2xl font-semibold tracking-tight text-navy">JC</span>
             <span className="hidden xs:inline text-[11px] font-semibold uppercase tracking-[0.22em] text-navy/60">Integrative Health</span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-navy/75">
-            {NAV.map((n) => (
-              <Link
-                key={n.to}
-                to={n.to}
-                className="hover:text-navy transition-colors"
-                activeProps={{ className: "text-navy" }}
-              >
-                {t(n.key)}
-              </Link>
-            ))}
+          <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-navy/55">
+            {NAV.map((n) => {
+              const active = isActive(n.to);
+              return (
+                <Link
+                  key={n.to}
+                  to={n.to}
+                  className={[
+                    "relative transition-colors hover:text-navy",
+                    active ? "text-navy" : "text-navy/55",
+                  ].join(" ")}
+                  activeProps={{ className: "text-navy" }}
+                >
+                  {t(n.key)}
+                  {active && (
+                    <span className="absolute -bottom-1 left-0 right-0 h-px bg-gold" aria-hidden="true" />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-2">
