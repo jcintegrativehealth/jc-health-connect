@@ -54,6 +54,7 @@ export function Header() {
   const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isActive = (to: string) => pathname === to || pathname.startsWith(`${to}/`);
 
   // Auto-close the drawer on any route change (link tap, back button, programmatic nav).
   useEffect(() => {
@@ -158,21 +159,33 @@ export function Header() {
             <nav className="flex-1 overflow-y-auto px-6 py-6">
               {/* Primary */}
               <ul className="flex flex-col">
-                {NAV.map((n) => (
-                  <li key={n.to}>
-                    <Link
-                      to={n.to}
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-center justify-between py-3.5 text-lg font-serif text-navy border-b border-navy/10 hover:text-gold transition-colors"
-                      activeProps={{ className: "text-gold" }}
-                    >
-                      <span>{t(n.key)}</span>
-                      <span className="font-mono text-[10px] text-navy/30">
-                        {String(NAV.indexOf(n) + 1).padStart(2, "0")}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
+                {NAV.map((n, idx) => {
+                  const active = isActive(n.to);
+                  return (
+                    <li key={n.to}>
+                      <Link
+                        to={n.to}
+                        onClick={() => setMobileOpen(false)}
+                        className={[
+                          "relative flex items-center justify-between py-3.5 text-lg font-serif border-b border-navy/10 transition-colors",
+                          active
+                            ? "text-gold bg-mist/60 pr-5"
+                            : "text-navy hover:text-gold",
+                        ].join(" ")}
+                      >
+                        <span className="pl-4">{t(n.key)}</span>
+                        <span className="flex items-center gap-3">
+                          {active && (
+                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold" aria-hidden="true" />
+                          )}
+                          <span className="font-mono text-[10px] text-navy/30">
+                            {String(idx + 1).padStart(2, "0")}
+                          </span>
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
 
               {/* Grouped More */}
@@ -180,18 +193,28 @@ export function Header() {
                 <div key={group.title} className="mt-8">
                   <div className="eyebrow text-navy/40 mb-2">{group.title}</div>
                   <ul>
-                    {group.links.map((l) => (
-                      <li key={l.to}>
-                        <Link
-                          to={l.to}
-                          onClick={() => setMobileOpen(false)}
-                          className="block py-2.5 text-sm text-navy/80 border-b border-navy/5 hover:text-gold transition-colors"
-                          activeProps={{ className: "text-gold" }}
-                        >
-                          {l.label}
-                        </Link>
-                      </li>
-                    ))}
+                    {group.links.map((l) => {
+                      const active = isActive(l.to);
+                      return (
+                        <li key={l.to}>
+                          <Link
+                            to={l.to}
+                            onClick={() => setMobileOpen(false)}
+                            className={[
+                              "flex items-center gap-2.5 py-2.5 text-sm border-b border-navy/5 transition-colors",
+                              active
+                                ? "text-gold bg-mist/60 -mx-2 px-2 rounded-sm"
+                                : "text-navy/80 hover:text-gold",
+                            ].join(" ")}
+                          >
+                            {active && (
+                              <span className="inline-block w-1 h-1 rounded-full bg-gold" aria-hidden="true" />
+                            )}
+                            <span>{l.label}</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               ))}
