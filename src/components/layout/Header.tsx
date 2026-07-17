@@ -156,11 +156,11 @@ export function Header() {
       {/* Mobile drawer */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Site menu">
-          <div className="absolute inset-0 bg-navy/50 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
-          <aside className="absolute inset-y-0 right-0 w-[88%] max-w-sm bg-paper border-l border-navy/10 flex flex-col">
+          <div className="absolute inset-0 bg-navy/10 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+          <aside className="absolute inset-y-0 right-0 w-[88%] max-w-sm bg-paper border-l border-navy/15 shadow-2xl flex flex-col">
             <div className="h-20 px-6 flex items-center justify-between border-b border-navy/10">
               <span className="font-serif text-xl font-semibold text-navy">Menu</span>
-              <button aria-label="Close menu" onClick={() => setMobileOpen(false)} className="w-11 h-11 grid place-items-center text-navy">
+              <button aria-label="Close menu" onClick={() => setMobileOpen(false)} className="w-11 h-11 grid place-items-center text-navy hover:text-gold transition-colors">
                 <X size={22} strokeWidth={1.5} />
               </button>
             </div>
