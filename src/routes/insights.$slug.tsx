@@ -61,7 +61,7 @@ function ArticleDetail() {
         <Container className="pb-16">
           <div className="grid lg:grid-cols-[1fr_240px] gap-16 pt-8">
             <div className="max-w-3xl space-y-6 text-navy/75 leading-[1.8] font-serif text-[1.125rem]">
-              {article.body.map((p, i) => <p key={i}>{p}</p>)}
+              {article.body.map((p: string, i: number) => <p key={i}>{p}</p>)}
               <h2 className="font-serif text-2xl text-navy mt-10">Key findings</h2>
               <ul className="text-base list-disc pl-5 space-y-2 font-sans text-navy/70">
                 <li>Effect sizes vary substantially across studies.</li>
@@ -86,7 +86,7 @@ function ArticleDetail() {
               <div>
                 <div className="eyebrow text-navy/50 mb-3">Tags</div>
                 <div className="flex flex-wrap gap-2">
-                  {article.tags.map((t) => (
+                  {article.tags.map((t: string) => (
                     <span key={t} className="text-[11px] px-2 py-1 bg-mist text-navy/70 font-mono uppercase">{t}</span>
                   ))}
                 </div>

@@ -40,7 +40,7 @@ export const Route = createFileRoute("/legal/$slug")({
         <PageHeader eyebrow="Legal" title={doc.title} lede={doc.summary} />
         <Container className="pb-24">
           <div className="max-w-3xl border-t border-navy/10 pt-10 space-y-6">
-            {doc.body.map((p, i) => (<p key={i} className="text-navy/70 leading-relaxed">{p}</p>))}
+            {doc.body.map((p: string, i: number) => (<p key={i} className="text-navy/70 leading-relaxed">{p}</p>))}
             <Disclaimer>Placeholder content pending review by qualified legal counsel prior to publication.</Disclaimer>
           </div>
         </Container>

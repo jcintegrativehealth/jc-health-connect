@@ -9,38 +9,405 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TelehealthRouteImport } from './routes/telehealth'
+import { Route as PortalRouteImport } from './routes/portal'
+import { Route as PatientResourcesRouteImport } from './routes/patient-resources'
+import { Route as MedicationsRouteImport } from './routes/medications'
+import { Route as InnovationRouteImport } from './routes/innovation'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as DrChenRouteImport } from './routes/dr-chen'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BookRouteImport } from './routes/book'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ResearchIndexRouteImport } from './routes/research.index'
+import { Route as PhysiciansIndexRouteImport } from './routes/physicians.index'
+import { Route as InsightsIndexRouteImport } from './routes/insights.index'
+import { Route as ConditionsIndexRouteImport } from './routes/conditions.index'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as PhysiciansSlugRouteImport } from './routes/physicians.$slug'
+import { Route as LocationsStateRouteImport } from './routes/locations.$state'
+import { Route as LegalSlugRouteImport } from './routes/legal.$slug'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as ConditionsSlugRouteImport } from './routes/conditions.$slug'
 
+const TelehealthRoute = TelehealthRouteImport.update({
+  id: '/telehealth',
+  path: '/telehealth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PatientResourcesRoute = PatientResourcesRouteImport.update({
+  id: '/patient-resources',
+  path: '/patient-resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedicationsRoute = MedicationsRouteImport.update({
+  id: '/medications',
+  path: '/medications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InnovationRoute = InnovationRouteImport.update({
+  id: '/innovation',
+  path: '/innovation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DrChenRoute = DrChenRouteImport.update({
+  id: '/dr-chen',
+  path: '/dr-chen',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BookRoute = BookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchIndexRoute = ResearchIndexRouteImport.update({
+  id: '/research/',
+  path: '/research/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhysiciansIndexRoute = PhysiciansIndexRouteImport.update({
+  id: '/physicians/',
+  path: '/physicians/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/insights/',
+  path: '/insights/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConditionsIndexRoute = ConditionsIndexRouteImport.update({
+  id: '/conditions/',
+  path: '/conditions/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services/$slug',
+  path: '/services/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhysiciansSlugRoute = PhysiciansSlugRouteImport.update({
+  id: '/physicians/$slug',
+  path: '/physicians/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsStateRoute = LocationsStateRouteImport.update({
+  id: '/locations/$state',
+  path: '/locations/$state',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalSlugRoute = LegalSlugRouteImport.update({
+  id: '/legal/$slug',
+  path: '/legal/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/insights/$slug',
+  path: '/insights/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConditionsSlugRoute = ConditionsSlugRouteImport.update({
+  id: '/conditions/$slug',
+  path: '/conditions/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/book': typeof BookRoute
+  '/contact': typeof ContactRoute
+  '/dr-chen': typeof DrChenRoute
+  '/faq': typeof FaqRoute
+  '/innovation': typeof InnovationRoute
+  '/medications': typeof MedicationsRoute
+  '/patient-resources': typeof PatientResourcesRoute
+  '/portal': typeof PortalRoute
+  '/telehealth': typeof TelehealthRoute
+  '/conditions/$slug': typeof ConditionsSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/legal/$slug': typeof LegalSlugRoute
+  '/locations/$state': typeof LocationsStateRoute
+  '/physicians/$slug': typeof PhysiciansSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/conditions/': typeof ConditionsIndexRoute
+  '/insights/': typeof InsightsIndexRoute
+  '/physicians/': typeof PhysiciansIndexRoute
+  '/research/': typeof ResearchIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/book': typeof BookRoute
+  '/contact': typeof ContactRoute
+  '/dr-chen': typeof DrChenRoute
+  '/faq': typeof FaqRoute
+  '/innovation': typeof InnovationRoute
+  '/medications': typeof MedicationsRoute
+  '/patient-resources': typeof PatientResourcesRoute
+  '/portal': typeof PortalRoute
+  '/telehealth': typeof TelehealthRoute
+  '/conditions/$slug': typeof ConditionsSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/legal/$slug': typeof LegalSlugRoute
+  '/locations/$state': typeof LocationsStateRoute
+  '/physicians/$slug': typeof PhysiciansSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/conditions': typeof ConditionsIndexRoute
+  '/insights': typeof InsightsIndexRoute
+  '/physicians': typeof PhysiciansIndexRoute
+  '/research': typeof ResearchIndexRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/admin': typeof AdminRoute
+  '/book': typeof BookRoute
+  '/contact': typeof ContactRoute
+  '/dr-chen': typeof DrChenRoute
+  '/faq': typeof FaqRoute
+  '/innovation': typeof InnovationRoute
+  '/medications': typeof MedicationsRoute
+  '/patient-resources': typeof PatientResourcesRoute
+  '/portal': typeof PortalRoute
+  '/telehealth': typeof TelehealthRoute
+  '/conditions/$slug': typeof ConditionsSlugRoute
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/legal/$slug': typeof LegalSlugRoute
+  '/locations/$state': typeof LocationsStateRoute
+  '/physicians/$slug': typeof PhysiciansSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/conditions/': typeof ConditionsIndexRoute
+  '/insights/': typeof InsightsIndexRoute
+  '/physicians/': typeof PhysiciansIndexRoute
+  '/research/': typeof ResearchIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/book'
+    | '/contact'
+    | '/dr-chen'
+    | '/faq'
+    | '/innovation'
+    | '/medications'
+    | '/patient-resources'
+    | '/portal'
+    | '/telehealth'
+    | '/conditions/$slug'
+    | '/insights/$slug'
+    | '/legal/$slug'
+    | '/locations/$state'
+    | '/physicians/$slug'
+    | '/services/$slug'
+    | '/conditions/'
+    | '/insights/'
+    | '/physicians/'
+    | '/research/'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/book'
+    | '/contact'
+    | '/dr-chen'
+    | '/faq'
+    | '/innovation'
+    | '/medications'
+    | '/patient-resources'
+    | '/portal'
+    | '/telehealth'
+    | '/conditions/$slug'
+    | '/insights/$slug'
+    | '/legal/$slug'
+    | '/locations/$state'
+    | '/physicians/$slug'
+    | '/services/$slug'
+    | '/conditions'
+    | '/insights'
+    | '/physicians'
+    | '/research'
+    | '/services'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/admin'
+    | '/book'
+    | '/contact'
+    | '/dr-chen'
+    | '/faq'
+    | '/innovation'
+    | '/medications'
+    | '/patient-resources'
+    | '/portal'
+    | '/telehealth'
+    | '/conditions/$slug'
+    | '/insights/$slug'
+    | '/legal/$slug'
+    | '/locations/$state'
+    | '/physicians/$slug'
+    | '/services/$slug'
+    | '/conditions/'
+    | '/insights/'
+    | '/physicians/'
+    | '/research/'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AdminRoute: typeof AdminRoute
+  BookRoute: typeof BookRoute
+  ContactRoute: typeof ContactRoute
+  DrChenRoute: typeof DrChenRoute
+  FaqRoute: typeof FaqRoute
+  InnovationRoute: typeof InnovationRoute
+  MedicationsRoute: typeof MedicationsRoute
+  PatientResourcesRoute: typeof PatientResourcesRoute
+  PortalRoute: typeof PortalRoute
+  TelehealthRoute: typeof TelehealthRoute
+  ConditionsSlugRoute: typeof ConditionsSlugRoute
+  InsightsSlugRoute: typeof InsightsSlugRoute
+  LegalSlugRoute: typeof LegalSlugRoute
+  LocationsStateRoute: typeof LocationsStateRoute
+  PhysiciansSlugRoute: typeof PhysiciansSlugRoute
+  ServicesSlugRoute: typeof ServicesSlugRoute
+  ConditionsIndexRoute: typeof ConditionsIndexRoute
+  InsightsIndexRoute: typeof InsightsIndexRoute
+  PhysiciansIndexRoute: typeof PhysiciansIndexRoute
+  ResearchIndexRoute: typeof ResearchIndexRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/telehealth': {
+      id: '/telehealth'
+      path: '/telehealth'
+      fullPath: '/telehealth'
+      preLoaderRoute: typeof TelehealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/patient-resources': {
+      id: '/patient-resources'
+      path: '/patient-resources'
+      fullPath: '/patient-resources'
+      preLoaderRoute: typeof PatientResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medications': {
+      id: '/medications'
+      path: '/medications'
+      fullPath: '/medications'
+      preLoaderRoute: typeof MedicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/innovation': {
+      id: '/innovation'
+      path: '/innovation'
+      fullPath: '/innovation'
+      preLoaderRoute: typeof InnovationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dr-chen': {
+      id: '/dr-chen'
+      path: '/dr-chen'
+      fullPath: '/dr-chen'
+      preLoaderRoute: typeof DrChenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +415,110 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research/': {
+      id: '/research/'
+      path: '/research'
+      fullPath: '/research/'
+      preLoaderRoute: typeof ResearchIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/physicians/': {
+      id: '/physicians/'
+      path: '/physicians'
+      fullPath: '/physicians/'
+      preLoaderRoute: typeof PhysiciansIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/': {
+      id: '/insights/'
+      path: '/insights'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conditions/': {
+      id: '/conditions/'
+      path: '/conditions'
+      fullPath: '/conditions/'
+      preLoaderRoute: typeof ConditionsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/physicians/$slug': {
+      id: '/physicians/$slug'
+      path: '/physicians/$slug'
+      fullPath: '/physicians/$slug'
+      preLoaderRoute: typeof PhysiciansSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations/$state': {
+      id: '/locations/$state'
+      path: '/locations/$state'
+      fullPath: '/locations/$state'
+      preLoaderRoute: typeof LocationsStateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/$slug': {
+      id: '/legal/$slug'
+      path: '/legal/$slug'
+      fullPath: '/legal/$slug'
+      preLoaderRoute: typeof LegalSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/insights/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conditions/$slug': {
+      id: '/conditions/$slug'
+      path: '/conditions/$slug'
+      fullPath: '/conditions/$slug'
+      preLoaderRoute: typeof ConditionsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AdminRoute: AdminRoute,
+  BookRoute: BookRoute,
+  ContactRoute: ContactRoute,
+  DrChenRoute: DrChenRoute,
+  FaqRoute: FaqRoute,
+  InnovationRoute: InnovationRoute,
+  MedicationsRoute: MedicationsRoute,
+  PatientResourcesRoute: PatientResourcesRoute,
+  PortalRoute: PortalRoute,
+  TelehealthRoute: TelehealthRoute,
+  ConditionsSlugRoute: ConditionsSlugRoute,
+  InsightsSlugRoute: InsightsSlugRoute,
+  LegalSlugRoute: LegalSlugRoute,
+  LocationsStateRoute: LocationsStateRoute,
+  PhysiciansSlugRoute: PhysiciansSlugRoute,
+  ServicesSlugRoute: ServicesSlugRoute,
+  ConditionsIndexRoute: ConditionsIndexRoute,
+  InsightsIndexRoute: InsightsIndexRoute,
+  PhysiciansIndexRoute: PhysiciansIndexRoute,
+  ResearchIndexRoute: ResearchIndexRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

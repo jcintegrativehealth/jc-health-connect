@@ -57,7 +57,7 @@ function ServiceDetail() {
             {service.faqs.length > 0 && (
               <Block title="Frequently asked questions">
                 <div className="divide-y divide-navy/10 border-y border-navy/10">
-                  {service.faqs.map((f) => (
+                  {service.faqs.map((f: { q: string; a: string }) => (
                     <details key={f.q} className="py-5 group">
                       <summary className="cursor-pointer text-navy font-medium flex justify-between items-center list-none">
                         <span>{f.q}</span>
