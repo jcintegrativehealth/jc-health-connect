@@ -202,6 +202,8 @@ export function Header() {
                           <Link
                             to={l.to}
                             onClick={() => setMobileOpen(false)}
+                            aria-current={active ? "page" : undefined}
+                            data-active={active ? "true" : undefined}
                             className={[
                               "flex items-center gap-2.5 py-2.5 text-sm border-b border-navy/5 transition-colors",
                               active
