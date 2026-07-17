@@ -171,29 +171,86 @@ function Comment({ name, title, date, children, verified, editor, pending }: { n
   );
 }
 
+type CommentStatus = "submitted" | "pending" | "approved" | "rejected";
+type HistoryEntry = { status: CommentStatus; label: string; detail: string; at: Date };
+
+const STATUS_META: Record<CommentStatus, { label: string; tone: string; dot: string }> = {
+  submitted: { label: "Submitted", tone: "text-navy", dot: "bg-gold" },
+  pending:   { label: "Pending review", tone: "text-navy/70", dot: "bg-gold/60" },
+  approved:  { label: "Approved", tone: "text-forest", dot: "bg-forest" },
+  rejected:  { label: "Not published", tone: "text-terracotta", dot: "bg-terracotta" },
+};
+
+function formatTime(d: Date) {
+  return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}
+
 function CommentBox() {
   const [submitted, setSubmitted] = useState(false);
   const [value, setValue] = useState("");
+  const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const current = history[history.length - 1];
 
-  if (submitted) {
+  React.useEffect(() => {
+    if (!submitted) return;
+    const t = setTimeout(() => {
+      setHistory((h) =>
+        h.some((e) => e.status === "pending")
+          ? h
+          : [...h, { status: "pending", label: "Pending review", detail: "Queued for editorial review by Dr. Jason Chen.", at: new Date() }]
+      );
+    }, 1200);
+    return () => clearTimeout(t);
+  }, [submitted]);
+
+  if (submitted && current) {
     return (
-      <div className="mt-12 p-6 border border-teal/40 bg-mist/40">
-        <div className="flex items-start gap-3">
-          <span className="mt-1 inline-block h-2 w-2 rounded-full bg-gold" aria-hidden />
-          <div>
-            <p className="text-sm font-medium text-navy">Submitted for review</p>
-            <p className="mt-2 text-xs text-navy/60 leading-relaxed">
-              Thank you. Your contribution is pending editorial review by Dr. Jason Chen before it appears publicly.
-              Comments are moderated to protect patient privacy and maintain clinical accuracy.
-            </p>
-            <button
-              type="button"
-              onClick={() => { setSubmitted(false); setValue(""); }}
-              className="mt-4 text-xs uppercase tracking-widest text-navy/60 hover:text-navy transition-colors"
-            >
-              Write another
-            </button>
+      <div className="mt-12 border border-navy/10 bg-paper">
+        <div className="p-6 border-b border-navy/10">
+          <div className="flex items-center gap-3">
+            <span className={`inline-block h-2 w-2 rounded-full ${STATUS_META[current.status].dot}`} aria-hidden />
+            <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-navy/45">Comment status</p>
           </div>
+          <p className={`mt-3 font-serif text-2xl ${STATUS_META[current.status].tone}`}>
+            {STATUS_META[current.status].label}
+          </p>
+          <p className="mt-2 text-xs text-navy/60 leading-relaxed max-w-md">
+            {current.detail} Refresh this page to see the latest status — you will not receive email notifications.
+          </p>
+        </div>
+
+        <div className="p-6">
+          <p className="text-[10px] font-mono uppercase tracking-[0.22em] text-navy/45 mb-4">Timeline</p>
+          <ol className="relative border-l border-navy/10 pl-5 space-y-5">
+            {history.map((entry, i) => (
+              <li key={i} className="relative">
+                <span
+                  className={`absolute -left-[23px] top-1 inline-block h-2.5 w-2.5 rounded-full ring-4 ring-paper ${STATUS_META[entry.status].dot}`}
+                  aria-hidden
+                />
+                <div className="flex items-baseline justify-between gap-4">
+                  <p className={`text-sm font-medium ${STATUS_META[entry.status].tone}`}>{entry.label}</p>
+                  <span className="text-[11px] font-mono text-navy/45 tabular-nums">{formatTime(entry.at)}</span>
+                </div>
+                <p className="mt-1 text-xs text-navy/55 leading-relaxed">{entry.detail}</p>
+              </li>
+            ))}
+            {current.status === "pending" && (
+              <li className="relative opacity-40">
+                <span className="absolute -left-[23px] top-1 inline-block h-2.5 w-2.5 rounded-full ring-4 ring-paper border border-dashed border-navy/30 bg-paper" aria-hidden />
+                <p className="text-sm text-navy/60">Awaiting decision</p>
+                <p className="mt-1 text-xs text-navy/45 leading-relaxed">Approved comments appear publicly under your name.</p>
+              </li>
+            )}
+          </ol>
+
+          <button
+            type="button"
+            onClick={() => { setSubmitted(false); setValue(""); setHistory([]); }}
+            className="mt-6 text-xs uppercase tracking-widest text-navy/60 hover:text-navy transition-colors"
+          >
+            Write another
+          </button>
         </div>
       </div>
     );
