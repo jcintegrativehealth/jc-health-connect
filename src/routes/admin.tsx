@@ -209,6 +209,14 @@ function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif, onOpenInstant }: { onOpe
             <span className="h-1.5 w-1.5 rounded-full bg-teal/80" /> {t("admin.topbar.clinicOnline")} · {today}
           </span>
 
+          <button
+            onClick={onOpenInstant}
+            className="hidden sm:inline-flex h-9 px-3 border border-navy/15 bg-card text-navy hover:border-navy/30 items-center gap-2 text-[11px] uppercase tracking-widest font-semibold transition-colors"
+            title="Instant Room"
+          >
+            <Video size={13} strokeWidth={2} /> <span className="hidden md:inline">Instant Room</span>
+          </button>
+
           <QuickActions />
 
           <button onClick={onOpenNotif} className="relative h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label={t("admin.topbar.notifications")}>
