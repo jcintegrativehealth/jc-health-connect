@@ -124,6 +124,7 @@ function AdminFooter() {
 }
 
 function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; isActive: (to: string) => boolean; onCollapse?: () => void }) {
+  const { t } = useTranslation();
   return (
     <>
       <div className="flex items-center gap-3 px-4 py-5 border-b border-navy/8">
@@ -131,7 +132,7 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
         {!collapsed && (
           <div className="min-w-0">
             <div className="font-serif text-sm text-navy truncate leading-tight">JC Integrative Health</div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-navy/40">Private admin</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] text-navy/40">{t("admin.sidebar.privateAdmin")}</div>
           </div>
         )}
       </div>
@@ -139,7 +140,7 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
       <nav className="flex-1 overflow-y-auto no-scrollbar py-5">
         {GROUPS.map((g) => (
           <div key={g} className="mb-5">
-            {!collapsed && <div className="px-4 mb-2 text-[10px] uppercase tracking-[0.24em] text-navy/35 font-medium">{g}</div>}
+            {!collapsed && <div className="px-4 mb-2 text-[10px] uppercase tracking-[0.24em] text-navy/35 font-medium">{t(`admin.groups.${g}`)}</div>}
             {NAV.filter((i) => i.group === g).map((item) => {
               const active = isActive(item.to);
               return (
@@ -150,7 +151,7 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
                 >
                   <span className={`inline-block h-4 w-0.5 -ml-4 ${active ? "bg-gold" : "bg-transparent"}`} />
                   <item.icon size={15} strokeWidth={1.5} className="shrink-0" />
-                  {!collapsed && <span className="truncate font-medium">{item.label}</span>}
+                  {!collapsed && <span className="truncate font-medium">{t(`admin.nav.${item.label}`)}</span>}
                 </Link>
               );
             })}
@@ -161,11 +162,11 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
       <div className="border-t border-navy/8 p-3 space-y-1">
         {onCollapse && (
           <button onClick={onCollapse} className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors">
-            {collapsed ? <ChevronsRight size={14} /> : <ChevronsLeft size={14} />} {!collapsed && "Collapse"}
+            {collapsed ? <ChevronsRight size={14} /> : <ChevronsLeft size={14} />} {!collapsed && t("admin.sidebar.collapse")}
           </button>
         )}
         <Link to="/" className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors">
-          <LogOut size={14} strokeWidth={1.5} /> {!collapsed && "Back to site"}
+          <LogOut size={14} strokeWidth={1.5} /> {!collapsed && t("admin.sidebar.backToSite")}
         </Link>
       </div>
     </>
