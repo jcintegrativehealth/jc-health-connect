@@ -71,12 +71,12 @@
   --academic: oklch(0.47 0.05 155);      /* #436B52 Verde Sálvia */
   --teal: oklch(0.79 0.03 175);          /* #A7C4BC Verde Suave */
   --gold: oklch(0.65 0.11 45);           /* #C47D5A Terracota Suave */
-  --paper: oklch(0.97 0.006 90);         /* #FAF7F2 Off White */
-  --mist: oklch(0.94 0.01 90);           /* #F0EDE5 Bege Claro */
+  --paper: oklch(0.985 0.005 90);         /* #FAF7F2 Off White — lighter admin ground */
+  --mist: oklch(0.95 0.01 90);            /* #F0EDE5 Bege Claro */
   --ink: oklch(0.32 0.05 155);
 
   /* Semantic */
-  --background: oklch(0.97 0.006 90);
+  --background: oklch(0.985 0.005 90);
   --foreground: oklch(0.28 0.04 155);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.28 0.04 155);
