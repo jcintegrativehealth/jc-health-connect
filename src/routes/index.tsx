@@ -30,44 +30,82 @@ function HomePage() {
   return (
     <div>
       {/* HERO */}
-      <section className="relative pt-20 pb-24 md:pt-28 md:pb-32 overflow-hidden">
-        {/* soft botanical wash behind headline */}
-        <div aria-hidden className="pointer-events-none absolute -top-24 -right-32 w-[560px] h-[560px] rounded-full opacity-[0.18] blur-3xl bg-linear-to-br from-teal via-academic to-navy" />
+      <section className="relative pt-10 md:pt-16 pb-20 md:pb-28 overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute -top-24 -right-32 w-[560px] h-[560px] rounded-full opacity-[0.14] blur-3xl bg-linear-to-br from-teal via-academic to-navy" />
         <Container>
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Clinical masthead strip */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-5 mb-10 border-b border-navy/10 text-[10px] font-mono uppercase tracking-[0.22em] text-navy/55">
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal opacity-60" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-teal" />
+              </span>
+              Now accepting new patients
+            </div>
+            <div className="hidden sm:block">Est. 2019 · Colorado · Washington · Telehealth</div>
+            <div>NPI-verified · HIPAA compliant</div>
+          </div>
+
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <div className="lg:col-span-7 relative">
-              <div className="eyebrow text-gold mb-6">{t("hero.eyebrow")} · Evidence-Based Care</div>
-              <h1 className="font-serif text-5xl md:text-6xl lg:text-[4.75rem] leading-[1.02] text-balance text-navy">
+              <div className="eyebrow text-terracotta mb-6">Section 01 · Evidence-Based Care</div>
+              <h1 className="font-serif text-[2.5rem] leading-[1.05] md:text-5xl lg:text-[3.75rem] text-balance text-navy">
                 {t("hero.title")}
               </h1>
-              <p className="mt-8 text-lg md:text-xl text-navy/65 max-w-[54ch] text-pretty">
+              <p className="mt-7 text-base md:text-lg text-navy/65 max-w-[52ch] text-pretty leading-relaxed">
                 {t("hero.lede")}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-3">
-                <Link to="/book" className="inline-flex items-center gap-3 px-8 py-4 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.2em] ring-1 ring-navy hover:bg-academic transition-colors group">
-                  <span className="w-4 h-px bg-paper/40 group-hover:w-6 transition-all" />
+
+              {/* Clinician signature block */}
+              <div className="mt-8 flex items-center gap-4 pb-6 border-b border-navy/10 max-w-md">
+                <div className="w-11 h-11 rounded-full bg-linear-to-br from-navy to-academic grid place-items-center text-paper font-serif text-sm ring-1 ring-navy/20">JC</div>
+                <div>
+                  <div className="text-sm font-medium text-navy">Jason Chen, MD</div>
+                  <div className="text-[11px] text-navy/55 font-mono uppercase tracking-[0.14em]">Board Certified · Integrative Medicine</div>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <Link to="/book" className="inline-flex items-center gap-3 px-7 py-3.5 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.2em] ring-1 ring-gold/50 hover:bg-academic transition-colors group">
+                  <span className="w-4 h-px bg-gold group-hover:w-6 transition-all" />
                   {t("hero.bookCta")}
                 </Link>
-                <Link to="/about" className="inline-flex items-center px-8 py-4 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.2em] hover:bg-navy/5 transition-colors">
+                <Link to="/about" className="inline-flex items-center px-7 py-3.5 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.2em] hover:bg-navy/5 transition-colors">
                   {t("hero.exploreCta")}
                 </Link>
               </div>
             </div>
+
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[4/5] w-full rounded-md overflow-hidden ring-1 ring-navy/10 shadow-[0_30px_80px_-40px_rgba(31,61,46,0.35)]">
                 <img src={heroBotanical} alt="Fresh sage and eucalyptus on linen" className="absolute inset-0 h-full w-full object-cover" width={1100} height={1400} />
                 <div className="absolute top-4 left-4 eyebrow text-paper/80 mix-blend-difference">JC · Fig. 001</div>
               </div>
-              <div className="hidden md:block absolute -bottom-10 -left-10 w-40 h-40 rounded-md overflow-hidden ring-1 ring-navy/10 shadow-xl">
-                <img src={textureLinen} alt="Linen texture with terracotta detail" className="h-full w-full object-cover" width={320} height={320} loading="lazy" />
+
+              {/* Clinical data card overlay */}
+              <div className="mt-6 lg:mt-0 lg:absolute lg:-bottom-8 lg:-left-16 lg:w-72 bg-paper ring-1 ring-navy/10 p-5 shadow-xl">
+                <div className="eyebrow text-terracotta mb-4">At a glance</div>
+                <dl className="space-y-3 text-xs">
+                  {[
+                    ["Initial consult", "60–90 min"],
+                    ["Languages", "EN · ES · PT · ZH"],
+                    ["Modalities", "In-person · Telehealth"],
+                    ["Follow-up", "Within 14 days"],
+                  ].map(([k, v]) => (
+                    <div key={k} className="flex justify-between items-baseline gap-3 border-b border-navy/5 pb-2 last:border-b-0 last:pb-0">
+                      <dt className="text-navy/50 font-mono uppercase tracking-[0.14em] text-[10px]">{k}</dt>
+                      <dd className="text-navy font-medium text-right">{v}</dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
             </div>
           </div>
 
-          <div className="mt-24 relative aspect-[21/9] w-full rounded-md ring-1 ring-navy/10 overflow-hidden">
+          <div className="mt-24 lg:mt-32 relative aspect-[21/9] w-full rounded-md ring-1 ring-navy/10 overflow-hidden">
             <img src={heroClinic} alt="Sunlit consulting room in the JC clinic" className="absolute inset-0 h-full w-full object-cover" width={1920} height={1200} loading="lazy" />
             <div className="absolute inset-0 bg-linear-to-t from-navy/50 via-navy/10 to-transparent" />
-            <div className="absolute top-6 left-6 eyebrow text-paper/80">JC · Fig. 002</div>
+            <div className="absolute top-6 left-6 eyebrow text-paper/80">JC · Fig. 002 · Consulting room</div>
             <div className="absolute bottom-6 right-6 font-mono text-[10px] text-paper/70">40.5°N / 105.1°W</div>
             <div className="absolute bottom-6 left-6 font-serif italic text-paper text-lg md:text-xl max-w-md">"Medicine practiced with quiet attention."</div>
           </div>
