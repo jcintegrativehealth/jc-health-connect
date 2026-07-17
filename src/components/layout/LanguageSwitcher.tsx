@@ -136,7 +136,7 @@ export function LanguageSwitcher({ variant = "inline" }: { variant?: "inline" | 
                           {l.label}
                         </div>
                         <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-navy/40">
-                          {l.short} · {l.native ?? l.label}
+                          {l.short}
                         </div>
                       </div>
                       <span
