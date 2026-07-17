@@ -59,5 +59,108 @@
     "newsletterLanguage": "首选语言",
     "newsletterSubmit": "订阅"
   },
-  "demo": "演示内容 — 非真实医疗或个人数据。"
+  "demo": "演示内容 — 非真实医疗或个人数据。",
+  "admin": {
+    "topbar": {
+      "search": "搜索患者、预约、账单…",
+      "clinicOnline": "诊所在线",
+      "new": "新建",
+      "role": "医疗总监",
+      "notifications": "通知",
+      "help": "帮助"
+    },
+    "groups": {
+      "practice": "诊疗",
+      "clinical": "临床",
+      "relations": "关系",
+      "editorial": "编辑",
+      "operations": "运营"
+    },
+    "nav": {
+      "overview": "概览",
+      "patients": "患者",
+      "appointments": "预约",
+      "calendar": "日程",
+      "clinical": "临床",
+      "records": "病历",
+      "labs": "化验结果",
+      "carePlans": "护理方案",
+      "messages": "消息",
+      "billing": "账务",
+      "crm": "客户管理",
+      "research": "研究",
+      "insights": "医学观点",
+      "website": "网站内容",
+      "comments": "评论",
+      "analytics": "分析",
+      "reports": "报告",
+      "documents": "文档",
+      "tasks": "任务",
+      "notifications": "通知",
+      "settings": "设置"
+    },
+    "sidebar": { "collapse": "收起", "backToSite": "返回站点", "privateAdmin": "私人后台" },
+    "quick": {
+      "title": "快速操作",
+      "newPatient": "新增患者",
+      "newAppointment": "新增预约",
+      "scheduleAppointment": "安排预约",
+      "createCarePlan": "创建护理方案",
+      "sendMessage": "发送消息",
+      "newResearch": "新研究",
+      "newResearchPost": "新研究文章",
+      "recordPayment": "记录付款",
+      "uploadDocument": "上传文档",
+      "openPalette": "打开命令面板 (⌘K)"
+    },
+    "cmd": {
+      "placeholder": "搜索患者、预约、消息…",
+      "pages": "页面",
+      "patients": "患者",
+      "appointments": "预约"
+    },
+    "notif": { "eyebrow": "通知", "title": "近期动态", "markAll": "全部标为已读", "openCenter": "打开通知中心 →" },
+    "footer": { "private": "私人后台", "preview": "预览构建 · 仅前端 · 不用于临床" },
+    "overview": {
+      "eyebrow": "概览",
+      "morning": "早上好",
+      "afternoon": "下午好",
+      "evening": "晚上好",
+      "greeting": "{{greet}},陈医师。",
+      "lede": "以下是 JC Integrative Health 今天的动态 — 已安排 {{appts}} 场预约,{{requests}} 位新患者申请待审阅,消息队列中有 {{messages}} 条。",
+      "kpi": {
+        "today": "今日预约",
+        "todaySub": "2 远程 · 4 现场 · 6 已确认",
+        "active": "活跃患者",
+        "activeSub": "本月 +12",
+        "requests": "新患者申请",
+        "requestsSub": "等待审阅",
+        "pendingMsgs": "待处理消息",
+        "pendingMsgsSub": "3 条标为优先",
+        "pendingPay": "待收款项",
+        "onTrack": "进展正常",
+        "overdue": "逾期 {{amount}}",
+        "newLabs": "新化验结果",
+        "newLabsSub": "2 项标为异常",
+        "carePlans": "待复核的护理方案",
+        "carePlansSub": "本周到期",
+        "drafts": "研究草稿",
+        "draftsSub": "2 篇可审阅"
+      },
+      "agenda": { "title": "今日日程", "open": "打开" },
+      "activity": { "title": "患者动态", "all": "全部" },
+      "charts": {
+        "byWeek": "每周预约",
+        "tvi": "远程 vs 现场",
+        "telehealth": "远程医疗",
+        "inPerson": "现场",
+        "langDist": "患者语言分布",
+        "english": "英文",
+        "portuguese": "葡萄牙文",
+        "spanish": "西班牙文",
+        "mandarin": "中文"
+      },
+      "tasks": { "title": "任务", "openAll": "查看全部", "due": "截止" }
+    }
+  }
 }

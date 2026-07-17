@@ -1,5 +1,7 @@
 import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { SUPPORTED_LANGUAGES, type LangCode } from "@/i18n";
 import {
   LayoutDashboard, Users, Calendar, CalendarDays, Stethoscope, FileHeart, FlaskConical, ClipboardList,
   MessageSquare, Receipt, Contact, Beaker, Newspaper, PanelsTopLeft, MessageSquareWarning,
@@ -21,34 +23,34 @@ export const Route = createFileRoute("/admin")({
 type Item = { to: string; label: string; icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>; group: string };
 
 const NAV: Item[] = [
-  { to: "/admin", label: "Overview", icon: LayoutDashboard, group: "Practice" },
-  { to: "/admin/patients", label: "Patients", icon: Users, group: "Practice" },
-  { to: "/admin/appointments", label: "Appointments", icon: Calendar, group: "Practice" },
-  { to: "/admin/calendar", label: "Calendar", icon: CalendarDays, group: "Practice" },
+  { to: "/admin", label: "overview", icon: LayoutDashboard, group: "practice" },
+  { to: "/admin/patients", label: "patients", icon: Users, group: "practice" },
+  { to: "/admin/appointments", label: "appointments", icon: Calendar, group: "practice" },
+  { to: "/admin/calendar", label: "calendar", icon: CalendarDays, group: "practice" },
 
-  { to: "/admin/clinical", label: "Clinical", icon: Stethoscope, group: "Clinical" },
-  { to: "/admin/records", label: "Health Records", icon: FileHeart, group: "Clinical" },
-  { to: "/admin/labs", label: "Lab Results", icon: FlaskConical, group: "Clinical" },
-  { to: "/admin/care-plans", label: "Care Plans", icon: ClipboardList, group: "Clinical" },
+  { to: "/admin/clinical", label: "clinical", icon: Stethoscope, group: "clinical" },
+  { to: "/admin/records", label: "records", icon: FileHeart, group: "clinical" },
+  { to: "/admin/labs", label: "labs", icon: FlaskConical, group: "clinical" },
+  { to: "/admin/care-plans", label: "carePlans", icon: ClipboardList, group: "clinical" },
 
-  { to: "/admin/messages", label: "Messages", icon: MessageSquare, group: "Relations" },
-  { to: "/admin/billing", label: "Billing", icon: Receipt, group: "Relations" },
-  { to: "/admin/crm", label: "CRM", icon: Contact, group: "Relations" },
+  { to: "/admin/messages", label: "messages", icon: MessageSquare, group: "relations" },
+  { to: "/admin/billing", label: "billing", icon: Receipt, group: "relations" },
+  { to: "/admin/crm", label: "crm", icon: Contact, group: "relations" },
 
-  { to: "/admin/research", label: "Research", icon: Beaker, group: "Editorial" },
-  { to: "/admin/insights", label: "Medical Insights", icon: Newspaper, group: "Editorial" },
-  { to: "/admin/website", label: "Website Content", icon: PanelsTopLeft, group: "Editorial" },
-  { to: "/admin/comments", label: "Comments", icon: MessageSquareWarning, group: "Editorial" },
+  { to: "/admin/research", label: "research", icon: Beaker, group: "editorial" },
+  { to: "/admin/insights", label: "insights", icon: Newspaper, group: "editorial" },
+  { to: "/admin/website", label: "website", icon: PanelsTopLeft, group: "editorial" },
+  { to: "/admin/comments", label: "comments", icon: MessageSquareWarning, group: "editorial" },
 
-  { to: "/admin/analytics", label: "Analytics", icon: BarChart3, group: "Operations" },
-  { to: "/admin/reports", label: "Reports", icon: FilePieChart, group: "Operations" },
-  { to: "/admin/documents", label: "Documents", icon: Files, group: "Operations" },
-  { to: "/admin/tasks", label: "Tasks", icon: ListChecks, group: "Operations" },
-  { to: "/admin/notifications", label: "Notifications", icon: Bell, group: "Operations" },
-  { to: "/admin/settings", label: "Settings", icon: Settings, group: "Operations" },
+  { to: "/admin/analytics", label: "analytics", icon: BarChart3, group: "operations" },
+  { to: "/admin/reports", label: "reports", icon: FilePieChart, group: "operations" },
+  { to: "/admin/documents", label: "documents", icon: Files, group: "operations" },
+  { to: "/admin/tasks", label: "tasks", icon: ListChecks, group: "operations" },
+  { to: "/admin/notifications", label: "notifications", icon: Bell, group: "operations" },
+  { to: "/admin/settings", label: "settings", icon: Settings, group: "operations" },
 ];
 
-const GROUPS = ["Practice", "Clinical", "Relations", "Editorial", "Operations"];
+const GROUPS = ["practice", "clinical", "relations", "editorial", "operations"] as const;
 
 function AdminLayout() {
   const [collapsed, setCollapsed] = useState(false);
@@ -102,10 +104,7 @@ function AdminLayout() {
         <main className="p-5 md:p-8 lg:p-10 max-w-[1440px] mx-auto">
           <Outlet />
         </main>
-        <footer className="border-t border-navy/8 mt-12 py-5 px-5 md:px-10 flex flex-col md:flex-row justify-between gap-2 text-[11px] uppercase tracking-widest text-navy/40">
-          <span>© {new Date().getFullYear()} {clinic.name} · Private admin</span>
-          <span>Preview build · Frontend only · Not for clinical use</span>
-        </footer>
+        <AdminFooter />
       </div>
 
       {cmdOpen && <CommandPalette onClose={() => setCmdOpen(false)} />}
@@ -114,7 +113,18 @@ function AdminLayout() {
   );
 }
 
+function AdminFooter() {
+  const { t } = useTranslation();
+  return (
+    <footer className="border-t border-navy/8 mt-12 py-5 px-5 md:px-10 flex flex-col md:flex-row justify-between gap-2 text-[11px] uppercase tracking-widest text-navy/40">
+      <span>© {new Date().getFullYear()} {clinic.name} · {t("admin.footer.private")}</span>
+      <span>{t("admin.footer.preview")}</span>
+    </footer>
+  );
+}
+
 function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; isActive: (to: string) => boolean; onCollapse?: () => void }) {
+  const { t } = useTranslation();
   return (
     <>
       <div className="flex items-center gap-3 px-4 py-5 border-b border-navy/8">
@@ -122,7 +132,7 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
         {!collapsed && (
           <div className="min-w-0">
             <div className="font-serif text-sm text-navy truncate leading-tight">JC Integrative Health</div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-navy/40">Private admin</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] text-navy/40">{t("admin.sidebar.privateAdmin")}</div>
           </div>
         )}
       </div>
@@ -130,7 +140,7 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
       <nav className="flex-1 overflow-y-auto no-scrollbar py-5">
         {GROUPS.map((g) => (
           <div key={g} className="mb-5">
-            {!collapsed && <div className="px-4 mb-2 text-[10px] uppercase tracking-[0.24em] text-navy/35 font-medium">{g}</div>}
+            {!collapsed && <div className="px-4 mb-2 text-[10px] uppercase tracking-[0.24em] text-navy/35 font-medium">{t(`admin.groups.${g}`)}</div>}
             {NAV.filter((i) => i.group === g).map((item) => {
               const active = isActive(item.to);
               return (
@@ -141,7 +151,7 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
                 >
                   <span className={`inline-block h-4 w-0.5 -ml-4 ${active ? "bg-gold" : "bg-transparent"}`} />
                   <item.icon size={15} strokeWidth={1.5} className="shrink-0" />
-                  {!collapsed && <span className="truncate font-medium">{item.label}</span>}
+                  {!collapsed && <span className="truncate font-medium">{t(`admin.nav.${item.label}`)}</span>}
                 </Link>
               );
             })}
@@ -152,11 +162,11 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
       <div className="border-t border-navy/8 p-3 space-y-1">
         {onCollapse && (
           <button onClick={onCollapse} className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors">
-            {collapsed ? <ChevronsRight size={14} /> : <ChevronsLeft size={14} />} {!collapsed && "Collapse"}
+            {collapsed ? <ChevronsRight size={14} /> : <ChevronsLeft size={14} />} {!collapsed && t("admin.sidebar.collapse")}
           </button>
         )}
         <Link to="/" className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors">
-          <LogOut size={14} strokeWidth={1.5} /> {!collapsed && "Back to site"}
+          <LogOut size={14} strokeWidth={1.5} /> {!collapsed && t("admin.sidebar.backToSite")}
         </Link>
       </div>
     </>
@@ -164,9 +174,11 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
 }
 
 function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => void; onOpenCmd: () => void; onOpenNotif: () => void }) {
+  const { t, i18n } = useTranslation();
   const unread = demoNotifs.filter((n) => !n.read).length;
-  const [lang, setLang] = useState("EN");
-  const today = new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+  const localeMap: Record<LangCode, string> = { en: "en-US", es: "es-ES", pt: "pt-BR", zh: "zh-CN" };
+  const active = (i18n.language.split("-")[0] as LangCode) || "en";
+  const today = new Date().toLocaleDateString(localeMap[active] ?? "en-US", { weekday: "long", month: "long", day: "numeric" });
 
   return (
     <header className="sticky top-0 z-30 border-b border-navy/8 bg-paper/90 backdrop-blur">
@@ -180,7 +192,7 @@ function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => 
           className="hidden md:flex items-center gap-2 h-9 border border-navy/10 bg-card px-3 min-w-0 flex-1 max-w-md text-navy/45 hover:border-navy/25 transition-colors"
         >
           <Search size={13} strokeWidth={1.5} />
-          <span className="text-sm truncate">Search patients, appointments, invoices…</span>
+          <span className="text-sm truncate">{t("admin.topbar.search")}</span>
           <span className="ml-auto text-[10px] uppercase tracking-widest border border-navy/10 px-1.5 py-0.5 flex items-center gap-1 text-navy/40"><Command size={10} /> K</span>
         </button>
 
@@ -188,22 +200,28 @@ function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => 
 
         <div className="ml-auto flex items-center gap-1 md:gap-1.5">
           <span className="hidden xl:inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-navy/45 mr-3">
-            <span className="h-1.5 w-1.5 rounded-full bg-teal/80" /> Clinic online · {today}
+            <span className="h-1.5 w-1.5 rounded-full bg-teal/80" /> {t("admin.topbar.clinicOnline")} · {today}
           </span>
 
           <QuickActions />
 
-          <button onClick={onOpenNotif} className="relative h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label="Notifications">
+          <button onClick={onOpenNotif} className="relative h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label={t("admin.topbar.notifications")}>
             <Bell size={16} strokeWidth={1.5} />
             {unread > 0 && <span className="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-gold" />}
           </button>
 
-          <button className="h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label="Help"><HelpCircle size={15} strokeWidth={1.5} /></button>
+          <button className="h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label={t("admin.topbar.help")}><HelpCircle size={15} strokeWidth={1.5} /></button>
 
           <div className="hidden md:flex items-center gap-0.5 h-9 border border-navy/10 px-2 text-[11px] uppercase tracking-widest text-navy/50">
             <Globe size={12} strokeWidth={1.5} className="mr-1" />
-            {(["EN", "ES", "PT", "ZH"] as const).map((l) => (
-              <button key={l} onClick={() => setLang(l)} className={`px-1.5 py-0.5 transition-colors ${lang === l ? "text-navy" : "hover:text-navy"}`}>{l}</button>
+            {SUPPORTED_LANGUAGES.map((l) => (
+              <button
+                key={l.code}
+                onClick={() => { i18n.changeLanguage(l.code); try { localStorage.setItem("jc.lang", l.code); } catch {} }}
+                className={`px-1.5 py-0.5 transition-colors ${active === l.code ? "text-navy" : "hover:text-navy"}`}
+              >
+                {l.short}
+              </button>
             ))}
           </div>
 
@@ -211,7 +229,7 @@ function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => 
             <div className="h-7 w-7 rounded-full border border-navy/15 grid place-items-center text-[10px] font-semibold text-navy bg-paper">JC</div>
             <div className="hidden sm:block leading-tight">
               <div className="text-xs font-medium text-navy">Dr. Jason Chen</div>
-              <div className="text-[10px] uppercase tracking-widest text-navy/40">Medical Director</div>
+              <div className="text-[10px] uppercase tracking-widest text-navy/40">{t("admin.topbar.role")}</div>
             </div>
           </div>
         </div>
@@ -221,15 +239,16 @@ function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => 
 }
 
 function QuickActions() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const items = [
-    { label: "New Patient", to: "/admin/patients/new" },
-    { label: "Schedule Appointment", to: "/admin/appointments/new" },
-    { label: "Create Care Plan", to: "/admin/care-plans" },
-    { label: "Send Message", to: "/admin/messages" },
-    { label: "New Research Post", to: "/admin/research" },
-    { label: "Record Payment", to: "/admin/billing" },
-    { label: "Upload Document", to: "/admin/documents" },
+    { label: t("admin.quick.newPatient"), to: "/admin/patients/new" },
+    { label: t("admin.quick.scheduleAppointment"), to: "/admin/appointments/new" },
+    { label: t("admin.quick.createCarePlan"), to: "/admin/care-plans" },
+    { label: t("admin.quick.sendMessage"), to: "/admin/messages" },
+    { label: t("admin.quick.newResearchPost"), to: "/admin/research" },
+    { label: t("admin.quick.recordPayment"), to: "/admin/billing" },
+    { label: t("admin.quick.uploadDocument"), to: "/admin/documents" },
   ];
   return (
     <div className="relative">
@@ -237,13 +256,13 @@ function QuickActions() {
         onClick={() => setOpen((v) => !v)}
         className="h-9 px-3 border border-navy/15 text-navy hover:border-navy/30 inline-flex items-center gap-2 text-[11px] uppercase tracking-widest font-semibold transition-colors bg-card"
       >
-        <Plus size={13} strokeWidth={2} /> <span className="hidden sm:inline">New</span>
+        <Plus size={13} strokeWidth={2} /> <span className="hidden sm:inline">{t("admin.topbar.new")}</span>
       </button>
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
           <div className="absolute right-0 mt-2 w-64 bg-card border border-navy/10 shadow-sm z-50">
-            <div className="px-3 py-2 border-b border-navy/8 text-[10px] uppercase tracking-[0.2em] text-navy/40 font-medium">Quick actions</div>
+            <div className="px-3 py-2 border-b border-navy/8 text-[10px] uppercase tracking-[0.2em] text-navy/40 font-medium">{t("admin.quick.title")}</div>
             {items.map((i) => (
               <Link key={i.to} to={i.to} onClick={() => setOpen(false)} className="block px-3 py-2 text-sm text-navy/70 hover:bg-mist/40 hover:text-navy transition-colors">
                 {i.label}
@@ -257,10 +276,11 @@ function QuickActions() {
 }
 
 function CommandPalette({ onClose }: { onClose: () => void }) {
+  const { t } = useTranslation();
   const groups = [
-    { label: "Pages", items: NAV.slice(0, 12).map((n) => ({ label: n.label, to: n.to })) },
-    { label: "Patients", items: [{ label: "Amelia Reyes · P-1042", to: "/admin/patients/P-1042" }, { label: "Rafael Marques · P-1043", to: "/admin/patients/P-1043" }, { label: "Sofía Lopez · P-1044", to: "/admin/patients/P-1044" }] },
-    { label: "Appointments", items: [{ label: "A-8801 · Amelia Reyes", to: "/admin/appointments/A-8801" }, { label: "A-8802 · Rafael Marques", to: "/admin/appointments/A-8802" }] },
+    { label: t("admin.cmd.pages"), items: NAV.slice(0, 12).map((n) => ({ label: t(`admin.nav.${n.label}`), to: n.to })) },
+    { label: t("admin.cmd.patients"), items: [{ label: "Amelia Reyes · P-1042", to: "/admin/patients/P-1042" }, { label: "Rafael Marques · P-1043", to: "/admin/patients/P-1043" }, { label: "Sofía Lopez · P-1044", to: "/admin/patients/P-1044" }] },
+    { label: t("admin.cmd.appointments"), items: [{ label: "A-8801 · Amelia Reyes", to: "/admin/appointments/A-8801" }, { label: "A-8802 · Rafael Marques", to: "/admin/appointments/A-8802" }] },
   ];
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4">
@@ -268,7 +288,7 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
       <div className="relative w-full max-w-xl bg-card border border-navy/10 shadow-sm">
         <div className="flex items-center gap-2 px-4 h-12 border-b border-navy/8">
           <Search size={14} strokeWidth={1.5} className="text-navy/45" />
-          <input autoFocus placeholder="Search patients, appointments, messages…" className="flex-1 bg-transparent outline-none text-sm placeholder:text-navy/40" />
+          <input autoFocus placeholder={t("admin.cmd.placeholder")} className="flex-1 bg-transparent outline-none text-sm placeholder:text-navy/40" />
           <kbd className="text-[10px] uppercase tracking-widest border border-navy/10 px-1.5 py-0.5 text-navy/40">Esc</kbd>
         </div>
         <div className="max-h-[60vh] overflow-y-auto">
@@ -289,14 +309,15 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
 }
 
 function NotificationsDrawer({ onClose }: { onClose: () => void }) {
+  const { t } = useTranslation();
   return (
     <div className="fixed inset-0 z-50">
       <div className="absolute inset-0 bg-navy/15" onClick={onClose} />
       <aside className="absolute inset-y-0 right-0 w-full sm:w-96 bg-card border-l border-navy/8 flex flex-col">
         <header className="flex items-center justify-between p-4 border-b border-navy/8">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-gold font-semibold">Notifications</div>
-            <div className="font-serif text-lg text-navy mt-0.5">Recent activity</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] text-gold font-semibold">{t("admin.notif.eyebrow")}</div>
+            <div className="font-serif text-lg text-navy mt-0.5">{t("admin.notif.title")}</div>
           </div>
           <button onClick={onClose} className="text-navy/55 hover:text-navy transition-colors"><X size={18} /></button>
         </header>
@@ -314,8 +335,8 @@ function NotificationsDrawer({ onClose }: { onClose: () => void }) {
           ))}
         </div>
         <div className="p-3 border-t border-navy/8 flex items-center justify-between text-xs">
-          <button className="text-navy/55 hover:text-navy uppercase tracking-widest transition-colors">Mark all as read</button>
-          <Link to="/admin/notifications" onClick={onClose} className="text-navy/55 hover:text-navy uppercase tracking-widest transition-colors">Open center →</Link>
+          <button className="text-navy/55 hover:text-navy uppercase tracking-widest transition-colors">{t("admin.notif.markAll")}</button>
+          <Link to="/admin/notifications" onClick={onClose} className="text-navy/55 hover:text-navy uppercase tracking-widest transition-colors">{t("admin.notif.openCenter")}</Link>
         </div>
       </aside>
     </div>
