@@ -166,52 +166,52 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
 function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => void; onOpenCmd: () => void; onOpenNotif: () => void }) {
   const unread = demoNotifs.filter((n) => !n.read).length;
   const [lang, setLang] = useState("EN");
-  const today = new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" });
+  const today = new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
 
   return (
-    <header className="sticky top-0 z-30 border-b border-navy/10 bg-paper/95 backdrop-blur">
-      <div className="flex items-center gap-3 px-4 md:px-8 h-14">
-        <button className="lg:hidden text-navy/70 hover:text-navy" onClick={onOpenMobile} aria-label="Open menu">
+    <header className="sticky top-0 z-30 border-b border-navy/8 bg-paper/90 backdrop-blur">
+      <div className="flex items-center gap-3 px-4 md:px-6 h-14">
+        <button className="lg:hidden text-navy/60 hover:text-navy" onClick={onOpenMobile} aria-label="Open menu">
           <Menu size={18} strokeWidth={1.5} />
         </button>
 
         <button
           onClick={onOpenCmd}
-          className="hidden md:flex items-center gap-2 h-9 border border-navy/15 bg-card px-3 min-w-0 flex-1 max-w-md text-navy/45 hover:border-navy/30 transition-colors"
+          className="hidden md:flex items-center gap-2 h-9 border border-navy/10 bg-card px-3 min-w-0 flex-1 max-w-md text-navy/45 hover:border-navy/25 transition-colors"
         >
           <Search size={13} strokeWidth={1.5} />
-          <span className="text-sm">Search patients, appointments, invoices…</span>
-          <span className="ml-auto text-[10px] uppercase tracking-widest border border-navy/15 px-1.5 py-0.5 flex items-center gap-1"><Command size={10} /> K</span>
+          <span className="text-sm truncate">Search patients, appointments, invoices…</span>
+          <span className="ml-auto text-[10px] uppercase tracking-widest border border-navy/10 px-1.5 py-0.5 flex items-center gap-1 text-navy/40"><Command size={10} /> K</span>
         </button>
 
-        <div className="flex-1 md:hidden text-[11px] uppercase tracking-[0.2em] text-navy/50">{today}</div>
+        <div className="flex-1 md:hidden text-[11px] uppercase tracking-[0.2em] text-navy/45">{today}</div>
 
-        <div className="ml-auto flex items-center gap-1 md:gap-2">
-          <span className="hidden xl:inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-navy/50 mr-3">
-            <span className="h-1.5 w-1.5 rounded-full bg-teal" /> Clinic online · {today}
+        <div className="ml-auto flex items-center gap-1 md:gap-1.5">
+          <span className="hidden xl:inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-navy/45 mr-3">
+            <span className="h-1.5 w-1.5 rounded-full bg-teal/80" /> Clinic online · {today}
           </span>
 
           <QuickActions />
 
-          <button onClick={onOpenNotif} className="relative h-9 w-9 grid place-items-center text-navy/60 hover:text-navy" aria-label="Notifications">
+          <button onClick={onOpenNotif} className="relative h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label="Notifications">
             <Bell size={16} strokeWidth={1.5} />
-            {unread > 0 && <span className="absolute top-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-gold" />}
+            {unread > 0 && <span className="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-gold" />}
           </button>
 
-          <button className="h-9 w-9 grid place-items-center text-navy/60 hover:text-navy" aria-label="Help"><HelpCircle size={15} strokeWidth={1.5} /></button>
+          <button className="h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label="Help"><HelpCircle size={15} strokeWidth={1.5} /></button>
 
-          <div className="hidden md:flex items-center gap-1 h-9 border border-navy/15 px-2 text-[11px] uppercase tracking-widest text-navy/55">
-            <Globe size={12} strokeWidth={1.5} />
+          <div className="hidden md:flex items-center gap-0.5 h-9 border border-navy/10 px-2 text-[11px] uppercase tracking-widest text-navy/50">
+            <Globe size={12} strokeWidth={1.5} className="mr-1" />
             {(["EN", "ES", "PT", "ZH"] as const).map((l) => (
-              <button key={l} onClick={() => setLang(l)} className={`px-1.5 ${lang === l ? "text-navy" : "hover:text-navy"}`}>{l}</button>
+              <button key={l} onClick={() => setLang(l)} className={`px-1.5 py-0.5 transition-colors ${lang === l ? "text-navy" : "hover:text-navy"}`}>{l}</button>
             ))}
           </div>
 
-          <div className="flex items-center gap-2 h-9 pl-2 pr-3 border-l border-navy/10 ml-1">
-            <div className="h-7 w-7 rounded-full border border-navy/20 grid place-items-center text-[10px] font-semibold text-navy">JC</div>
+          <div className="flex items-center gap-2 h-9 pl-2 pr-3 border-l border-navy/8 ml-1">
+            <div className="h-7 w-7 rounded-full border border-navy/15 grid place-items-center text-[10px] font-semibold text-navy bg-paper">JC</div>
             <div className="hidden sm:block leading-tight">
               <div className="text-xs font-medium text-navy">Dr. Jason Chen</div>
-              <div className="text-[10px] uppercase tracking-widest text-navy/45">Medical Director</div>
+              <div className="text-[10px] uppercase tracking-widest text-navy/40">Medical Director</div>
             </div>
           </div>
         </div>
