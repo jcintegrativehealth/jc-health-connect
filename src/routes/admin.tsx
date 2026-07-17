@@ -8,7 +8,9 @@ import {
   BarChart3, FilePieChart, Files, ListChecks, Bell, Settings, Search, ChevronsLeft, ChevronsRight,
   Plus, HelpCircle, Globe, LogOut, X, Menu, Command, Video,
 } from "lucide-react";
-import { clinic, notifications as demoNotifs } from "@/data/admin";
+import { clinic, notifications as demoNotifs, patients } from "@/data/admin";
+import { toast } from "sonner";
+import { Copy, Check, Loader2, AlertCircle, ExternalLink, Shield, Clock } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
