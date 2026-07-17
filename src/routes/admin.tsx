@@ -61,8 +61,9 @@ function AdminPage() {
         </aside>
 
         <Container className="py-12">
-          {active === "dashboard" && <AdminDashboard />}
-          {active !== "dashboard" && <AdminStub label={NAV.find((n) => n.key === active)?.label || ""} />}
+          {active === "dashboard" && <AdminDashboard onOpen={setActive} />}
+          {active === "comments" && <CommentModeration />}
+          {active !== "dashboard" && active !== "comments" && <AdminStub label={NAV.find((n) => n.key === active)?.label || ""} />}
         </Container>
       </div>
     </>
