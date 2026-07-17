@@ -233,14 +233,14 @@ export function Header() {
               ))}
             </nav>
 
-            <div className="p-6 border-t border-navy/10 space-y-4 bg-mist/40">
+            <div className="p-6 border-t border-navy/10 space-y-4">
               <LanguageSwitcher variant="inline" />
               <Link
                 to="/book"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] ring-1 ring-gold/60 hover:bg-academic transition-colors"
+                className="flex items-center justify-center gap-2 px-5 py-3 border border-navy/20 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:border-gold hover:text-gold transition-colors"
               >
-                <Calendar size={14} strokeWidth={1.75} className="text-gold" />
+                <Calendar size={14} strokeWidth={1.75} className="text-navy group-hover:text-gold transition-colors" />
                 {t("nav.book")}
               </Link>
             </div>
