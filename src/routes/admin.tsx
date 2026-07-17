@@ -239,15 +239,16 @@ function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => 
 }
 
 function QuickActions() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const items = [
-    { label: "New Patient", to: "/admin/patients/new" },
-    { label: "Schedule Appointment", to: "/admin/appointments/new" },
-    { label: "Create Care Plan", to: "/admin/care-plans" },
-    { label: "Send Message", to: "/admin/messages" },
-    { label: "New Research Post", to: "/admin/research" },
-    { label: "Record Payment", to: "/admin/billing" },
-    { label: "Upload Document", to: "/admin/documents" },
+    { label: t("admin.quick.newPatient"), to: "/admin/patients/new" },
+    { label: t("admin.quick.scheduleAppointment"), to: "/admin/appointments/new" },
+    { label: t("admin.quick.createCarePlan"), to: "/admin/care-plans" },
+    { label: t("admin.quick.sendMessage"), to: "/admin/messages" },
+    { label: t("admin.quick.newResearchPost"), to: "/admin/research" },
+    { label: t("admin.quick.recordPayment"), to: "/admin/billing" },
+    { label: t("admin.quick.uploadDocument"), to: "/admin/documents" },
   ];
   return (
     <div className="relative">
@@ -255,13 +256,13 @@ function QuickActions() {
         onClick={() => setOpen((v) => !v)}
         className="h-9 px-3 border border-navy/15 text-navy hover:border-navy/30 inline-flex items-center gap-2 text-[11px] uppercase tracking-widest font-semibold transition-colors bg-card"
       >
-        <Plus size={13} strokeWidth={2} /> <span className="hidden sm:inline">New</span>
+        <Plus size={13} strokeWidth={2} /> <span className="hidden sm:inline">{t("admin.topbar.new")}</span>
       </button>
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
           <div className="absolute right-0 mt-2 w-64 bg-card border border-navy/10 shadow-sm z-50">
-            <div className="px-3 py-2 border-b border-navy/8 text-[10px] uppercase tracking-[0.2em] text-navy/40 font-medium">Quick actions</div>
+            <div className="px-3 py-2 border-b border-navy/8 text-[10px] uppercase tracking-[0.2em] text-navy/40 font-medium">{t("admin.quick.title")}</div>
             {items.map((i) => (
               <Link key={i.to} to={i.to} onClick={() => setOpen(false)} className="block px-3 py-2 text-sm text-navy/70 hover:bg-mist/40 hover:text-navy transition-colors">
                 {i.label}
