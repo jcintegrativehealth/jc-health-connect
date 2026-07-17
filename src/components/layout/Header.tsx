@@ -193,18 +193,28 @@ export function Header() {
                 <div key={group.title} className="mt-8">
                   <div className="eyebrow text-navy/40 mb-2">{group.title}</div>
                   <ul>
-                    {group.links.map((l) => (
-                      <li key={l.to}>
-                        <Link
-                          to={l.to}
-                          onClick={() => setMobileOpen(false)}
-                          className="block py-2.5 text-sm text-navy/80 border-b border-navy/5 hover:text-gold transition-colors"
-                          activeProps={{ className: "text-gold" }}
-                        >
-                          {l.label}
-                        </Link>
-                      </li>
-                    ))}
+                    {group.links.map((l) => {
+                      const active = isActive(l.to);
+                      return (
+                        <li key={l.to}>
+                          <Link
+                            to={l.to}
+                            onClick={() => setMobileOpen(false)}
+                            className={[
+                              "flex items-center gap-2.5 py-2.5 text-sm border-b border-navy/5 transition-colors",
+                              active
+                                ? "text-gold bg-mist/60 -mx-2 px-2 rounded-sm"
+                                : "text-navy/80 hover:text-gold",
+                            ].join(" ")}
+                          >
+                            {active && (
+                              <span className="inline-block w-1 h-1 rounded-full bg-gold" aria-hidden="true" />
+                            )}
+                            <span>{l.label}</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               ))}
