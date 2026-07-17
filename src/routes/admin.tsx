@@ -99,10 +99,10 @@ function AdminLayout() {
           onOpenCmd={() => setCmdOpen(true)}
           onOpenNotif={() => setNotifOpen(true)}
         />
-        <main className="p-6 md:p-8 lg:p-10 max-w-[1440px] mx-auto">
+        <main className="p-5 md:p-8 lg:p-10 max-w-[1440px] mx-auto">
           <Outlet />
         </main>
-        <footer className="border-t border-navy/10 mt-16 py-6 px-6 md:px-10 flex flex-col md:flex-row justify-between gap-2 text-[11px] uppercase tracking-widest text-navy/45">
+        <footer className="border-t border-navy/8 mt-12 py-5 px-5 md:px-10 flex flex-col md:flex-row justify-between gap-2 text-[11px] uppercase tracking-widest text-navy/40">
           <span>© {new Date().getFullYear()} {clinic.name} · Private admin</span>
           <span>Preview build · Frontend only · Not for clinical use</span>
         </footer>
