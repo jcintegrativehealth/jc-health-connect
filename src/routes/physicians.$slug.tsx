@@ -57,8 +57,8 @@ export const Route = createFileRoute("/physicians/$slug")({
                   </ul>
                 )}
               </div>
-              <div>
-                <Link to="/contact" className="inline-flex items-center px-5 py-3 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:bg-navy/5">Contact professional inquiries</Link>
+              <div className="flex justify-center">
+                <Link to="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:bg-navy/5 transition-colors">Contact professional inquiries</Link>
               </div>
             </div>
           </div>
