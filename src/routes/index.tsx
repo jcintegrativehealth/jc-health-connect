@@ -67,7 +67,6 @@ function HomePage() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
                 <Link to="/book" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.2em] ring-1 ring-gold/50 hover:bg-academic transition-colors group">
-                  <span className="w-4 h-px bg-gold group-hover:w-6 transition-all" />
                   {t("hero.bookCta")}
                 </Link>
                 <Link to="/about" className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.2em] hover:bg-navy/5 transition-colors">
