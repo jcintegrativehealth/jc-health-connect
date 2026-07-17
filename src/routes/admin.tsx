@@ -117,31 +117,31 @@ function AdminLayout() {
 function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; isActive: (to: string) => boolean; onCollapse?: () => void }) {
   return (
     <>
-      <div className="flex items-center gap-3 px-4 py-5 border-b border-navy/10">
-        <div className="h-9 w-9 border border-navy/20 flex items-center justify-center font-serif text-sm text-navy shrink-0">JC</div>
+      <div className="flex items-center gap-3 px-4 py-5 border-b border-navy/8">
+        <div className="h-9 w-9 border border-navy/15 flex items-center justify-center font-serif text-sm text-navy shrink-0 bg-paper">JC</div>
         {!collapsed && (
           <div className="min-w-0">
-            <div className="font-serif text-sm text-navy truncate">JC Integrative Health</div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-navy/45">Private admin</div>
+            <div className="font-serif text-sm text-navy truncate leading-tight">JC Integrative Health</div>
+            <div className="text-[10px] uppercase tracking-[0.2em] text-navy/40">Private admin</div>
           </div>
         )}
       </div>
 
-      <nav className="flex-1 overflow-y-auto no-scrollbar py-4">
+      <nav className="flex-1 overflow-y-auto no-scrollbar py-5">
         {GROUPS.map((g) => (
-          <div key={g} className="mb-4">
-            {!collapsed && <div className="px-4 mb-1 text-[10px] uppercase tracking-[0.24em] text-navy/40">{g}</div>}
+          <div key={g} className="mb-5">
+            {!collapsed && <div className="px-4 mb-2 text-[10px] uppercase tracking-[0.24em] text-navy/35 font-medium">{g}</div>}
             {NAV.filter((i) => i.group === g).map((item) => {
               const active = isActive(item.to);
               return (
                 <Link
                   key={item.to}
                   to={item.to}
-                  className={`group flex items-center gap-3 px-4 py-2 text-sm transition-colors ${active ? "text-navy" : "text-navy/60 hover:text-navy"}`}
+                  className={`group flex items-center gap-3 px-4 py-2 text-sm transition-colors ${active ? "text-navy" : "text-navy/55 hover:text-navy"}`}
                 >
                   <span className={`inline-block h-4 w-0.5 -ml-4 ${active ? "bg-gold" : "bg-transparent"}`} />
                   <item.icon size={15} strokeWidth={1.5} className="shrink-0" />
-                  {!collapsed && <span className="truncate">{item.label}</span>}
+                  {!collapsed && <span className="truncate font-medium">{item.label}</span>}
                 </Link>
               );
             })}
@@ -149,13 +149,13 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
         ))}
       </nav>
 
-      <div className="border-t border-navy/10 p-3 space-y-1">
+      <div className="border-t border-navy/8 p-3 space-y-1">
         {onCollapse && (
-          <button onClick={onCollapse} className="w-full flex items-center gap-3 px-2 py-2 text-xs uppercase tracking-widest text-navy/50 hover:text-navy">
+          <button onClick={onCollapse} className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors">
             {collapsed ? <ChevronsRight size={14} /> : <ChevronsLeft size={14} />} {!collapsed && "Collapse"}
           </button>
         )}
-        <Link to="/" className="w-full flex items-center gap-3 px-2 py-2 text-xs uppercase tracking-widest text-navy/50 hover:text-navy">
+        <Link to="/" className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors">
           <LogOut size={14} strokeWidth={1.5} /> {!collapsed && "Back to site"}
         </Link>
       </div>
