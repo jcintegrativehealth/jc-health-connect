@@ -53,6 +53,12 @@ const DRAWER_GROUPS: DrawerGroup[] = [
 export function Header() {
   const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  // Auto-close the drawer on any route change (link tap, back button, programmatic nav).
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   // Prevent background scroll while the drawer is open.
   useEffect(() => {
@@ -62,6 +68,16 @@ export function Header() {
     return () => {
       document.body.style.overflow = original;
     };
+  }, [mobileOpen]);
+
+  // Close on Escape for keyboard users.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
   return (
