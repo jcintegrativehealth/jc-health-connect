@@ -1,0 +1,63 @@
+{
+  "brand": { "name": "JC", "sub": "Integrative Health" },
+  "nav": {
+    "home": "Início",
+    "about": "Sobre",
+    "care": "Atendimento",
+    "services": "Serviços",
+    "research": "Pesquisa",
+    "insights": "Insights Médicos",
+    "innovation": "Inovação",
+    "physicians": "Médicos",
+    "patientResources": "Recursos ao Paciente",
+    "contact": "Contato",
+    "book": "Agendar Consulta",
+    "portal": "Portal do Paciente",
+    "physicianLogin": "Acesso Médico"
+  },
+  "hero": {
+    "eyebrow": "Seção 01",
+    "title": "Medicina Integrativa. Longevidade. Inovação Médica.",
+    "lede": "Cuidado personalizado e baseado em evidências para apoiar a saúde de longo prazo, a prevenção e a síntese da ciência médica emergente.",
+    "bookCta": "Agendar uma Consulta",
+    "exploreCta": "Conheça Nossa Abordagem"
+  },
+  "trust": {
+    "integrative": "Medicina Integrativa",
+    "longevity": "Foco em Longevidade",
+    "evidence": "Baseado em Evidências",
+    "telehealth": "Telemedicina Disponível",
+    "multilingual": "Experiência Multilíngue"
+  },
+  "approach": {
+    "eyebrow": "Seção 02",
+    "title": "Uma Abordagem Integral",
+    "lede": "Unimos a excelência clínica tradicional à tecnologia médica emergente para cuidar da pessoa como um todo.",
+    "pillars": {
+      "one": { "t": "Compreender a Pessoa", "d": "Avaliação profunda de histórico clínico, estilo de vida e marcadores biológicos." },
+      "two": { "t": "Identificar Causas de Raiz", "d": "Análise da interação entre sistemas biológicos para encontrar os verdadeiros determinantes da saúde." },
+      "three": { "t": "Construir um Plano Personalizado", "d": "Protocolos que integram nutrição, farmacologia e tecnologia médica." },
+      "four": { "t": "Sustentar a Saúde no Longo Prazo", "d": "Monitoramento contínuo e cuidado iterativo para bem-estar sustentado." }
+    }
+  },
+  "footer": {
+    "tagline": "Cuidado baseado em evidências para uma vida mais longa e saudável.",
+    "columns": {
+      "care": "Atendimento", "services": "Serviços", "research": "Pesquisa",
+      "insights": "Insights", "innovation": "Inovação", "resources": "Recursos",
+      "company": "Instituto", "legal": "Legal", "contact": "Contato", "languages": "Idiomas"
+    },
+    "rights": "© 2026 JC Integrative Health. Todos os direitos reservados.",
+    "hipaa": "Conformidade HIPAA",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Uso",
+    "disclaimer": "Aviso Médico",
+    "newsletterTitle": "JC Health Insights",
+    "newsletterCopy": "Insights curados sobre medicina integrativa, longevidade, pesquisa e inovação médica.",
+    "newsletterFirstName": "Nome",
+    "newsletterEmail": "E-mail",
+    "newsletterLanguage": "Idioma preferido",
+    "newsletterSubmit": "Inscrever-se"
+  },
+  "demo": "Conteúdo demonstrativo — sem dados médicos ou pessoais reais."
+}
