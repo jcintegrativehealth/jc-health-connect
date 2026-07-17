@@ -59,5 +59,108 @@
     "newsletterLanguage": "Idioma preferido",
     "newsletterSubmit": "Inscrever-se"
   },
-  "demo": "Conteúdo demonstrativo — sem dados médicos ou pessoais reais."
+  "demo": "Conteúdo demonstrativo — sem dados médicos ou pessoais reais.",
+  "admin": {
+    "topbar": {
+      "search": "Buscar pacientes, consultas, faturas…",
+      "clinicOnline": "Clínica online",
+      "new": "Novo",
+      "role": "Diretor Médico",
+      "notifications": "Notificações",
+      "help": "Ajuda"
+    },
+    "groups": {
+      "practice": "Prática",
+      "clinical": "Clínico",
+      "relations": "Relacionamento",
+      "editorial": "Editorial",
+      "operations": "Operações"
+    },
+    "nav": {
+      "overview": "Visão geral",
+      "patients": "Pacientes",
+      "appointments": "Consultas",
+      "calendar": "Agenda",
+      "clinical": "Clínico",
+      "records": "Prontuários",
+      "labs": "Exames",
+      "carePlans": "Planos de Cuidado",
+      "messages": "Mensagens",
+      "billing": "Faturamento",
+      "crm": "CRM",
+      "research": "Pesquisa",
+      "insights": "Insights Médicos",
+      "website": "Conteúdo do Site",
+      "comments": "Comentários",
+      "analytics": "Analytics",
+      "reports": "Relatórios",
+      "documents": "Documentos",
+      "tasks": "Tarefas",
+      "notifications": "Notificações",
+      "settings": "Configurações"
+    },
+    "sidebar": { "collapse": "Recolher", "backToSite": "Voltar ao site", "privateAdmin": "Admin privado" },
+    "quick": {
+      "title": "Ações rápidas",
+      "newPatient": "Novo paciente",
+      "newAppointment": "Nova consulta",
+      "scheduleAppointment": "Agendar Consulta",
+      "createCarePlan": "Criar Plano de Cuidado",
+      "sendMessage": "Enviar Mensagem",
+      "newResearch": "Nova pesquisa",
+      "newResearchPost": "Nova Publicação de Pesquisa",
+      "recordPayment": "Registrar pagamento",
+      "uploadDocument": "Enviar Documento",
+      "openPalette": "Abrir paleta de comandos (⌘K)"
+    },
+    "cmd": {
+      "placeholder": "Buscar pacientes, consultas, mensagens…",
+      "pages": "Páginas",
+      "patients": "Pacientes",
+      "appointments": "Consultas"
+    },
+    "notif": { "eyebrow": "Notificações", "title": "Atividade recente", "markAll": "Marcar todas como lidas", "openCenter": "Abrir central →" },
+    "footer": { "private": "Admin privado", "preview": "Build de preview · Apenas frontend · Não usar clinicamente" },
+    "overview": {
+      "eyebrow": "Visão geral",
+      "morning": "Bom dia",
+      "afternoon": "Boa tarde",
+      "evening": "Boa noite",
+      "greeting": "{{greet}}, Dr. Chen.",
+      "lede": "Veja o que está acontecendo hoje no JC Integrative Health — {{appts}} consultas agendadas, {{requests}} novas solicitações de pacientes para revisão e {{messages}} mensagens na fila.",
+      "kpi": {
+        "today": "Consultas de hoje",
+        "todaySub": "2 telemedicina · 4 presenciais · 6 confirmadas",
+        "active": "Pacientes ativos",
+        "activeSub": "+12 este mês",
+        "requests": "Novas solicitações",
+        "requestsSub": "Aguardando revisão",
+        "pendingMsgs": "Mensagens pendentes",
+        "pendingMsgsSub": "3 marcadas como prioritárias",
+        "pendingPay": "Pagamentos pendentes",
+        "onTrack": "Em dia",
+        "overdue": "{{amount}} em atraso",
+        "newLabs": "Novos resultados de exames",
+        "newLabsSub": "2 marcados como anormais",
+        "carePlans": "Planos de cuidado para revisão",
+        "carePlansSub": "Vencem esta semana",
+        "drafts": "Rascunhos de pesquisa",
+        "draftsSub": "2 prontos para revisão"
+      },
+      "agenda": { "title": "Agenda de hoje", "open": "Abrir" },
+      "activity": { "title": "Atividade dos pacientes", "all": "Todas" },
+      "charts": {
+        "byWeek": "Consultas por semana",
+        "tvi": "Telemedicina vs presencial",
+        "telehealth": "Telemedicina",
+        "inPerson": "Presencial",
+        "langDist": "Distribuição de idiomas dos pacientes",
+        "english": "Inglês",
+        "portuguese": "Português",
+        "spanish": "Espanhol",
+        "mandarin": "Mandarim"
+      },
+      "tasks": { "title": "Tarefas", "openAll": "Abrir todas", "due": "Vence" }
+    }
+  }
 }
