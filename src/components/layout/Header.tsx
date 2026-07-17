@@ -180,8 +180,8 @@ export function Header() {
                         className={[
                           "relative flex items-center justify-between py-3.5 text-lg font-serif border-b border-navy/10 transition-colors",
                           active
-                            ? "text-gold bg-mist/60 pr-5"
-                            : "text-navy hover:text-gold",
+                            ? "text-gold"
+                            : "text-navy/70 hover:text-gold",
                         ].join(" ")}
                       >
                         <span className="pl-4">{t(n.key)}</span>
