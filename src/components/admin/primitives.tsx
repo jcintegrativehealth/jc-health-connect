@@ -58,15 +58,15 @@ export function Btn({
 export function StatCard({
   label, value, sub, tone = "navy", trend,
 }: { label: string; value: string | number; sub?: string; tone?: "navy" | "teal" | "gold"; trend?: string }) {
-  const accent = tone === "teal" ? "border-teal/40" : tone === "gold" ? "border-gold/40" : "border-navy/10";
+  const accent = tone === "teal" ? "border-teal/30" : tone === "gold" ? "border-gold/35" : "border-navy/8";
   return (
-    <div className={`bg-card border ${accent} p-5`}>
-      <div className="eyebrow text-navy/45">{label}</div>
+    <div className={`bg-card border ${accent} p-5 transition-colors hover:border-navy/15`}>
+      <div className="text-[10px] uppercase tracking-[0.24em] text-navy/40 font-medium">{label}</div>
       <div className="mt-3 flex items-baseline gap-2">
-        <div className="font-serif text-3xl md:text-4xl text-navy leading-none">{value}</div>
-        {trend && <span className="text-[10px] uppercase tracking-widest text-teal">{trend}</span>}
+        <div className="font-serif text-3xl md:text-4xl text-navy leading-none tracking-tight">{value}</div>
+        {trend && <span className="text-[10px] uppercase tracking-widest text-teal/80 font-medium">{trend}</span>}
       </div>
-      {sub && <div className="text-xs text-navy/50 mt-2">{sub}</div>}
+      {sub && <div className="text-[11px] text-navy/45 mt-2 leading-relaxed">{sub}</div>}
     </div>
   );
 }
@@ -103,7 +103,7 @@ const badgeMap: Record<string, string> = {
 };
 
 export function Badge({ children, tone }: { children: React.ReactNode; tone?: Status | string }) {
-  const cls = (tone && badgeMap[tone as string]) || "text-navy/60 border-navy/20";
+  const cls = (tone && badgeMap[tone as string]) || "text-navy/55 border-navy/15";
   return (
     <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 border text-[10px] uppercase tracking-[0.18em] font-medium ${cls}`}>
       <span className="h-1 w-1 rounded-full bg-current" />
@@ -311,10 +311,10 @@ export function Donut({ segments }: { segments: { value: number; color: string; 
 
 export function Panel({ title, action, children, className = "" }: { title?: string; action?: React.ReactNode; children: React.ReactNode; className?: string }) {
   return (
-    <section className={`bg-card border border-navy/10 ${className}`}>
+    <section className={`bg-card border border-navy/8 ${className}`}>
       {(title || action) && (
-        <header className="flex items-center justify-between p-4 border-b border-navy/10">
-          {title && <div className="eyebrow text-navy/50">{title}</div>}
+        <header className="flex items-center justify-between px-4 py-3.5 border-b border-navy/8">
+          {title && <div className="text-[10px] uppercase tracking-[0.24em] text-navy/40 font-medium">{title}</div>}
           {action}
         </header>
       )}
