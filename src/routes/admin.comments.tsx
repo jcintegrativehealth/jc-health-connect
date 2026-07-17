@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
+import { Loader2, Search, X } from "lucide-react";
 import { PageHeader, Panel, Btn, Chip, Badge } from "@/components/admin/primitives";
 
 export const Route = createFileRoute("/admin/comments")({
@@ -10,21 +10,28 @@ export const Route = createFileRoute("/admin/comments")({
 });
 
 type Status = "Pending" | "Approved" | "Rejected";
-type C = { id: string; author: string; article: string; date: string; body: string; status: Status };
+type C = { id: string; author: string; article: string; date: string; ageHours: number; body: string; status: Status };
 
 const seed: C[] = [
-  { id: "c1", author: "Julia F.", article: "Rethinking mTOR modulation in longevity practice", date: "2h", body: "Thank you for such a clear synthesis — could you comment on the timing of protein intake relative to the discussed protocols?", status: "Pending" },
-  { id: "c2", author: "Anthony W.", article: "Adaptogens: an evidence-based framework", date: "5h", body: "Would love to see a follow-up on rhodiola dosing in athletic populations.", status: "Pending" },
-  { id: "c3", author: "David C.", article: "Rethinking mTOR modulation in longevity practice", date: "1d", body: "Great overview. Any thoughts on autophagy markers we can track clinically?", status: "Pending" },
-  { id: "c4", author: "Priya N.", article: "Continuous glucose monitoring beyond diabetes", date: "2d", body: "Very useful — thank you.", status: "Approved" },
-  { id: "c5", author: "Anonymous", article: "Adaptogens: an evidence-based framework", date: "3d", body: "Marketing text removed by moderator.", status: "Rejected" },
+  { id: "c1", author: "Julia F.", article: "Rethinking mTOR modulation in longevity practice", date: "2h", ageHours: 2, body: "Thank you for such a clear synthesis — could you comment on the timing of protein intake relative to the discussed protocols?", status: "Pending" },
+  { id: "c2", author: "Anthony W.", article: "Adaptogens: an evidence-based framework", date: "5h", ageHours: 5, body: "Would love to see a follow-up on rhodiola dosing in athletic populations.", status: "Pending" },
+  { id: "c3", author: "David C.", article: "Rethinking mTOR modulation in longevity practice", date: "1d", ageHours: 24, body: "Great overview. Any thoughts on autophagy markers we can track clinically?", status: "Pending" },
+  { id: "c4", author: "Priya N.", article: "Continuous glucose monitoring beyond diabetes", date: "2d", ageHours: 48, body: "Very useful — thank you.", status: "Approved" },
+  { id: "c5", author: "Anonymous", article: "Adaptogens: an evidence-based framework", date: "3d", ageHours: 72, body: "Marketing text removed by moderator.", status: "Rejected" },
+  { id: "c6", author: "Marcus L.", article: "Continuous glucose monitoring beyond diabetes", date: "6h", ageHours: 6, body: "Do you recommend a specific CGM brand for non-diabetic monitoring?", status: "Pending" },
+  { id: "c7", author: "Elena R.", article: "Sleep architecture and metabolic health", date: "12h", ageHours: 12, body: "The section on REM fragmentation was excellent. Any protocols for shift workers?", status: "Pending" },
+  { id: "c8", author: "Kenji T.", article: "Sleep architecture and metabolic health", date: "1d", ageHours: 30, body: "Curious about magnesium threonate dosing timing.", status: "Pending" },
+  { id: "c9", author: "Sofia B.", article: "Rethinking mTOR modulation in longevity practice", date: "4d", ageHours: 96, body: "Excellent piece — shared with my colleagues.", status: "Approved" },
+  { id: "c10", author: "Robert H.", article: "Adaptogens: an evidence-based framework", date: "5d", ageHours: 120, body: "Would appreciate references section expanded.", status: "Approved" },
+  { id: "c11", author: "Anonymous", article: "Continuous glucose monitoring beyond diabetes", date: "6d", ageHours: 144, body: "Off-topic promotional content.", status: "Rejected" },
+  { id: "c12", author: "Aisha M.", article: "Sleep architecture and metabolic health", date: "8h", ageHours: 8, body: "Is there evidence for weighted blankets in adult populations?", status: "Pending" },
+  { id: "c13", author: "Thomas G.", article: "Rethinking mTOR modulation in longevity practice", date: "2d", ageHours: 52, body: "How does rapamycin cycling compare to caloric restriction protocols?", status: "Pending" },
+  { id: "c14", author: "Lin Q.", article: "Continuous glucose monitoring beyond diabetes", date: "3d", ageHours: 76, body: "Fascinating data on postprandial variability.", status: "Approved" },
 ];
 
-// Simulated latency + occasional failure so the loading + error UX is exercisable.
 function simulate(): Promise<void> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // ~12% failure rate
       if (Math.random() < 0.12) reject(new Error("Network error — could not reach moderation service."));
       else resolve();
     }, 650 + Math.random() * 500);
@@ -37,15 +44,45 @@ const ACTION_COPY: Record<Status, { verb: string; toast: string; toastDesc: stri
   Pending: { verb: "Returning", toast: "Returned to queue", toastDesc: "Awaiting moderation again." },
 };
 
+type AgeFilter = "any" | "24h" | "7d";
+const PAGE_SIZE = 5;
+
 function Comments() {
   const [comments, setComments] = useState(seed);
   const [tab, setTab] = useState<Status>("Pending");
   const [busy, setBusy] = useState<Record<string, Status | undefined>>({});
   const [errors, setErrors] = useState<Record<string, string | undefined>>({});
+  const [query, setQuery] = useState("");
+  const [article, setArticle] = useState<string>("all");
+  const [age, setAge] = useState<AgeFilter>("any");
+  const [page, setPage] = useState(1);
 
-  const rows = comments.filter((c) => c.status === tab);
+  const articles = useMemo(
+    () => Array.from(new Set(comments.map((c) => c.article))).sort(),
+    [comments]
+  );
+
   const counts = { Pending: 0, Approved: 0, Rejected: 0 } as Record<Status, number>;
   comments.forEach((c) => counts[c.status]++);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    const maxAge = age === "24h" ? 24 : age === "7d" ? 24 * 7 : Infinity;
+    return comments.filter((c) => {
+      if (c.status !== tab) return false;
+      if (article !== "all" && c.article !== article) return false;
+      if (c.ageHours > maxAge) return false;
+      if (q && !(`${c.author} ${c.article} ${c.body}`.toLowerCase().includes(q))) return false;
+      return true;
+    });
+  }, [comments, tab, article, age, query]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages);
+  const pageRows = filtered.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+
+  const resetPage = () => setPage(1);
+  const hasFilters = query || article !== "all" || age !== "any";
 
   const setStatus = (id: string, status: Status) =>
     setComments((prev) => prev.map((c) => (c.id === id ? { ...c, status } : c)));
@@ -54,10 +91,7 @@ function Comments() {
     const prevStatus = comment.status;
     setErrors((e) => ({ ...e, [comment.id]: undefined }));
     setBusy((b) => ({ ...b, [comment.id]: next }));
-
-    // Optimistic loading toast
     const toastId = toast.loading(`${ACTION_COPY[next].verb} comment from ${comment.author}…`);
-
     try {
       await simulate();
       setStatus(comment.id, next);
@@ -91,16 +125,70 @@ function Comments() {
 
       <div className="flex flex-wrap gap-2 mb-4">
         {(["Pending", "Approved", "Rejected"] as const).map((t) => (
-          <Chip key={t} active={tab === t} onClick={() => setTab(t)}>{t} · {counts[t]}</Chip>
+          <Chip key={t} active={tab === t} onClick={() => { setTab(t); resetPage(); }}>{t} · {counts[t]}</Chip>
         ))}
+      </div>
+
+      {/* Search + filters */}
+      <div className="border border-navy/10 bg-paper mb-4">
+        <div className="flex flex-wrap items-center gap-3 p-3 border-b border-navy/10">
+          <label className="flex items-center gap-2 h-9 border border-navy/15 bg-card px-3 min-w-0 flex-1 sm:max-w-sm">
+            <Search size={13} strokeWidth={1.5} className="text-navy/40 shrink-0" />
+            <input
+              value={query}
+              onChange={(e) => { setQuery(e.target.value); resetPage(); }}
+              placeholder="Search author, article, or text…"
+              className="bg-transparent w-full text-sm outline-none placeholder:text-navy/40"
+            />
+            {query && (
+              <button onClick={() => { setQuery(""); resetPage(); }} className="text-navy/40 hover:text-navy shrink-0" aria-label="Clear search">
+                <X size={13} strokeWidth={1.5} />
+              </button>
+            )}
+          </label>
+          {hasFilters && (
+            <button
+              onClick={() => { setQuery(""); setArticle("all"); setAge("any"); resetPage(); }}
+              className="text-[11px] uppercase tracking-widest text-navy/55 hover:text-navy"
+            >
+              Clear filters
+            </button>
+          )}
+        </div>
+        <div className="flex flex-wrap items-center gap-3 p-3">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] uppercase tracking-[0.24em] text-navy/45">Article</span>
+            <select
+              value={article}
+              onChange={(e) => { setArticle(e.target.value); resetPage(); }}
+              className="h-8 border border-navy/15 bg-card px-2 text-xs text-navy outline-none focus:border-navy/40 max-w-[240px] truncate"
+            >
+              <option value="all">All articles</option>
+              {articles.map((a) => <option key={a} value={a}>{a}</option>)}
+            </select>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] uppercase tracking-[0.24em] text-navy/45">Age</span>
+            {(["any", "24h", "7d"] as const).map((a) => (
+              <Chip key={a} active={age === a} onClick={() => { setAge(a); resetPage(); }}>
+                {a === "any" ? "Any time" : a === "24h" ? "Last 24h" : "Last 7 days"}
+              </Chip>
+            ))}
+          </div>
+          <div className="ml-auto text-[11px] uppercase tracking-widest text-navy/45">
+            {filtered.length} result{filtered.length === 1 ? "" : "s"}
+          </div>
+        </div>
       </div>
 
       <Panel>
         <ul className="divide-y divide-navy/10 -m-4">
-          {rows.length === 0 && (
-            <li className="p-12 text-center text-sm text-navy/45">No comments in this queue.</li>
+          {pageRows.length === 0 && (
+            <li className="p-12 text-center text-sm text-navy/45">
+              {hasFilters ? "No comments match these filters." : "No comments in this queue."}
+            </li>
           )}
-          {rows.map((c) => {
+          {pageRows.map((c) => {
             const busyAs = busy[c.id];
             const isBusy = Boolean(busyAs);
             const error = errors[c.id];
@@ -166,6 +254,24 @@ function Comments() {
           })}
         </ul>
       </Panel>
+
+      {filtered.length > PAGE_SIZE && (
+        <div className="flex items-center justify-between px-4 py-3 border border-t-0 border-navy/10 bg-paper text-xs text-navy/55">
+          <span>Page {safePage} of {totalPages}</span>
+          <div className="flex items-center gap-1">
+            <button
+              className="h-7 px-3 border border-navy/15 hover:border-navy/40 disabled:opacity-40 disabled:hover:border-navy/15"
+              disabled={safePage <= 1}
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+            >Prev</button>
+            <button
+              className="h-7 px-3 border border-navy/15 hover:border-navy/40 disabled:opacity-40 disabled:hover:border-navy/15"
+              disabled={safePage >= totalPages}
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            >Next</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
