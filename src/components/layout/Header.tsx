@@ -159,21 +159,33 @@ export function Header() {
             <nav className="flex-1 overflow-y-auto px-6 py-6">
               {/* Primary */}
               <ul className="flex flex-col">
-                {NAV.map((n) => (
-                  <li key={n.to}>
-                    <Link
-                      to={n.to}
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-center justify-between py-3.5 text-lg font-serif text-navy border-b border-navy/10 hover:text-gold transition-colors"
-                      activeProps={{ className: "text-gold" }}
-                    >
-                      <span>{t(n.key)}</span>
-                      <span className="font-mono text-[10px] text-navy/30">
-                        {String(NAV.indexOf(n) + 1).padStart(2, "0")}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
+                {NAV.map((n, idx) => {
+                  const active = isActive(n.to);
+                  return (
+                    <li key={n.to}>
+                      <Link
+                        to={n.to}
+                        onClick={() => setMobileOpen(false)}
+                        className={[
+                          "relative flex items-center justify-between py-3.5 text-lg font-serif border-b border-navy/10 transition-colors",
+                          active
+                            ? "text-gold bg-mist/60 pr-5"
+                            : "text-navy hover:text-gold",
+                        ].join(" ")}
+                      >
+                        <span className="pl-4">{t(n.key)}</span>
+                        <span className="flex items-center gap-3">
+                          {active && (
+                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold" aria-hidden="true" />
+                          )}
+                          <span className="font-mono text-[10px] text-navy/30">
+                            {String(idx + 1).padStart(2, "0")}
+                          </span>
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
 
               {/* Grouped More */}
