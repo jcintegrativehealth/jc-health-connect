@@ -26,6 +26,7 @@ import { Route as ResearchIndexRouteImport } from './routes/research.index'
 import { Route as PhysiciansIndexRouteImport } from './routes/physicians.index'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as ConditionsIndexRouteImport } from './routes/conditions.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as PhysiciansSlugRouteImport } from './routes/physicians.$slug'
 import { Route as LocationsStateRouteImport } from './routes/locations.$state'
@@ -118,6 +119,11 @@ const ConditionsIndexRoute = ConditionsIndexRouteImport.update({
   path: '/conditions/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
@@ -152,7 +158,7 @@ const ConditionsSlugRoute = ConditionsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/book': typeof BookRoute
   '/contact': typeof ContactRoute
   '/dr-chen': typeof DrChenRoute
@@ -168,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/locations/$state': typeof LocationsStateRoute
   '/physicians/$slug': typeof PhysiciansSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/conditions/': typeof ConditionsIndexRoute
   '/insights/': typeof InsightsIndexRoute
   '/physicians/': typeof PhysiciansIndexRoute
@@ -177,7 +184,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
   '/book': typeof BookRoute
   '/contact': typeof ContactRoute
   '/dr-chen': typeof DrChenRoute
@@ -193,6 +199,7 @@ export interface FileRoutesByTo {
   '/locations/$state': typeof LocationsStateRoute
   '/physicians/$slug': typeof PhysiciansSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin': typeof AdminIndexRoute
   '/conditions': typeof ConditionsIndexRoute
   '/insights': typeof InsightsIndexRoute
   '/physicians': typeof PhysiciansIndexRoute
@@ -203,7 +210,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/book': typeof BookRoute
   '/contact': typeof ContactRoute
   '/dr-chen': typeof DrChenRoute
@@ -219,6 +226,7 @@ export interface FileRoutesById {
   '/locations/$state': typeof LocationsStateRoute
   '/physicians/$slug': typeof PhysiciansSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin/': typeof AdminIndexRoute
   '/conditions/': typeof ConditionsIndexRoute
   '/insights/': typeof InsightsIndexRoute
   '/physicians/': typeof PhysiciansIndexRoute
@@ -246,6 +254,7 @@ export interface FileRouteTypes {
     | '/locations/$state'
     | '/physicians/$slug'
     | '/services/$slug'
+    | '/admin/'
     | '/conditions/'
     | '/insights/'
     | '/physicians/'
@@ -255,7 +264,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
-    | '/admin'
     | '/book'
     | '/contact'
     | '/dr-chen'
@@ -271,6 +279,7 @@ export interface FileRouteTypes {
     | '/locations/$state'
     | '/physicians/$slug'
     | '/services/$slug'
+    | '/admin'
     | '/conditions'
     | '/insights'
     | '/physicians'
@@ -296,6 +305,7 @@ export interface FileRouteTypes {
     | '/locations/$state'
     | '/physicians/$slug'
     | '/services/$slug'
+    | '/admin/'
     | '/conditions/'
     | '/insights/'
     | '/physicians/'
@@ -306,7 +316,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AdminRoute: typeof AdminRoute
+  AdminRoute: typeof AdminRouteWithChildren
   BookRoute: typeof BookRoute
   ContactRoute: typeof ContactRoute
   DrChenRoute: typeof DrChenRoute
@@ -450,6 +460,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConditionsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/services/$slug': {
       id: '/services/$slug'
       path: '/services/$slug'
@@ -495,10 +512,20 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AdminRouteChildren {
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AdminRoute: AdminRoute,
+  AdminRoute: AdminRouteWithChildren,
   BookRoute: BookRoute,
   ContactRoute: ContactRoute,
   DrChenRoute: DrChenRoute,
