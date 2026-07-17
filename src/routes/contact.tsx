@@ -54,7 +54,9 @@ function ContactPage() {
               <input type="checkbox" required className="mt-0.5" /> I consent to being contacted about my inquiry and understand this form is not monitored for emergencies.
             </label>
             <Disclaimer>Do not submit sensitive medical information through this form. For medical emergencies, call 911 or your local emergency service.</Disclaimer>
-            <button type="submit" className="px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic">Send Message</button>
+            <div className="flex flex-col sm:flex-row justify-center pt-2">
+              <button type="submit" className="w-full sm:w-auto px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic transition-colors">Send Message</button>
+            </div>
           </form>
 
           <aside className="space-y-4">
