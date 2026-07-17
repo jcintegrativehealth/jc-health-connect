@@ -1,0 +1,63 @@
+{
+  "brand": { "name": "JC", "sub": "整合医学" },
+  "nav": {
+    "home": "首页",
+    "about": "关于",
+    "care": "诊疗",
+    "services": "服务",
+    "research": "研究",
+    "insights": "医学观点",
+    "innovation": "医学创新",
+    "physicians": "医师",
+    "patientResources": "患者资源",
+    "contact": "联系",
+    "book": "预约就诊",
+    "portal": "患者门户",
+    "physicianLogin": "医师登录"
+  },
+  "hero": {
+    "eyebrow": "第 01 节",
+    "title": "整合医学 · 长寿医学 · 医学创新",
+    "lede": "以循证为基础的个性化医疗,支持长期健康、预防与前沿医学科学的融合。",
+    "bookCta": "预约就诊",
+    "exploreCta": "了解我们的方法"
+  },
+  "trust": {
+    "integrative": "整合医学",
+    "longevity": "长寿医学",
+    "evidence": "循证方法",
+    "telehealth": "远程医疗",
+    "multilingual": "多语言体验"
+  },
+  "approach": {
+    "eyebrow": "第 02 节",
+    "title": "全面的医学方法",
+    "lede": "融合传统临床卓越与新兴医学技术,关注完整的个体。",
+    "pillars": {
+      "one": { "t": "理解完整的个体", "d": "深入评估病史、生活方式与生物标志物。" },
+      "two": { "t": "识别根本因素", "d": "分析生物系统之间的相互作用,找出影响健康的真正驱动因素。" },
+      "three": { "t": "制定个性化方案", "d": "整合营养、药理学与医学技术的临床方案。" },
+      "four": { "t": "支持长期健康", "d": "持续监测与迭代式关怀,以获得可持续的健康。" }
+    }
+  },
+  "footer": {
+    "tagline": "以循证医学支持更长寿、更健康的生活。",
+    "columns": {
+      "care": "诊疗", "services": "服务", "research": "研究",
+      "insights": "观点", "innovation": "创新", "resources": "资源",
+      "company": "机构", "legal": "法律", "contact": "联系", "languages": "语言"
+    },
+    "rights": "© 2026 JC Integrative Health 版权所有。",
+    "hipaa": "HIPAA 合规",
+    "privacy": "隐私政策",
+    "terms": "使用条款",
+    "disclaimer": "医学声明",
+    "newsletterTitle": "JC 健康观点",
+    "newsletterCopy": "精选整合医学、长寿、研究与医学创新的观点内容。",
+    "newsletterFirstName": "姓名",
+    "newsletterEmail": "电子邮箱",
+    "newsletterLanguage": "首选语言",
+    "newsletterSubmit": "订阅"
+  },
+  "demo": "演示内容 — 非真实医疗或个人数据。"
+}
