@@ -125,19 +125,19 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            {/* Booking CTA — desktop / tablet (pill) */}
+            {/* Booking CTA — desktop / tablet (outline, no fill) */}
             <Link
               to="/book"
-              className="hidden sm:inline-flex items-center gap-2 h-11 px-5 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] ring-1 ring-gold/60 hover:bg-academic hover:ring-gold transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 h-11 px-5 border border-navy/20 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:border-gold hover:text-gold transition-colors"
             >
-              <Calendar size={14} strokeWidth={1.75} className="text-gold" />
+              <Calendar size={14} strokeWidth={1.75} className="text-navy group-hover:text-gold transition-colors" />
               {t("nav.book")}
             </Link>
             {/* Booking CTA — compact for phones (outline, no fill) */}
             <Link
               to="/book"
               aria-label={t("nav.book")}
-              className="sm:hidden inline-flex items-center justify-center w-11 h-11 bg-transparent text-navy border border-navy/15 hover:border-gold/60 hover:text-gold transition-colors"
+              className="sm:hidden inline-flex items-center justify-center w-11 h-11 text-navy border border-navy/20 hover:border-gold hover:text-gold transition-colors"
             >
               <Calendar size={16} strokeWidth={1.75} />
             </Link>
@@ -145,7 +145,7 @@ export function Header() {
               type="button"
               aria-label="Open menu"
               onClick={() => setMobileOpen(true)}
-              className="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 text-navy"
+              className="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 text-navy hover:text-gold transition-colors"
             >
               <Menu size={22} strokeWidth={1.5} />
             </button>
