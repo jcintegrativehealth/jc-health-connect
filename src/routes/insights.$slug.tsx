@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { articles } from "@/data/site";
 import { Container, Disclaimer } from "@/components/site/primitives";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Route = createFileRoute("/insights/$slug")({
   loader: ({ params }) => {
