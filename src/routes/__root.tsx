@@ -22,8 +22,8 @@ function NotFoundComponent() {
         <div className="eyebrow text-gold mb-4">Error 404</div>
         <h1 className="font-serif text-5xl text-navy">Page not found</h1>
         <p className="mt-4 text-sm text-navy/60">The page you are looking for is unavailable or has been moved.</p>
-        <div className="mt-8">
-          <Link to="/" className="inline-flex items-center px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] ring-1 ring-navy hover:bg-academic">
+        <div className="mt-8 flex justify-center">
+          <Link to="/" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] ring-1 ring-navy hover:bg-academic transition-colors">
             Return home
           </Link>
         </div>
@@ -45,14 +45,14 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <div className="eyebrow text-gold mb-4">Something went wrong</div>
         <h1 className="font-serif text-4xl text-navy">This page didn't load</h1>
         <p className="mt-4 text-sm text-navy/60">You can retry or return home.</p>
-        <div className="mt-8 flex justify-center gap-3">
+        <div className="mt-8 flex flex-col sm:flex-row justify-center gap-3">
           <button
             onClick={() => { router.invalidate(); reset(); }}
-            className="inline-flex items-center px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic transition-colors"
           >
             Try again
           </button>
-          <a href="/" className="inline-flex items-center px-5 py-3 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:bg-navy/5">
+          <a href="/" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:bg-navy/5 transition-colors">
             Go home
           </a>
         </div>

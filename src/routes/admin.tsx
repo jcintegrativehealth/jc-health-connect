@@ -123,7 +123,7 @@ function AdminStub({ label }: { label: string }) {
             <div className="w-64 h-9 border border-navy/15 bg-paper px-3 flex items-center gap-2 text-xs text-navy/50"><Search size={12} /> Search {label.toLowerCase()}</div>
             <select className="h-9 border border-navy/15 bg-paper px-2 text-xs text-navy/70"><option>All</option><option>Recent</option></select>
           </div>
-          <button className="px-4 py-2 bg-navy text-paper text-xs font-semibold uppercase tracking-widest">New</button>
+          <button className="px-4 py-2 bg-navy text-paper text-xs font-semibold uppercase tracking-widest hover:bg-academic transition-colors">New</button>
         </div>
         <table className="w-full text-sm">
           <thead className="text-left">

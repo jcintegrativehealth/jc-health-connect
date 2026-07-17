@@ -177,9 +177,9 @@ function CommentBox() {
       <label className="block text-sm font-medium text-navy mb-3">Contribute to the discussion</label>
       <textarea rows={4} className="w-full border border-navy/10 p-3 text-sm outline-none focus:border-teal" placeholder="Your comment..." />
       <p className="mt-3 text-xs text-navy/50">Do not include personal medical information. Comments are for educational discussion only.</p>
-      <div className="mt-4 flex justify-end gap-3">
-        <button type="reset" className="px-4 py-2 text-xs uppercase tracking-widest text-navy/60">Cancel</button>
-        <button type="submit" className="px-5 py-2 bg-navy text-paper text-xs font-semibold uppercase tracking-widest">Submit</button>
+      <div className="mt-4 flex flex-col-reverse sm:flex-row justify-center gap-3">
+        <button type="reset" className="w-full sm:w-auto px-4 py-2 text-xs uppercase tracking-widest text-navy/60 hover:text-navy transition-colors">Cancel</button>
+        <button type="submit" className="w-full sm:w-auto px-5 py-2 bg-navy text-paper text-xs font-semibold uppercase tracking-widest hover:bg-academic transition-colors">Submit</button>
       </div>
     </form>
   );

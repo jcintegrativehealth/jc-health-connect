@@ -28,7 +28,9 @@ export const Route = createFileRoute("/conditions/$slug")({
           <div className="max-w-3xl border-t border-navy/10 pt-12 space-y-8">
             <p className="text-navy/70 leading-relaxed text-lg">{condition.body}</p>
             <Disclaimer>This content is educational and does not replace evaluation by a qualified clinician.</Disclaimer>
-            <Link to="/book" className="inline-flex items-center px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic">Book a Consultation</Link>
+            <div className="flex justify-center">
+              <Link to="/book" className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic transition-colors">Book a Consultation</Link>
+            </div>
           </div>
         </Container>
       </div>

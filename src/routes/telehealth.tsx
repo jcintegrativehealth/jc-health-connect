@@ -29,7 +29,9 @@ export const Route = createFileRoute("/telehealth")({
                 <p className="text-sm text-navy/65">{d}</p>
               </div>
             ))}
-            <Link to="/book" className="inline-flex items-center px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic">Book Telehealth Visit</Link>
+            <div className="flex justify-center">
+              <Link to="/book" className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic transition-colors">Book Telehealth Visit</Link>
+            </div>
           </div>
 
           {/* Virtual waiting room preview */}

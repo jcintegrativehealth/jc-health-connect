@@ -175,17 +175,17 @@ function BookPage() {
                 <div className="w-14 h-14 rounded-full bg-teal/10 grid place-items-center mb-6"><Check className="text-teal" /></div>
                 <h2 className="font-serif text-3xl text-navy">Request received</h2>
                 <p className="mt-3 text-navy/65">Your appointment request has been recorded (demo). In production, a confirmation email would be sent and the visit would appear in your Patient Portal.</p>
-                <div className="mt-8 flex gap-3">
-                  <Link to="/portal" className="px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic">Open Patient Portal</Link>
-                  <Link to="/" className="px-5 py-3 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.18em]">Return home</Link>
+                <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                  <Link to="/portal" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic transition-colors">Open Patient Portal</Link>
+                  <Link to="/" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:bg-navy/5 transition-colors">Return home</Link>
                 </div>
               </div>
             )}
 
             {step < 9 && (
-              <div className="mt-12 flex justify-between border-t border-navy/10 pt-6">
-                <button onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0} className="px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-navy/60 disabled:opacity-30">← Back</button>
-                <button onClick={() => canNext && setStep((s) => s + 1)} disabled={!canNext} className="px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] disabled:opacity-30 hover:bg-academic">
+              <div className="mt-12 flex flex-col-reverse sm:flex-row justify-between gap-3 border-t border-navy/10 pt-6">
+                <button onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0} className="w-full sm:w-auto px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-navy/60 disabled:opacity-30 hover:text-navy transition-colors">← Back</button>
+                <button onClick={() => canNext && setStep((s) => s + 1)} disabled={!canNext} className="w-full sm:w-auto px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] disabled:opacity-30 hover:bg-academic transition-colors">
                   {step === 8 ? "Confirm" : "Continue →"}
                 </button>
               </div>

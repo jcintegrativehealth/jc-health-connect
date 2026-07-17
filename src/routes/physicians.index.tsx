@@ -43,8 +43,8 @@ export const Route = createFileRoute("/physicians/")({
               </li>
             ))}
           </ol>
-          <div className="mt-8">
-            <Link to="/contact" className="inline-flex items-center px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic">Request an invitation</Link>
+          <div className="mt-8 flex justify-center">
+            <Link to="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic transition-colors">Request an invitation</Link>
           </div>
         </div>
       </Container>
