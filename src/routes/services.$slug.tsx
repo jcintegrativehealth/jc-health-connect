@@ -77,7 +77,7 @@ function ServiceDetail() {
               <div className="eyebrow text-gold mb-3">Get Started</div>
               <h3 className="font-serif text-2xl mb-4">Book a consultation</h3>
               <p className="text-sm text-paper/60 mb-6">Initial visits typically last 60–90 minutes and include a written care plan.</p>
-              <Link to="/book" className="block text-center px-5 py-3 bg-teal text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-gold">Book Appointment</Link>
+              <Link to="/book" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 bg-teal text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-gold transition-colors">Book Appointment</Link>
             </div>
 
             {related.length > 0 && (
