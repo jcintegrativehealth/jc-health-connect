@@ -66,5 +66,108 @@
     "newsletterLanguage": "Preferred Language",
     "newsletterSubmit": "Subscribe"
   },
-  "demo": "Demo content — not real medical or personal data."
+  "demo": "Demo content — not real medical or personal data.",
+  "admin": {
+    "topbar": {
+      "search": "Search patients, appointments, invoices…",
+      "clinicOnline": "Clinic online",
+      "new": "New",
+      "role": "Medical Director",
+      "notifications": "Notifications",
+      "help": "Help"
+    },
+    "groups": {
+      "practice": "Practice",
+      "clinical": "Clinical",
+      "relations": "Relations",
+      "editorial": "Editorial",
+      "operations": "Operations"
+    },
+    "nav": {
+      "overview": "Overview",
+      "patients": "Patients",
+      "appointments": "Appointments",
+      "calendar": "Calendar",
+      "clinical": "Clinical",
+      "records": "Health Records",
+      "labs": "Lab Results",
+      "carePlans": "Care Plans",
+      "messages": "Messages",
+      "billing": "Billing",
+      "crm": "CRM",
+      "research": "Research",
+      "insights": "Medical Insights",
+      "website": "Website Content",
+      "comments": "Comments",
+      "analytics": "Analytics",
+      "reports": "Reports",
+      "documents": "Documents",
+      "tasks": "Tasks",
+      "notifications": "Notifications",
+      "settings": "Settings"
+    },
+    "sidebar": { "collapse": "Collapse", "backToSite": "Back to site", "privateAdmin": "Private admin" },
+    "quick": {
+      "title": "Quick actions",
+      "newPatient": "New patient",
+      "newAppointment": "New appointment",
+      "scheduleAppointment": "Schedule Appointment",
+      "createCarePlan": "Create Care Plan",
+      "sendMessage": "Send Message",
+      "newResearch": "New research",
+      "newResearchPost": "New Research Post",
+      "recordPayment": "Record payment",
+      "uploadDocument": "Upload Document",
+      "openPalette": "Open command palette (⌘K)"
+    },
+    "cmd": {
+      "placeholder": "Search patients, appointments, messages…",
+      "pages": "Pages",
+      "patients": "Patients",
+      "appointments": "Appointments"
+    },
+    "notif": { "eyebrow": "Notifications", "title": "Recent activity", "markAll": "Mark all as read", "openCenter": "Open center →" },
+    "footer": { "private": "Private admin", "preview": "Preview build · Frontend only · Not for clinical use" },
+    "overview": {
+      "eyebrow": "Overview",
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening",
+      "greeting": "{{greet}}, Dr. Chen.",
+      "lede": "Here is what is happening at JC Integrative Health today — {{appts}} appointments scheduled, {{requests}} new patient requests awaiting review, and {{messages}} messages in the queue.",
+      "kpi": {
+        "today": "Today's appointments",
+        "todaySub": "2 telehealth · 4 in-person · 6 confirmed",
+        "active": "Active patients",
+        "activeSub": "+12 this month",
+        "requests": "New patient requests",
+        "requestsSub": "Awaiting review",
+        "pendingMsgs": "Pending messages",
+        "pendingMsgsSub": "3 flagged priority",
+        "pendingPay": "Pending payments",
+        "onTrack": "On track",
+        "overdue": "{{amount}} overdue",
+        "newLabs": "New lab results",
+        "newLabsSub": "2 flagged abnormal",
+        "carePlans": "Care plans requiring review",
+        "carePlansSub": "Due this week",
+        "drafts": "Research drafts",
+        "draftsSub": "2 ready for review"
+      },
+      "agenda": { "title": "Today's agenda", "open": "Open" },
+      "activity": { "title": "Patient activity", "all": "All" },
+      "charts": {
+        "byWeek": "Appointments by week",
+        "tvi": "Telehealth vs in-person",
+        "telehealth": "Telehealth",
+        "inPerson": "In-person",
+        "langDist": "Patient language distribution",
+        "english": "English",
+        "portuguese": "Portuguese",
+        "spanish": "Spanish",
+        "mandarin": "Mandarin"
+      },
+      "tasks": { "title": "Tasks", "openAll": "Open all", "due": "Due" }
+    }
+  }
 }
