@@ -44,6 +44,7 @@ import { Route as PatientCarePlanRouteImport } from './routes/patient.care-plan'
 import { Route as PatientBillingRouteImport } from './routes/patient.billing'
 import { Route as LocationsStateRouteImport } from './routes/locations.$state'
 import { Route as LegalSlugRouteImport } from './routes/legal.$slug'
+import { Route as JoinRoomIdRouteImport } from './routes/join.$roomId'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 import { Route as ConditionsSlugRouteImport } from './routes/conditions.$slug'
 import { Route as AdminWebsiteRouteImport } from './routes/admin.website'
@@ -254,6 +255,11 @@ const LocationsStateRoute = LocationsStateRouteImport.update({
 const LegalSlugRoute = LegalSlugRouteImport.update({
   id: '/legal/$slug',
   path: '/legal/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JoinRoomIdRoute = JoinRoomIdRouteImport.update({
+  id: '/join/$roomId',
+  path: '/join/$roomId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
@@ -473,6 +479,7 @@ export interface FileRoutesByFullPath {
   '/admin/website': typeof AdminWebsiteRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/join/$roomId': typeof JoinRoomIdRoute
   '/legal/$slug': typeof LegalSlugRoute
   '/locations/$state': typeof LocationsStateRoute
   '/patient/billing': typeof PatientBillingRoute
@@ -544,6 +551,7 @@ export interface FileRoutesByTo {
   '/admin/website': typeof AdminWebsiteRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/join/$roomId': typeof JoinRoomIdRoute
   '/legal/$slug': typeof LegalSlugRoute
   '/locations/$state': typeof LocationsStateRoute
   '/patient/billing': typeof PatientBillingRoute
@@ -618,6 +626,7 @@ export interface FileRoutesById {
   '/admin/website': typeof AdminWebsiteRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
+  '/join/$roomId': typeof JoinRoomIdRoute
   '/legal/$slug': typeof LegalSlugRoute
   '/locations/$state': typeof LocationsStateRoute
   '/patient/billing': typeof PatientBillingRoute
@@ -693,6 +702,7 @@ export interface FileRouteTypes {
     | '/admin/website'
     | '/conditions/$slug'
     | '/insights/$slug'
+    | '/join/$roomId'
     | '/legal/$slug'
     | '/locations/$state'
     | '/patient/billing'
@@ -764,6 +774,7 @@ export interface FileRouteTypes {
     | '/admin/website'
     | '/conditions/$slug'
     | '/insights/$slug'
+    | '/join/$roomId'
     | '/legal/$slug'
     | '/locations/$state'
     | '/patient/billing'
@@ -837,6 +848,7 @@ export interface FileRouteTypes {
     | '/admin/website'
     | '/conditions/$slug'
     | '/insights/$slug'
+    | '/join/$roomId'
     | '/legal/$slug'
     | '/locations/$state'
     | '/patient/billing'
@@ -893,6 +905,7 @@ export interface RootRouteChildren {
   TelehealthRoute: typeof TelehealthRoute
   ConditionsSlugRoute: typeof ConditionsSlugRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
+  JoinRoomIdRoute: typeof JoinRoomIdRoute
   LegalSlugRoute: typeof LegalSlugRoute
   LocationsStateRoute: typeof LocationsStateRoute
   PhysiciansSlugRoute: typeof PhysiciansSlugRoute
@@ -1149,6 +1162,13 @@ declare module '@tanstack/react-router' {
       path: '/legal/$slug'
       fullPath: '/legal/$slug'
       preLoaderRoute: typeof LegalSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/join/$roomId': {
+      id: '/join/$roomId'
+      path: '/join/$roomId'
+      fullPath: '/join/$roomId'
+      preLoaderRoute: typeof JoinRoomIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insights/$slug': {
@@ -1533,6 +1553,7 @@ const rootRouteChildren: RootRouteChildren = {
   TelehealthRoute: TelehealthRoute,
   ConditionsSlugRoute: ConditionsSlugRoute,
   InsightsSlugRoute: InsightsSlugRoute,
+  JoinRoomIdRoute: JoinRoomIdRoute,
   LegalSlugRoute: LegalSlugRoute,
   LocationsStateRoute: LocationsStateRoute,
   PhysiciansSlugRoute: PhysiciansSlugRoute,
