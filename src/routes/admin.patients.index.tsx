@@ -46,7 +46,7 @@ function PatientsList() {
           { key: "name", label: "Name", render: (r) => (
             <div className="flex items-center gap-3 min-w-0">
               <div className="h-8 w-8 rounded-full border border-navy/15 grid place-items-center text-[10px] font-semibold text-navy shrink-0">
-                {r.name.split(" ").map((s) => s[0]).slice(0, 2).join("")}
+                {r.name.split(" ").map((s: string) => s[0]).slice(0, 2).join("")}
               </div>
               <div className="min-w-0">
                 <div className="text-navy truncate">{r.name}</div>
