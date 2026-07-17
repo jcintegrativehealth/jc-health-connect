@@ -4,15 +4,20 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
+// Hero nav: essentials only. Secondary pages live in the footer.
 const NAV: { to: string; key: string }[] = [
   { to: "/about", key: "nav.about" },
   { to: "/services", key: "nav.services" },
-  { to: "/research", key: "nav.research" },
   { to: "/insights", key: "nav.insights" },
+  { to: "/contact", key: "nav.contact" },
+];
+
+// Full sitemap surfaces in the mobile drawer for discoverability.
+const DRAWER_MORE: { to: string; key: string }[] = [
+  { to: "/research", key: "nav.research" },
   { to: "/innovation", key: "nav.innovation" },
   { to: "/physicians", key: "nav.physicians" },
   { to: "/patient-resources", key: "nav.patientResources" },
-  { to: "/contact", key: "nav.contact" },
 ];
 
 export function Header() {
