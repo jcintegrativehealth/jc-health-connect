@@ -134,12 +134,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={`min-h-screen flex flex-col bg-paper ${isAdmin ? "" : ""}`}>
-        {!isAdmin && <Header />}
-        <main className={`flex-1 ${isAdmin ? "" : ""}`}>
+      <div className={`min-h-screen flex flex-col bg-paper`}>
+        {!hideChrome && <Header />}
+        <main className={`flex-1`}>
           <Outlet />
         </main>
-        {!isAdmin && <Footer />}
+        {!hideChrome && <Footer />}
       </div>
       <Toaster />
     </QueryClientProvider>
