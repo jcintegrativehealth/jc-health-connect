@@ -73,7 +73,7 @@ function AdminLayout() {
     <div className="min-h-screen bg-paper text-navy">
       {/* Sidebar — desktop */}
       <aside
-        className={`hidden lg:flex fixed inset-y-0 left-0 z-40 flex-col border-r border-navy/10 bg-card transition-[width] duration-200 ${collapsed ? "w-16" : "w-64"}`}
+        className={`hidden lg:flex fixed inset-y-0 left-0 z-40 flex-col border-r border-navy/10 bg-card transition-[width] duration-200 ${collapsed ? "w-14" : "w-56"}`}
       >
         <SidebarBody collapsed={collapsed} isActive={isActive} onCollapse={() => setCollapsed((v) => !v)} />
       </aside>
@@ -93,7 +93,7 @@ function AdminLayout() {
       )}
 
       {/* Main column */}
-      <div className={`transition-[padding] duration-200 ${collapsed ? "lg:pl-16" : "lg:pl-64"}`}>
+      <div className={`transition-[padding] duration-200 ${collapsed ? "lg:pl-14" : "lg:pl-56"}`}>
         <TopBar
           onOpenMobile={() => setMobileOpen(true)}
           onOpenCmd={() => setCmdOpen(true)}
