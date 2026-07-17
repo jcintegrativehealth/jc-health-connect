@@ -179,7 +179,7 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
   );
 }
 
-function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif }: { onOpenMobile: () => void; onOpenCmd: () => void; onOpenNotif: () => void }) {
+function TopBar({ onOpenMobile, onOpenCmd, onOpenNotif, onOpenInstant }: { onOpenMobile: () => void; onOpenCmd: () => void; onOpenNotif: () => void; onOpenInstant: () => void }) {
   const { t, i18n } = useTranslation();
   const unread = demoNotifs.filter((n) => !n.read).length;
   const localeMap: Record<LangCode, string> = { en: "en-US", es: "es-ES", pt: "pt-BR", zh: "zh-CN" };
