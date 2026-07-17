@@ -115,19 +115,19 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            {/* Booking CTA — desktop / tablet */}
+            {/* Booking CTA — desktop / tablet (pill) */}
             <Link
               to="/book"
-              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] ring-1 ring-navy hover:bg-academic hover:ring-gold transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 h-11 px-5 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] ring-1 ring-gold/60 hover:bg-academic hover:ring-gold transition-colors"
             >
               <Calendar size={14} strokeWidth={1.75} className="text-gold" />
               {t("nav.book")}
             </Link>
-            {/* Booking CTA — compact for phones */}
+            {/* Booking CTA — compact for phones (identical language: navy + gold ring) */}
             <Link
               to="/book"
               aria-label={t("nav.book")}
-              className="sm:hidden inline-flex items-center justify-center w-11 h-11 bg-navy text-paper hover:bg-academic transition-colors"
+              className="sm:hidden inline-flex items-center justify-center w-11 h-11 bg-navy text-paper ring-1 ring-gold/60 hover:bg-academic hover:ring-gold transition-colors"
             >
               <Calendar size={16} strokeWidth={1.75} className="text-gold" />
             </Link>
