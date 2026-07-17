@@ -84,7 +84,7 @@ export function Header() {
   return (
     <>
       {/* Utility bar */}
-      <div className="hidden md:block border-b border-navy/15">
+      <div className="hidden md:block border-b border-navy/15 bg-paper/85 backdrop-blur-md supports-[backdrop-filter]:bg-paper/70 sticky top-0 z-40">
         <div className="max-w-[1440px] mx-auto px-6 h-9 flex items-center justify-between text-[11px] font-medium uppercase tracking-[0.18em] text-navy/60">
           <LanguageSwitcher variant="inline" />
           <div className="flex items-center gap-6">
