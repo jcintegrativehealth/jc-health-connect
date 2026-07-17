@@ -21,12 +21,18 @@ export function Rule() {
   return <hr className="border-t rule-thin" />;
 }
 
-export function PageHeader({ eyebrow, title, lede }: { eyebrow?: string; title: string; lede?: string }) {
+export function PageHeader({ eyebrow, title, lede, meta }: { eyebrow?: string; title: string; lede?: string; meta?: ReactNode }) {
   return (
-    <header className="max-w-[1440px] mx-auto px-6 pt-20 pb-14">
-      {eyebrow && <div className="eyebrow text-gold mb-6">{eyebrow}</div>}
-      <h1 className="font-serif text-5xl md:text-6xl leading-[1.05] text-navy max-w-4xl text-balance">{title}</h1>
-      {lede && <p className="mt-6 text-lg text-navy/65 max-w-2xl text-pretty">{lede}</p>}
+    <header className="max-w-[1440px] mx-auto px-6 pt-14 md:pt-20 pb-10 md:pb-14">
+      {eyebrow && (
+        <div className="flex items-center gap-3 mb-6">
+          <span className="h-px w-8 bg-gold/60" aria-hidden />
+          <div className="eyebrow text-gold">{eyebrow}</div>
+        </div>
+      )}
+      <h1 className="font-serif text-[2rem] leading-[1.08] sm:text-4xl md:text-5xl lg:text-6xl text-navy max-w-4xl text-balance tracking-[-0.01em]">{title}</h1>
+      {lede && <p className="mt-5 md:mt-6 text-base md:text-lg text-navy/65 max-w-2xl text-pretty leading-relaxed">{lede}</p>}
+      {meta && <div className="mt-8 md:mt-10 pt-5 border-t border-navy/10 text-[11px] font-mono uppercase tracking-[0.18em] text-navy/50 flex flex-wrap gap-x-6 gap-y-2">{meta}</div>}
     </header>
   );
 }
