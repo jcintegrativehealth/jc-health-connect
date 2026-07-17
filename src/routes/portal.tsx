@@ -39,8 +39,8 @@ function PortalLogin({ onLogin }: { onLogin: () => void }) {
             <span className="eyebrow text-navy/50 mb-2 block">Password</span>
             <input type="password" required className="w-full border border-navy/15 p-3 text-sm outline-none focus:border-teal" />
           </label>
-          <div className="flex justify-center">
-            <button type="submit" className="w-full sm:w-auto px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic transition-colors">Sign in</button>
+          <div>
+            <button type="submit" className="w-full px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic transition-colors">Sign in</button>
           </div>
           <div className="text-center text-xs text-navy/50">
             <a href="#" className="hover:text-navy">Forgot password?</a>
