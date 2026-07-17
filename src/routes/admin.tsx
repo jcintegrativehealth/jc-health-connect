@@ -23,34 +23,34 @@ export const Route = createFileRoute("/admin")({
 type Item = { to: string; label: string; icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>; group: string };
 
 const NAV: Item[] = [
-  { to: "/admin", label: "Overview", icon: LayoutDashboard, group: "Practice" },
-  { to: "/admin/patients", label: "Patients", icon: Users, group: "Practice" },
-  { to: "/admin/appointments", label: "Appointments", icon: Calendar, group: "Practice" },
-  { to: "/admin/calendar", label: "Calendar", icon: CalendarDays, group: "Practice" },
+  { to: "/admin", label: "overview", icon: LayoutDashboard, group: "practice" },
+  { to: "/admin/patients", label: "patients", icon: Users, group: "practice" },
+  { to: "/admin/appointments", label: "appointments", icon: Calendar, group: "practice" },
+  { to: "/admin/calendar", label: "calendar", icon: CalendarDays, group: "practice" },
 
-  { to: "/admin/clinical", label: "Clinical", icon: Stethoscope, group: "Clinical" },
-  { to: "/admin/records", label: "Health Records", icon: FileHeart, group: "Clinical" },
-  { to: "/admin/labs", label: "Lab Results", icon: FlaskConical, group: "Clinical" },
-  { to: "/admin/care-plans", label: "Care Plans", icon: ClipboardList, group: "Clinical" },
+  { to: "/admin/clinical", label: "clinical", icon: Stethoscope, group: "clinical" },
+  { to: "/admin/records", label: "records", icon: FileHeart, group: "clinical" },
+  { to: "/admin/labs", label: "labs", icon: FlaskConical, group: "clinical" },
+  { to: "/admin/care-plans", label: "carePlans", icon: ClipboardList, group: "clinical" },
 
-  { to: "/admin/messages", label: "Messages", icon: MessageSquare, group: "Relations" },
-  { to: "/admin/billing", label: "Billing", icon: Receipt, group: "Relations" },
-  { to: "/admin/crm", label: "CRM", icon: Contact, group: "Relations" },
+  { to: "/admin/messages", label: "messages", icon: MessageSquare, group: "relations" },
+  { to: "/admin/billing", label: "billing", icon: Receipt, group: "relations" },
+  { to: "/admin/crm", label: "crm", icon: Contact, group: "relations" },
 
-  { to: "/admin/research", label: "Research", icon: Beaker, group: "Editorial" },
-  { to: "/admin/insights", label: "Medical Insights", icon: Newspaper, group: "Editorial" },
-  { to: "/admin/website", label: "Website Content", icon: PanelsTopLeft, group: "Editorial" },
-  { to: "/admin/comments", label: "Comments", icon: MessageSquareWarning, group: "Editorial" },
+  { to: "/admin/research", label: "research", icon: Beaker, group: "editorial" },
+  { to: "/admin/insights", label: "insights", icon: Newspaper, group: "editorial" },
+  { to: "/admin/website", label: "website", icon: PanelsTopLeft, group: "editorial" },
+  { to: "/admin/comments", label: "comments", icon: MessageSquareWarning, group: "editorial" },
 
-  { to: "/admin/analytics", label: "Analytics", icon: BarChart3, group: "Operations" },
-  { to: "/admin/reports", label: "Reports", icon: FilePieChart, group: "Operations" },
-  { to: "/admin/documents", label: "Documents", icon: Files, group: "Operations" },
-  { to: "/admin/tasks", label: "Tasks", icon: ListChecks, group: "Operations" },
-  { to: "/admin/notifications", label: "Notifications", icon: Bell, group: "Operations" },
-  { to: "/admin/settings", label: "Settings", icon: Settings, group: "Operations" },
+  { to: "/admin/analytics", label: "analytics", icon: BarChart3, group: "operations" },
+  { to: "/admin/reports", label: "reports", icon: FilePieChart, group: "operations" },
+  { to: "/admin/documents", label: "documents", icon: Files, group: "operations" },
+  { to: "/admin/tasks", label: "tasks", icon: ListChecks, group: "operations" },
+  { to: "/admin/notifications", label: "notifications", icon: Bell, group: "operations" },
+  { to: "/admin/settings", label: "settings", icon: Settings, group: "operations" },
 ];
 
-const GROUPS = ["Practice", "Clinical", "Relations", "Editorial", "Operations"];
+const GROUPS = ["practice", "clinical", "relations", "editorial", "operations"] as const;
 
 function AdminLayout() {
   const [collapsed, setCollapsed] = useState(false);
