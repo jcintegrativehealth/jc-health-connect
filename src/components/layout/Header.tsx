@@ -124,13 +124,13 @@ export function Header() {
               <Calendar size={14} strokeWidth={1.75} className="text-gold" />
               {t("nav.book")}
             </Link>
-            {/* Booking CTA — compact for phones (identical language: navy + gold ring) */}
+            {/* Booking CTA — compact for phones (outline, no fill) */}
             <Link
               to="/book"
               aria-label={t("nav.book")}
-              className="sm:hidden inline-flex items-center justify-center w-11 h-11 bg-navy text-paper ring-1 ring-gold/60 hover:bg-academic hover:ring-gold transition-colors"
+              className="sm:hidden inline-flex items-center justify-center w-11 h-11 bg-transparent text-navy border border-navy/15 hover:border-gold/60 hover:text-gold transition-colors"
             >
-              <Calendar size={16} strokeWidth={1.75} className="text-gold" />
+              <Calendar size={16} strokeWidth={1.75} />
             </Link>
             <button
               type="button"
