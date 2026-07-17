@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Loader2, Search, X } from "lucide-react";
-import { PageHeader, Panel, Btn, Chip, Badge, Pagination } from "@/components/admin/primitives";
+import { PageHeader, Panel, Btn, Chip, Badge } from "@/components/admin/primitives";
 
 export const Route = createFileRoute("/admin/comments")({
   head: () => ({ meta: [{ title: "Comments — JC Admin" }, { name: "robots", content: "noindex" }] }),
