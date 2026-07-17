@@ -245,6 +245,7 @@ function QuickActions() {
   const items = [
     { label: t("admin.quick.newPatient"), to: "/admin/patients/new" },
     { label: t("admin.quick.scheduleAppointment"), to: "/admin/appointments/new" },
+    { label: "Start Instant Room", to: "/admin/instant-room" },
     { label: t("admin.quick.createCarePlan"), to: "/admin/care-plans" },
     { label: t("admin.quick.sendMessage"), to: "/admin/messages" },
     { label: t("admin.quick.newResearchPost"), to: "/admin/research" },
