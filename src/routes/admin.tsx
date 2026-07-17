@@ -27,6 +27,7 @@ const NAV: Item[] = [
   { to: "/admin/patients", label: "patients", icon: Users, group: "practice" },
   { to: "/admin/appointments", label: "appointments", icon: Calendar, group: "practice" },
   { to: "/admin/calendar", label: "calendar", icon: CalendarDays, group: "practice" },
+  { to: "/admin/instant-room", label: "instantRoom", icon: Video, group: "practice" },
 
   { to: "/admin/clinical", label: "clinical", icon: Stethoscope, group: "clinical" },
   { to: "/admin/records", label: "records", icon: FileHeart, group: "clinical" },
