@@ -60,9 +60,10 @@ function AdminLayout() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [cmdOpen, setCmdOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
+  const [instantOpen, setInstantOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
-  useEffect(() => { setMobileOpen(false); setCmdOpen(false); setNotifOpen(false); }, [pathname]);
+  useEffect(() => { setMobileOpen(false); setCmdOpen(false); setNotifOpen(false); setInstantOpen(false); }, [pathname]);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); setCmdOpen((v) => !v); }
