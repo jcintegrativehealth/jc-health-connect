@@ -45,7 +45,7 @@ function PatientProfile() {
       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-6 mb-8">
         <div className="flex items-start gap-5 min-w-0">
           <div className="h-16 w-16 rounded-full border border-navy/20 grid place-items-center text-lg font-serif text-navy shrink-0">
-            {patient.name.split(" ").map((s) => s[0]).slice(0, 2).join("")}
+            {patient.name.split(" ").map((s: string) => s[0]).slice(0, 2).join("")}
           </div>
           <div className="min-w-0">
             <div className="eyebrow text-gold mb-1">Patient · <span className="font-mono">{patient.id}</span></div>
