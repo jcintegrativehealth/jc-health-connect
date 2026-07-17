@@ -235,17 +235,17 @@ function QuickActions() {
     <div className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="h-9 px-3 border border-navy/20 text-navy hover:border-navy/40 inline-flex items-center gap-2 text-[11px] uppercase tracking-widest font-semibold"
+        className="h-9 px-3 border border-navy/15 text-navy hover:border-navy/30 inline-flex items-center gap-2 text-[11px] uppercase tracking-widest font-semibold transition-colors bg-card"
       >
         <Plus size={13} strokeWidth={2} /> <span className="hidden sm:inline">New</span>
       </button>
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 mt-2 w-64 bg-card border border-navy/15 shadow-lg z-50">
-            <div className="px-3 py-2 border-b border-navy/10 eyebrow text-navy/45">Quick actions</div>
+          <div className="absolute right-0 mt-2 w-64 bg-card border border-navy/10 shadow-sm z-50">
+            <div className="px-3 py-2 border-b border-navy/8 text-[10px] uppercase tracking-[0.2em] text-navy/40 font-medium">Quick actions</div>
             {items.map((i) => (
-              <Link key={i.to} to={i.to} onClick={() => setOpen(false)} className="block px-3 py-2 text-sm text-navy/75 hover:bg-mist/60 hover:text-navy">
+              <Link key={i.to} to={i.to} onClick={() => setOpen(false)} className="block px-3 py-2 text-sm text-navy/70 hover:bg-mist/40 hover:text-navy transition-colors">
                 {i.label}
               </Link>
             ))}
