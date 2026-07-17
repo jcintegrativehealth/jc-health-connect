@@ -26,7 +26,7 @@ function Analytics() {
             { value: 22, color: "var(--academic)", label: "Metabolic" },
             { value: 18, color: "var(--teal)", label: "Preventive" },
             { value: 14, color: "var(--gold)", label: "Cardio-metabolic" },
-            { value: 8, color: "var(--sage)", label: "Weight" },
+            { value: 8, color: "var(--mist)", label: "Weight" },
           ]} />
         </Panel>
         <Panel title="Appointments by day" className="lg:col-span-2"><BarChart data={[8, 12, 14, 18, 16, 20, 6]} /></Panel>
