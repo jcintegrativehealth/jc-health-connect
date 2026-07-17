@@ -104,6 +104,7 @@ function AdminLayout() {
           onOpenMobile={() => setMobileOpen(true)}
           onOpenCmd={() => setCmdOpen(true)}
           onOpenNotif={() => setNotifOpen(true)}
+          onOpenInstant={() => setInstantOpen(true)}
         />
         <main className="p-5 md:p-8 lg:p-10 max-w-[1440px] mx-auto">
           <Outlet />
@@ -113,6 +114,7 @@ function AdminLayout() {
 
       {cmdOpen && <CommandPalette onClose={() => setCmdOpen(false)} />}
       {notifOpen && <NotificationsDrawer onClose={() => setNotifOpen(false)} />}
+      {instantOpen && <InstantRoomDrawer onClose={() => setInstantOpen(false)} />}
     </div>
   );
 }
