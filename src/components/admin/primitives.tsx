@@ -280,15 +280,15 @@ export function LineChart({ data, height = 140 }: { data: number[]; height?: num
 export function Donut({ segments }: { segments: { value: number; color: string; label: string }[] }) {
   const total = segments.reduce((s, x) => s + x.value, 0);
   let acc = 0;
-  const R = 40, C = 2 * Math.PI * R;
+  const R = 42, C = 2 * Math.PI * R;
   return (
-    <div className="flex items-center gap-6">
-      <svg viewBox="0 0 100 100" width="120" height="120" className="-rotate-90">
-        <circle cx="50" cy="50" r={R} fill="none" stroke="var(--mist)" strokeWidth="14" />
+    <div className="flex items-center gap-5">
+      <svg viewBox="0 0 100 100" width="100" height="100" className="-rotate-90">
+        <circle cx="50" cy="50" r={R} fill="none" stroke="var(--mist)" strokeWidth="10" />
         {segments.map((s, i) => {
           const len = (s.value / total) * C;
           const el = (
-            <circle key={i} cx="50" cy="50" r={R} fill="none" stroke={s.color} strokeWidth="14" strokeDasharray={`${len} ${C - len}`} strokeDashoffset={-acc} />
+            <circle key={i} cx="50" cy="50" r={R} fill="none" stroke={s.color} strokeWidth="10" strokeDasharray={`${len} ${C - len}`} strokeDashoffset={-acc} />
           );
           acc += len;
           return el;
@@ -297,9 +297,9 @@ export function Donut({ segments }: { segments: { value: number; color: string; 
       <ul className="text-xs space-y-1.5">
         {segments.map((s, i) => (
           <li key={i} className="flex items-center gap-2">
-            <span className="h-2 w-2" style={{ background: s.color }} />
-            <span className="text-navy/70">{s.label}</span>
-            <span className="text-navy/45">{Math.round((s.value / total) * 100)}%</span>
+            <span className="h-1.5 w-1.5 rounded-sm" style={{ background: s.color }} />
+            <span className="text-navy/65">{s.label}</span>
+            <span className="text-navy/40">{Math.round((s.value / total) * 100)}%</span>
           </li>
         ))}
       </ul>
