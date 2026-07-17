@@ -130,7 +130,7 @@ export function Header() {
               to="/book"
               className="hidden sm:inline-flex items-center gap-2 h-11 px-5 border border-navy/20 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:border-gold hover:text-gold transition-colors"
             >
-              <Calendar size={14} strokeWidth={1.75} className="text-navy group-hover:text-gold transition-colors" />
+              <Calendar size={14} strokeWidth={1.75} />
               {t("nav.book")}
             </Link>
             {/* Booking CTA — compact for phones (outline, no fill) */}
