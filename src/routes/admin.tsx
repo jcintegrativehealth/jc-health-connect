@@ -342,4 +342,3 @@ function NotificationsDrawer({ onClose }: { onClose: () => void }) {
     </div>
   );
 }
-}
