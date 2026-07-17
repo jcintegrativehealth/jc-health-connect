@@ -84,25 +84,29 @@ export function Header() {
   return (
     <>
       {/* Utility bar */}
-      <div className="hidden md:block border-b border-navy/10">
+      <div className="hidden md:block border-b border-navy/15">
         <div className="max-w-[1440px] mx-auto px-6 h-9 flex items-center justify-between text-[11px] font-medium uppercase tracking-[0.18em] text-navy/60">
           <LanguageSwitcher variant="inline" />
           <div className="flex items-center gap-6">
-            <Link to="/portal" className="hover:text-navy transition-colors">{t("nav.portal")}</Link>
-            <Link to="/admin" className="hover:text-navy transition-colors">Admin</Link>
+            <Link to="/portal" className="hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+              {t("nav.portal")}
+            </Link>
+            <Link to="/admin" className="hover:text-navy transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
+              Admin
+            </Link>
           </div>
         </div>
       </div>
 
       {/* Main header */}
-      <header className="sticky top-0 z-40 border-b border-navy/10">
+      <header className="sticky top-0 z-40 border-b border-navy/15">
         <div className="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between gap-4">
-          <Link to="/" className="flex items-baseline gap-2 shrink-0">
+          <Link to="/" className="flex items-baseline gap-2 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
             <span className="font-serif text-2xl font-semibold tracking-tight text-navy">JC</span>
             <span className="hidden xs:inline text-[11px] font-semibold uppercase tracking-[0.22em] text-navy/60">Integrative Health</span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-medium text-navy/55">
+          <nav className="hidden lg:flex items-center gap-7 text-sm font-medium">
             {NAV.map((n) => {
               const active = isActive(n.to);
               return (
@@ -110,25 +114,30 @@ export function Header() {
                   key={n.to}
                   to={n.to}
                   className={[
-                    "relative transition-colors hover:text-navy",
-                    active ? "text-navy" : "text-navy/55",
+                    "group relative py-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold",
+                    active ? "text-navy" : "text-navy/60 hover:text-navy",
                   ].join(" ")}
-                  activeProps={{ className: "text-navy" }}
                 >
                   {t(n.key)}
-                  {active && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-px bg-gold" aria-hidden="true" />
-                  )}
+                  <span
+                    className={[
+                      "absolute -bottom-1 left-0 h-px bg-gold transition-all duration-200",
+                      active ? "w-full" : "w-0 group-hover:w-full",
+                    ].join(" ")}
+                    aria-hidden="true"
+                  />
                 </Link>
               );
             })}
           </nav>
 
+          <span className="hidden lg:block w-px h-5 bg-navy/15" aria-hidden="true" />
+
           <div className="flex items-center gap-2">
             {/* Booking CTA — desktop / tablet (outline, no fill) */}
             <Link
               to="/book"
-              className="hidden sm:inline-flex items-center gap-2 h-11 px-5 border border-navy/20 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:border-gold hover:text-gold transition-colors"
+              className="hidden sm:inline-flex items-center gap-2 h-11 px-5 border border-navy/20 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:border-gold hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
             >
               <Calendar size={14} strokeWidth={1.75} />
               {t("nav.book")}
@@ -137,7 +146,7 @@ export function Header() {
             <Link
               to="/book"
               aria-label={t("nav.book")}
-              className="sm:hidden inline-flex items-center justify-center w-11 h-11 text-navy border border-navy/20 hover:border-gold hover:text-gold transition-colors"
+              className="sm:hidden inline-flex items-center justify-center w-11 h-11 text-navy border border-navy/20 hover:border-gold hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
             >
               <Calendar size={16} strokeWidth={1.75} />
             </Link>
@@ -145,7 +154,7 @@ export function Header() {
               type="button"
               aria-label="Open menu"
               onClick={() => setMobileOpen(true)}
-              className="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 text-navy hover:text-gold transition-colors"
+              className="lg:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 text-navy hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
             >
               <Menu size={22} strokeWidth={1.5} />
             </button>
@@ -158,9 +167,13 @@ export function Header() {
         <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Site menu">
           <div className="absolute inset-0 bg-navy/10 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
           <aside className="absolute inset-y-0 right-0 w-[88%] max-w-sm bg-paper border-l border-navy/15 shadow-2xl flex flex-col">
-            <div className="h-20 px-6 flex items-center justify-between border-b border-navy/10">
+            <div className="h-20 px-6 flex items-center justify-between border-b border-navy/15">
               <span className="font-serif text-xl font-semibold text-navy">Menu</span>
-              <button aria-label="Close menu" onClick={() => setMobileOpen(false)} className="w-11 h-11 grid place-items-center text-navy hover:text-gold transition-colors">
+              <button
+                aria-label="Close menu"
+                onClick={() => setMobileOpen(false)}
+                className="w-11 h-11 grid place-items-center text-navy hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              >
                 <X size={22} strokeWidth={1.5} />
               </button>
             </div>
@@ -171,20 +184,18 @@ export function Header() {
                 {NAV.map((n, idx) => {
                   const active = isActive(n.to);
                   return (
-                    <li key={n.to}>
+                    <li key={n.to} className="border-b border-navy/10">
                       <Link
                         to={n.to}
                         onClick={() => setMobileOpen(false)}
                         aria-current={active ? "page" : undefined}
                         data-active={active ? "true" : undefined}
                         className={[
-                          "relative flex items-center justify-between py-3.5 text-lg font-serif border-b border-navy/10 transition-colors",
-                          active
-                            ? "text-gold"
-                            : "text-navy/70 hover:text-gold",
+                          "relative flex items-center justify-between py-3.5 text-lg font-serif transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold",
+                          active ? "text-gold border-l-2 border-l-gold pl-3" : "text-navy/70 hover:text-gold pl-0",
                         ].join(" ")}
                       >
-                        <span className="pl-4">{t(n.key)}</span>
+                        <span>{t(n.key)}</span>
                         <span className="flex items-center gap-3">
                           {active && (
                             <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold" aria-hidden="true" />
@@ -207,17 +218,15 @@ export function Header() {
                     {group.links.map((l) => {
                       const active = isActive(l.to);
                       return (
-                        <li key={l.to}>
+                        <li key={l.to} className="border-b border-navy/10">
                           <Link
                             to={l.to}
                             onClick={() => setMobileOpen(false)}
                             aria-current={active ? "page" : undefined}
                             data-active={active ? "true" : undefined}
                             className={[
-                              "flex items-center gap-2.5 py-2.5 text-sm border-b border-navy/5 transition-colors",
-                              active
-                                ? "text-gold"
-                                : "text-navy/60 hover:text-gold",
+                              "flex items-center gap-2.5 py-2.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold",
+                              active ? "text-gold" : "text-navy/60 hover:text-gold",
                             ].join(" ")}
                           >
                             {active && (
@@ -233,12 +242,12 @@ export function Header() {
               ))}
             </nav>
 
-            <div className="p-6 border-t border-navy/10 space-y-4">
+            <div className="p-6 border-t border-navy/15 space-y-4">
               <LanguageSwitcher variant="inline" />
               <Link
                 to="/book"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 px-5 py-3 border border-navy/20 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:border-gold hover:text-gold transition-colors"
+                className="flex items-center justify-center gap-2 px-5 py-3 border border-navy/20 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:border-gold hover:text-gold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
               >
                 <Calendar size={14} strokeWidth={1.75} />
                 {t("nav.book")}
