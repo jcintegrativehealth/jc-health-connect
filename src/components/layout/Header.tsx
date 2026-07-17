@@ -240,7 +240,7 @@ export function Header() {
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 px-5 py-3 border border-navy/20 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:border-gold hover:text-gold transition-colors"
               >
-                <Calendar size={14} strokeWidth={1.75} className="text-navy group-hover:text-gold transition-colors" />
+                <Calendar size={14} strokeWidth={1.75} />
                 {t("nav.book")}
               </Link>
             </div>
