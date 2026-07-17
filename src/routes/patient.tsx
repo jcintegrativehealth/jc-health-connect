@@ -3,7 +3,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import {
   Home, Calendar, HeartPulse, FlaskConical, ClipboardList, Pill, MessageSquare,
   FileText, ClipboardCheck, Receipt, Sparkles, BookOpen, Bell, User, HelpCircle,
-  Search, Menu, X, Globe, ChevronRight, Video, LifeBuoy,
+  Search, Menu, X, Globe, ChevronRight, Video,
 } from "lucide-react";
 
 export const Route = createFileRoute("/patient")({
