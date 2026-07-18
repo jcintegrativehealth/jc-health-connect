@@ -5,6 +5,9 @@ import { toast } from "sonner";
 import { z } from "zod";
 
 export const Route = createFileRoute("/join/$roomId")({
+  validateSearch: z.object({
+    exp: z.coerce.number().optional(),
+  }),
   head: ({ params }) => ({
     meta: [
       { title: `Join Consultation · ${params.roomId} — JC Integrative Health` },
