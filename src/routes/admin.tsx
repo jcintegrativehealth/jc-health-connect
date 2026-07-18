@@ -386,7 +386,7 @@ function InstantRoomDrawer({ onClose }: { onClose: () => void }) {
   }, [created]);
 
   const patient = patients.find((p) => p.id === patientId);
-  const joinUrl = created ? `${typeof window !== "undefined" ? window.location.origin : ""}/join/${created.id}` : "";
+  const joinUrl = created ? `${typeof window !== "undefined" ? window.location.origin : ""}/join/${created.id}?exp=${created.expiresAt}` : "";
   const remainingMs = created ? Math.max(0, created.expiresAt - now) : 0;
   const remainingLabel = (() => {
     if (!created) return "";
