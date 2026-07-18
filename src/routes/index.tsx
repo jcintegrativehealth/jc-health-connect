@@ -32,9 +32,34 @@ function HomePage() {
       {/* HERO */}
       <section className="relative pt-10 md:pt-16 pb-20 md:pb-28 overflow-hidden">
         <div aria-hidden className="pointer-events-none absolute -top-24 -right-32 w-[560px] h-[560px] rounded-full opacity-[0.14] blur-3xl bg-linear-to-br from-teal via-academic to-navy" />
+
+        {/* Mobile-only botanical / topographic art layer */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 md:hidden overflow-hidden">
+          <svg className="absolute -top-10 -right-16 w-[420px] h-[420px] text-teal/30" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="currentColor" strokeWidth="0.6" fill="none">
+              {Array.from({ length: 14 }).map((_, i) => (
+                <circle key={i} cx="200" cy="200" r={30 + i * 12} opacity={0.55 - i * 0.03} />
+              ))}
+            </g>
+          </svg>
+          <svg className="absolute -bottom-24 -left-20 w-[360px] h-[360px] text-terracotta/25" viewBox="0 0 300 300" fill="none">
+            <g stroke="currentColor" strokeWidth="0.7" fill="none">
+              <path d="M150 20 C 90 90, 90 210, 150 280 C 210 210, 210 90, 150 20 Z" />
+              <path d="M150 40 C 105 100, 105 200, 150 260" />
+              <path d="M150 40 C 195 100, 195 200, 150 260" />
+              <line x1="150" y1="20" x2="150" y2="280" />
+              <path d="M150 100 C 120 120, 120 150, 150 170" />
+              <path d="M150 100 C 180 120, 180 150, 150 170" />
+              <path d="M150 170 C 115 190, 115 220, 150 240" />
+              <path d="M150 170 C 185 190, 185 220, 150 240" />
+            </g>
+          </svg>
+          <div className="absolute inset-x-0 top-1/3 h-px bg-linear-to-r from-transparent via-navy/10 to-transparent" />
+        </div>
+
         <Container>
           {/* Clinical masthead strip */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-5 mb-10 border-b border-navy/10 text-[10px] font-mono uppercase tracking-[0.22em] text-navy/55">
+          <div className="flex flex-col items-center text-center md:flex-row md:flex-wrap md:items-center md:justify-between md:text-left gap-3 md:gap-4 pb-5 mb-10 border-b border-navy/10 text-[10px] font-mono uppercase tracking-[0.22em] text-navy/55">
             <div className="flex items-center gap-2">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal opacity-60" />
@@ -46,7 +71,7 @@ function HomePage() {
             <div>NPI-verified · HIPAA compliant</div>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start relative">
             <div className="lg:col-span-7 relative">
               <div className="eyebrow text-terracotta mb-6">Section 01 · Evidence-Based Care</div>
               <h1 className="font-serif text-[2.5rem] leading-[1.05] md:text-5xl lg:text-[3.75rem] text-balance text-navy">
@@ -60,7 +85,8 @@ function HomePage() {
               <div className="mt-8 flex items-center gap-4 pb-6 border-b border-navy/10 max-w-md">
                 <div className="w-11 h-11 rounded-full bg-linear-to-br from-navy to-academic grid place-items-center text-paper font-serif text-sm ring-1 ring-navy/20">JC</div>
                 <div>
-                  <div className="text-sm font-medium text-navy">Jason Chen, MD</div>
+                  <div className="text-sm font-medium text-navy">Jason Chen, DO</div>
+
                   <div className="text-[11px] text-navy/55 font-mono uppercase tracking-[0.14em]">Board Certified · Integrative Medicine</div>
                 </div>
               </div>
