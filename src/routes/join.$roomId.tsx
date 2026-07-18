@@ -1,9 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Video, Mic, Volume2, Wifi, Shield, CheckCircle2, AlertCircle, Lock } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Video, Mic, Volume2, Wifi, Shield, CheckCircle2, AlertCircle, Lock, Clock, Mail } from "lucide-react";
 import { toast } from "sonner";
+import { z } from "zod";
 
 export const Route = createFileRoute("/join/$roomId")({
+  validateSearch: z.object({
+    exp: z.coerce.number().optional(),
+  }),
   head: ({ params }) => ({
     meta: [
       { title: `Join Consultation · ${params.roomId} — JC Integrative Health` },
@@ -17,6 +21,8 @@ type Phase = "identify" | "device-check" | "waiting" | "in-visit" | "ended";
 
 function JoinRoom() {
   const { roomId } = Route.useParams();
+  const { exp } = Route.useSearch();
+  const [now, setNow] = useState(() => Date.now());
   const [phase, setPhase] = useState<Phase>("identify");
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
@@ -25,13 +31,25 @@ function JoinRoom() {
   const [physicianReady, setPhysicianReady] = useState(false);
 
   useEffect(() => {
+    const t = setInterval(() => setNow(Date.now()), 30_000);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
     if (phase !== "waiting") return;
     const t = setTimeout(() => setPhysicianReady(true), 4500);
     return () => clearTimeout(t);
   }, [phase]);
 
+  const expired = useMemo(() => (exp ? now >= exp : false), [exp, now]);
+  const expiresSoon = exp && !expired && exp - now < 5 * 60_000;
+
   const canIdentify = name.trim().length > 1 && dob.length > 0 && Object.values(consents).every(Boolean);
   const canJoin = phase === "waiting" && physicianReady && Object.values(devices).every(Boolean);
+
+  if (expired && phase !== "in-visit" && phase !== "ended") {
+    return <ExpiredScreen roomId={roomId} expiredAt={exp!} />;
+  }
 
   return (
     <div className="min-h-screen bg-paper text-navy">
@@ -47,6 +65,15 @@ function JoinRoom() {
           </span>
         </div>
       </header>
+
+      {expiresSoon && (
+        <div className="border-b border-terracota/30 bg-terracota/10 text-navy">
+          <div className="max-w-4xl mx-auto px-5 py-2 text-[11px] uppercase tracking-widest flex items-center gap-2">
+            <Clock size={12} className="text-terracota" />
+            This link expires in {Math.max(1, Math.ceil((exp! - now) / 60_000))} min — please continue.
+          </div>
+        </div>
+      )}
 
       <main className="max-w-4xl mx-auto px-5 py-10">
         {/* Progress */}
@@ -228,4 +255,80 @@ function CtlBtn({ label, icon }: { label: string; icon: React.ReactNode }) {
       {icon} {label}
     </button>
   );
+}
+
+function ExpiredScreen({ roomId, expiredAt }: { roomId: string; expiredAt: number }) {
+  const when = new Date(expiredAt);
+  const relative = formatRelative(expiredAt);
+  return (
+    <div className="min-h-screen bg-paper text-navy flex flex-col">
+      <header className="border-b border-navy/8 bg-paper/90 backdrop-blur">
+        <div className="max-w-4xl mx-auto px-5 py-4 flex items-center gap-3">
+          <div className="h-8 w-8 border border-navy/15 flex items-center justify-center font-serif text-xs text-navy bg-card">JC</div>
+          <div className="min-w-0">
+            <div className="font-serif text-sm text-navy leading-tight">JC Integrative Health</div>
+            <div className="text-[10px] uppercase tracking-[0.24em] text-navy/45">Secure Telehealth · Room {roomId}</div>
+          </div>
+          <span className="ml-auto inline-flex items-center gap-2 text-[10px] uppercase tracking-widest text-terracota">
+            <Clock size={11} /> Link expired
+          </span>
+        </div>
+      </header>
+
+      <main className="flex-1 max-w-2xl mx-auto w-full px-5 py-16">
+        <div className="border border-navy/10 bg-card rounded-sm p-8 md:p-12 text-center">
+          <div className="h-14 w-14 rounded-full bg-terracota/15 border border-terracota/30 grid place-items-center mx-auto mb-6">
+            <Clock size={22} className="text-terracota" strokeWidth={1.4} />
+          </div>
+          <div className="eyebrow text-terracota mb-3">This link has expired</div>
+          <h1 className="font-serif text-3xl md:text-4xl text-navy mb-3">Your consultation link is no longer active</h1>
+          <p className="text-sm text-navy/60 max-w-md mx-auto mb-2">
+            For your security, single-use consultation links expire automatically. Please request a new link from your care team to join Dr. Chen.
+          </p>
+          <p className="text-[11px] uppercase tracking-widest text-navy/40 mb-8">
+            Expired {relative} · {when.toLocaleString()}
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-2 justify-center max-w-md mx-auto">
+            <Link
+              to="/contact"
+              className="w-full sm:w-auto h-11 px-6 bg-navy text-paper text-xs uppercase tracking-[0.2em] font-semibold hover:bg-academic inline-flex items-center justify-center gap-2 transition-colors"
+            >
+              <Mail size={13} /> Request a new link
+            </Link>
+            <Link
+              to="/patient/messages"
+              className="w-full sm:w-auto h-11 px-6 border border-navy/15 text-navy hover:border-navy/30 text-xs uppercase tracking-[0.18em] inline-flex items-center justify-center"
+            >
+              Message care team
+            </Link>
+          </div>
+
+          <div className="mt-10 pt-6 border-t border-navy/8 text-[11px] text-navy/50 flex items-center justify-center gap-2">
+            <Shield size={11} /> Reference: {roomId}
+          </div>
+        </div>
+
+        <p className="mt-6 text-center text-[11px] text-navy/45">
+          If you believe this is an error, contact the clinic at{" "}
+          <a href="tel:+13035550100" className="text-academic underline underline-offset-2">(303) 555-0100</a>.
+        </p>
+      </main>
+
+      <footer className="border-t border-navy/8 py-6 px-5 text-center text-[10px] uppercase tracking-[0.2em] text-navy/40">
+        © {new Date().getFullYear()} JC Integrative Health · HIPAA-conformant telehealth
+      </footer>
+    </div>
+  );
+}
+
+function formatRelative(ts: number): string {
+  const diff = Date.now() - ts;
+  const mins = Math.round(diff / 60_000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins} min ago`;
+  const hrs = Math.round(mins / 60);
+  if (hrs < 24) return `${hrs} h ago`;
+  const days = Math.round(hrs / 24);
+  return `${days} d ago`;
 }
