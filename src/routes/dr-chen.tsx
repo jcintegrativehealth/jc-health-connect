@@ -15,7 +15,7 @@ export const Route = createFileRoute("/dr-chen")({
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Physician",
-        name: "Jason Chen, MD",
+        name: "Jason Chen, DO",
         medicalSpecialty: ["IntegrativeMedicine", "PreventiveMedicine"],
         areaServed: ["Colorado", "Washington"],
         knowsLanguage: ["English", "Spanish", "Portuguese", "Mandarin Chinese"],
