@@ -21,6 +21,8 @@ type Phase = "identify" | "device-check" | "waiting" | "in-visit" | "ended";
 
 function JoinRoom() {
   const { roomId } = Route.useParams();
+  const { exp } = Route.useSearch();
+  const [now, setNow] = useState(() => Date.now());
   const [phase, setPhase] = useState<Phase>("identify");
   const [name, setName] = useState("");
   const [dob, setDob] = useState("");
@@ -29,13 +31,25 @@ function JoinRoom() {
   const [physicianReady, setPhysicianReady] = useState(false);
 
   useEffect(() => {
+    const t = setInterval(() => setNow(Date.now()), 30_000);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
     if (phase !== "waiting") return;
     const t = setTimeout(() => setPhysicianReady(true), 4500);
     return () => clearTimeout(t);
   }, [phase]);
 
+  const expired = useMemo(() => (exp ? now >= exp : false), [exp, now]);
+  const expiresSoon = exp && !expired && exp - now < 5 * 60_000;
+
   const canIdentify = name.trim().length > 1 && dob.length > 0 && Object.values(consents).every(Boolean);
   const canJoin = phase === "waiting" && physicianReady && Object.values(devices).every(Boolean);
+
+  if (expired && phase !== "in-visit" && phase !== "ended") {
+    return <ExpiredScreen roomId={roomId} expiredAt={exp!} />;
+  }
 
   return (
     <div className="min-h-screen bg-paper text-navy">
