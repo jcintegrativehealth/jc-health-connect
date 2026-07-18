@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Video, Mic, Volume2, Wifi, Shield, CheckCircle2, AlertCircle, Lock } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Video, Mic, Volume2, Wifi, Shield, CheckCircle2, AlertCircle, Lock, Clock, Mail } from "lucide-react";
 import { toast } from "sonner";
+import { z } from "zod";
 
 export const Route = createFileRoute("/join/$roomId")({
   head: ({ params }) => ({
