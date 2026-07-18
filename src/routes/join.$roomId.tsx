@@ -66,6 +66,15 @@ function JoinRoom() {
         </div>
       </header>
 
+      {expiresSoon && (
+        <div className="border-b border-terracota/30 bg-terracota/10 text-navy">
+          <div className="max-w-4xl mx-auto px-5 py-2 text-[11px] uppercase tracking-widest flex items-center gap-2">
+            <Clock size={12} className="text-terracota" />
+            This link expires in {Math.max(1, Math.ceil((exp! - now) / 60_000))} min — please continue.
+          </div>
+        </div>
+      )}
+
       <main className="max-w-4xl mx-auto px-5 py-10">
         {/* Progress */}
         <div className="flex items-center gap-2 mb-8">
