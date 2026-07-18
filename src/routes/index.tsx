@@ -398,11 +398,9 @@ function HomePage() {
                 <option className="text-navy">Português</option>
                 <option className="text-navy">中文</option>
               </select>
-              <div className="mt-4 flex justify-center">
-                <button type="submit" className="w-full sm:w-auto px-6 py-3 bg-teal text-paper text-xs font-semibold uppercase tracking-[0.2em] hover:bg-gold transition-colors">
-                  Subscribe
-                </button>
-              </div>
+              <button type="submit" className="w-full px-6 py-3 bg-teal text-paper text-xs font-semibold uppercase tracking-[0.2em] hover:bg-gold transition-colors">
+                Subscribe
+              </button>
             </form>
           </div>
         </Container>
