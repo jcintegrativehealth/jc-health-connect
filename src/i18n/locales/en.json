@@ -44,7 +44,12 @@
     "eyebrow": "Section 08",
     "title": "Conditions & Health Goals",
     "lede": "Areas of care we evaluate and support through an integrative, evidence-based lens.",
-    "viewAll": "View All Conditions"
+    "viewAll": "View All Conditions",
+    "index": {
+      "eyebrow": "Conditions & Goals",
+      "title": "Educational overviews of common health concerns.",
+      "lede": "Not a substitute for medical evaluation — these pages describe how we think about each area of care."
+    }
   },
   "servicesIndex": {
     "eyebrow": "Services",
