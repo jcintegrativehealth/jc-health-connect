@@ -54,6 +54,7 @@ import { Route as AdminReportsRouteImport } from './routes/admin.reports'
 import { Route as AdminRecordsRouteImport } from './routes/admin.records'
 import { Route as AdminNotificationsRouteImport } from './routes/admin.notifications'
 import { Route as AdminMessagesRouteImport } from './routes/admin.messages'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminLabsRouteImport } from './routes/admin.labs'
 import { Route as AdminInstantRoomRouteImport } from './routes/admin.instant-room'
 import { Route as AdminInsightsRouteImport } from './routes/admin.insights'
@@ -307,6 +308,11 @@ const AdminMessagesRoute = AdminMessagesRouteImport.update({
   path: '/messages',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminLabsRoute = AdminLabsRouteImport.update({
   id: '/labs',
   path: '/labs',
@@ -470,6 +476,7 @@ export interface FileRoutesByFullPath {
   '/admin/insights': typeof AdminInsightsRoute
   '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
+  '/admin/login': typeof AdminLoginRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/records': typeof AdminRecordsRoute
@@ -542,6 +549,7 @@ export interface FileRoutesByTo {
   '/admin/insights': typeof AdminInsightsRoute
   '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
+  '/admin/login': typeof AdminLoginRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/records': typeof AdminRecordsRoute
@@ -617,6 +625,7 @@ export interface FileRoutesById {
   '/admin/insights': typeof AdminInsightsRoute
   '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
+  '/admin/login': typeof AdminLoginRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/notifications': typeof AdminNotificationsRoute
   '/admin/records': typeof AdminRecordsRoute
@@ -693,6 +702,7 @@ export interface FileRouteTypes {
     | '/admin/insights'
     | '/admin/instant-room'
     | '/admin/labs'
+    | '/admin/login'
     | '/admin/messages'
     | '/admin/notifications'
     | '/admin/records'
@@ -765,6 +775,7 @@ export interface FileRouteTypes {
     | '/admin/insights'
     | '/admin/instant-room'
     | '/admin/labs'
+    | '/admin/login'
     | '/admin/messages'
     | '/admin/notifications'
     | '/admin/records'
@@ -839,6 +850,7 @@ export interface FileRouteTypes {
     | '/admin/insights'
     | '/admin/instant-room'
     | '/admin/labs'
+    | '/admin/login'
     | '/admin/messages'
     | '/admin/notifications'
     | '/admin/records'
@@ -1234,6 +1246,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminMessagesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/labs': {
       id: '/admin/labs'
       path: '/labs'
@@ -1438,6 +1457,7 @@ interface AdminRouteChildren {
   AdminInsightsRoute: typeof AdminInsightsRoute
   AdminInstantRoomRoute: typeof AdminInstantRoomRoute
   AdminLabsRoute: typeof AdminLabsRoute
+  AdminLoginRoute: typeof AdminLoginRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
   AdminNotificationsRoute: typeof AdminNotificationsRoute
   AdminRecordsRoute: typeof AdminRecordsRoute
@@ -1468,6 +1488,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminInsightsRoute: AdminInsightsRoute,
   AdminInstantRoomRoute: AdminInstantRoomRoute,
   AdminLabsRoute: AdminLabsRoute,
+  AdminLoginRoute: AdminLoginRoute,
   AdminMessagesRoute: AdminMessagesRoute,
   AdminNotificationsRoute: AdminNotificationsRoute,
   AdminRecordsRoute: AdminRecordsRoute,
