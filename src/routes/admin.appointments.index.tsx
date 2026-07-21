@@ -29,8 +29,8 @@ function AppointmentsList() {
       lang: r.lang,
       format: r.format,
       duration: r.duration,
-      status: r.status,
-      pay: r.pay,
+      status: r.status as unknown as (typeof appointments)[number]["status"],
+      pay: r.pay as unknown as (typeof appointments)[number]["pay"],
     }));
     return [...storedRows, ...appointments];
   }, [stored]);
