@@ -85,6 +85,42 @@
       "patient": { "t": "Experiencia Centrada en el Paciente", "d": "Un entorno clínico tranquilo y respetuoso que valora el tiempo, la claridad y la dignidad." }
     }
   },
+  "contact": {
+    "eyebrow": "Contacto",
+    "title": "¿Cómo podemos ayudar?",
+    "lede": "Elija el tipo de consulta que mejor se ajuste a su solicitud. Este formulario no se monitorea para emergencias médicas.",
+    "success": "Gracias. Su mensaje fue recibido (demo). Respondemos a consultas legítimas en pocos días hábiles.",
+    "fields": {
+      "name": "Nombre",
+      "email": "Correo",
+      "phone": "Teléfono",
+      "language": "Idioma preferido",
+      "state": "Estado",
+      "inquiry": "Tipo de consulta",
+      "message": "Mensaje"
+    },
+    "languages": { "en": "Inglés", "es": "Español", "pt": "Portugués", "zh": "Mandarín" },
+    "states": { "co": "Colorado", "wa": "Washington", "other": "Otro / No aplica" },
+    "inquiries": {
+      "patient": "Consulta de paciente",
+      "appointment": "Pregunta sobre cita",
+      "professional": "Colaboración profesional",
+      "research": "Investigación",
+      "speaking": "Conferencia",
+      "media": "Consulta de prensa",
+      "general": "Contacto general"
+    },
+    "consent": "Consiento ser contactado sobre mi consulta y entiendo que este formulario no se monitorea para emergencias.",
+    "disclaimer": "No envíe información médica sensible por este formulario. Para emergencias médicas, llame al 911 o al servicio local.",
+    "submit": "Enviar mensaje",
+    "aside": {
+      "patient": { "t": "Soporte al paciente", "d": "Preguntas sobre visitas, portal y facturación." },
+      "professional": { "t": "Consultas profesionales", "d": "Colaboraciones clínicas y médicos colaboradores." },
+      "media": { "t": "Prensa", "d": "Entrevistas y medios." },
+      "education": { "t": "Educación y conferencias", "d": "Ponencias, docencia y eventos." },
+      "research": { "t": "Colaboración en investigación", "d": "Alianzas académicas y de investigación clínica." }
+    }
+  },
   "admin": {
     "topbar": {
       "search": "Buscar pacientes, citas, facturas…",

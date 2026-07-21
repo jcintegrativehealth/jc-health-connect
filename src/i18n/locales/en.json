@@ -92,6 +92,42 @@
       "patient": { "t": "Patient-Centered Experience", "d": "A calm, respectful clinical environment that values time, clarity, and dignity." }
     }
   },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "How can we help?",
+    "lede": "Choose the inquiry type that best matches your request. We do not monitor this form for medical emergencies.",
+    "success": "Thank you. Your message has been received (demo). We reply to legitimate inquiries within a few business days.",
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "language": "Preferred Language",
+      "state": "State",
+      "inquiry": "Inquiry Type",
+      "message": "Message"
+    },
+    "languages": { "en": "English", "es": "Spanish", "pt": "Portuguese", "zh": "Mandarin" },
+    "states": { "co": "Colorado", "wa": "Washington", "other": "Other / Not Applicable" },
+    "inquiries": {
+      "patient": "Patient Inquiry",
+      "appointment": "Appointment Question",
+      "professional": "Professional Collaboration",
+      "research": "Research",
+      "speaking": "Speaking Engagement",
+      "media": "Media Inquiry",
+      "general": "General Contact"
+    },
+    "consent": "I consent to being contacted about my inquiry and understand this form is not monitored for emergencies.",
+    "disclaimer": "Do not submit sensitive medical information through this form. For medical emergencies, call 911 or your local emergency service.",
+    "submit": "Send Message",
+    "aside": {
+      "patient": { "t": "Patient Support", "d": "Questions about visits, portal, and billing." },
+      "professional": { "t": "Professional Inquiries", "d": "Clinical collaborations and physician contributors." },
+      "media": { "t": "Media", "d": "Interviews and press." },
+      "education": { "t": "Education & Speaking", "d": "Lectures, teaching, and events." },
+      "research": { "t": "Research Collaboration", "d": "Academic and clinical research partnerships." }
+    }
+  },
   "admin": {
     "topbar": {
       "search": "Search patients, appointments, invoices…",

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { Container, PageHeader, Disclaimer } from "@/components/site/primitives";
 import { SubmitCta } from "@/components/site/cta";
 import { useState } from "react";
@@ -21,62 +22,65 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
+const ASIDE_KEYS = ["patient", "professional", "media", "education", "research"] as const;
+const INQUIRY_KEYS = ["patient", "appointment", "professional", "research", "speaking", "media", "general"] as const;
+
 function ContactPage() {
+  const { t } = useTranslation();
   const [sent, setSent] = useState(false);
   return (
     <div>
-      <PageHeader eyebrow="Contact" title="How can we help?" lede="Choose the inquiry type that best matches your request. We do not monitor this form for medical emergencies." />
+      <PageHeader eyebrow={t("contact.eyebrow")} title={t("contact.title")} lede={t("contact.lede")} />
       <Container className="pb-24">
         <div className="grid lg:grid-cols-[1fr_360px] gap-16 border-t border-navy/10 pt-12">
           <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="space-y-6">
             {sent && (
               <div className="p-5 border-l-2 border-teal bg-teal/5 text-navy text-sm">
-                Thank you. Your message has been received (demo). We reply to legitimate inquiries within a few business days.
+                {t("contact.success")}
               </div>
             )}
             <div className="grid md:grid-cols-2 gap-6">
-              <Field label="Name"><input required className="input" /></Field>
-              <Field label="Email"><input required type="email" className="input" /></Field>
-              <Field label="Phone"><input className="input" /></Field>
-              <Field label="Preferred Language">
-                <select className="input"><option>English</option><option>Spanish</option><option>Portuguese</option><option>Mandarin</option></select>
-              </Field>
-              <Field label="State">
-                <select className="input"><option>Colorado</option><option>Washington</option><option>Other / Not Applicable</option></select>
-              </Field>
-              <Field label="Inquiry Type">
+              <Field label={t("contact.fields.name")}><input required className="input" /></Field>
+              <Field label={t("contact.fields.email")}><input required type="email" className="input" /></Field>
+              <Field label={t("contact.fields.phone")}><input className="input" /></Field>
+              <Field label={t("contact.fields.language")}>
                 <select className="input">
-                  <option>Patient Inquiry</option>
-                  <option>Appointment Question</option>
-                  <option>Professional Collaboration</option>
-                  <option>Research</option>
-                  <option>Speaking Engagement</option>
-                  <option>Media Inquiry</option>
-                  <option>General Contact</option>
+                  <option>{t("contact.languages.en")}</option>
+                  <option>{t("contact.languages.es")}</option>
+                  <option>{t("contact.languages.pt")}</option>
+                  <option>{t("contact.languages.zh")}</option>
+                </select>
+              </Field>
+              <Field label={t("contact.fields.state")}>
+                <select className="input">
+                  <option>{t("contact.states.co")}</option>
+                  <option>{t("contact.states.wa")}</option>
+                  <option>{t("contact.states.other")}</option>
+                </select>
+              </Field>
+              <Field label={t("contact.fields.inquiry")}>
+                <select className="input">
+                  {INQUIRY_KEYS.map((k) => (
+                    <option key={k}>{t(`contact.inquiries.${k}`)}</option>
+                  ))}
                 </select>
               </Field>
             </div>
-            <Field label="Message"><textarea rows={5} className="input" /></Field>
+            <Field label={t("contact.fields.message")}><textarea rows={5} className="input" /></Field>
             <label className="flex items-start gap-3 text-xs text-navy/65">
-              <input type="checkbox" required className="mt-0.5" /> I consent to being contacted about my inquiry and understand this form is not monitored for emergencies.
+              <input type="checkbox" required className="mt-0.5" /> {t("contact.consent")}
             </label>
-            <Disclaimer>Do not submit sensitive medical information through this form. For medical emergencies, call 911 or your local emergency service.</Disclaimer>
+            <Disclaimer>{t("contact.disclaimer")}</Disclaimer>
             <div className="flex flex-col sm:flex-row justify-center pt-2">
-              <SubmitCta>Send Message</SubmitCta>
+              <SubmitCta>{t("contact.submit")}</SubmitCta>
             </div>
           </form>
 
           <aside className="space-y-4">
-            {[
-              ["Patient Support", "Questions about visits, portal, and billing."],
-              ["Professional Inquiries", "Clinical collaborations and physician contributors."],
-              ["Media", "Interviews and press."],
-              ["Education & Speaking", "Lectures, teaching, and events."],
-              ["Research Collaboration", "Academic and clinical research partnerships."],
-            ].map(([t, d]) => (
-              <div key={t} className="p-5 border border-navy/10">
-                <div className="eyebrow text-teal mb-2">{t}</div>
-                <p className="text-sm text-navy/60">{d}</p>
+            {ASIDE_KEYS.map((k) => (
+              <div key={k} className="p-5 border border-navy/10">
+                <div className="eyebrow text-teal mb-2">{t(`contact.aside.${k}.t`)}</div>
+                <p className="text-sm text-navy/60">{t(`contact.aside.${k}.d`)}</p>
               </div>
             ))}
           </aside>
