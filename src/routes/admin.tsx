@@ -1,4 +1,4 @@
-import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SUPPORTED_LANGUAGES, type LangCode } from "@/i18n";
@@ -11,6 +11,7 @@ import {
 import { clinic, notifications as demoNotifs, patients } from "@/data/admin";
 import { toast } from "sonner";
 import { Copy, Check, Loader2, AlertCircle, ExternalLink, Shield, Clock } from "lucide-react";
+import { signOutAdmin, useAdminAuth } from "@/lib/adminAuth";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -62,8 +63,16 @@ function AdminLayout() {
   const [notifOpen, setNotifOpen] = useState(false);
   const [instantOpen, setInstantOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const nav = useNavigate();
+  const { authed, ready } = useAdminAuth();
+  const isLoginRoute = pathname === "/admin/login";
 
   useEffect(() => { setMobileOpen(false); setCmdOpen(false); setNotifOpen(false); setInstantOpen(false); }, [pathname]);
+  useEffect(() => {
+    if (ready && !authed && !isLoginRoute) {
+      nav({ to: "/admin/login", search: { redirect: pathname }, replace: true });
+    }
+  }, [ready, authed, isLoginRoute, nav, pathname]);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); setCmdOpen((v) => !v); }
@@ -74,6 +83,21 @@ function AdminLayout() {
   }, []);
 
   const isActive = (to: string) => to === "/admin" ? pathname === "/admin" : pathname === to || pathname.startsWith(to + "/");
+
+  // Render login route without the admin shell.
+  if (isLoginRoute) {
+    return <Outlet />;
+  }
+
+  // Hold the shell while the gate resolves / redirects.
+  if (!ready || !authed) {
+    return (
+      <div className="min-h-screen bg-paper text-navy grid place-items-center">
+        <div className="text-[11px] uppercase tracking-widest text-navy/45">Verifying session…</div>
+      </div>
+    );
+  }
+
 
   return (
     <div className="min-h-screen bg-paper text-navy">
@@ -186,8 +210,14 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
           </button>
         )}
         <Link to="/" className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors">
-          <LogOut size={14} strokeWidth={1.5} /> {!collapsed && t("admin.sidebar.backToSite")}
+          <ExternalLink size={14} strokeWidth={1.5} /> {!collapsed && t("admin.sidebar.backToSite")}
         </Link>
+        <button
+          onClick={() => { signOutAdmin(); toast.success("Signed out"); }}
+          className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors"
+        >
+          <LogOut size={14} strokeWidth={1.5} /> {!collapsed && "Sign out"}
+        </button>
       </div>
     </>
   );

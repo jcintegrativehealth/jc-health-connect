@@ -2,6 +2,8 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageHeader, Btn, Panel } from "@/components/admin/primitives";
 import { patients, services } from "@/data/admin";
+import { createAppointment } from "@/lib/appointmentStore";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/appointments/new")({
   head: () => ({ meta: [{ title: "New appointment — JC Admin" }, { name: "robots", content: "noindex" }] }),
@@ -125,7 +127,33 @@ function NewAppointment() {
         <Btn variant="outline" onClick={() => (step === 0 ? nav({ to: "/admin/appointments" }) : setStep(step - 1))}>{step === 0 ? "Cancel" : "Back"}</Btn>
         {step < STEPS.length - 1
           ? <Btn onClick={() => setStep(step + 1)}>Continue</Btn>
-          : <Btn onClick={() => nav({ to: "/admin/appointments" })}>Confirm appointment</Btn>}
+          : <Btn onClick={() => {
+              if (!data.patient || !data.date || !data.time) {
+                toast.error("Patient, date and time are required.");
+                return;
+              }
+              try {
+                createAppointment({
+                  source: "admin",
+                  date: data.date,
+                  time: data.time,
+                  patient: data.patient,
+                  type: data.visitType,
+                  service: data.service,
+                  state: data.state,
+                  lang: data.language,
+                  format: data.format === "In-person" ? "In-person" : "Telehealth",
+                  duration: Number(data.duration) || 30,
+                  status: "Confirmed",
+                  pay: data.pay === "Card on file" ? "Paid" : "Pending",
+                  notes: data.notes,
+                });
+                toast.success("Appointment scheduled");
+                nav({ to: "/admin/appointments" });
+              } catch {
+                toast.error("Failed to create appointment.");
+              }
+            }}>Confirm appointment</Btn>}
       </div>
     </div>
   );

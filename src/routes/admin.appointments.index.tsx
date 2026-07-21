@@ -1,7 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { PageHeader, Toolbar, DataTable, Badge, Btn, Chip, ExportBtn, Pagination } from "@/components/admin/primitives";
 import { appointments } from "@/data/admin";
+import { useAppointments } from "@/lib/appointmentStore";
 import { CalendarPlus } from "lucide-react";
 
 export const Route = createFileRoute("/admin/appointments/")({
@@ -14,7 +15,27 @@ function AppointmentsList() {
   const [q, setQ] = useState("");
   const [status, setStatus] = useState("All");
   const [format, setFormat] = useState("All");
-  const rows = appointments.filter((a) =>
+  const stored = useAppointments();
+
+  const merged = useMemo(() => {
+    const storedRows = stored.map((r) => ({
+      id: r.id,
+      date: r.date,
+      time: r.time,
+      patient: r.patient,
+      type: r.type,
+      service: r.service,
+      state: r.state,
+      lang: r.lang,
+      format: r.format,
+      duration: r.duration,
+      status: r.status as unknown as (typeof appointments)[number]["status"],
+      pay: r.pay as unknown as (typeof appointments)[number]["pay"],
+    }));
+    return [...storedRows, ...appointments];
+  }, [stored]);
+
+  const rows = merged.filter((a) =>
     (status === "All" || a.status === status) &&
     (format === "All" || a.format === format) &&
     (q === "" || a.patient.toLowerCase().includes(q.toLowerCase()) || a.id.toLowerCase().includes(q.toLowerCase()))
@@ -35,7 +56,7 @@ function AppointmentsList() {
         searchPlaceholder="Search patient or appointment ID…"
         onSearch={setQ}
         filters={<>
-          {["All", "Confirmed", "Checked In", "In Progress", "Completed", "Cancelled", "No Show"].map((s) => (
+          {["All", "Pending", "Confirmed", "Checked In", "In Progress", "Completed", "Cancelled", "No Show"].map((s) => (
             <Chip key={s} active={status === s} onClick={() => setStatus(s)}>{s}</Chip>
           ))}
           <span className="mx-2 h-4 w-px bg-navy/15" />
