@@ -80,7 +80,7 @@ function AdminLogin() {
           </label>
 
           {err && (
-            <div className="text-[11px] uppercase tracking-widest text-terracotta border border-terracotta/40 bg-terracotta/5 px-3 py-2">
+            <div className="text-[11px] uppercase tracking-widest text-gold border border-gold/40 bg-gold/5 px-3 py-2">
               {err}
             </div>
           )}
