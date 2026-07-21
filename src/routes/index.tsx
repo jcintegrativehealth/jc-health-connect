@@ -277,9 +277,9 @@ function HomePage() {
                 Editorial reviews, clinical commentary, and evidence summaries on integrative medicine, longevity, and medical innovation.
               </p>
               <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-paper/45">
-                <Link to="/research" className="hover:text-teal">Research →</Link>
-                <Link to="/insights" className="hover:text-teal">Insights →</Link>
-                <Link to="/innovation" className="hover:text-teal">Innovation →</Link>
+                <span className="text-paper/30 cursor-not-allowed flex items-center gap-2">Research <span className="text-[10px] tracking-widest">Soon</span></span>
+                <span className="text-paper/30 cursor-not-allowed flex items-center gap-2">Insights <span className="text-[10px] tracking-widest">Soon</span></span>
+                <span className="text-paper/30 cursor-not-allowed flex items-center gap-2">Innovation <span className="text-[10px] tracking-widest">Soon</span></span>
               </div>
             </div>
 
@@ -323,9 +323,9 @@ function HomePage() {
               <h2 className="font-serif text-4xl md:text-5xl text-navy">Medical Innovation Radar</h2>
               <p className="mt-5 text-navy/60 text-pretty">Tracking the intersection of clinical research and applied technology — with candid notes on evidence and limitations.</p>
             </div>
-            <Link to="/innovation" className="text-sm font-semibold text-navy border-b border-navy pb-1 hover:text-teal hover:border-teal transition-colors">
-              Full Radar
-            </Link>
+            <span className="text-sm font-semibold text-navy/30 border-b border-navy/20 pb-1 cursor-not-allowed flex items-center gap-2">
+              Full Radar <span className="text-[10px] uppercase tracking-widest">Soon</span>
+            </span>
           </div>
 
           <div className="divide-y divide-navy/10 border-y border-navy/10">
