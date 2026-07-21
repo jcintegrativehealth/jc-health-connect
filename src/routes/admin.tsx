@@ -6,12 +6,12 @@ import {
   LayoutDashboard, Users, Calendar, CalendarDays, Stethoscope, FileHeart, FlaskConical, ClipboardList,
   MessageSquare, Receipt, Contact, Beaker, Newspaper, PanelsTopLeft, MessageSquareWarning,
   BarChart3, FilePieChart, Files, ListChecks, Bell, Settings, Search, ChevronsLeft, ChevronsRight,
-  Plus, HelpCircle, Globe, LogOut, X, Menu, Command, Video,
+  Plus, HelpCircle, Globe, X, Menu, Command, Video,
 } from "lucide-react";
 import { clinic, notifications as demoNotifs, patients } from "@/data/admin";
 import { toast } from "sonner";
 import { Copy, Check, Loader2, AlertCircle, ExternalLink, Shield, Clock } from "lucide-react";
-import { signOutAdmin, useAdminAuth } from "@/lib/adminAuth";
+
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -64,15 +64,13 @@ function AdminLayout() {
   const [instantOpen, setInstantOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const nav = useNavigate();
-  const { authed, ready } = useAdminAuth();
   const isLoginRoute = pathname === "/admin/login";
 
   useEffect(() => { setMobileOpen(false); setCmdOpen(false); setNotifOpen(false); setInstantOpen(false); }, [pathname]);
+  // Dev-only: no auth gate. If someone hits /admin/login (legacy), send them to the dashboard.
   useEffect(() => {
-    if (ready && !authed && !isLoginRoute) {
-      nav({ to: "/admin/login", search: { redirect: pathname }, replace: true });
-    }
-  }, [ready, authed, isLoginRoute, nav, pathname]);
+    if (isLoginRoute) nav({ to: "/admin", replace: true });
+  }, [isLoginRoute, nav]);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); setCmdOpen((v) => !v); }
@@ -84,19 +82,7 @@ function AdminLayout() {
 
   const isActive = (to: string) => to === "/admin" ? pathname === "/admin" : pathname === to || pathname.startsWith(to + "/");
 
-  // Render login route without the admin shell.
-  if (isLoginRoute) {
-    return <Outlet />;
-  }
 
-  // Hold the shell while the gate resolves / redirects.
-  if (!ready || !authed) {
-    return (
-      <div className="min-h-screen bg-paper text-navy grid place-items-center">
-        <div className="text-[11px] uppercase tracking-widest text-navy/45">Verifying session…</div>
-      </div>
-    );
-  }
 
 
   return (
@@ -148,10 +134,11 @@ function AdminFooter() {
   return (
     <footer className="border-t border-navy/8 mt-12 py-5 px-5 md:px-10 flex flex-col md:flex-row justify-between gap-2 text-[11px] uppercase tracking-widest text-navy/40">
       <span>© {new Date().getFullYear()} {clinic.name} · {t("admin.footer.private")}</span>
-      <span>{t("admin.footer.preview")}</span>
+      <span className="text-gold/80">Development Preview — front-end only, no authentication</span>
     </footer>
   );
 }
+
 
 function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; isActive: (to: string) => boolean; onCollapse?: () => void }) {
   const { t } = useTranslation();
@@ -212,12 +199,11 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
         <Link to="/" className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors">
           <ExternalLink size={14} strokeWidth={1.5} /> {!collapsed && t("admin.sidebar.backToSite")}
         </Link>
-        <button
-          onClick={() => { signOutAdmin(); toast.success("Signed out"); }}
-          className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors"
-        >
-          <LogOut size={14} strokeWidth={1.5} /> {!collapsed && "Sign out"}
-        </button>
+        <div className="w-full flex items-center gap-2 px-2 py-2 text-[10px] uppercase tracking-[0.2em] text-gold/80">
+          <span className="h-1.5 w-1.5 rounded-full bg-gold/70" />
+          {!collapsed && <span>Dev Preview</span>}
+        </div>
+
       </div>
     </>
   );
