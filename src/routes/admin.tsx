@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Users, Calendar, CalendarDays, Stethoscope, FileHeart, FlaskConical, ClipboardList,
   MessageSquare, Receipt, Contact, Beaker, Newspaper, PanelsTopLeft, MessageSquareWarning,
   BarChart3, FilePieChart, Files, ListChecks, Bell, Settings, Search, ChevronsLeft, ChevronsRight,
-  Plus, HelpCircle, Globe, LogOut, X, Menu, Command, Video,
+  Plus, HelpCircle, Globe, X, Menu, Command, Video,
 } from "lucide-react";
 import { clinic, notifications as demoNotifs, patients } from "@/data/admin";
 import { toast } from "sonner";
@@ -134,10 +134,11 @@ function AdminFooter() {
   return (
     <footer className="border-t border-navy/8 mt-12 py-5 px-5 md:px-10 flex flex-col md:flex-row justify-between gap-2 text-[11px] uppercase tracking-widest text-navy/40">
       <span>© {new Date().getFullYear()} {clinic.name} · {t("admin.footer.private")}</span>
-      <span>{t("admin.footer.preview")}</span>
+      <span className="text-gold/80">Development Preview — front-end only, no authentication</span>
     </footer>
   );
 }
+
 
 function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; isActive: (to: string) => boolean; onCollapse?: () => void }) {
   const { t } = useTranslation();
