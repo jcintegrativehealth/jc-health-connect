@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Container, PageHeader, Disclaimer } from "@/components/site/primitives";
+import { SubmitCta } from "@/components/site/cta";
 import { useState } from "react";
 
 export const Route = createFileRoute("/contact")({
