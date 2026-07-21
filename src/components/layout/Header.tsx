@@ -217,6 +217,16 @@ export function Header() {
                   <ul>
                     {group.links.map((l) => {
                       const active = isActive(l.to);
+                      if (l.disabled) {
+                        return (
+                          <li key={l.to} className="border-b border-navy/10">
+                            <span className="flex items-center gap-2.5 py-2.5 text-sm text-navy/35 cursor-not-allowed">
+                              <span>{l.label}</span>
+                              <span className="text-[10px] uppercase tracking-widest text-navy/25">Soon</span>
+                            </span>
+                          </li>
+                        );
+                      }
                       return (
                         <li key={l.to} className="border-b border-navy/10">
                           <Link
