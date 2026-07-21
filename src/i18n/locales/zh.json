@@ -88,7 +88,21 @@
     "newsletterFirstName": "姓名",
     "newsletterEmail": "电子邮箱",
     "newsletterLanguage": "首选语言",
-    "newsletterSubmit": "订阅"
+    "newsletterSubmit": "订阅",
+    "links": {
+      "telehealth": "远程医疗",
+      "researchLibrary": "研究文库",
+      "medicationUpdates": "用药更新",
+      "patientResources": "患者资源",
+      "faq": "常见问题",
+      "conditions": "病症",
+      "guestPhysicians": "客座医师",
+      "colorado": "科罗拉多州",
+      "washington": "华盛顿州",
+      "drChen": "Jason Chen 医师",
+      "accessibility": "无障碍",
+      "adminPreview": "后台预览 · 仅开发环境"
+    }
   },
   "demo": "演示内容 — 非真实医疗或个人数据。",
   "about": {
