@@ -66,6 +66,25 @@
     "newsletterSubmit": "Inscrever-se"
   },
   "demo": "Conteúdo demonstrativo — sem dados médicos ou pessoais reais.",
+  "about": {
+    "eyebrow": "Sobre a Clínica",
+    "title": "Um instituto de medicina integrativa, longevidade e inovação médica.",
+    "lede": "JC Integrative Health é uma prática clínica fundamentada em evidências, informada pela pesquisa e organizada em torno da saúde de longo prazo de cada paciente.",
+    "sections": {
+      "mission": { "t": "Missão", "d": "Oferecer cuidado personalizado e baseado em evidências que apoie a saúde de longo prazo, a prevenção e a qualidade de vida." },
+      "vision": { "t": "Visão", "d": "Um modelo de cuidado em que medicina integrativa, ciência da longevidade e inovação médica convergem em prática clínica sensata e prática." },
+      "philosophy": { "t": "Filosofia Clínica", "d": "Cuidado que começa pela escuta atenta, é guiado pela evidência e responde ao indivíduo — não às tendências." },
+      "evidence": { "t": "Cuidado Integrativo Baseado em Evidências", "d": "Abordagens integrativas sujeitas aos mesmos padrões de evidência e responsabilidade de qualquer outra área da medicina." },
+      "personalized": { "t": "Saúde Personalizada", "d": "Reconhecer que a biologia, o contexto e as prioridades de cada pessoa são distintos, e que o cuidado deve refletir isso." },
+      "prevention": { "t": "Prevenção e Longevidade", "d": "Uma visão de longo prazo da saúde — medir o que importa, agir cedo e priorizar a função sustentada." },
+      "innovation": { "t": "Inovação Médica", "d": "Uso ponderado de novos diagnósticos, terapias e tecnologias à medida que amadurecem em ferramentas clínicas responsáveis." },
+      "multilingual": { "t": "Cuidado Multilíngue", "d": "Comunicação clínica em inglês, espanhol, português e mandarim para que o idioma não fique entre pacientes e cuidado." },
+      "locations": { "t": "Locais e Estados Atendidos", "d": "Consultas presenciais em Colorado e Washington; telemedicina para pacientes elegíveis nos estados suportados." },
+      "education": { "t": "Compromisso com a Educação", "d": "Envolvimento ativo no ensino e na alfabetização em saúde pública por meio de palestras universitárias e mentoria clínica." },
+      "research": { "t": "Compromisso com a Pesquisa", "d": "Engajamento contínuo com pesquisa publicada, ensaios clínicos e revisão de evidências." },
+      "patient": { "t": "Experiência Centrada no Paciente", "d": "Um ambiente clínico calmo e respeitoso que valoriza o tempo, a clareza e a dignidade." }
+    }
+  },
   "admin": {
     "topbar": {
       "search": "Buscar pacientes, consultas, faturas…",
