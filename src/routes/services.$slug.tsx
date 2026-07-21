@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { services, articles } from "@/data/site";
 import { Container, PageHeader, Disclaimer } from "@/components/site/primitives";
+import { NotFoundInline } from "@/components/site/not-found-inline";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -22,10 +23,13 @@ export const Route = createFileRoute("/services/$slug")({
   },
   component: ServiceDetail,
   notFoundComponent: () => (
-    <Container className="py-24 text-center">
-      <h1 className="font-serif text-4xl text-navy">Service not found</h1>
-      <Link to="/services" className="mt-6 inline-block text-sm font-semibold border-b border-navy pb-1">Back to services</Link>
-    </Container>
+    <NotFoundInline
+      label="Service unavailable"
+      title="This service is not available"
+      description="The service you are looking for may have been moved or renamed. Explore our full list of clinical offerings."
+      backTo="/services"
+      backLabel="Back to services"
+    />
   ),
 });
 

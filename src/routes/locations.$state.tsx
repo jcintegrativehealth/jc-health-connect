@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Container, PageHeader } from "@/components/site/primitives";
+import { NotFoundInline } from "@/components/site/not-found-inline";
 
 const LOCATIONS: Record<string, { name: string; short: string; description: string }> = {
   colorado: { name: "Colorado", short: "CO", description: "In-person and telehealth care in Colorado." },
@@ -48,7 +49,15 @@ export const Route = createFileRoute("/locations/$state")({
       </div>
     );
   },
-  notFoundComponent: () => <Container className="py-24"><h1 className="font-serif text-4xl">Location not found</h1></Container>,
+  notFoundComponent: () => (
+    <NotFoundInline
+      label="Location unavailable"
+      title="This location is not listed"
+      description="We do not currently operate in this state. See where Dr. Chen is licensed to practice."
+      backTo="/locations/co"
+      backLabel="View locations"
+    />
+  ),
 });
 
 function Row({ label, value }: { label: string; value: string }) {
