@@ -40,6 +40,12 @@
       "four": { "t": "Sostener la Salud a Largo Plazo", "d": "Monitoreo continuo y cuidado iterativo para un bienestar sostenido." }
     }
   },
+  "conditions": {
+    "eyebrow": "Sección 08",
+    "title": "Condiciones y Objetivos de Salud",
+    "lede": "Áreas de atención que evaluamos y apoyamos desde una perspectiva integrativa y basada en evidencia.",
+    "viewAll": "Ver todas las condiciones"
+  },
   "footer": {
     "tagline": "Atención basada en evidencia para una vida más larga y saludable.",
     "columns": {

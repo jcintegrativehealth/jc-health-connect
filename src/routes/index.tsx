@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { services, articles, physicians, innovations, visitTypes } from "@/data/site";
+import { services, articles, conditions, innovations, visitTypes } from "@/data/site";
 import { Container } from "@/components/site/primitives";
 import { ArrowUpRight } from "lucide-react";
 import heroClinic from "@/assets/hero-clinic.jpg";
@@ -347,29 +347,26 @@ function HomePage() {
         </Container>
       </section>
 
-      {/* GUEST PHYSICIANS */}
+      {/* CONDITIONS TREATED */}
       <section className="py-28 bg-mist/40">
         <Container>
           <div className="flex items-end justify-between mb-12 gap-6 flex-wrap">
             <div>
-              <div className="eyebrow text-gold mb-4">Section 08</div>
-              <h2 className="font-serif text-4xl md:text-5xl text-navy">Guest Physicians</h2>
-              <p className="mt-4 text-navy/60 max-w-xl">A curated group of contributors from academic and clinical settings.</p>
+              <div className="eyebrow text-gold mb-4">{t("conditions.eyebrow")}</div>
+              <h2 className="font-serif text-4xl md:text-5xl text-navy">{t("conditions.title")}</h2>
+              <p className="mt-4 text-navy/60 max-w-xl">{t("conditions.lede")}</p>
             </div>
-            <Link to="/physicians" className="text-sm font-semibold text-navy border-b border-navy pb-1 hover:text-teal hover:border-teal transition-colors">
-              View Directory
+            <Link to="/conditions" className="text-sm font-semibold text-navy border-b border-navy pb-1 hover:text-teal hover:border-teal transition-colors">
+              {t("conditions.viewAll")}
             </Link>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {physicians.map((p) => (
-              <Link key={p.slug} to="/physicians/$slug" params={{ slug: p.slug }} className="bg-paper p-6 border border-navy/5 hover:border-teal transition-colors">
-                <div className="aspect-square w-full bg-linear-to-b from-navy/10 to-navy/5 mb-5 grid place-items-center">
-                  <span className="font-serif italic text-navy/25 text-xs">Portrait</span>
-                </div>
-                <div className="eyebrow text-teal mb-2">{p.specialty}</div>
-                <h3 className="text-base font-medium text-navy">{p.name}</h3>
-                <p className="text-xs text-navy/50 mt-2 line-clamp-2">{p.institution} · {p.location}</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-navy/10 ring-1 ring-navy/10">
+            {conditions.slice(0, 8).map((c, i) => (
+              <Link key={c.slug} to="/conditions/$slug" params={{ slug: c.slug }} className="group block bg-paper p-8 hover:bg-navy hover:text-paper transition-colors">
+                <div className="font-mono text-[10px] text-navy/40 group-hover:text-paper/50 mb-4">{String(i + 1).padStart(2, "0")}</div>
+                <h3 className="text-base font-medium text-navy group-hover:text-paper mb-2">{c.name}</h3>
+                <p className="text-sm text-navy/55 group-hover:text-paper/55 line-clamp-2">{c.summary}</p>
               </Link>
             ))}
           </div>
