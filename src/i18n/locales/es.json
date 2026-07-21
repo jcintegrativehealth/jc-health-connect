@@ -66,6 +66,25 @@
     "newsletterSubmit": "Suscribirse"
   },
   "demo": "Contenido de demostración — sin datos médicos ni personales reales.",
+  "about": {
+    "eyebrow": "Sobre la Clínica",
+    "title": "Un instituto de medicina integrativa, longevidad e innovación médica.",
+    "lede": "JC Integrative Health es una práctica clínica basada en evidencia, informada por la investigación y organizada en torno a la salud a largo plazo de cada paciente.",
+    "sections": {
+      "mission": { "t": "Misión", "d": "Brindar atención personalizada y basada en evidencia que apoye la salud a largo plazo, la prevención y la calidad de vida." },
+      "vision": { "t": "Visión", "d": "Un modelo de atención donde la medicina integrativa, la ciencia de la longevidad y la innovación médica convergen en una práctica clínica práctica y reflexiva." },
+      "philosophy": { "t": "Filosofía Clínica", "d": "Atención que comienza con una escucha atenta, se guía por la evidencia y responde al individuo — no a las tendencias." },
+      "evidence": { "t": "Atención Integrativa Basada en Evidencia", "d": "Enfoques integrativos sujetos a los mismos estándares de evidencia y responsabilidad que cualquier otra área de la medicina." },
+      "personalized": { "t": "Salud Personalizada", "d": "Reconocer que la biología, el contexto y las prioridades de cada persona son distintos, y la atención debe reflejarlo." },
+      "prevention": { "t": "Prevención y Longevidad", "d": "Una visión a largo plazo de la salud — medir lo que importa, actuar temprano y priorizar la función sostenida." },
+      "innovation": { "t": "Innovación Médica", "d": "Uso considerado de nuevos diagnósticos, terapias y tecnologías a medida que maduran como herramientas clínicas responsables." },
+      "multilingual": { "t": "Atención Multilingüe", "d": "Comunicación clínica en inglés, español, portugués y mandarín para que el idioma no se interponga entre pacientes y atención." },
+      "locations": { "t": "Ubicaciones y Estados Atendidos", "d": "Visitas presenciales en Colorado y Washington; telemedicina para pacientes elegibles en los estados admitidos." },
+      "education": { "t": "Compromiso con la Educación", "d": "Participación activa en la enseñanza y la alfabetización en salud pública mediante conferencias universitarias y mentoría clínica." },
+      "research": { "t": "Compromiso con la Investigación", "d": "Compromiso continuo con la investigación publicada, ensayos clínicos y revisión de evidencia." },
+      "patient": { "t": "Experiencia Centrada en el Paciente", "d": "Un entorno clínico tranquilo y respetuoso que valora el tiempo, la claridad y la dignidad." }
+    }
+  },
   "admin": {
     "topbar": {
       "search": "Buscar pacientes, citas, facturas…",
