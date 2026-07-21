@@ -8,6 +8,11 @@ export const Route = createFileRoute("/services/")({
     meta: [
       { title: "Services — JC Integrative Health" },
       { name: "description", content: "Integrative medicine, longevity, preventive health, and personalized care services." },
+      { property: "og:description", content: 'Integrative medicine, longevity, preventive health, and personalized care services.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Services — JC Integrative Health' },
+      { name: "twitter:description", content: 'Integrative medicine, longevity, preventive health, and personalized care services.' },
       { property: "og:title", content: "Services" },
       { property: "og:url", content: "/services" },
     ],

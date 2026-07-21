@@ -7,6 +7,12 @@ export const Route = createFileRoute("/conditions/")({
     meta: [
       { title: "Conditions & Health Goals — JC Integrative Health" },
       { name: "description", content: "Educational information on conditions and health goals commonly addressed at JC Integrative Health." },
+      { property: "og:title", content: 'Conditions & Health Goals — JC Integrative Health' },
+      { property: "og:description", content: 'Educational information on conditions and health goals commonly addressed at JC Integrative Health.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Conditions & Health Goals — JC Integrative Health' },
+      { name: "twitter:description", content: 'Educational information on conditions and health goals commonly addressed at JC Integrative Health.' },
       { property: "og:url", content: "/conditions" },
     ],
     links: [{ rel: "canonical", href: "/conditions" }],

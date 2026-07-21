@@ -6,6 +6,12 @@ export const Route = createFileRoute("/patient-resources")({
     meta: [
       { title: "Patient Resources — JC Integrative Health" },
       { name: "description", content: "New patient information, preparing for visits, forms, insurance, and more." },
+      { property: "og:title", content: 'Patient Resources — JC Integrative Health' },
+      { property: "og:description", content: 'New patient information, preparing for visits, forms, insurance, and more.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Patient Resources — JC Integrative Health' },
+      { name: "twitter:description", content: 'New patient information, preparing for visits, forms, insurance, and more.' },
       { property: "og:url", content: "/patient-resources" },
     ],
     links: [{ rel: "canonical", href: "/patient-resources" }],

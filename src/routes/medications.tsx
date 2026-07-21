@@ -7,6 +7,12 @@ export const Route = createFileRoute("/medications")({
     meta: [
       { title: "Medication Updates — JC Integrative Health" },
       { name: "description", content: "Educational summaries of new medications, FDA updates, and research pipelines." },
+      { property: "og:title", content: 'Medication Updates — JC Integrative Health' },
+      { property: "og:description", content: 'Educational summaries of new medications, FDA updates, and research pipelines.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Medication Updates — JC Integrative Health' },
+      { name: "twitter:description", content: 'Educational summaries of new medications, FDA updates, and research pipelines.' },
       { property: "og:url", content: "/medications" },
     ],
     links: [{ rel: "canonical", href: "/medications" }],

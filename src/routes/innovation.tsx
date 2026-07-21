@@ -9,6 +9,12 @@ export const Route = createFileRoute("/innovation")({
     meta: [
       { title: "Medical Innovation — JC Integrative Health" },
       { name: "description", content: "Innovation Radar: medical devices, wearables, AI, digital health, medications, clinical trials." },
+      { property: "og:title", content: 'Medical Innovation — JC Integrative Health' },
+      { property: "og:description", content: 'Innovation Radar: medical devices, wearables, AI, digital health, medications, clinical trials.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Medical Innovation — JC Integrative Health' },
+      { name: "twitter:description", content: 'Innovation Radar: medical devices, wearables, AI, digital health, medications, clinical trials.' },
       { property: "og:url", content: "/innovation" },
     ],
     links: [{ rel: "canonical", href: "/innovation" }],
