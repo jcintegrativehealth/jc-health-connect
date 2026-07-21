@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { NotFoundInline } from "@/components/site/not-found-inline";
 import { physicians, articles } from "@/data/site";
 import { Container, PageHeader } from "@/components/site/primitives";
 

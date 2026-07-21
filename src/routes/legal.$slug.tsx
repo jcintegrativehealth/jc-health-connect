@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { NotFoundInline } from "@/components/site/not-found-inline";
 import { Container, PageHeader, Disclaimer } from "@/components/site/primitives";
 
 const LEGAL: Record<string, { title: string; summary: string; body: string[] }> = {
