@@ -7,6 +7,12 @@ export const Route = createFileRoute("/physicians/")({
     meta: [
       { title: "Guest Physicians — JC Integrative Health" },
       { name: "description", content: "A curated group of physician contributors and editorial collaborators." },
+      { property: "og:title", content: 'Guest Physicians — JC Integrative Health' },
+      { property: "og:description", content: 'A curated group of physician contributors and editorial collaborators.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Guest Physicians — JC Integrative Health' },
+      { name: "twitter:description", content: 'A curated group of physician contributors and editorial collaborators.' },
       { property: "og:url", content: "/physicians" },
     ],
     links: [{ rel: "canonical", href: "/physicians" }],

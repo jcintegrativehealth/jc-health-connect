@@ -6,6 +6,12 @@ export const Route = createFileRoute("/telehealth")({
     meta: [
       { title: "Telehealth — JC Integrative Health" },
       { name: "description", content: "How telehealth visits work, states available, and preparation." },
+      { property: "og:title", content: 'Telehealth — JC Integrative Health' },
+      { property: "og:description", content: 'How telehealth visits work, states available, and preparation.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Telehealth — JC Integrative Health' },
+      { name: "twitter:description", content: 'How telehealth visits work, states available, and preparation.' },
       { property: "og:url", content: "/telehealth" },
     ],
     links: [{ rel: "canonical", href: "/telehealth" }],

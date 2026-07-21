@@ -9,6 +9,12 @@ export const Route = createFileRoute("/insights/")({
     meta: [
       { title: "Medical Insights — JC Integrative Health" },
       { name: "description", content: "Editorial reviews, clinical commentary, and evidence summaries." },
+      { property: "og:title", content: 'Medical Insights — JC Integrative Health' },
+      { property: "og:description", content: 'Editorial reviews, clinical commentary, and evidence summaries.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Medical Insights — JC Integrative Health' },
+      { name: "twitter:description", content: 'Editorial reviews, clinical commentary, and evidence summaries.' },
       { property: "og:url", content: "/insights" },
     ],
     links: [{ rel: "canonical", href: "/insights" }],

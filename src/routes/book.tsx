@@ -11,6 +11,12 @@ export const Route = createFileRoute("/book")({
     meta: [
       { title: "Book an Appointment — JC Integrative Health" },
       { name: "description", content: "Schedule an initial or follow-up visit — in-person or via telehealth." },
+      { property: "og:title", content: 'Book an Appointment — JC Integrative Health' },
+      { property: "og:description", content: 'Schedule an initial or follow-up visit — in-person or via telehealth.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Book an Appointment — JC Integrative Health' },
+      { name: "twitter:description", content: 'Schedule an initial or follow-up visit — in-person or via telehealth.' },
       { name: "robots", content: "noindex" },
       { property: "og:url", content: "/book" },
     ],

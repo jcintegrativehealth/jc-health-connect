@@ -8,6 +8,12 @@ export const Route = createFileRoute("/portal")({
     meta: [
       { title: "Patient Portal — JC Integrative Health" },
       { name: "description", content: "Patient portal dashboard (demo)." },
+      { property: "og:title", content: 'Patient Portal — JC Integrative Health' },
+      { property: "og:description", content: 'Patient portal dashboard (demo).' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Patient Portal — JC Integrative Health' },
+      { name: "twitter:description", content: 'Patient portal dashboard (demo).' },
       { name: "robots", content: "noindex" },
       { property: "og:url", content: "/portal" },
     ],

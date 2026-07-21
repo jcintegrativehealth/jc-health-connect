@@ -23,6 +23,12 @@ export const Route = createFileRoute("/faq")({
     meta: [
       { title: "FAQ — JC Integrative Health" },
       { name: "description", content: "Frequently asked questions about appointments, telehealth, languages, insurance, and more." },
+      { property: "og:title", content: 'FAQ — JC Integrative Health' },
+      { property: "og:description", content: 'Frequently asked questions about appointments, telehealth, languages, insurance, and more.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'FAQ — JC Integrative Health' },
+      { name: "twitter:description", content: 'Frequently asked questions about appointments, telehealth, languages, insurance, and more.' },
       { property: "og:url", content: "/faq" },
     ],
     links: [{ rel: "canonical", href: "/faq" }],

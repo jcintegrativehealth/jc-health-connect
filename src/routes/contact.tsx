@@ -7,6 +7,12 @@ export const Route = createFileRoute("/contact")({
     meta: [
       { title: "Contact — JC Integrative Health" },
       { name: "description", content: "Contact JC Integrative Health for patient, professional, media, and research inquiries." },
+      { property: "og:title", content: 'Contact — JC Integrative Health' },
+      { property: "og:description", content: 'Contact JC Integrative Health for patient, professional, media, and research inquiries.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Contact — JC Integrative Health' },
+      { name: "twitter:description", content: 'Contact JC Integrative Health for patient, professional, media, and research inquiries.' },
       { property: "og:url", content: "/contact" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],

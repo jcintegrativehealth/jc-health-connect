@@ -6,6 +6,11 @@ export const Route = createFileRoute("/dr-chen")({
     meta: [
       { title: "Dr. Jason Chen — JC Integrative Health" },
       { name: "description", content: "Dr. Jason Chen — physician in integrative medicine, university lecturer, and clinic director. Practicing in Colorado and Washington." },
+      { property: "og:description", content: 'Dr. Jason Chen — physician in integrative medicine, university lecturer, and clinic director. Practicing in Colorado and Washington.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Dr. Jason Chen — JC Integrative Health' },
+      { name: "twitter:description", content: 'Dr. Jason Chen — physician in integrative medicine, university lecturer, and clinic director. Practicing in Colorado and Washington.' },
       { property: "og:title", content: "Dr. Jason Chen" },
       { property: "og:url", content: "/dr-chen" },
     ],

@@ -6,6 +6,11 @@ export const Route = createFileRoute("/about")({
     meta: [
       { title: "About — JC Integrative Health" },
       { name: "description", content: "About JC Integrative Health: mission, philosophy, and commitment to evidence-based, personalized care." },
+      { property: "og:description", content: 'About JC Integrative Health: mission, philosophy, and commitment to evidence-based, personalized care.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'About — JC Integrative Health' },
+      { name: "twitter:description", content: 'About JC Integrative Health: mission, philosophy, and commitment to evidence-based, personalized care.' },
       { property: "og:title", content: "About — JC Integrative Health" },
       { property: "og:url", content: "/about" },
     ],

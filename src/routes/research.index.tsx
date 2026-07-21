@@ -8,6 +8,12 @@ export const Route = createFileRoute("/research/")({
     meta: [
       { title: "Research Hub — JC Integrative Health" },
       { name: "description", content: "Research library, reviews, and evidence summaries." },
+      { property: "og:title", content: 'Research Hub — JC Integrative Health' },
+      { property: "og:description", content: 'Research library, reviews, and evidence summaries.' },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: 'Research Hub — JC Integrative Health' },
+      { name: "twitter:description", content: 'Research library, reviews, and evidence summaries.' },
       { property: "og:url", content: "/research" },
     ],
     links: [{ rel: "canonical", href: "/research" }],
