@@ -66,5 +66,13 @@ export const Route = createFileRoute("/physicians/$slug")({
       </div>
     );
   },
-  notFoundComponent: () => <Container className="py-24"><h1 className="font-serif text-4xl">Physician not found</h1></Container>,
+  notFoundComponent: () => (
+    <NotFoundInline
+      label="Physician unavailable"
+      title="This profile is not available"
+      description="This physician is no longer listed. Explore our full team of clinicians."
+      backTo="/physicians"
+      backLabel="View physicians"
+    />
+  ),
 });

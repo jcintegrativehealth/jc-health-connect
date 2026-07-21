@@ -36,5 +36,13 @@ export const Route = createFileRoute("/conditions/$slug")({
       </div>
     );
   },
-  notFoundComponent: () => <Container className="py-24"><h1 className="font-serif text-4xl">Not found</h1></Container>,
+  notFoundComponent: () => (
+    <NotFoundInline
+      label="Condition unavailable"
+      title="This condition is not available"
+      description="The topic you are looking for may have been renamed. Explore our full list of conditions and health goals."
+      backTo="/conditions"
+      backLabel="Back to conditions"
+    />
+  ),
 });

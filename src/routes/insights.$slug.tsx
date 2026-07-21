@@ -30,7 +30,15 @@ export const Route = createFileRoute("/insights/$slug")({
     }],
   }) : ({ meta: [{ title: "Article" }, { name: "robots", content: "noindex" }] }),
   component: ArticleDetail,
-  notFoundComponent: () => <Container className="py-24"><h1 className="font-serif text-4xl">Article not found</h1></Container>,
+  notFoundComponent: () => (
+    <NotFoundInline
+      label="Article unavailable"
+      title="This article is not available"
+      description="The article you are looking for may have been unpublished or moved to another section."
+      backTo="/insights"
+      backLabel="Back to insights"
+    />
+  ),
 });
 
 function ArticleDetail() {

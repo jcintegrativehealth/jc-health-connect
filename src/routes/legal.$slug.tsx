@@ -92,5 +92,13 @@ export const Route = createFileRoute("/legal/$slug")({
       </div>
     );
   },
-  notFoundComponent: () => <Container className="py-24"><h1 className="font-serif text-4xl">Document not found</h1></Container>,
+  notFoundComponent: () => (
+    <NotFoundInline
+      label="Document unavailable"
+      title="This document is not available"
+      description="The policy or notice you are looking for may have been renamed. Return home or contact us for assistance."
+      backTo="/"
+      backLabel="Return home"
+    />
+  ),
 });

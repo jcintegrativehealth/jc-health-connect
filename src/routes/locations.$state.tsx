@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Container, PageHeader } from "@/components/site/primitives";
+import { NotFoundInline } from "@/components/site/not-found-inline";
 
 const LOCATIONS: Record<string, { name: string; short: string; description: string }> = {
   colorado: { name: "Colorado", short: "CO", description: "In-person and telehealth care in Colorado." },
@@ -57,7 +58,6 @@ export const Route = createFileRoute("/locations/$state")({
       backLabel="View locations"
     />
   ),
-});
 });
 
 function Row({ label, value }: { label: string; value: string }) {
