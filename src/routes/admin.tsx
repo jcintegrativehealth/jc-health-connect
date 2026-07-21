@@ -63,8 +63,16 @@ function AdminLayout() {
   const [notifOpen, setNotifOpen] = useState(false);
   const [instantOpen, setInstantOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const nav = useNavigate();
+  const { authed, ready } = useAdminAuth();
+  const isLoginRoute = pathname === "/admin/login";
 
   useEffect(() => { setMobileOpen(false); setCmdOpen(false); setNotifOpen(false); setInstantOpen(false); }, [pathname]);
+  useEffect(() => {
+    if (ready && !authed && !isLoginRoute) {
+      nav({ to: "/admin/login", search: { redirect: pathname }, replace: true });
+    }
+  }, [ready, authed, isLoginRoute, nav, pathname]);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); setCmdOpen((v) => !v); }
