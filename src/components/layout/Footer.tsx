@@ -61,6 +61,13 @@ export function Footer() {
             <Link to="/legal/$slug" params={{ slug: "medical-disclaimer" }} className="hover:text-paper">{t("footer.disclaimer")}</Link>
             <Link to="/legal/$slug" params={{ slug: "accessibility" }} className="hover:text-paper col-span-2 sm:col-span-1 md:col-span-auto">Accessibility</Link>
           </div>
+          {import.meta.env.DEV && (
+            <div className="mt-6 pt-4 border-t border-paper/10 flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.24em] text-gold/70">
+              <span className="h-1 w-1 rounded-full bg-gold/70" />
+              <Link to="/admin" className="hover:text-gold">Admin Preview · Development only</Link>
+            </div>
+          )}
+
         </div>
       </div>
     </footer>
