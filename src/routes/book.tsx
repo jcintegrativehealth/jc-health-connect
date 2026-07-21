@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { services, states, visitTypes } from "@/data/site";
-import { Container, PageHeader, Disclaimer, DemoBanner } from "@/components/site/primitives";
+import { Container, PageHeader, Disclaimer } from "@/components/site/primitives";
 import { useMemo, useState } from "react";
 import { Check } from "lucide-react";
+import { createAppointment } from "@/lib/appointmentStore";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/book")({
   head: () => ({
