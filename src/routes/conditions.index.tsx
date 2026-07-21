@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { conditions } from "@/data/site";
 import { Container, PageHeader } from "@/components/site/primitives";
 
@@ -17,9 +18,14 @@ export const Route = createFileRoute("/conditions/")({
     ],
     links: [{ rel: "canonical", href: "/conditions" }],
   }),
-  component: () => (
+  component: ConditionsIndex,
+});
+
+function ConditionsIndex() {
+  const { t } = useTranslation();
+  return (
     <div>
-      <PageHeader eyebrow="Conditions & Goals" title="Educational overviews of common health concerns." lede="Not a substitute for medical evaluation — these pages describe how we think about each area of care." />
+      <PageHeader eyebrow={t("conditions.index.eyebrow")} title={t("conditions.index.title")} lede={t("conditions.index.lede")} />
       <Container className="pb-24">
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-navy/10 ring-1 ring-navy/10 border-t border-navy/10">
           {conditions.map((c, i) => (
@@ -34,5 +40,6 @@ export const Route = createFileRoute("/conditions/")({
         </ul>
       </Container>
     </div>
-  ),
-});
+  );
+}
+
