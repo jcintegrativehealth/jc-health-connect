@@ -12,8 +12,8 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "JC Integrative Health — Integrative Medicine. Longevity. Medical Innovation." },
       { name: "description", content: "Personalized, evidence-based integrative medicine, longevity, and preventive care. Serving Colorado, Washington, and via telehealth." },
-      { property: "og:title", content: "JC Integrative Health" },
-      { property: "og:description", content: "Integrative medicine, longevity, and medical innovation." },
+      { property: "og:title", content: "JC Integrative Health — Integrative Medicine. Longevity. Medical Innovation." },
+      { property: "og:description", content: "Personalized, evidence-based integrative medicine, longevity, and preventive care. Serving Colorado, Washington, and via telehealth." },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
