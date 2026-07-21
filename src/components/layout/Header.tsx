@@ -14,7 +14,7 @@ const NAV: { to: string; key: string }[] = [
 
 // Full sitemap surfaces in the mobile drawer for discoverability,
 // mirroring the footer information architecture.
-type DrawerLink = { to: string; label: string };
+type DrawerLink = { to: string; label: string; disabled?: boolean };
 type DrawerGroup = { title: string; links: DrawerLink[] };
 
 const DRAWER_GROUPS: DrawerGroup[] = [
@@ -23,14 +23,14 @@ const DRAWER_GROUPS: DrawerGroup[] = [
     links: [
       { to: "/conditions", label: "Conditions" },
       { to: "/telehealth", label: "Telehealth" },
-      { to: "/medications", label: "Medications" },
+      { to: "/medications", label: "Medications", disabled: true },
     ],
   },
   {
     title: "Knowledge",
     links: [
-      { to: "/research", label: "Research Hub" },
-      { to: "/innovation", label: "Innovation Center" },
+      { to: "/research", label: "Research Hub", disabled: true },
+      { to: "/innovation", label: "Innovation Center", disabled: true },
     ],
   },
   {
