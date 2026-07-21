@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { articles, insightsCategories } from "@/data/site";
 import { Container, PageHeader } from "@/components/site/primitives";
 import botanical from "@/assets/hero-botanical.jpg";
