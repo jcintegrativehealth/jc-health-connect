@@ -198,12 +198,11 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
         <Link to="/" className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors">
           <ExternalLink size={14} strokeWidth={1.5} /> {!collapsed && t("admin.sidebar.backToSite")}
         </Link>
-        <button
-          onClick={() => { signOutAdmin(); toast.success("Signed out"); }}
-          className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors"
-        >
-          <LogOut size={14} strokeWidth={1.5} /> {!collapsed && "Sign out"}
-        </button>
+        <div className="w-full flex items-center gap-2 px-2 py-2 text-[10px] uppercase tracking-[0.2em] text-gold/80">
+          <span className="h-1.5 w-1.5 rounded-full bg-gold/70" />
+          {!collapsed && <span>Dev Preview</span>}
+        </div>
+
       </div>
     </>
   );
