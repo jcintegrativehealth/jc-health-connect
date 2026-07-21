@@ -22,7 +22,7 @@ export const Route = createFileRoute("/admin")({
   component: AdminLayout,
 });
 
-type Item = { to: string; label: string; icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>; group: string };
+type Item = { to: string; label: string; icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>; group: string; disabled?: boolean };
 
 const NAV: Item[] = [
   { to: "/admin", label: "overview", icon: LayoutDashboard, group: "practice" },
@@ -40,8 +40,8 @@ const NAV: Item[] = [
   { to: "/admin/billing", label: "billing", icon: Receipt, group: "relations" },
   { to: "/admin/crm", label: "crm", icon: Contact, group: "relations" },
 
-  { to: "/admin/research", label: "research", icon: Beaker, group: "editorial" },
-  { to: "/admin/insights", label: "insights", icon: Newspaper, group: "editorial" },
+  { to: "/admin/research", label: "research", icon: Beaker, group: "editorial", disabled: true },
+  { to: "/admin/insights", label: "insights", icon: Newspaper, group: "editorial", disabled: true },
   { to: "/admin/website", label: "website", icon: PanelsTopLeft, group: "editorial" },
   { to: "/admin/comments", label: "comments", icon: MessageSquareWarning, group: "editorial" },
 

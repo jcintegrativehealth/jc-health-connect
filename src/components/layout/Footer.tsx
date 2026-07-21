@@ -76,7 +76,17 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
   );
 }
 
-function FLink({ to, children }: { to: string; children: React.ReactNode }) {
+function FLink({ to, children, disabled }: { to: string; children: React.ReactNode; disabled?: boolean }) {
+  if (disabled) {
+    return (
+      <li>
+        <span className="text-paper/30 cursor-not-allowed flex items-center gap-2">
+          {children}
+          <span className="text-[10px] uppercase tracking-widest">Soon</span>
+        </span>
+      </li>
+    );
+  }
   return (
     <li>
       <Link to={to} className="hover:text-paper transition-colors">{children}</Link>
