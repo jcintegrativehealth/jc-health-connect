@@ -95,7 +95,21 @@
     "newsletterFirstName": "First Name",
     "newsletterEmail": "Email Address",
     "newsletterLanguage": "Preferred Language",
-    "newsletterSubmit": "Subscribe"
+    "newsletterSubmit": "Subscribe",
+    "links": {
+      "telehealth": "Telehealth",
+      "researchLibrary": "Research Library",
+      "medicationUpdates": "Medication Updates",
+      "patientResources": "Patient Resources",
+      "faq": "FAQ",
+      "conditions": "Conditions",
+      "guestPhysicians": "Guest Physicians",
+      "colorado": "Colorado",
+      "washington": "Washington",
+      "drChen": "Dr. Jason Chen",
+      "accessibility": "Accessibility",
+      "adminPreview": "Admin Preview · Development only"
+    }
   },
   "demo": "Demo content — not real medical or personal data.",
   "about": {

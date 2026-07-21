@@ -88,7 +88,21 @@
     "newsletterFirstName": "Nome",
     "newsletterEmail": "E-mail",
     "newsletterLanguage": "Idioma preferido",
-    "newsletterSubmit": "Inscrever-se"
+    "newsletterSubmit": "Inscrever-se",
+    "links": {
+      "telehealth": "Telemedicina",
+      "researchLibrary": "Biblioteca de Pesquisa",
+      "medicationUpdates": "Atualizações de Medicamentos",
+      "patientResources": "Recursos para Pacientes",
+      "faq": "Perguntas Frequentes",
+      "conditions": "Condições",
+      "guestPhysicians": "Médicos Convidados",
+      "colorado": "Colorado",
+      "washington": "Washington",
+      "drChen": "Dr. Jason Chen",
+      "accessibility": "Acessibilidade",
+      "adminPreview": "Prévia Admin · Apenas desenvolvimento"
+    }
   },
   "demo": "Conteúdo demonstrativo — sem dados médicos ou pessoais reais.",
   "about": {

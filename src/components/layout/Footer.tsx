@@ -25,30 +25,30 @@ export function Footer() {
 
           <FooterCol title={t("footer.columns.care")}>
             <FLink to="/services">{t("nav.services")}</FLink>
-            <FLink to="/telehealth">Telehealth</FLink>
+            <FLink to="/telehealth">{t("footer.links.telehealth")}</FLink>
             <FLink to="/book">{t("nav.book")}</FLink>
             <FLink to="/portal">{t("nav.portal")}</FLink>
           </FooterCol>
 
           <FooterCol title={t("footer.columns.research")}>
-            <FLink to="/research" disabled>Research Library</FLink>
+            <FLink to="/research" disabled>{t("footer.links.researchLibrary")}</FLink>
             <FLink to="/insights" disabled>{t("nav.insights")}</FLink>
             <FLink to="/innovation" disabled>{t("nav.innovation")}</FLink>
-            <FLink to="/medications" disabled>Medication Updates</FLink>
+            <FLink to="/medications" disabled>{t("footer.links.medicationUpdates")}</FLink>
           </FooterCol>
 
           <FooterCol title={t("footer.columns.resources")}>
-            <FLink to="/patient-resources">Patient Resources</FLink>
-            <FLink to="/faq">FAQ</FLink>
-            <FLink to="/conditions">Conditions</FLink>
-            <FLink to="/physicians">Guest Physicians</FLink>
+            <FLink to="/patient-resources">{t("footer.links.patientResources")}</FLink>
+            <FLink to="/faq">{t("footer.links.faq")}</FLink>
+            <FLink to="/conditions">{t("footer.links.conditions")}</FLink>
+            <FLink to="/physicians">{t("footer.links.guestPhysicians")}</FLink>
           </FooterCol>
 
           <FooterCol title={t("footer.columns.contact")}>
-            <FLink to="/locations/colorado">Colorado</FLink>
-            <FLink to="/locations/washington">Washington</FLink>
+            <FLink to="/locations/colorado">{t("footer.links.colorado")}</FLink>
+            <FLink to="/locations/washington">{t("footer.links.washington")}</FLink>
             <FLink to="/contact">{t("nav.contact")}</FLink>
-            <FLink to="/dr-chen">Dr. Jason Chen</FLink>
+            <FLink to="/dr-chen">{t("footer.links.drChen")}</FLink>
           </FooterCol>
         </div>
 
@@ -59,12 +59,12 @@ export function Footer() {
             <Link to="/legal/$slug" params={{ slug: "terms" }} className="hover:text-paper">{t("footer.terms")}</Link>
             <Link to="/legal/$slug" params={{ slug: "hipaa" }} className="hover:text-paper">{t("footer.hipaa")}</Link>
             <Link to="/legal/$slug" params={{ slug: "medical-disclaimer" }} className="hover:text-paper">{t("footer.disclaimer")}</Link>
-            <Link to="/legal/$slug" params={{ slug: "accessibility" }} className="hover:text-paper col-span-2 sm:col-span-1 md:col-span-auto">Accessibility</Link>
+            <Link to="/legal/$slug" params={{ slug: "accessibility" }} className="hover:text-paper col-span-2 sm:col-span-1 md:col-span-auto">{t("footer.links.accessibility")}</Link>
           </div>
           {import.meta.env.DEV && (
             <div className="mt-6 pt-4 border-t border-paper/10 flex items-center justify-center gap-2 text-[10px] uppercase tracking-[0.24em] text-gold/70">
               <span className="h-1 w-1 rounded-full bg-gold/70" />
-              <Link to="/admin" className="hover:text-gold">Admin Preview · Development only</Link>
+              <Link to="/admin" className="hover:text-gold">{t("footer.links.adminPreview")}</Link>
             </div>
           )}
 
