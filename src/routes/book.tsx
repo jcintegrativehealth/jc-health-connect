@@ -64,8 +64,7 @@ function BookPage() {
 
   return (
     <div>
-      <DemoBanner />
-      <PageHeader eyebrow="Appointments" title="Book an appointment" lede="A ten-step flow to schedule an in-person or telehealth visit. Demonstration only — no data is stored." />
+      <PageHeader eyebrow="Appointments" title="Book an appointment" lede="Request an in-person or telehealth visit. Our clinical team will confirm your appointment shortly." />
 
       <Container className="pb-24">
         <div className="grid lg:grid-cols-[220px_1fr] gap-12 border-t border-navy/10 pt-10">
