@@ -46,6 +46,12 @@
     "lede": "Áreas de atención que evaluamos y apoyamos desde una perspectiva integrativa y basada en evidencia.",
     "viewAll": "Ver todas las condiciones"
   },
+  "servicesIndex": {
+    "eyebrow": "Servicios",
+    "title": "Atención médica personalizada, organizada en torno a la salud a largo plazo.",
+    "lede": "Una visión integrada de la atención que abarca medicina integrativa, longevidad, prevención y tecnología médica.",
+    "learnMore": "Saber más"
+  },
   "footer": {
     "tagline": "Atención basada en evidencia para una vida más larga y saludable.",
     "columns": {
