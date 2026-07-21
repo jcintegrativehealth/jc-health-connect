@@ -2,6 +2,8 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageHeader, Btn, Panel } from "@/components/admin/primitives";
 import { patients, services } from "@/data/admin";
+import { createAppointment } from "@/lib/appointmentStore";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/appointments/new")({
   head: () => ({ meta: [{ title: "New appointment — JC Admin" }, { name: "robots", content: "noindex" }] }),
