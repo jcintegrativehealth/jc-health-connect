@@ -51,6 +51,20 @@
       "lede": "Not a substitute for medical evaluation — these pages describe how we think about each area of care."
     }
   },
+  "insightsIndex": {
+    "eyebrow": "Medical Insights",
+    "title": "Editorial writing on integrative medicine, longevity, and innovation.",
+    "lede": "Reviews and commentary informed by clinical practice and evidence.",
+    "issue": "Issue №{{no}}",
+    "updated": "Updated {{date}}",
+    "entries": "{{count}} entries",
+    "filedUnder": "Filed under",
+    "editorSelection": "Editor's Selection",
+    "minRead": "{{n}} min read",
+    "min": "{{n}} min",
+    "recent": "Recent essays",
+    "countOf": "{{shown}} of {{total}}"
+  },
   "servicesIndex": {
     "eyebrow": "Services",
     "title": "Personalized medical care, organized around long-term health.",

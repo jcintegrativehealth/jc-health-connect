@@ -51,6 +51,20 @@
       "lede": "No sustituye una evaluación médica — estas páginas describen cómo abordamos cada área de atención."
     }
   },
+  "insightsIndex": {
+    "eyebrow": "Perspectivas Médicas",
+    "title": "Escritos editoriales sobre medicina integrativa, longevidad e innovación.",
+    "lede": "Reseñas y comentarios basados en la práctica clínica y la evidencia.",
+    "issue": "Edición №{{no}}",
+    "updated": "Actualizado el {{date}}",
+    "entries": "{{count}} entradas",
+    "filedUnder": "Categoría",
+    "editorSelection": "Selección del editor",
+    "minRead": "{{n}} min de lectura",
+    "min": "{{n}} min",
+    "recent": "Ensayos recientes",
+    "countOf": "{{shown}} de {{total}}"
+  },
   "servicesIndex": {
     "eyebrow": "Servicios",
     "title": "Atención médica personalizada, organizada en torno a la salud a largo plazo.",
