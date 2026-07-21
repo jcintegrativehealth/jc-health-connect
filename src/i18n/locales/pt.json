@@ -51,6 +51,20 @@
       "lede": "Não substitui avaliação médica — estas páginas descrevem como abordamos cada área de cuidado."
     }
   },
+  "insightsIndex": {
+    "eyebrow": "Perspectivas Médicas",
+    "title": "Textos editoriais sobre medicina integrativa, longevidade e inovação.",
+    "lede": "Análises e comentários informados pela prática clínica e pela evidência.",
+    "issue": "Edição №{{no}}",
+    "updated": "Atualizado em {{date}}",
+    "entries": "{{count}} publicações",
+    "filedUnder": "Categoria",
+    "editorSelection": "Seleção do editor",
+    "minRead": "{{n}} min de leitura",
+    "min": "{{n}} min",
+    "recent": "Ensaios recentes",
+    "countOf": "{{shown}} de {{total}}"
+  },
   "servicesIndex": {
     "eyebrow": "Serviços",
     "title": "Cuidado médico personalizado, organizado em torno da saúde a longo prazo.",
