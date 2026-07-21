@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { services } from "@/data/site";
 import { Container, PageHeader } from "@/components/site/primitives";
 import { ArrowUpRight } from "lucide-react";
@@ -22,9 +23,10 @@ export const Route = createFileRoute("/services/")({
 });
 
 function ServicesIndex() {
+  const { t } = useTranslation();
   return (
     <div>
-      <PageHeader eyebrow="Services" title="Personalized medical care, organized around long-term health." lede="An integrated view of care spanning integrative medicine, longevity, prevention, and medical technology." />
+      <PageHeader eyebrow={t("servicesIndex.eyebrow")} title={t("servicesIndex.title")} lede={t("servicesIndex.lede")} />
       <Container className="pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-navy/10 ring-1 ring-navy/10 border-t border-navy/10">
           {services.map((s, i) => (
@@ -34,7 +36,7 @@ function ServicesIndex() {
               <p className="text-xs uppercase tracking-widest text-teal group-hover:text-gold mb-4">{s.short}</p>
               <p className="text-sm text-navy/60 group-hover:text-paper/60 line-clamp-3">{s.summary}</p>
               <div className="mt-6 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-teal group-hover:text-gold">
-                Learn more <ArrowUpRight size={14} />
+                {t("servicesIndex.learnMore")} <ArrowUpRight size={14} />
               </div>
             </Link>
           ))}

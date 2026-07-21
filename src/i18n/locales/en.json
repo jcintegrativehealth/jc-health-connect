@@ -46,6 +46,12 @@
     "lede": "Areas of care we evaluate and support through an integrative, evidence-based lens.",
     "viewAll": "View All Conditions"
   },
+  "servicesIndex": {
+    "eyebrow": "Services",
+    "title": "Personalized medical care, organized around long-term health.",
+    "lede": "An integrated view of care spanning integrative medicine, longevity, prevention, and medical technology.",
+    "learnMore": "Learn more"
+  },
   "footer": {
     "tagline": "Evidence-based care for a healthier, longer life.",
     "columns": {

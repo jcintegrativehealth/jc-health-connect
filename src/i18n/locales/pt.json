@@ -46,6 +46,12 @@
     "lede": "Áreas de cuidado que avaliamos e apoiamos por uma lente integrativa e baseada em evidências.",
     "viewAll": "Ver todas as condições"
   },
+  "servicesIndex": {
+    "eyebrow": "Serviços",
+    "title": "Cuidado médico personalizado, organizado em torno da saúde a longo prazo.",
+    "lede": "Uma visão integrada do cuidado abrangendo medicina integrativa, longevidade, prevenção e tecnologia médica.",
+    "learnMore": "Saber mais"
+  },
   "footer": {
     "tagline": "Cuidado baseado em evidências para uma vida mais longa e saudável.",
     "columns": {
