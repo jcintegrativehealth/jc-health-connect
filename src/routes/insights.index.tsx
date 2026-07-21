@@ -25,11 +25,14 @@ export const Route = createFileRoute("/insights/")({
 
 const COVERS = [botanical, clinic];
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
-}
+const DATE_LOCALES: Record<string, string> = { en: "en-US", es: "es-ES", pt: "pt-BR", zh: "zh-CN" };
 
 function InsightsIndex() {
+  const { t, i18n } = useTranslation();
+  const locale = DATE_LOCALES[i18n.language] ?? "en-US";
+  const formatDate = (iso: string) =>
+    new Date(iso).toLocaleDateString(locale, { month: "long", day: "numeric", year: "numeric" });
+
   const [featured, ...rest] = articles;
   const issueNo = String(articles.length).padStart(2, "0");
   const latest = formatDate(featured.date);
@@ -37,16 +40,16 @@ function InsightsIndex() {
   return (
     <div>
       <PageHeader
-        eyebrow="Medical Insights"
-        title="Editorial writing on integrative medicine, longevity, and innovation."
-        lede="Reviews and commentary informed by clinical practice and evidence."
+        eyebrow={t("insightsIndex.eyebrow")}
+        title={t("insightsIndex.title")}
+        lede={t("insightsIndex.lede")}
         meta={
           <>
-            <span>Issue №{issueNo}</span>
+            <span>{t("insightsIndex.issue", { no: issueNo })}</span>
             <span aria-hidden>·</span>
-            <span>Updated {latest}</span>
+            <span>{t("insightsIndex.updated", { date: latest })}</span>
             <span aria-hidden>·</span>
-            <span>{articles.length} entries</span>
+            <span>{t("insightsIndex.entries", { count: articles.length })}</span>
           </>
         }
       />
@@ -55,7 +58,7 @@ function InsightsIndex() {
       <Container className="pb-10">
         <div className="border-y border-navy/10 py-4 -mx-6 px-6 overflow-x-auto no-scrollbar">
           <div className="flex items-center gap-6 min-w-max">
-            <span className="eyebrow text-navy/45 shrink-0">Filed under</span>
+            <span className="eyebrow text-navy/45 shrink-0">{t("insightsIndex.filedUnder")}</span>
             {insightsCategories.map((c) => (
               <button
                 key={c}
@@ -86,14 +89,14 @@ function InsightsIndex() {
               <div className="absolute inset-0 bg-linear-to-t from-navy/40 via-navy/5 to-transparent" />
               <div className="absolute top-4 left-4 flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-paper">
                 <span className="h-px w-6 bg-gold" aria-hidden />
-                Editor's Selection
+                {t("insightsIndex.editorSelection")}
               </div>
             </div>
             <div className="flex flex-col justify-center py-2">
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-5 text-[10px] font-mono uppercase tracking-[0.2em] text-navy/50">
                 <span className="text-gold">{featured.category}</span>
                 <span aria-hidden>·</span>
-                <span>{featured.readMinutes} min read</span>
+                <span>{t("insightsIndex.minRead", { n: featured.readMinutes })}</span>
               </div>
               <h2 className="font-serif text-[1.75rem] sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.1] text-navy group-hover:text-academic transition-colors tracking-[-0.01em]">
                 {featured.title}
@@ -111,8 +114,10 @@ function InsightsIndex() {
       {/* Archive */}
       <Container className="pb-24">
         <div className="flex items-baseline justify-between mb-8 md:mb-10 pb-4 border-b border-navy/10">
-          <h2 className="eyebrow text-navy/60">Recent essays</h2>
-          <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-navy/40">{rest.length} of {articles.length}</span>
+          <h2 className="eyebrow text-navy/60">{t("insightsIndex.recent")}</h2>
+          <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-navy/40">
+            {t("insightsIndex.countOf", { shown: rest.length, total: articles.length })}
+          </span>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 md:gap-y-14">
           {rest.map((a, i) => (
@@ -135,7 +140,7 @@ function InsightsIndex() {
               <p className="mt-3 text-sm text-navy/65 leading-relaxed line-clamp-3">{a.summary}</p>
               <div className="mt-5 pt-4 border-t border-navy/10 flex items-center justify-between text-[11px] font-mono uppercase tracking-[0.16em] text-navy/45">
                 <span>{a.author}</span>
-                <span>{a.readMinutes} min</span>
+                <span>{t("insightsIndex.min", { n: a.readMinutes })}</span>
               </div>
             </Link>
           ))}
@@ -144,3 +149,4 @@ function InsightsIndex() {
     </div>
   );
 }
+
