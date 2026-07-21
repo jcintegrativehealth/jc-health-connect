@@ -11,7 +11,7 @@ import {
 import { clinic, notifications as demoNotifs, patients } from "@/data/admin";
 import { toast } from "sonner";
 import { Copy, Check, Loader2, AlertCircle, ExternalLink, Shield, Clock } from "lucide-react";
-import { signOutAdmin, useAdminAuth } from "@/lib/adminAuth";
+
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
