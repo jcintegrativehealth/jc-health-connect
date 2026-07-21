@@ -73,6 +73,25 @@
     "newsletterSubmit": "Subscribe"
   },
   "demo": "Demo content — not real medical or personal data.",
+  "about": {
+    "eyebrow": "About the Clinic",
+    "title": "An institute of integrative medicine, longevity, and medical innovation.",
+    "lede": "JC Integrative Health is a clinical practice grounded in evidence, informed by research, and organized around the long-term health of each patient.",
+    "sections": {
+      "mission": { "t": "Mission", "d": "To provide personalized, evidence-based care that supports long-term health, prevention, and quality of life." },
+      "vision": { "t": "Vision", "d": "A model of care in which integrative medicine, longevity science, and medical innovation converge into practical, thoughtful clinical practice." },
+      "philosophy": { "t": "Clinical Philosophy", "d": "Care that begins with careful listening, is guided by evidence, and remains responsive to the individual — not to trends." },
+      "evidence": { "t": "Evidence-Based Integrative Care", "d": "Integrative approaches held to the same standards of evidence and accountability as any other area of medicine." },
+      "personalized": { "t": "Personalized Health", "d": "Recognition that each person's biology, context, and priorities are different, and that care should reflect that." },
+      "prevention": { "t": "Prevention and Longevity", "d": "A long view of health — measuring what matters, acting early, and prioritizing sustained function." },
+      "innovation": { "t": "Medical Innovation", "d": "Considered use of new diagnostics, therapies, and technologies as they mature into responsible clinical tools." },
+      "multilingual": { "t": "Multilingual Care", "d": "Clinical communication in English, Spanish, Portuguese, and Mandarin so that language does not stand between patients and care." },
+      "locations": { "t": "Locations and States Served", "d": "In-person visits in Colorado and Washington; telehealth for eligible patients across supported states." },
+      "education": { "t": "Commitment to Education", "d": "Active involvement in teaching and public health literacy through university lectures and clinical mentorship." },
+      "research": { "t": "Commitment to Research", "d": "Continuous engagement with published research, clinical trials, and evidence review." },
+      "patient": { "t": "Patient-Centered Experience", "d": "A calm, respectful clinical environment that values time, clarity, and dignity." }
+    }
+  },
   "admin": {
     "topbar": {
       "search": "Search patients, appointments, invoices…",
