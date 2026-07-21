@@ -1,4 +1,4 @@
-import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SUPPORTED_LANGUAGES, type LangCode } from "@/i18n";
@@ -11,6 +11,7 @@ import {
 import { clinic, notifications as demoNotifs, patients } from "@/data/admin";
 import { toast } from "sonner";
 import { Copy, Check, Loader2, AlertCircle, ExternalLink, Shield, Clock } from "lucide-react";
+import { signOutAdmin, useAdminAuth } from "@/lib/adminAuth";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
