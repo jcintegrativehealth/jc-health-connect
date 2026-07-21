@@ -44,7 +44,12 @@
     "eyebrow": "Seção 08",
     "title": "Condições e Objetivos de Saúde",
     "lede": "Áreas de cuidado que avaliamos e apoiamos por uma lente integrativa e baseada em evidências.",
-    "viewAll": "Ver todas as condições"
+    "viewAll": "Ver todas as condições",
+    "index": {
+      "eyebrow": "Condições e Objetivos",
+      "title": "Panoramas educativos sobre preocupações de saúde comuns.",
+      "lede": "Não substitui avaliação médica — estas páginas descrevem como abordamos cada área de cuidado."
+    }
   },
   "servicesIndex": {
     "eyebrow": "Serviços",
