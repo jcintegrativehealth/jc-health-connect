@@ -149,6 +149,20 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
             {!collapsed && <div className="px-4 mb-2 text-[10px] uppercase tracking-[0.24em] text-navy/35 font-medium">{t(`admin.groups.${g}`)}</div>}
             {NAV.filter((i) => i.group === g).map((item) => {
               const active = isActive(item.to);
+              if (item.disabled) {
+                return (
+                  <span
+                    key={item.to}
+                    className="group flex items-center gap-3 px-4 py-2 text-sm text-navy/30 cursor-not-allowed"
+                    title="Coming soon"
+                  >
+                    <span className="inline-block h-4 w-0.5 -ml-4 bg-transparent" />
+                    <item.icon size={15} strokeWidth={1.5} className="shrink-0" />
+                    {!collapsed && <span className="truncate font-medium">{t(`admin.nav.${item.label}`)}</span>}
+                    {!collapsed && <span className="ml-auto text-[10px] uppercase tracking-widest text-navy/20">Soon</span>}
+                  </span>
+                );
+              }
               return (
                 <Link
                   key={item.to}
