@@ -31,10 +31,10 @@ export function Footer() {
           </FooterCol>
 
           <FooterCol title={t("footer.columns.research")}>
-            <FLink to="/research">Research Library</FLink>
-            <FLink to="/insights">{t("nav.insights")}</FLink>
-            <FLink to="/innovation">{t("nav.innovation")}</FLink>
-            <FLink to="/medications">Medication Updates</FLink>
+            <FLink to="/research" disabled>Research Library</FLink>
+            <FLink to="/insights" disabled>{t("nav.insights")}</FLink>
+            <FLink to="/innovation" disabled>{t("nav.innovation")}</FLink>
+            <FLink to="/medications" disabled>Medication Updates</FLink>
           </FooterCol>
 
           <FooterCol title={t("footer.columns.resources")}>
