@@ -168,14 +168,14 @@ function BookPage() {
                     </div>
                   ))}
                 </dl>
-                <div className="mt-6"><Disclaimer>Demonstration flow only — no appointment is created and no personal data is stored.</Disclaimer></div>
+                <div className="mt-6"><Disclaimer>By submitting this request you agree to be contacted by the clinical team to confirm your visit.</Disclaimer></div>
               </div>
             )}
             {step === 9 && (
               <div className="max-w-xl">
                 <div className="w-14 h-14 rounded-full bg-teal/10 grid place-items-center mb-6"><Check className="text-teal" /></div>
                 <h2 className="font-serif text-3xl text-navy">Request received</h2>
-                <p className="mt-3 text-navy/65">Your appointment request has been recorded (demo). In production, a confirmation email would be sent and the visit would appear in your Patient Portal.</p>
+                <p className="mt-3 text-navy/65">Your appointment request has been submitted to the clinical team. You’ll receive a confirmation once it’s reviewed. It is now visible in the admin dashboard.</p>
                 <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
                   <Link to="/portal" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic transition-colors">Open Patient Portal</Link>
                   <Link to="/" className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-3 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.18em] hover:bg-navy/5 transition-colors">Return home</Link>
@@ -186,8 +186,40 @@ function BookPage() {
             {step < 9 && (
               <div className="mt-12 flex flex-col-reverse sm:flex-row justify-between gap-3 border-t border-navy/10 pt-6">
                 <button onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0} className="w-full sm:w-auto px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-navy/60 disabled:opacity-30 hover:text-navy transition-colors">← Back</button>
-                <button onClick={() => canNext && setStep((s) => s + 1)} disabled={!canNext} className="w-full sm:w-auto px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] disabled:opacity-30 hover:bg-academic transition-colors">
-                  {step === 8 ? "Confirm" : "Continue →"}
+                <button
+                  onClick={() => {
+                    if (!canNext) return;
+                    if (step === 8) {
+                      try {
+                        createAppointment({
+                          source: "public",
+                          date: f.date,
+                          time: f.time,
+                          patient: `${f.firstName} ${f.lastName}`.trim() || f.email,
+                          email: f.email,
+                          phone: f.phone,
+                          type: visitTypes.find((v) => v.slug === f.visitType)?.name ?? f.visitType,
+                          service: services.find((s) => s.slug === f.service)?.name ?? f.service,
+                          state: states.find((s) => s.slug === f.state)?.name ?? f.state,
+                          lang: f.language,
+                          format: f.mode === "telehealth" ? "Telehealth" : "In-person",
+                          duration: 45,
+                          status: "Pending",
+                          pay: "Pending",
+                          notes: f.notes,
+                        });
+                        toast.success("Appointment request submitted");
+                      } catch {
+                        toast.error("Could not submit request. Please try again.");
+                        return;
+                      }
+                    }
+                    setStep((s) => s + 1);
+                  }}
+                  disabled={!canNext}
+                  className="w-full sm:w-auto px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] disabled:opacity-30 hover:bg-academic transition-colors"
+                >
+                  {step === 8 ? "Confirm request" : "Continue →"}
                 </button>
               </div>
             )}
