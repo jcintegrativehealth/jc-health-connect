@@ -210,8 +210,14 @@ function SidebarBody({ collapsed, isActive, onCollapse }: { collapsed: boolean; 
           </button>
         )}
         <Link to="/" className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors">
-          <LogOut size={14} strokeWidth={1.5} /> {!collapsed && t("admin.sidebar.backToSite")}
+          <ExternalLink size={14} strokeWidth={1.5} /> {!collapsed && t("admin.sidebar.backToSite")}
         </Link>
+        <button
+          onClick={() => { signOutAdmin(); toast.success("Signed out"); }}
+          className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors"
+        >
+          <LogOut size={14} strokeWidth={1.5} /> {!collapsed && "Sign out"}
+        </button>
       </div>
     </>
   );
