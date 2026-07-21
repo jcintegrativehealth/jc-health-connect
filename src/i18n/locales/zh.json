@@ -51,6 +51,20 @@
       "lede": "本页面不替代医学评估 — 仅说明我们如何看待每个诊疗领域。"
     }
   },
+  "insightsIndex": {
+    "eyebrow": "医学洞见",
+    "title": "关于整合医学、长寿与创新的编辑文章。",
+    "lede": "由临床实践与循证依据支持的评论与综述。",
+    "issue": "第 {{no}} 期",
+    "updated": "更新于 {{date}}",
+    "entries": "{{count}} 篇文章",
+    "filedUnder": "归类",
+    "editorSelection": "编辑精选",
+    "minRead": "阅读约 {{n}} 分钟",
+    "min": "{{n}} 分钟",
+    "recent": "近期文章",
+    "countOf": "共 {{total}} 篇中的 {{shown}} 篇"
+  },
   "servicesIndex": {
     "eyebrow": "服务",
     "title": "以长期健康为核心的个性化医疗服务。",
