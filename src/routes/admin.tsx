@@ -84,6 +84,21 @@ function AdminLayout() {
 
   const isActive = (to: string) => to === "/admin" ? pathname === "/admin" : pathname === to || pathname.startsWith(to + "/");
 
+  // Render login route without the admin shell.
+  if (isLoginRoute) {
+    return <Outlet />;
+  }
+
+  // Hold the shell while the gate resolves / redirects.
+  if (!ready || !authed) {
+    return (
+      <div className="min-h-screen bg-paper text-navy grid place-items-center">
+        <div className="text-[11px] uppercase tracking-widest text-navy/45">Verifying session…</div>
+      </div>
+    );
+  }
+
+
   return (
     <div className="min-h-screen bg-paper text-navy">
       {/* Sidebar — desktop */}
