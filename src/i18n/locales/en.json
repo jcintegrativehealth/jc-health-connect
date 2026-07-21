@@ -40,6 +40,12 @@
       "four": { "t": "Support Long-Term Health", "d": "Continuous monitoring and iterative care for sustained wellbeing." }
     }
   },
+  "conditions": {
+    "eyebrow": "Section 08",
+    "title": "Conditions & Health Goals",
+    "lede": "Areas of care we evaluate and support through an integrative, evidence-based lens.",
+    "viewAll": "View All Conditions"
+  },
   "footer": {
     "tagline": "Evidence-based care for a healthier, longer life.",
     "columns": {

@@ -40,6 +40,12 @@
       "four": { "t": "Sustentar a Saúde no Longo Prazo", "d": "Monitoramento contínuo e cuidado iterativo para bem-estar sustentado." }
     }
   },
+  "conditions": {
+    "eyebrow": "Seção 08",
+    "title": "Condições e Objetivos de Saúde",
+    "lede": "Áreas de cuidado que avaliamos e apoiamos por uma lente integrativa e baseada em evidências.",
+    "viewAll": "Ver todas as condições"
+  },
   "footer": {
     "tagline": "Cuidado baseado em evidências para uma vida mais longa e saudável.",
     "columns": {
