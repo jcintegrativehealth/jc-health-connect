@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Container, PageHeader, Disclaimer } from "@/components/site/primitives";
+import { SubmitCta } from "@/components/site/cta";
 import { useState } from "react";
 
 export const Route = createFileRoute("/contact")({
@@ -61,7 +62,7 @@ function ContactPage() {
             </label>
             <Disclaimer>Do not submit sensitive medical information through this form. For medical emergencies, call 911 or your local emergency service.</Disclaimer>
             <div className="flex flex-col sm:flex-row justify-center pt-2">
-              <button type="submit" className="w-full sm:w-auto px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] hover:bg-academic transition-colors">Send Message</button>
+              <SubmitCta>Send Message</SubmitCta>
             </div>
           </form>
 

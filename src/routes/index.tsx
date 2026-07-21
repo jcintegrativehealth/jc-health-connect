@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { services, articles, conditions, innovations, visitTypes } from "@/data/site";
 import { Container } from "@/components/site/primitives";
+import { PrimaryCta, SecondaryCta } from "@/components/site/cta";
 import { ArrowUpRight } from "lucide-react";
 import heroClinic from "@/assets/hero-clinic.jpg";
 import heroBotanical from "@/assets/hero-botanical.jpg";
@@ -92,12 +93,8 @@ function HomePage() {
               </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-                <Link to="/book" className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.2em] ring-1 ring-gold/50 hover:bg-academic transition-colors group">
-                  {t("hero.bookCta")}
-                </Link>
-                <Link to="/about" className="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.2em] hover:bg-navy/5 transition-colors">
-                  {t("hero.exploreCta")}
-                </Link>
+                <PrimaryCta to="/book">{t("hero.bookCta")}</PrimaryCta>
+                <SecondaryCta to="/about">{t("hero.exploreCta")}</SecondaryCta>
               </div>
             </div>
 
@@ -438,8 +435,8 @@ function HomePage() {
               Take the next step toward more personalized care.
             </h2>
             <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-              <Link to="/book" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.2em] hover:bg-academic">Book Appointment</Link>
-              <Link to="/contact" className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.2em] hover:bg-navy/5">Contact the Clinic</Link>
+              <PrimaryCta to="/book">Book Appointment</PrimaryCta>
+              <SecondaryCta to="/contact">Contact the Clinic</SecondaryCta>
             </div>
           </div>
         </Container>
