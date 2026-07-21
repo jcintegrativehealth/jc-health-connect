@@ -85,6 +85,42 @@
       "patient": { "t": "Experiência Centrada no Paciente", "d": "Um ambiente clínico calmo e respeitoso que valoriza o tempo, a clareza e a dignidade." }
     }
   },
+  "contact": {
+    "eyebrow": "Contato",
+    "title": "Como podemos ajudar?",
+    "lede": "Escolha o tipo de solicitação que melhor corresponde ao seu pedido. Este formulário não é monitorado para emergências médicas.",
+    "success": "Obrigado. Sua mensagem foi recebida (demo). Respondemos a solicitações legítimas em poucos dias úteis.",
+    "fields": {
+      "name": "Nome",
+      "email": "E-mail",
+      "phone": "Telefone",
+      "language": "Idioma preferido",
+      "state": "Estado",
+      "inquiry": "Tipo de solicitação",
+      "message": "Mensagem"
+    },
+    "languages": { "en": "Inglês", "es": "Espanhol", "pt": "Português", "zh": "Mandarim" },
+    "states": { "co": "Colorado", "wa": "Washington", "other": "Outro / Não se aplica" },
+    "inquiries": {
+      "patient": "Solicitação de paciente",
+      "appointment": "Dúvida sobre consulta",
+      "professional": "Colaboração profissional",
+      "research": "Pesquisa",
+      "speaking": "Palestra",
+      "media": "Imprensa",
+      "general": "Contato geral"
+    },
+    "consent": "Autorizo o contato sobre minha solicitação e entendo que este formulário não é monitorado para emergências.",
+    "disclaimer": "Não envie informações médicas sensíveis por este formulário. Em emergências médicas, ligue 911 ou o serviço local.",
+    "submit": "Enviar mensagem",
+    "aside": {
+      "patient": { "t": "Suporte ao paciente", "d": "Dúvidas sobre consultas, portal e faturamento." },
+      "professional": { "t": "Solicitações profissionais", "d": "Colaborações clínicas e médicos convidados." },
+      "media": { "t": "Imprensa", "d": "Entrevistas e mídia." },
+      "education": { "t": "Educação e palestras", "d": "Palestras, ensino e eventos." },
+      "research": { "t": "Colaboração em pesquisa", "d": "Parcerias acadêmicas e de pesquisa clínica." }
+    }
+  },
   "admin": {
     "topbar": {
       "search": "Buscar pacientes, consultas, faturas…",
