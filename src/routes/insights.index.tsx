@@ -74,17 +74,13 @@ function InsightsIndex() {
 
       {/* Featured */}
       <Container className="pb-16 md:pb-20">
-        <Link
-          to="/insights/$slug"
-          params={{ slug: featured.slug }}
-          className="group block"
-        >
+        <article className="group block">
           <div className="grid lg:grid-cols-[1.05fr_1fr] gap-8 md:gap-12 items-stretch">
             <div className="relative aspect-[5/4] md:aspect-[4/3] overflow-hidden bg-mist">
               <img
                 src={botanical}
                 alt=""
-                className="absolute inset-0 h-full w-full object-cover opacity-90 group-hover:scale-[1.02] transition-transform duration-[1200ms] ease-out"
+                className="absolute inset-0 h-full w-full object-cover opacity-90"
               />
               <div className="absolute inset-0 bg-linear-to-t from-navy/40 via-navy/5 to-transparent" />
               <div className="absolute top-4 left-4 flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-paper">
@@ -98,7 +94,7 @@ function InsightsIndex() {
                 <span aria-hidden>·</span>
                 <span>{t("insightsIndex.minRead", { n: featured.readMinutes })}</span>
               </div>
-              <h2 className="font-serif text-[1.75rem] sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.1] text-navy group-hover:text-academic transition-colors tracking-[-0.01em]">
+              <h2 className="font-serif text-[1.75rem] sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.1] text-navy tracking-[-0.01em]">
                 {featured.title}
               </h2>
               <p className="mt-5 text-navy/70 leading-relaxed max-w-xl">{featured.summary}</p>
@@ -108,7 +104,7 @@ function InsightsIndex() {
               </div>
             </div>
           </div>
-        </Link>
+        </article>
       </Container>
 
       {/* Archive */}
