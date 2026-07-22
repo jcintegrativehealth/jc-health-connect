@@ -117,12 +117,12 @@ function InsightsIndex() {
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 md:gap-y-14">
           {rest.map((a, i) => (
-            <Link key={a.slug} to="/insights/$slug" params={{ slug: a.slug }} className="group block">
+            <article key={a.slug} className="group block">
               <div className="relative aspect-[4/3] overflow-hidden bg-mist mb-5">
                 <img
                   src={COVERS[i % COVERS.length]}
                   alt=""
-                  className="absolute inset-0 h-full w-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-[900ms] ease-out"
+                  className="absolute inset-0 h-full w-full object-cover opacity-85"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-navy/25 to-transparent" />
               </div>
@@ -130,7 +130,7 @@ function InsightsIndex() {
                 <span className="font-mono text-navy/35">{String(i + 1).padStart(2, "0")}</span>
                 <span>{a.category}</span>
               </div>
-              <h3 className="font-serif text-xl md:text-2xl leading-[1.2] text-navy group-hover:text-academic transition-colors tracking-[-0.005em]">
+              <h3 className="font-serif text-xl md:text-2xl leading-[1.2] text-navy tracking-[-0.005em]">
                 {a.title}
               </h3>
               <p className="mt-3 text-sm text-navy/65 leading-relaxed line-clamp-3">{a.summary}</p>
@@ -138,7 +138,7 @@ function InsightsIndex() {
                 <span>{a.author}</span>
                 <span>{t("insightsIndex.min", { n: a.readMinutes })}</span>
               </div>
-            </Link>
+            </article>
           ))}
         </div>
       </Container>
