@@ -21,6 +21,8 @@ type Room = {
   createdAt: string;
   expiresIn: number; // minutes
   status: "Waiting" | "Joined" | "Ended";
+  provider: "JC Secure" | "Google Meet" | "Zoom" | "Microsoft Teams" | "Doxy.me" | "Other";
+  externalLink?: string;
 };
 
 function makeRoomId() {
