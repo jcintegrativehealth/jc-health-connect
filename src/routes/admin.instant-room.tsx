@@ -308,3 +308,28 @@ function ShareBtn({ icon, label, onClick }: { icon: React.ReactNode; label: stri
     </button>
   );
 }
+
+function Select({
+  value,
+  onChange,
+  children,
+  className = "",
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`relative ${className}`}>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full h-10 border border-navy/15 bg-card pl-3 pr-9 text-sm text-navy outline-none focus:border-teal appearance-none cursor-pointer"
+      >
+        {children}
+      </select>
+      <ChevronDown size={14} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-navy/50" />
+    </div>
+  );
+}
