@@ -46,6 +46,8 @@ function InstantRoom() {
   const [language, setLanguage] = useState("English");
   const [expires, setExpires] = useState(120);
   const [note, setNote] = useState("");
+  const [provider, setProvider] = useState<"JC Secure" | "Google Meet" | "Zoom" | "Microsoft Teams" | "Doxy.me" | "Other">("JC Secure");
+  const [externalLink, setExternalLink] = useState("");
   const [created, setCreated] = useState<Room | null>(null);
   const [copied, setCopied] = useState(false);
 
