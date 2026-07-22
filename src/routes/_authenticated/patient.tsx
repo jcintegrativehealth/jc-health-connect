@@ -1,55 +1,54 @@
-import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import {
-  Home, Calendar, HeartPulse, FlaskConical, ClipboardList, Pill, MessageSquare,
-  FileText, ClipboardCheck, Receipt, Sparkles, BookOpen, Bell, User, HelpCircle,
-  Search, Menu, X, Globe, ChevronRight, Video,
+  Home, Calendar, User, Menu, X, ChevronRight,
 } from "lucide-react";
+import { useMyProfile, displayName, initials } from "@/lib/profile";
 
 export const Route = createFileRoute("/_authenticated/patient")({
   head: () => ({
     meta: [
       { title: "Patient Portal — JC Integrative Health" },
-      { name: "description", content: "Private patient portal (demonstration)." },
+      { name: "description", content: "Private patient portal." },
       { name: "robots", content: "noindex,nofollow" },
     ],
   }),
   component: PatientLayout,
 });
 
+// Phase-1 portal: only sections backed by real data are exposed. Other
+// clinical areas (labs, care plans, medications, messages, documents, forms,
+// billing) return once their backend + admin entry surfaces ship.
 const NAV = [
   { to: "/patient", label: "Home", icon: Home, exact: true },
   { to: "/patient/appointments", label: "Appointments", icon: Calendar },
-  { to: "/patient/telehealth", label: "Telehealth", icon: Video },
-  { to: "/patient/health", label: "My Health", icon: HeartPulse },
-  { to: "/patient/labs", label: "Lab Results", icon: FlaskConical },
-  { to: "/patient/care-plan", label: "Care Plan", icon: ClipboardList },
-  { to: "/patient/medications", label: "Medications", icon: Pill },
-  { to: "/patient/messages", label: "Messages", icon: MessageSquare },
-  { to: "/patient/documents", label: "Documents", icon: FileText },
-  { to: "/patient/forms", label: "Forms", icon: ClipboardCheck },
-  { to: "/patient/billing", label: "Billing", icon: Receipt },
-  { to: "/patient/programs", label: "Health Programs", icon: Sparkles },
-  { to: "/patient/education", label: "Education", icon: BookOpen },
-  { to: "/patient/notifications", label: "Notifications", icon: Bell },
   { to: "/patient/profile", label: "Profile", icon: User },
-  { to: "/patient/help", label: "Help & Support", icon: HelpCircle },
 ] as const;
 
 const BOTTOM_NAV = [
   { to: "/patient", label: "Home", icon: Home, exact: true },
   { to: "/patient/appointments", label: "Visits", icon: Calendar },
-  { to: "/patient/messages", label: "Inbox", icon: MessageSquare },
-  { to: "/patient/care-plan", label: "Care", icon: ClipboardList },
+  { to: "/patient/profile", label: "Profile", icon: User },
 ] as const;
+
+// Sections that are live in phase 1. Anything else under /patient/* still has a
+// mock route file (unlinked from the menu) — send those back to Home so real
+// patients never land on illustrative clinical data by direct URL.
+const ALLOWED_PREFIXES = ["/patient/appointments", "/patient/profile"];
 
 function PatientLayout() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+  const { profile } = useMyProfile();
 
   useEffect(() => setDrawerOpen(false), [pathname]);
+
+  useEffect(() => {
+    const allowed = pathname === "/patient" || ALLOWED_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + "/"));
+    if (!allowed) navigate({ to: "/patient", replace: true });
+  }, [pathname, navigate]);
 
   const active = (to: string, exact?: boolean) =>
     exact ? pathname === to : pathname === to || pathname.startsWith(to + "/");
@@ -95,6 +94,12 @@ function PatientLayout() {
           <Link to="/" className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors">
             ← Back to site
           </Link>
+          <button
+            onClick={async () => { const { signOut } = await import("@/lib/auth"); await signOut(); window.location.assign("/portal"); }}
+            className="w-full flex items-center gap-3 px-2 py-2 text-[11px] uppercase tracking-widest text-navy/45 hover:text-navy transition-colors"
+          >
+            {collapsed ? "⎋" : "Sign out"}
+          </button>
         </div>
       </aside>
 
@@ -134,34 +139,13 @@ function PatientLayout() {
               <Menu size={18} strokeWidth={1.5} />
             </button>
 
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="hidden md:flex items-center gap-2 h-9 border border-navy/10 bg-card px-3 min-w-0 flex-1 max-w-md text-navy/45 hover:border-navy/25 transition-colors"
-            >
-              <Search size={13} strokeWidth={1.5} />
-              <span className="text-sm truncate">Search appointments, labs, documents…</span>
-            </button>
-
             <PageTitle />
 
             <div className="ml-auto flex items-center gap-1 md:gap-1.5">
-              <button onClick={() => setSearchOpen(true)} className="md:hidden h-9 w-9 grid place-items-center text-navy/55 hover:text-navy" aria-label="Search"><Search size={16} strokeWidth={1.5} /></button>
-
-              <Link to="/patient/notifications" className="relative h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label="Notifications">
-                <Bell size={16} strokeWidth={1.5} />
-                <span className="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-gold" />
-              </Link>
-
-              <Link to="/patient/help" className="h-9 w-9 grid place-items-center text-navy/55 hover:text-navy transition-colors" aria-label="Help"><HelpCircle size={15} strokeWidth={1.5} /></Link>
-
-              <div className="hidden md:inline-flex items-center gap-1 h-9 border border-navy/10 px-2 text-[11px] uppercase tracking-widest text-navy/50">
-                <Globe size={12} strokeWidth={1.5} className="mr-1" /> EN
-              </div>
-
-              <Link to="/patient/profile" className="flex items-center gap-2 h-9 pl-2 pr-3 border-l border-navy/8 ml-1">
-                <div className="h-7 w-7 rounded-full border border-navy/15 grid place-items-center text-[10px] font-semibold text-navy bg-paper">EC</div>
+              <Link to="/patient/profile" className="flex items-center gap-2 h-9 pl-2 pr-3">
+                <div className="h-7 w-7 rounded-full border border-navy/15 grid place-items-center text-[10px] font-semibold text-navy bg-paper">{initials(profile)}</div>
                 <div className="hidden sm:block leading-tight">
-                  <div className="text-xs font-medium text-navy">Emily Carter</div>
+                  <div className="text-xs font-medium text-navy">{displayName(profile) || "Patient"}</div>
                   <div className="text-[10px] uppercase tracking-widest text-navy/40">Patient</div>
                 </div>
               </Link>
@@ -174,12 +158,12 @@ function PatientLayout() {
         </main>
 
         <footer className="border-t border-navy/8 mt-12 py-5 px-5 md:px-10 flex flex-col md:flex-row justify-between gap-2 text-[11px] uppercase tracking-widest text-navy/40">
-          <span>© {new Date().getFullYear()} JC Integrative Health · Patient Portal (demo)</span>
+          <span>© {new Date().getFullYear()} JC Integrative Health · Patient Portal</span>
           <span>Not for emergencies · Call 911</span>
         </footer>
 
         {/* Mobile bottom nav */}
-        <nav className="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-paper/95 backdrop-blur border-t border-navy/10 grid grid-cols-5">
+        <nav className="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-paper/95 backdrop-blur border-t border-navy/10 grid grid-cols-3">
           {BOTTOM_NAV.map((n) => {
             const isActive = active(n.to, "exact" in n && n.exact);
             return (
@@ -190,14 +174,8 @@ function PatientLayout() {
               </Link>
             );
           })}
-          <button onClick={() => setDrawerOpen(true)} className="flex flex-col items-center justify-center py-2 gap-1 text-[10px] text-navy/50">
-            <Menu size={17} strokeWidth={1.6} />
-            <span>More</span>
-          </button>
         </nav>
       </div>
-
-      {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
     </div>
   );
 }
@@ -209,46 +187,6 @@ function PageTitle() {
     <div className="hidden lg:flex items-center gap-2 text-navy/45 text-[11px] font-mono uppercase tracking-[0.2em] pl-1">
       <ChevronRight size={12} className="text-navy/25" />
       <span>{match?.label ?? "Portal"}</span>
-    </div>
-  );
-}
-
-function SearchOverlay({ onClose }: { onClose: () => void }) {
-  const [q, setQ] = useState("");
-  const groups: { title: string; items: { label: string; to: string }[] }[] = [
-    { title: "Appointments", items: [{ label: "Follow-up · Jul 24", to: "/patient/appointments/apt-2026-0917" }, { label: "Longevity review · Aug 14", to: "/patient/appointments/apt-2026-1105" }] },
-    { title: "Lab Results", items: [{ label: "Comprehensive Metabolic Panel", to: "/patient/labs/lab-metab-jul26" }, { label: "Advanced Lipid Panel", to: "/patient/labs/lab-lipid-jun26" }] },
-    { title: "Documents", items: [{ label: "Care Plan v3", to: "/patient/documents" }, { label: "Visit summary Jul 02", to: "/patient/documents" }] },
-    { title: "Care Plan", items: [{ label: "Metabolic Reset & Longevity Foundation", to: "/patient/care-plan" }] },
-    { title: "Messages", items: [{ label: "Your July metabolic panel", to: "/patient/messages" }] },
-    { title: "Billing", items: [{ label: "INV-2026-0501", to: "/patient/billing" }] },
-  ]
-    .map((g) => ({ ...g, items: g.items.filter((i) => !q || i.label.toLowerCase().includes(q.toLowerCase())) }))
-    .filter((g) => g.items.length);
-
-  return (
-    <div className="fixed inset-0 z-[60] bg-navy/30 backdrop-blur-sm p-4 sm:p-16" onClick={onClose}>
-      <div className="max-w-2xl mx-auto bg-paper border border-navy/15 rounded-sm shadow-xl" onClick={(e) => e.stopPropagation()}>
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-navy/10">
-          <Search size={16} className="text-navy/50" />
-          <input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search across your portal…" className="flex-1 bg-transparent outline-none text-sm" />
-          <button onClick={onClose} className="text-navy/50 hover:text-navy"><X size={16} /></button>
-        </div>
-        <div className="max-h-[60vh] overflow-y-auto py-2">
-          {groups.length === 0 && <div className="px-4 py-8 text-center text-sm text-navy/50">No results</div>}
-          {groups.map((g) => (
-            <div key={g.title} className="py-2">
-              <div className="px-4 pb-1 text-[10px] font-mono uppercase tracking-widest text-navy/40">{g.title}</div>
-              {g.items.map((i) => (
-                <Link key={i.to + i.label} to={i.to} onClick={onClose} className="flex items-center justify-between px-4 py-2 hover:bg-mist text-sm text-navy">
-                  <span>{i.label}</span>
-                  <ChevronRight size={13} className="text-navy/30" />
-                </Link>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

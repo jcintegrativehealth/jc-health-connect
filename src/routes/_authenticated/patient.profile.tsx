@@ -1,143 +1,117 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { PortalPageHeader, PortalCard, BtnPrimary, BtnGhost, Disclaim } from "./patient";
-import { patient } from "@/data/patient";
+import { PortalPageHeader, PortalCard, BtnPrimary, Disclaim } from "./patient";
+import { useMyProfile } from "@/lib/profile";
+import { signOut } from "@/lib/auth";
+import { LogOut } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/patient/profile")({
   head: () => ({ meta: [{ title: "Profile — Patient Portal" }, { name: "robots", content: "noindex" }] }),
   component: ProfilePage,
 });
 
-const TABS = ["Personal", "Contact", "Emergency", "Communication", "Language", "Insurance", "Privacy", "Consents", "Devices"] as const;
+const LANGS = [
+  { code: "en", label: "English" },
+  { code: "es", label: "Spanish" },
+  { code: "pt", label: "Portuguese" },
+  { code: "zh", label: "Mandarin Chinese" },
+] as const;
 
 function ProfilePage() {
-  const [tab, setTab] = useState<(typeof TABS)[number]>("Personal");
+  const { profile, loading, error, save } = useMyProfile();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [state, setState] = useState("");
+  const [preferredLanguage, setPreferredLanguage] = useState<"en" | "es" | "pt" | "zh">("en");
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    if (!profile) return;
+    setFirstName(profile.firstName ?? "");
+    setLastName(profile.lastName ?? "");
+    setPhone(profile.phone ?? "");
+    setState(profile.state ?? "");
+    setPreferredLanguage((["en", "es", "pt", "zh"].includes(profile.preferredLanguage) ? profile.preferredLanguage : "en") as typeof preferredLanguage);
+  }, [profile]);
+
+  async function onSave() {
+    if (saving) return;
+    setSaving(true);
+    try {
+      await save({ firstName, lastName, phone, state, preferredLanguage });
+      toast.success("Profile saved");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Could not save your profile");
+    } finally {
+      setSaving(false);
+    }
+  }
 
   return (
     <div>
-      <PortalPageHeader eyebrow="Account" title="Profile" lede="Manage your personal information, communication and privacy preferences." />
+      <PortalPageHeader
+        eyebrow="Account"
+        title="Profile"
+        lede="Manage your personal information and language preference."
+        actions={
+          <button
+            onClick={async () => { await signOut(); window.location.assign("/portal"); }}
+            className="inline-flex items-center gap-2 px-4 py-2.5 border border-navy/15 text-navy text-xs font-semibold uppercase tracking-[0.16em] hover:bg-mist rounded-sm"
+          >
+            <LogOut size={13} /> Sign out
+          </button>
+        }
+      />
 
-      <div className="grid lg:grid-cols-[220px_1fr] gap-6">
-        <nav className="lg:border-r lg:border-navy/10 lg:pr-4">
-          <ul className="flex lg:flex-col gap-1 overflow-x-auto">
-            {TABS.map((t) => (
-              <li key={t}>
-                <button onClick={() => setTab(t)} className={`w-full text-left px-3 py-2 text-sm rounded-sm whitespace-nowrap ${tab === t ? "bg-mist text-navy" : "text-navy/65 hover:bg-mist/60"}`}>{t}</button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      {loading ? (
+        <PortalCard><div className="py-10 text-center text-sm text-navy/50">Loading your profile…</div></PortalCard>
+      ) : error ? (
+        <PortalCard><div className="py-10 text-center text-sm text-navy/60">{error}</div></PortalCard>
+      ) : (
+        <div className="max-w-2xl space-y-5">
+          <PortalCard title="Personal information">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <Field label="First name" value={firstName} onChange={setFirstName} />
+              <Field label="Last name" value={lastName} onChange={setLastName} />
+              <Field label="Email" value={profile?.email ?? ""} readOnly hint="Managed by your sign-in account" />
+              <Field label="Phone" value={phone} onChange={setPhone} />
+              <Field label="State" value={state} onChange={setState} />
+              <label className="block">
+                <span className="eyebrow text-navy/50 text-[10px] mb-1 block">Preferred language</span>
+                <select
+                  value={preferredLanguage}
+                  onChange={(e) => setPreferredLanguage(e.target.value as typeof preferredLanguage)}
+                  className="w-full border border-navy/15 rounded-sm p-2.5 text-sm text-navy outline-none focus:border-teal bg-card"
+                >
+                  {LANGS.map((l) => <option key={l.code} value={l.code}>{l.label}</option>)}
+                </select>
+              </label>
+            </div>
+            <div className="mt-5 flex flex-col sm:flex-row gap-2 sm:justify-end">
+              <BtnPrimary onClick={onSave} disabled={saving}>{saving ? "Saving…" : "Save changes"}</BtnPrimary>
+            </div>
+          </PortalCard>
 
-        <div className="space-y-5">
-          {tab === "Personal" && (
-            <PortalCard title="Personal information">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="Full name" value={patient.fullName} />
-                <Field label="Preferred name" value={patient.preferredName} />
-                <Field label="Date of birth" value={new Date(patient.dob).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })} />
-                <Field label="Gender" value={patient.gender} />
-                <Field label="Address" value={patient.address} full />
-                <Field label="State" value={patient.state} />
-              </div>
-              <div className="mt-5 flex flex-col sm:flex-row gap-2 sm:justify-end">
-                <BtnPrimary onClick={() => toast.success("Saved (demo)")}>Save changes</BtnPrimary>
-              </div>
-            </PortalCard>
-          )}
-          {tab === "Contact" && (
-            <PortalCard title="Contact information">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="Email" value={patient.email} />
-                <Field label="Phone" value={patient.phone} />
-              </div>
-            </PortalCard>
-          )}
-          {tab === "Emergency" && (
-            <PortalCard title="Emergency contact">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="Name" value={patient.emergencyContact.name} />
-                <Field label="Relationship" value={patient.emergencyContact.relationship} />
-                <Field label="Phone" value={patient.emergencyContact.phone} />
-                <Field label="Email" value={patient.emergencyContact.email} />
-              </div>
-            </PortalCard>
-          )}
-          {tab === "Communication" && (
-            <PortalCard title="Communication preferences">
-              {["Email", "SMS", "Phone", "Portal Messages"].map((c) => (
-                <label key={c} className="flex items-center gap-3 py-2 cursor-pointer">
-                  <input type="checkbox" defaultChecked className="h-4 w-4 accent-navy" /> <span className="text-sm text-navy">{c}</span>
-                </label>
-              ))}
-            </PortalCard>
-          )}
-          {tab === "Language" && (
-            <PortalCard title="Preferred language">
-              <div className="grid sm:grid-cols-2 gap-2">
-                {["English", "Spanish", "Portuguese", "Mandarin Chinese"].map((l, i) => (
-                  <label key={l} className="flex items-center gap-3 border border-navy/15 rounded-sm px-3 py-2.5 text-sm text-navy/80 hover:border-navy/30 cursor-pointer">
-                    <input type="radio" name="lang" defaultChecked={i === 0} className="h-4 w-4 accent-navy" /> {l}
-                  </label>
-                ))}
-              </div>
-            </PortalCard>
-          )}
-          {tab === "Insurance" && (
-            <PortalCard title="Insurance information">
-              <p className="text-sm text-navy/70">Insurance details and reimbursement documentation appear here.</p>
-              <div className="mt-3"><BtnGhost onClick={() => toast("Upload placeholder (demo)")}>Upload insurance card</BtnGhost></div>
-            </PortalCard>
-          )}
-          {tab === "Privacy" && (
-            <>
-              <PortalCard title="Privacy & security">
-                <div className="space-y-3">
-                  <PlaceholderRow label="Password" note="Will be available once authentication is enabled." />
-                  <PlaceholderRow label="Active sessions" note="Session management placeholder." />
-                  <PlaceholderRow label="Download health records" note="Export your data (placeholder)." />
-                  <PlaceholderRow label="Request correction" note="Request a correction to your record (placeholder)." />
-                </div>
-              </PortalCard>
-              <Disclaim>Privacy features shown here are placeholders. No real authentication or record modifications occur in this demonstration.</Disclaim>
-            </>
-          )}
-          {tab === "Consents" && (
-            <PortalCard title="Consents">
-              {["Telehealth consent", "Privacy notice acknowledgment", "Data sharing preferences"].map((c) => (
-                <label key={c} className="flex items-center gap-3 py-2 cursor-pointer">
-                  <input type="checkbox" defaultChecked className="h-4 w-4 accent-navy" /> <span className="text-sm text-navy">{c}</span>
-                </label>
-              ))}
-            </PortalCard>
-          )}
-          {tab === "Devices" && (
-            <PortalCard title="Connected devices (placeholder)">
-              <p className="text-sm text-navy/70">Wearable and device integrations will appear here in a future release.</p>
-            </PortalCard>
-          )}
+          <Disclaim>Your contact details help the clinic reach you about your care. This portal is not for emergencies — call 911 if you are experiencing one.</Disclaim>
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
-function Field({ label, value, full }: { label: string; value: string; full?: boolean }) {
+function Field({ label, value, onChange, readOnly, hint }: { label: string; value: string; onChange?: (v: string) => void; readOnly?: boolean; hint?: string }) {
   return (
-    <label className={`block ${full ? "sm:col-span-2" : ""}`}>
+    <label className="block">
       <span className="eyebrow text-navy/50 text-[10px] mb-1 block">{label}</span>
-      <input defaultValue={value} className="w-full border border-navy/15 rounded-sm p-2.5 text-sm text-navy outline-none focus:border-teal" />
+      <input
+        value={value}
+        readOnly={readOnly}
+        onChange={onChange ? (e) => onChange(e.target.value) : undefined}
+        className={`w-full border border-navy/15 rounded-sm p-2.5 text-sm text-navy outline-none focus:border-teal ${readOnly ? "bg-mist/40 text-navy/60" : "bg-card"}`}
+      />
+      {hint && <span className="mt-1 block text-[11px] text-navy/45">{hint}</span>}
     </label>
-  );
-}
-function PlaceholderRow({ label, note }: { label: string; note: string }) {
-  return (
-    <div className="flex items-center justify-between gap-3 border border-navy/10 rounded-sm p-3">
-      <div>
-        <div className="text-sm text-navy">{label}</div>
-        <div className="text-[11px] text-navy/50">{note}</div>
-      </div>
-      <span className="text-[10px] font-mono uppercase tracking-widest text-navy/40 border border-navy/15 rounded-sm px-2 py-0.5">Coming soon</span>
-    </div>
   );
 }

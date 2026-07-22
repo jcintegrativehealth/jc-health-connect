@@ -275,12 +275,22 @@ export const createAppointmentFn = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     // Staff (admin/clinician) may schedule without the anonymous rate limit and
     // may set source 'admin'; everyone else is rate-limited and forced to
-    // 'public'. Staff status is verified through an RLS-scoped client.
-    const { getRequestStaffUserId } = await import("@/lib/auth-check.server");
-    const staffUserId = await getRequestStaffUserId();
+    // 'public'. A signed-in patient booking for themselves gets patient_id
+    // stamped so the visit shows up in their portal. Identity is verified
+    // through an RLS-scoped client (never the admin client).
+    const { getRequestUser } = await import("@/lib/auth-check.server");
+    const requestUser = await getRequestUser();
 
     let source: "public" | "admin" = data.source;
-    if (!staffUserId) {
+    let patientId: string | null = null;
+    if (requestUser?.isStaff) {
+      // Staff schedule on behalf of patients; the row isn't "theirs".
+      source = data.source;
+    } else if (requestUser) {
+      // Signed-in patient booking for themselves.
+      source = "public";
+      patientId = requestUser.userId;
+    } else {
       source = "public";
       const { assertRateLimit, clientIp } = await import("@/lib/rate-limit.server");
       assertRateLimit(`book:${clientIp()}`, 8, 10 * 60_000);
@@ -293,6 +303,7 @@ export const createAppointmentFn = createServerFn({ method: "POST" })
       .from("appointments")
       .insert({
         source,
+        patient_id: patientId,
         date: data.date,
         time: normalizeTime(data.time),
         patient_name: data.patient,

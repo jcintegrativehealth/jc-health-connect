@@ -23,9 +23,10 @@ the new tables, and run `supabase--linter`; fix any warnings it reports.
 - Enable **email/password** auth. Create the admin user
   `jcintegrativehealth3@gmail.com` (invite or set password) — the signup
   trigger assigns the `admin` role automatically.
-- Enable **Google OAuth** via `supabase--configure_social_auth`
-  (patient portal sign-in; the helper `signInWithGoogle` in `src/lib/auth.ts`
-  is ready).
+- Enable **Google OAuth** via `supabase--configure_social_auth`. This is what
+  powers the patient portal sign-in at `/portal` (Google + email/password →
+  `/patient`). Without it, the "Continue with Google" button errors; email/
+  password still works once email auth is on.
 - Enable **HIBP (leaked password protection)** in Auth settings.
 - Do **not** enable auto-confirm without asking the owner first.
 
@@ -80,9 +81,19 @@ select cron.schedule(
 5. `/contact` → submit → row in `contact_submissions`, confirmation + clinic
    notification emails.
 
+## Patient portal (phase 1 — already wired, just needs auth on)
+
+The portal is live for **Home, Appointments, Profile** and needs nothing beyond
+the auth + secrets above. Quick check after enabling auth:
+1. `/portal` → create account / Google → lands on `/patient`.
+2. `/patient/profile` → edit name/phone/language → Save persists to `profiles`.
+3. Sign in as a patient, book via `/book` → the visit appears under
+   `/patient/appointments` (RLS-scoped by `patient_id`).
+
 ## Deferred (do NOT start yet)
 
 - §9 Billing/Finance — blocked until §1–§8 are green (owner's decision, 2026-07-22).
-- Patient portal real data (§8.8) — schema must be added to HANDOFF §2 first.
+- Other portal sections (labs, care plans, medications, messages, documents,
+  forms) — unlinked mock routes; add tables to HANDOFF §2 before wiring.
 - Frontend nicety: optional name/email fields on the article comment box
   (submissions currently post as "Anonymous").

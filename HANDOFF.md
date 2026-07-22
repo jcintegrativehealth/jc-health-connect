@@ -185,7 +185,17 @@ Keep files in `src/lib/` (NOT `src/server/` — blocked from client bundle). Loa
 5. Wire booking emails (`appointment-request-received` + `new-appointment-request-admin`).
 6. Migration: `comments`, `contact_submissions`.
 7. pg_cron → server route → send `appointment-reminder` 24h out.
-8. Real patient portal data (labs, care plans) — schema to be defined in a follow-up section here.
+8. Real patient portal data — **phase 1 shipped**: the portal now exposes only
+   the sections backed by real data — Home, Appointments, Profile:
+   - `/portal` is a real patient login (Google + email/password) → `/patient`.
+   - Appointments read the patient's own rows via RLS (`patient_id = auth.uid()`).
+     A signed-in patient's `/book` submission now stamps `patient_id` so it
+     shows up in their portal (anonymous bookings stay unlinked).
+   - Profile reads/writes the `profiles` row via `profile.functions.ts`.
+   - Other clinical areas (labs, care plans, medications, messages, documents,
+     forms, billing) are unlinked from the portal menu and guarded by a redirect;
+     their mock route files remain until each gets a backend + admin entry
+     surface. Add those tables to §2 here before wiring them.
 
 ---
 

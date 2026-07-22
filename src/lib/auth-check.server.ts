@@ -1,7 +1,8 @@
 // Server-only helper: verify the caller's Supabase bearer token and return
-// their user id IF they hold a staff role (admin/clinician). Used by the public
-// appointment-create endpoint to (a) skip anonymous rate limiting for staff and
-// (b) authorize the `source: 'admin'` flag.
+// their identity + whether they hold a staff role (admin/clinician). Used by
+// the public appointment-create endpoint to (a) skip anonymous rate limiting
+// for staff, (b) authorize the `source: 'admin'` flag, and (c) stamp
+// patient_id on bookings a signed-in patient makes for themselves.
 //
 // Roles are read through an RLS-scoped client built from the caller's own token
 // — never through the service-role admin client (that would be the privilege-
@@ -12,7 +13,9 @@ function isNewSupabaseApiKey(value: string): boolean {
   return value.startsWith("sb_publishable_") || value.startsWith("sb_secret_");
 }
 
-export async function getRequestStaffUserId(): Promise<string | null> {
+export type RequestUser = { userId: string; isStaff: boolean };
+
+export async function getRequestUser(): Promise<RequestUser | null> {
   try {
     const { getRequest } = await import("@tanstack/react-start/server");
     const authHeader = getRequest()?.headers?.get("authorization");
@@ -57,7 +60,7 @@ export async function getRequestStaffUserId(): Promise<string | null> {
     const isStaff = (roles ?? []).some(
       (r: { role: string }) => r.role === "admin" || r.role === "clinician",
     );
-    return isStaff ? uid : null;
+    return { userId: uid, isStaff };
   } catch {
     return null;
   }

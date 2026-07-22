@@ -97,6 +97,29 @@ export async function signInWithPassword(email: string, password: string): Promi
   }
 }
 
+export async function signUpWithPassword(
+  email: string,
+  password: string,
+  firstName?: string,
+  lastName?: string,
+): Promise<{ error?: string; needsConfirmation?: boolean }> {
+  try {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/portal`,
+        data: { first_name: firstName || undefined, last_name: lastName || undefined },
+      },
+    });
+    if (error) return { error: error.message };
+    // When email confirmation is on, there's a user but no active session yet.
+    return { needsConfirmation: !data.session };
+  } catch (err) {
+    return { error: err instanceof Error ? err.message : "Sign-up failed." };
+  }
+}
+
 export async function signInWithGoogle(redirectTo?: string): Promise<{ error?: string }> {
   try {
     const { error } = await supabase.auth.signInWithOAuth({
