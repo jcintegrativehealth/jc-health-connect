@@ -58,6 +58,7 @@ import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminLabsRouteImport } from './routes/admin.labs'
 import { Route as AdminInstantRoomRouteImport } from './routes/admin.instant-room'
 import { Route as AdminInsightsRouteImport } from './routes/admin.insights'
+import { Route as AdminEmailsRouteImport } from './routes/admin.emails'
 import { Route as AdminDocumentsRouteImport } from './routes/admin.documents'
 import { Route as AdminCrmRouteImport } from './routes/admin.crm'
 import { Route as AdminCommentsRouteImport } from './routes/admin.comments'
@@ -328,6 +329,11 @@ const AdminInsightsRoute = AdminInsightsRouteImport.update({
   path: '/insights',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminEmailsRoute = AdminEmailsRouteImport.update({
+  id: '/emails',
+  path: '/emails',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminDocumentsRoute = AdminDocumentsRouteImport.update({
   id: '/documents',
   path: '/documents',
@@ -473,6 +479,7 @@ export interface FileRoutesByFullPath {
   '/admin/comments': typeof AdminCommentsRoute
   '/admin/crm': typeof AdminCrmRoute
   '/admin/documents': typeof AdminDocumentsRoute
+  '/admin/emails': typeof AdminEmailsRoute
   '/admin/insights': typeof AdminInsightsRoute
   '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
@@ -546,6 +553,7 @@ export interface FileRoutesByTo {
   '/admin/comments': typeof AdminCommentsRoute
   '/admin/crm': typeof AdminCrmRoute
   '/admin/documents': typeof AdminDocumentsRoute
+  '/admin/emails': typeof AdminEmailsRoute
   '/admin/insights': typeof AdminInsightsRoute
   '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
@@ -622,6 +630,7 @@ export interface FileRoutesById {
   '/admin/comments': typeof AdminCommentsRoute
   '/admin/crm': typeof AdminCrmRoute
   '/admin/documents': typeof AdminDocumentsRoute
+  '/admin/emails': typeof AdminEmailsRoute
   '/admin/insights': typeof AdminInsightsRoute
   '/admin/instant-room': typeof AdminInstantRoomRoute
   '/admin/labs': typeof AdminLabsRoute
@@ -699,6 +708,7 @@ export interface FileRouteTypes {
     | '/admin/comments'
     | '/admin/crm'
     | '/admin/documents'
+    | '/admin/emails'
     | '/admin/insights'
     | '/admin/instant-room'
     | '/admin/labs'
@@ -772,6 +782,7 @@ export interface FileRouteTypes {
     | '/admin/comments'
     | '/admin/crm'
     | '/admin/documents'
+    | '/admin/emails'
     | '/admin/insights'
     | '/admin/instant-room'
     | '/admin/labs'
@@ -847,6 +858,7 @@ export interface FileRouteTypes {
     | '/admin/comments'
     | '/admin/crm'
     | '/admin/documents'
+    | '/admin/emails'
     | '/admin/insights'
     | '/admin/instant-room'
     | '/admin/labs'
@@ -1274,6 +1286,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminInsightsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/emails': {
+      id: '/admin/emails'
+      path: '/emails'
+      fullPath: '/admin/emails'
+      preLoaderRoute: typeof AdminEmailsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/documents': {
       id: '/admin/documents'
       path: '/documents'
@@ -1454,6 +1473,7 @@ interface AdminRouteChildren {
   AdminCommentsRoute: typeof AdminCommentsRoute
   AdminCrmRoute: typeof AdminCrmRoute
   AdminDocumentsRoute: typeof AdminDocumentsRoute
+  AdminEmailsRoute: typeof AdminEmailsRoute
   AdminInsightsRoute: typeof AdminInsightsRoute
   AdminInstantRoomRoute: typeof AdminInstantRoomRoute
   AdminLabsRoute: typeof AdminLabsRoute
@@ -1485,6 +1505,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminCommentsRoute: AdminCommentsRoute,
   AdminCrmRoute: AdminCrmRoute,
   AdminDocumentsRoute: AdminDocumentsRoute,
+  AdminEmailsRoute: AdminEmailsRoute,
   AdminInsightsRoute: AdminInsightsRoute,
   AdminInstantRoomRoute: AdminInstantRoomRoute,
   AdminLabsRoute: AdminLabsRoute,
