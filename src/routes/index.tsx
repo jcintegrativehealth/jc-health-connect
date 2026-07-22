@@ -7,6 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 import heroClinic from "@/assets/hero-clinic.jpg";
 import heroBotanical from "@/assets/hero-botanical.jpg";
 import textureLinen from "@/assets/texture-linen.jpg";
+import logoMark from "@/assets/logo-mark.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -74,6 +75,9 @@ function HomePage() {
 
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start relative">
             <div className="lg:col-span-7 relative">
+              <div className="flex justify-center md:justify-start mb-7">
+                <img src={logoMark} alt="JC Integrative Health" className="h-16 w-16 md:h-20 md:w-20" width={80} height={80} />
+              </div>
               <div className="eyebrow text-terracotta mb-6">Section 01 · Evidence-Based Care</div>
               <h1 className="font-serif text-[2.5rem] leading-[1.05] md:text-5xl lg:text-[3.75rem] text-balance text-navy">
                 {t("hero.title")}
@@ -84,7 +88,7 @@ function HomePage() {
 
               {/* Clinician signature block */}
               <div className="mt-8 flex items-center gap-4 pb-6 border-b border-navy/10 max-w-md">
-                <div className="w-11 h-11 rounded-full bg-linear-to-br from-navy to-academic grid place-items-center text-paper font-serif text-sm ring-1 ring-navy/20">JC</div>
+                <img src={logoMark} alt="" className="h-11 w-11 rounded-sm" width={44} height={44} />
                 <div>
                   <div className="text-sm font-medium text-navy">Jason Chen, DO</div>
 
