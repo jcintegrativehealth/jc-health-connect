@@ -57,7 +57,7 @@ function AppointmentsList() {
         searchPlaceholder="Search patient or appointment ID…"
         onSearch={setQ}
         filters={<>
-          {["All", "Pending", "Confirmed", "Checked In", "In Progress", "Completed", "Cancelled", "No Show"].map((s) => (
+          {["All", ...APPOINTMENT_STATUSES].map((s) => (
             <Chip key={s} active={status === s} onClick={() => setStatus(s)}>{s}</Chip>
           ))}
           <span className="mx-2 h-4 w-px bg-navy/15" />
