@@ -63,7 +63,12 @@
     "minRead": "阅读约 {{n}} 分钟",
     "min": "{{n}} 分钟",
     "recent": "近期文章",
-    "countOf": "共 {{total}} 篇中的 {{shown}} 篇"
+    "countOf": "共 {{total}} 篇中的 {{shown}} 篇",
+    "searchPlaceholder": "按标题、主题或作者搜索…",
+    "all": "全部",
+    "results": "{{count}} 个结果",
+    "noResults": "没有符合您搜索条件的文章。",
+    "clear": "清除"
   },
   "servicesIndex": {
     "eyebrow": "服务",

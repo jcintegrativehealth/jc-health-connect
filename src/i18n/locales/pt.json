@@ -63,7 +63,12 @@
     "minRead": "{{n}} min de leitura",
     "min": "{{n}} min",
     "recent": "Ensaios recentes",
-    "countOf": "{{shown}} de {{total}}"
+    "countOf": "{{shown}} de {{total}}",
+    "searchPlaceholder": "Buscar por título, tema ou autor…",
+    "all": "Todas",
+    "results": "{{count}} resultados",
+    "noResults": "Nenhum artigo corresponde à sua busca.",
+    "clear": "Limpar"
   },
   "servicesIndex": {
     "eyebrow": "Serviços",
