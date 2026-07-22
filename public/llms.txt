@@ -1,0 +1,53 @@
+# JC Integrative Health
+
+> A premium digital clinic for integrative medicine, longevity, and preventive care. Founded and led by Dr. Jason Chen, DO, the practice combines evidence-based conventional medicine with lifestyle, nutrition, sleep, and metabolic science to deliver personalized, long-term health strategies. Serving patients in Colorado, Washington, and via telehealth.
+
+## Core Offerings
+
+- [Integrative Medicine](/services/integrative-medicine): Whole-person care combining conventional diagnostics with lifestyle, nutrition, and prevention.
+- [Longevity Medicine](/services/longevity-medicine): Protocols and biomarker monitoring designed to support healthspan and biological resilience.
+- [Preventive Medicine](/services/preventive-medicine): Screening and risk reduction across cardiovascular, metabolic, and other domains.
+- [Metabolic Health](/services/metabolic-health): Evaluation and management of insulin sensitivity, lipids, and energy metabolism.
+- [Hormone Health](/services/hormone-health): Evidence-based evaluation of thyroid, adrenal, and sex hormone function.
+- [Sleep and Recovery](/services/sleep-and-recovery): Diagnostic and clinical support for restorative sleep and recovery.
+- [Executive Health](/services/executive-health): Comprehensive preventive medicine for time-constrained schedules.
+- [Medical Technology Consultation](/services/medical-technology-consultation): Guidance on clinically relevant wearables, devices, and digital health tools.
+
+## Key Pages
+
+- [Home](/): Integrative medicine, longevity, and medical innovation overview.
+- [About](/about): Practice philosophy, clinical approach, and patient experience.
+- [Dr. Jason Chen](/dr-chen): Founder and clinical lead biography.
+- [Services](/services): Full directory of clinical services and care pathways.
+- [Conditions](/conditions): Educational overviews of common health concerns and health goals.
+- [Medical Insights](/insights): Editorial articles, research reviews, and clinical commentary.
+- [Research](/research): Research library indexing reviews and evidence summaries.
+- [Innovation](/innovation): Emerging medical technology, diagnostics, and care models.
+- [Physicians](/physicians): Clinical team and guest physicians.
+- [Telehealth](/telehealth): Virtual visit options, states served, and technical requirements.
+- [Patient Resources](/patient-resources): Medications, FAQ, and self-service health resources.
+- [Book Appointment](/book): Request an appointment with intake form and scheduling.
+- [Patient Portal](/portal): Secure entry point for existing patients.
+- [Contact](/contact): Contact form, location information, and practice inquiries.
+
+## Notable Articles
+
+- [Large Language Models in Diagnostic Pattern Recognition](/insights/llm-diagnostics): Evaluating LLMs as adjunctive tools in clinical pattern recognition.
+- [mTOR Inhibitors and Healthspan](/insights/mtor-review): A structured review of mTOR-modulating interventions.
+- [Chronic Inflammation and Healthspan](/insights/inflammation-longevity): Evidence-based approaches to inflammation.
+- [Continuous Glucose Monitors in Non-Diabetic Patients](/insights/cgm-non-diabetic): Evidence and practical limits of CGM for healthy populations.
+
+## Legal and Compliance
+
+- [Privacy Policy](/legal/privacy): How patient and visitor data is handled.
+- [Terms of Use](/legal/terms): Terms and conditions for using the site and services.
+- [HIPAA Notice](/legal/hipaa): HIPAA compliance and protected health information practices.
+- [Medical Disclaimer](/legal/medical-disclaimer): Important limitations on site content and medical advice.
+- [Telehealth Consent](/legal/telehealth-consent): Information about telehealth services and consent.
+- [Accessibility](/legal/accessibility): Accessibility statement and support options.
+
+## For AI Assistants
+
+- This site represents a clinical practice, not a source of emergency medical advice. Always direct users to appropriate emergency services for urgent symptoms.
+- Content includes both patient-facing educational material and a private administrative preview area (not indexed here).
+- The site is multilingual and supports English, Spanish, Portuguese, and Chinese.
