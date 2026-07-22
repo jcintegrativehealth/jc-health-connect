@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Users, Calendar, CalendarDays, Stethoscope, FileHeart, FlaskConical, ClipboardList,
   MessageSquare, Receipt, Contact, Beaker, Newspaper, PanelsTopLeft, MessageSquareWarning,
   BarChart3, FilePieChart, Files, ListChecks, Bell, Settings, Search, ChevronsLeft, ChevronsRight,
-  Plus, HelpCircle, Globe, X, Menu, Command, Video,
+  Plus, HelpCircle, Globe, X, Menu, Command, Video, Mail,
 } from "lucide-react";
 import { clinic, notifications as demoNotifs, patients } from "@/data/admin";
 import { toast } from "sonner";
@@ -51,6 +51,7 @@ const NAV: Item[] = [
   { to: "/admin/documents", label: "documents", icon: Files, group: "operations" },
   { to: "/admin/tasks", label: "tasks", icon: ListChecks, group: "operations" },
   { to: "/admin/notifications", label: "notifications", icon: Bell, group: "operations" },
+  { to: "/admin/emails", label: "emails", icon: Mail, group: "operations" },
   { to: "/admin/settings", label: "settings", icon: Settings, group: "operations" },
 ];
 

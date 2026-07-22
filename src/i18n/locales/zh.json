@@ -198,6 +198,7 @@
       "documents": "文档",
       "tasks": "任务",
       "notifications": "通知",
+      "emails": "邮件预览",
       "settings": "设置"
     },
     "sidebar": { "collapse": "收起", "backToSite": "返回站点", "privateAdmin": "私人后台" },
