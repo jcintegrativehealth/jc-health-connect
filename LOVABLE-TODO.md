@@ -14,6 +14,9 @@ HANDOFF.md §2/§7 is the contract.
 2. `20260722100002_appointments.sql` — appointments (§2.3 exact columns +
    `reminder_sent_at`), sequence `A-9001…`, validation trigger, RLS.
 3. `20260722100003_comments_contact.sql` — comments + contact_submissions, RLS.
+4. `20260722100004_messages.sql` — in-platform patient ↔ clinic messaging
+   (HANDOFF §2.6) + RLS. Writes are RLS-scoped (no service role); email is a
+   notification-only side effect via the existing Resend setup.
 
 Then **regenerate `src/integrations/supabase/types.ts`** so the client picks up
 the new tables, and run `supabase--linter`; fix any warnings it reports.
@@ -83,17 +86,20 @@ select cron.schedule(
 
 ## Patient portal (phase 1 — already wired, just needs auth on)
 
-The portal is live for **Home, Appointments, Profile** and needs nothing beyond
-the auth + secrets above. Quick check after enabling auth:
+The portal is live for **Home, Appointments, Messages, Profile** and needs
+nothing beyond the auth + secrets above. Quick check after enabling auth:
 1. `/portal` → create account / Google → lands on `/patient`.
 2. `/patient/profile` → edit name/phone/language → Save persists to `profiles`.
 3. Sign in as a patient, book via `/book` → the visit appears under
    `/patient/appointments` (RLS-scoped by `patient_id`).
+4. `/patient/messages` → send a message → clinic gets an email; reply from
+   `/admin/messages` → patient gets a "new message" email (no body) and sees
+   it in the portal thread.
 
 ## Deferred (do NOT start yet)
 
 - §9 Billing/Finance — blocked until §1–§8 are green (owner's decision, 2026-07-22).
-- Other portal sections (labs, care plans, medications, messages, documents,
-  forms) — unlinked mock routes; add tables to HANDOFF §2 before wiring.
+- Other portal sections (labs, care plans, medications, documents, forms) —
+  unlinked mock routes; add tables to HANDOFF §2 before wiring.
 - Frontend nicety: optional name/email fields on the article comment box
   (submissions currently post as "Anonymous").

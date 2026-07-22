@@ -107,6 +107,30 @@ created_at   timestamptz
 ### 2.5 `contact_submissions` (from `/contact`)
 `id, name, email, inquiry_type, message, created_at`. Anon `INSERT` via server fn only.
 
+### 2.6 `messages` (in-platform patient ↔ clinic messaging)
+
+One flat thread per patient (single-clinic model). **No SMS/Twilio** — messages
+live in the platform; a transactional email only *notifies* that a new message
+arrived (no message body in the patient-facing email, to keep PHI out of inboxes).
+
+```
+id           uuid PK
+patient_id   uuid   → profiles.id (the thread owner)
+sender_id    uuid   → profiles.id (author; null if account removed)
+sender_role  text   -- 'patient' | 'staff'
+body         text
+read_at      timestamptz  -- when the recipient side read it (null = unread)
+created_at   timestamptz
+```
+
+- `SELECT`: patient reads own thread (`patient_id = auth.uid()`); admin/clinician read all.
+- `INSERT`: patient into own thread as `'patient'`; staff into any thread as `'staff'`
+  (`sender_id = auth.uid()` enforced both ways).
+- `UPDATE` (only `read_at`): patient on own thread; staff on any.
+- Emails: patient → clinic sends an internal notification to the clinic inbox;
+  staff → patient sends a "you have a new message, sign in to your portal"
+  notification (no body).
+
 ---
 
 ## 3. Where the frontend currently fakes it

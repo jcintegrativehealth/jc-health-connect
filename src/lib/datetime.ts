@@ -26,3 +26,12 @@ export function formatTime(hhmm: string): string {
   const hr = h % 12 === 0 ? 12 : h % 12;
   return `${hr}:${String(m).padStart(2, "0")} ${period}`;
 }
+
+// Full ISO timestamp → short local date + time (for message bubbles, etc.).
+export function formatTimestamp(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  const date = d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  const time = d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  return `${date} · ${time}`;
+}

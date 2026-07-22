@@ -1,7 +1,7 @@
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import {
-  Home, Calendar, User, Menu, X, ChevronRight,
+  Home, Calendar, MessageSquare, User, Menu, X, ChevronRight,
 } from "lucide-react";
 import { useMyProfile, displayName, initials } from "@/lib/profile";
 
@@ -22,19 +22,21 @@ export const Route = createFileRoute("/_authenticated/patient")({
 const NAV = [
   { to: "/patient", label: "Home", icon: Home, exact: true },
   { to: "/patient/appointments", label: "Appointments", icon: Calendar },
+  { to: "/patient/messages", label: "Messages", icon: MessageSquare },
   { to: "/patient/profile", label: "Profile", icon: User },
 ] as const;
 
 const BOTTOM_NAV = [
   { to: "/patient", label: "Home", icon: Home, exact: true },
   { to: "/patient/appointments", label: "Visits", icon: Calendar },
+  { to: "/patient/messages", label: "Inbox", icon: MessageSquare },
   { to: "/patient/profile", label: "Profile", icon: User },
 ] as const;
 
 // Sections that are live in phase 1. Anything else under /patient/* still has a
 // mock route file (unlinked from the menu) — send those back to Home so real
 // patients never land on illustrative clinical data by direct URL.
-const ALLOWED_PREFIXES = ["/patient/appointments", "/patient/profile"];
+const ALLOWED_PREFIXES = ["/patient/appointments", "/patient/messages", "/patient/profile"];
 
 function PatientLayout() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
@@ -163,7 +165,7 @@ function PatientLayout() {
         </footer>
 
         {/* Mobile bottom nav */}
-        <nav className="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-paper/95 backdrop-blur border-t border-navy/10 grid grid-cols-3">
+        <nav className="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-paper/95 backdrop-blur border-t border-navy/10 grid grid-cols-4">
           {BOTTOM_NAV.map((n) => {
             const isActive = active(n.to, "exact" in n && n.exact);
             return (
