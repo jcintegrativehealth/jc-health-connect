@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { PageHeader, Panel, Badge, Btn } from "@/components/admin/primitives";
 import { patients } from "@/data/admin";
-import { Video, Copy, Mail, MessageSquare, Link2, Check, RefreshCw, ExternalLink, Shield, Clock, User } from "lucide-react";
+import { Video, Copy, Mail, MessageSquare, Link2, Check, RefreshCw, ExternalLink, Shield, Clock, User, ChevronDown } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/instant-room")({
@@ -21,6 +21,8 @@ type Room = {
   createdAt: string;
   expiresIn: number; // minutes
   status: "Waiting" | "Joined" | "Ended";
+  provider: "JC Secure" | "Google Meet" | "Zoom" | "Microsoft Teams" | "Doxy.me" | "Other";
+  externalLink?: string;
 };
 
 function makeRoomId() {
@@ -34,8 +36,8 @@ function originJoinUrl(id: string) {
 }
 
 const SEED: Room[] = [
-  { id: "RM-A8F2-K91X", patientId: "P-1042", patientName: "Amelia Reyes", type: "Follow-up", duration: 30, language: "English", note: "Review labs from Aug 12.", createdAt: "Today · 09:12", expiresIn: 240, status: "Waiting" },
-  { id: "RM-BX22-77QP", patientId: "P-1043", patientName: "Rafael Marques", type: "Quick check-in", duration: 15, language: "Portuguese", note: "Medication tolerance.", createdAt: "Today · 08:04", expiresIn: 0, status: "Ended" },
+  { id: "RM-A8F2-K91X", patientId: "P-1042", patientName: "Amelia Reyes", type: "Follow-up", duration: 30, language: "English", note: "Review labs from Aug 12.", createdAt: "Today · 09:12", expiresIn: 240, status: "Waiting", provider: "JC Secure" },
+  { id: "RM-BX22-77QP", patientId: "P-1043", patientName: "Rafael Marques", type: "Quick check-in", duration: 15, language: "Portuguese", note: "Medication tolerance.", createdAt: "Today · 08:04", expiresIn: 0, status: "Ended", provider: "Google Meet", externalLink: "https://meet.google.com/abc-defg-hij" },
 ];
 
 function InstantRoom() {
@@ -46,12 +48,19 @@ function InstantRoom() {
   const [language, setLanguage] = useState("English");
   const [expires, setExpires] = useState(120);
   const [note, setNote] = useState("");
+  const [provider, setProvider] = useState<"JC Secure" | "Google Meet" | "Zoom" | "Microsoft Teams" | "Doxy.me" | "Other">("JC Secure");
+  const [externalLink, setExternalLink] = useState("");
   const [created, setCreated] = useState<Room | null>(null);
   const [copied, setCopied] = useState(false);
 
   const patient = useMemo(() => patients.find((p) => p.id === patientId)!, [patientId]);
 
   const handleCreate = () => {
+    const trimmed = externalLink.trim();
+    if (provider !== "JC Secure" && trimmed && !/^https?:\/\//i.test(trimmed)) {
+      toast.error("Meeting link must start with https://");
+      return;
+    }
     const room: Room = {
       id: makeRoomId(),
       patientId: patient.id,
@@ -63,18 +72,23 @@ function InstantRoom() {
       createdAt: "Just now",
       expiresIn: expires,
       status: "Waiting",
+      provider,
+      externalLink: provider === "JC Secure" ? undefined : trimmed || undefined,
     };
     setRooms((r) => [room, ...r]);
     setCreated(room);
     setNote("");
+    setExternalLink("");
     toast.success("Instant Room created — share the secure link with your patient.");
   };
 
-  const copyLink = async (id: string) => {
+  const shareUrlFor = (r: Room) => (r.provider !== "JC Secure" && r.externalLink ? r.externalLink : originJoinUrl(r.id));
+
+  const copyLink = async (room: Room) => {
     try {
-      await navigator.clipboard.writeText(originJoinUrl(id));
+      await navigator.clipboard.writeText(shareUrlFor(room));
       setCopied(true);
-      toast.success("Secure link copied to clipboard");
+      toast.success("Meeting link copied to clipboard");
       setTimeout(() => setCopied(false), 1800);
     } catch {
       toast.error("Could not copy link");
@@ -103,34 +117,59 @@ function InstantRoom() {
             <div className="grid gap-4">
               <Field label="Patient">
                 <div className="flex items-center gap-2">
-                  <select value={patientId} onChange={(e) => setPatientId(e.target.value)}
-                    className="w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal">
+                  <Select value={patientId} onChange={(v) => setPatientId(v)} className="flex-1">
                     {patients.map((p) => (
                       <option key={p.id} value={p.id}>{p.name} · {p.id} · {p.lang}</option>
                     ))}
-                  </select>
+                  </Select>
                   <span className="text-[10px] uppercase tracking-widest text-navy/45 hidden md:inline">{patient.state} · {patient.service}</span>
                 </div>
               </Field>
 
               <div className="grid sm:grid-cols-3 gap-3">
                 <Field label="Visit type">
-                  <select value={type} onChange={(e) => setType(e.target.value)}
-                    className="w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal">
-                    {["Follow-up", "Quick check-in", "Lab review", "Second opinion", "Coaching"].map((x) => <option key={x}>{x}</option>)}
-                  </select>
+                  <Select value={type} onChange={setType}>
+                    {["Follow-up", "Quick check-in", "Lab review", "Second opinion", "Coaching"].map((x) => <option key={x} value={x}>{x}</option>)}
+                  </Select>
                 </Field>
                 <Field label="Duration">
-                  <select value={duration} onChange={(e) => setDuration(Number(e.target.value))}
-                    className="w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal">
+                  <Select value={String(duration)} onChange={(v) => setDuration(Number(v))}>
                     {[10, 15, 20, 30, 45, 60].map((x) => <option key={x} value={x}>{x} min</option>)}
-                  </select>
+                  </Select>
                 </Field>
                 <Field label="Language">
-                  <select value={language} onChange={(e) => setLanguage(e.target.value)}
-                    className="w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal">
-                    {["English", "Spanish", "Portuguese", "Mandarin"].map((x) => <option key={x}>{x}</option>)}
-                  </select>
+                  <Select value={language} onChange={setLanguage}>
+                    {["English", "Spanish", "Portuguese", "Mandarin"].map((x) => <option key={x} value={x}>{x}</option>)}
+                  </Select>
+                </Field>
+              </div>
+
+              <div className="grid sm:grid-cols-[220px_1fr] gap-3">
+                <Field label="Meeting provider">
+                  <Select value={provider} onChange={(v) => setProvider(v as typeof provider)}>
+                    {["JC Secure", "Google Meet", "Zoom", "Microsoft Teams", "Doxy.me", "Other"].map((x) => <option key={x} value={x}>{x}</option>)}
+                  </Select>
+                </Field>
+                <Field label={provider === "JC Secure" ? "Meeting link (auto-generated)" : `Paste ${provider} link`}>
+                  {provider === "JC Secure" ? (
+                    <div className="w-full h-10 border border-navy/10 bg-mist/30 px-3 text-sm text-navy/50 flex items-center font-mono">
+                      A single-use secure link will be generated on create.
+                    </div>
+                  ) : (
+                    <input
+                      type="url"
+                      value={externalLink}
+                      onChange={(e) => setExternalLink(e.target.value)}
+                      placeholder={
+                        provider === "Google Meet" ? "https://meet.google.com/xxx-yyyy-zzz"
+                        : provider === "Zoom" ? "https://us06web.zoom.us/j/1234567890?pwd=..."
+                        : provider === "Microsoft Teams" ? "https://teams.microsoft.com/l/meetup-join/..."
+                        : provider === "Doxy.me" ? "https://doxy.me/dr-chen"
+                        : "https://…"
+                      }
+                      className="w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal font-mono"
+                    />
+                  )}
                 </Field>
               </div>
 
@@ -153,7 +192,7 @@ function InstantRoom() {
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2 border-t border-navy/8">
                 <div className="text-[11px] uppercase tracking-widest text-navy/45 flex items-center gap-2">
-                  <Shield size={12} /> Encrypted end-to-end · Single-use link
+                  <Shield size={12} /> {provider === "JC Secure" ? "Encrypted end-to-end · Single-use link" : `External · ${provider}`}
                 </div>
                 <Btn onClick={handleCreate}><Video size={13} /> Create Instant Room</Btn>
               </div>
@@ -162,17 +201,17 @@ function InstantRoom() {
         ) : (
           <Panel title="Room ready" action={<Badge tone="Active">Waiting for patient</Badge>}>
             <div className="border border-navy/10 bg-mist/30 p-4 rounded-sm">
-              <div className="eyebrow text-gold text-[10px] mb-1">Secure join link</div>
+              <div className="eyebrow text-gold text-[10px] mb-1">{created.provider === "JC Secure" ? "Secure join link" : `${created.provider} link`}</div>
               <div className="flex items-center gap-2">
-                <code className="flex-1 min-w-0 truncate text-sm text-navy font-mono bg-card border border-navy/10 px-3 h-10 flex items-center">{originJoinUrl(created.id)}</code>
-                <button onClick={() => copyLink(created.id)} className="h-10 px-3 border border-navy/15 bg-card text-navy hover:border-navy/30 inline-flex items-center gap-2 text-[11px] uppercase tracking-widest">
+                <code className="flex-1 min-w-0 truncate text-sm text-navy font-mono bg-card border border-navy/10 px-3 h-10 flex items-center">{shareUrlFor(created)}</code>
+                <button onClick={() => copyLink(created)} className="h-10 px-3 border border-navy/15 bg-card text-navy hover:border-navy/30 inline-flex items-center gap-2 text-[11px] uppercase tracking-widest">
                   {copied ? <><Check size={13} /> Copied</> : <><Copy size={13} /> Copy</>}
                 </button>
               </div>
               <div className="mt-3 text-[11px] uppercase tracking-widest text-navy/45 flex flex-wrap gap-x-4 gap-y-1">
                 <span className="inline-flex items-center gap-1"><User size={11} /> {created.patientName}</span>
                 <span className="inline-flex items-center gap-1"><Clock size={11} /> Valid {created.expiresIn < 60 ? `${created.expiresIn} min` : `${created.expiresIn / 60} h`}</span>
-                <span>{created.duration} min · {created.language}</span>
+                <span>{created.duration} min · {created.language} · {created.provider}</span>
               </div>
             </div>
 
@@ -212,11 +251,11 @@ function InstantRoom() {
                     <div className="text-[10px] uppercase tracking-widest text-navy/45">{r.createdAt} · {r.expiresIn > 0 ? `expires in ${r.expiresIn} min` : "expired"}</div>
                   </div>
                   <div className="flex gap-1 sm:justify-end">
-                    <button onClick={() => copyLink(r.id)} disabled={r.status === "Ended"}
+                    <button onClick={() => copyLink(r)} disabled={r.status === "Ended"}
                       className="h-8 px-2 border border-navy/15 text-[10px] uppercase tracking-widest text-navy/65 hover:text-navy disabled:opacity-40 inline-flex items-center gap-1">
                       <Copy size={11} /> Copy
                     </button>
-                    <a href={originJoinUrl(r.id)} target="_blank" rel="noreferrer"
+                    <a href={shareUrlFor(r)} target="_blank" rel="noreferrer"
                        className={`h-8 px-2 border border-navy/15 text-[10px] uppercase tracking-widest inline-flex items-center gap-1 ${r.status === "Ended" ? "opacity-40 pointer-events-none" : "text-navy/65 hover:text-navy"}`}>
                       <ExternalLink size={11} /> Open
                     </a>
@@ -267,5 +306,30 @@ function ShareBtn({ icon, label, onClick }: { icon: React.ReactNode; label: stri
     <button onClick={onClick} className="h-11 border border-navy/15 bg-card hover:border-navy/30 text-sm text-navy inline-flex items-center justify-center gap-2 transition-colors">
       {icon} {label}
     </button>
+  );
+}
+
+function Select({
+  value,
+  onChange,
+  children,
+  className = "",
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`relative ${className}`}>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full h-10 border border-navy/15 bg-card pl-3 pr-9 text-sm text-navy outline-none focus:border-teal appearance-none cursor-pointer"
+      >
+        {children}
+      </select>
+      <ChevronDown size={14} className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-navy/50" />
+    </div>
   );
 }
