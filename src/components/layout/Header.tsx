@@ -103,10 +103,10 @@ export function Header() {
       <header className="sticky top-0 z-40 border-b border-navy/15 bg-paper/85 backdrop-blur-md supports-[backdrop-filter]:bg-paper/70">
         <div className="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-3 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold">
-            <span className="inline-flex items-center justify-center h-10 w-10 rounded-md bg-beige">
+            <span className="inline-flex items-center justify-center h-10 w-10 rounded-md bg-beige ring-1 ring-navy/70 ring-offset-1 ring-offset-paper">
               <img src={logoMark} alt="JC Integrative Health" width={32} height={32} className="h-8 w-8 object-contain" />
             </span>
-            <span className="hidden xs:inline text-[11px] font-semibold uppercase tracking-[0.22em] text-navy/60">Integrative Health</span>
+            <span className="hidden xs:inline font-serif italic text-[15px] leading-none text-navy/80 tracking-tight">Integrative Health</span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-7 text-sm font-medium">
