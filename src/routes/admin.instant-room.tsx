@@ -117,34 +117,59 @@ function InstantRoom() {
             <div className="grid gap-4">
               <Field label="Patient">
                 <div className="flex items-center gap-2">
-                  <select value={patientId} onChange={(e) => setPatientId(e.target.value)}
-                    className="w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal">
+                  <Select value={patientId} onChange={(v) => setPatientId(v)} className="flex-1">
                     {patients.map((p) => (
                       <option key={p.id} value={p.id}>{p.name} · {p.id} · {p.lang}</option>
                     ))}
-                  </select>
+                  </Select>
                   <span className="text-[10px] uppercase tracking-widest text-navy/45 hidden md:inline">{patient.state} · {patient.service}</span>
                 </div>
               </Field>
 
               <div className="grid sm:grid-cols-3 gap-3">
                 <Field label="Visit type">
-                  <select value={type} onChange={(e) => setType(e.target.value)}
-                    className="w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal">
-                    {["Follow-up", "Quick check-in", "Lab review", "Second opinion", "Coaching"].map((x) => <option key={x}>{x}</option>)}
-                  </select>
+                  <Select value={type} onChange={setType}>
+                    {["Follow-up", "Quick check-in", "Lab review", "Second opinion", "Coaching"].map((x) => <option key={x} value={x}>{x}</option>)}
+                  </Select>
                 </Field>
                 <Field label="Duration">
-                  <select value={duration} onChange={(e) => setDuration(Number(e.target.value))}
-                    className="w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal">
+                  <Select value={String(duration)} onChange={(v) => setDuration(Number(v))}>
                     {[10, 15, 20, 30, 45, 60].map((x) => <option key={x} value={x}>{x} min</option>)}
-                  </select>
+                  </Select>
                 </Field>
                 <Field label="Language">
-                  <select value={language} onChange={(e) => setLanguage(e.target.value)}
-                    className="w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal">
-                    {["English", "Spanish", "Portuguese", "Mandarin"].map((x) => <option key={x}>{x}</option>)}
-                  </select>
+                  <Select value={language} onChange={setLanguage}>
+                    {["English", "Spanish", "Portuguese", "Mandarin"].map((x) => <option key={x} value={x}>{x}</option>)}
+                  </Select>
+                </Field>
+              </div>
+
+              <div className="grid sm:grid-cols-[220px_1fr] gap-3">
+                <Field label="Meeting provider">
+                  <Select value={provider} onChange={(v) => setProvider(v as typeof provider)}>
+                    {["JC Secure", "Google Meet", "Zoom", "Microsoft Teams", "Doxy.me", "Other"].map((x) => <option key={x} value={x}>{x}</option>)}
+                  </Select>
+                </Field>
+                <Field label={provider === "JC Secure" ? "Meeting link (auto-generated)" : `Paste ${provider} link`}>
+                  {provider === "JC Secure" ? (
+                    <div className="w-full h-10 border border-navy/10 bg-mist/30 px-3 text-sm text-navy/50 flex items-center font-mono">
+                      A single-use secure link will be generated on create.
+                    </div>
+                  ) : (
+                    <input
+                      type="url"
+                      value={externalLink}
+                      onChange={(e) => setExternalLink(e.target.value)}
+                      placeholder={
+                        provider === "Google Meet" ? "https://meet.google.com/xxx-yyyy-zzz"
+                        : provider === "Zoom" ? "https://us06web.zoom.us/j/1234567890?pwd=..."
+                        : provider === "Microsoft Teams" ? "https://teams.microsoft.com/l/meetup-join/..."
+                        : provider === "Doxy.me" ? "https://doxy.me/dr-chen"
+                        : "https://…"
+                      }
+                      className="w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal font-mono"
+                    />
+                  )}
                 </Field>
               </div>
 
@@ -167,7 +192,7 @@ function InstantRoom() {
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2 border-t border-navy/8">
                 <div className="text-[11px] uppercase tracking-widest text-navy/45 flex items-center gap-2">
-                  <Shield size={12} /> Encrypted end-to-end · Single-use link
+                  <Shield size={12} /> {provider === "JC Secure" ? "Encrypted end-to-end · Single-use link" : `External · ${provider}`}
                 </div>
                 <Btn onClick={handleCreate}><Video size={13} /> Create Instant Room</Btn>
               </div>
@@ -176,17 +201,17 @@ function InstantRoom() {
         ) : (
           <Panel title="Room ready" action={<Badge tone="Active">Waiting for patient</Badge>}>
             <div className="border border-navy/10 bg-mist/30 p-4 rounded-sm">
-              <div className="eyebrow text-gold text-[10px] mb-1">Secure join link</div>
+              <div className="eyebrow text-gold text-[10px] mb-1">{created.provider === "JC Secure" ? "Secure join link" : `${created.provider} link`}</div>
               <div className="flex items-center gap-2">
-                <code className="flex-1 min-w-0 truncate text-sm text-navy font-mono bg-card border border-navy/10 px-3 h-10 flex items-center">{originJoinUrl(created.id)}</code>
-                <button onClick={() => copyLink(created.id)} className="h-10 px-3 border border-navy/15 bg-card text-navy hover:border-navy/30 inline-flex items-center gap-2 text-[11px] uppercase tracking-widest">
+                <code className="flex-1 min-w-0 truncate text-sm text-navy font-mono bg-card border border-navy/10 px-3 h-10 flex items-center">{shareUrlFor(created)}</code>
+                <button onClick={() => copyLink(created)} className="h-10 px-3 border border-navy/15 bg-card text-navy hover:border-navy/30 inline-flex items-center gap-2 text-[11px] uppercase tracking-widest">
                   {copied ? <><Check size={13} /> Copied</> : <><Copy size={13} /> Copy</>}
                 </button>
               </div>
               <div className="mt-3 text-[11px] uppercase tracking-widest text-navy/45 flex flex-wrap gap-x-4 gap-y-1">
                 <span className="inline-flex items-center gap-1"><User size={11} /> {created.patientName}</span>
                 <span className="inline-flex items-center gap-1"><Clock size={11} /> Valid {created.expiresIn < 60 ? `${created.expiresIn} min` : `${created.expiresIn / 60} h`}</span>
-                <span>{created.duration} min · {created.language}</span>
+                <span>{created.duration} min · {created.language} · {created.provider}</span>
               </div>
             </div>
 
