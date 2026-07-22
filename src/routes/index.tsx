@@ -12,14 +12,14 @@ import logoMark from "@/assets/logo-mark.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "JC Integrative Health — Integrative Medicine. Longevity. Medical Innovation." },
-      { name: "description", content: "Personalized, evidence-based integrative medicine, longevity, and preventive care. Serving Colorado, Washington, and via telehealth." },
-      { property: "og:title", content: "JC Integrative Health — Integrative Medicine. Longevity. Medical Innovation." },
-      { property: "og:description", content: "Personalized, evidence-based integrative medicine, longevity, and preventive care. Serving Colorado, Washington, and via telehealth." },
-      { property: "og:url", content: "/" },
+      { title: "JC Integrative Health — Integrative Medicine, Longevity & Preventive Care" },
+      { name: "description", content: "Personalized care from Dr. Jason Chen, DO. Evidence-based integrative medicine, longevity protocols, and telehealth appointments for Colorado, Washington, and beyond." },
+      { property: "og:title", content: "JC Integrative Health — Integrative Medicine, Longevity & Preventive Care" },
+      { property: "og:description", content: "Personalized care from Dr. Jason Chen, DO. Evidence-based integrative medicine, longevity protocols, and telehealth appointments for Colorado, Washington, and beyond." },
+      { property: "og:url", content: "https://jcintegrativehealth.com/" },
     ],
     links: [
-      { rel: "canonical", href: "/" },
+      { rel: "canonical", href: "https://jcintegrativehealth.com/" },
       { rel: "preload", as: "image", href: heroBotanical, fetchpriority: "high" },
     ],
   }),
