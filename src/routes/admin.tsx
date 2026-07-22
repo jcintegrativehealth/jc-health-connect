@@ -365,7 +365,7 @@ function NotificationsDrawer({ onClose }: { onClose: () => void }) {
             <div className="text-[10px] uppercase tracking-[0.2em] text-gold font-semibold">{t("admin.notif.eyebrow")}</div>
             <div className="font-serif text-lg text-navy mt-0.5">{t("admin.notif.title")}</div>
           </div>
-          <button onClick={onClose} className="text-navy/55 hover:text-navy transition-colors"><X size={18} /></button>
+          <button onClick={onClose} aria-label="Close notifications" className="text-navy/55 hover:text-navy transition-colors"><X size={18} /></button>
         </header>
         <div className="flex-1 overflow-y-auto">
           {demoNotifs.map((n) => (
