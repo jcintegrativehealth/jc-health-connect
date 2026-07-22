@@ -35,8 +35,8 @@ function DrChenPage() {
     <div>
       <PageHeader eyebrow="Physician" title="Dr. Jason Chen" lede="Physician in integrative medicine, university lecturer, and clinic director." />
       <Container className="pb-24">
-        <div className="grid lg:grid-cols-[400px_1fr] gap-16 items-start border-t border-navy/10 pt-16">
-          <div className="aspect-[4/5] bg-linear-to-b from-navy/10 to-navy/5 ring-1 ring-navy/10 grid place-items-center">
+        <div className="grid lg:grid-cols-[300px_1fr] gap-12 lg:gap-16 items-start border-t border-navy/10 pt-16">
+          <div className="aspect-[4/5] max-w-[300px] bg-linear-to-b from-navy/10 to-navy/5 ring-1 ring-navy/10 grid place-items-center">
             <span className="font-serif italic text-navy/25 text-sm">Portrait placeholder</span>
           </div>
           <div className="space-y-10">
