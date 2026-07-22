@@ -16,7 +16,7 @@ import {
 } from "@react-email/components";
 
 export const LOGO_URL =
-  "https://jc-health-connect.lovable.app/__l5e/assets-v1/533419ac-8544-45ad-a2ed-53f59304d236/logo-mark.png";
+  "https://jc-health-connect.lovable.app/__l5e/assets-v1/bad89668-d5f4-4f91-8f98-bcb5316ed10a/logo-mark.png";
 
 export const brand = {
   navy: "#1F3D2E",
@@ -140,13 +140,24 @@ export function EmailLayout({
         <Container style={container}>
           <Section style={masthead}>
             <div style={brandRow}>
-              <Img
-                src={LOGO_URL}
-                alt="JC Integrative Health"
-                width={44}
-                height={44}
-                style={{ display: "block", marginBottom: 10, borderRadius: 4 }}
-              />
+              <div
+                style={{
+                  display: "inline-block",
+                  backgroundColor: brand.beige,
+                  borderRadius: 6,
+                  padding: 6,
+                  marginBottom: 10,
+                  lineHeight: 0,
+                }}
+              >
+                <Img
+                  src={LOGO_URL}
+                  alt="JC Integrative Health"
+                  width={36}
+                  height={36}
+                  style={{ display: "block" }}
+                />
+              </div>
               <div style={brandSub}>Integrative Health</div>
             </div>
           </Section>
