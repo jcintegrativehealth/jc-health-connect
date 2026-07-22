@@ -56,6 +56,11 @@ function InstantRoom() {
   const patient = useMemo(() => patients.find((p) => p.id === patientId)!, [patientId]);
 
   const handleCreate = () => {
+    const trimmed = externalLink.trim();
+    if (provider !== "JC Secure" && trimmed && !/^https?:\/\//i.test(trimmed)) {
+      toast.error("Meeting link must start with https://");
+      return;
+    }
     const room: Room = {
       id: makeRoomId(),
       patientId: patient.id,
@@ -67,10 +72,13 @@ function InstantRoom() {
       createdAt: "Just now",
       expiresIn: expires,
       status: "Waiting",
+      provider,
+      externalLink: provider === "JC Secure" ? undefined : trimmed || undefined,
     };
     setRooms((r) => [room, ...r]);
     setCreated(room);
     setNote("");
+    setExternalLink("");
     toast.success("Instant Room created — share the secure link with your patient.");
   };
 
