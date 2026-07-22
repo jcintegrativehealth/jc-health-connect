@@ -82,11 +82,13 @@ function InstantRoom() {
     toast.success("Instant Room created — share the secure link with your patient.");
   };
 
-  const copyLink = async (id: string) => {
+  const shareUrlFor = (r: Room) => (r.provider !== "JC Secure" && r.externalLink ? r.externalLink : originJoinUrl(r.id));
+
+  const copyLink = async (room: Room) => {
     try {
-      await navigator.clipboard.writeText(originJoinUrl(id));
+      await navigator.clipboard.writeText(shareUrlFor(room));
       setCopied(true);
-      toast.success("Secure link copied to clipboard");
+      toast.success("Meeting link copied to clipboard");
       setTimeout(() => setCopied(false), 1800);
     } catch {
       toast.error("Could not copy link");
