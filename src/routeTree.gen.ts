@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TelehealthRouteImport } from './routes/telehealth'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as PatientResourcesRouteImport } from './routes/patient-resources'
 import { Route as PatientRouteImport } from './routes/patient'
@@ -87,6 +88,11 @@ import { Route as AdminAppointmentsIdRouteImport } from './routes/admin.appointm
 const TelehealthRoute = TelehealthRouteImport.update({
   id: '/telehealth',
   path: '/telehealth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortalRoute = PortalRouteImport.update({
@@ -470,6 +476,7 @@ export interface FileRoutesByFullPath {
   '/patient': typeof PatientRouteWithChildren
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telehealth': typeof TelehealthRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/billing': typeof AdminBillingRoute
@@ -544,6 +551,7 @@ export interface FileRoutesByTo {
   '/medications': typeof MedicationsRoute
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telehealth': typeof TelehealthRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/billing': typeof AdminBillingRoute
@@ -621,6 +629,7 @@ export interface FileRoutesById {
   '/patient': typeof PatientRouteWithChildren
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telehealth': typeof TelehealthRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/billing': typeof AdminBillingRoute
@@ -699,6 +708,7 @@ export interface FileRouteTypes {
     | '/patient'
     | '/patient-resources'
     | '/portal'
+    | '/sitemap.xml'
     | '/telehealth'
     | '/admin/analytics'
     | '/admin/billing'
@@ -773,6 +783,7 @@ export interface FileRouteTypes {
     | '/medications'
     | '/patient-resources'
     | '/portal'
+    | '/sitemap.xml'
     | '/telehealth'
     | '/admin/analytics'
     | '/admin/billing'
@@ -849,6 +860,7 @@ export interface FileRouteTypes {
     | '/patient'
     | '/patient-resources'
     | '/portal'
+    | '/sitemap.xml'
     | '/telehealth'
     | '/admin/analytics'
     | '/admin/billing'
@@ -926,6 +938,7 @@ export interface RootRouteChildren {
   PatientRoute: typeof PatientRouteWithChildren
   PatientResourcesRoute: typeof PatientResourcesRoute
   PortalRoute: typeof PortalRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TelehealthRoute: typeof TelehealthRoute
   ConditionsSlugRoute: typeof ConditionsSlugRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
@@ -948,6 +961,13 @@ declare module '@tanstack/react-router' {
       path: '/telehealth'
       fullPath: '/telehealth'
       preLoaderRoute: typeof TelehealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portal': {
@@ -1592,6 +1612,7 @@ const rootRouteChildren: RootRouteChildren = {
   PatientRoute: PatientRouteWithChildren,
   PatientResourcesRoute: PatientResourcesRoute,
   PortalRoute: PortalRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TelehealthRoute: TelehealthRoute,
   ConditionsSlugRoute: ConditionsSlugRoute,
   InsightsSlugRoute: InsightsSlugRoute,
@@ -1609,3 +1630,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
