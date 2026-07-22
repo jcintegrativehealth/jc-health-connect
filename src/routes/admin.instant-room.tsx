@@ -251,11 +251,11 @@ function InstantRoom() {
                     <div className="text-[10px] uppercase tracking-widest text-navy/45">{r.createdAt} · {r.expiresIn > 0 ? `expires in ${r.expiresIn} min` : "expired"}</div>
                   </div>
                   <div className="flex gap-1 sm:justify-end">
-                    <button onClick={() => copyLink(r.id)} disabled={r.status === "Ended"}
+                    <button onClick={() => copyLink(r)} disabled={r.status === "Ended"}
                       className="h-8 px-2 border border-navy/15 text-[10px] uppercase tracking-widest text-navy/65 hover:text-navy disabled:opacity-40 inline-flex items-center gap-1">
                       <Copy size={11} /> Copy
                     </button>
-                    <a href={originJoinUrl(r.id)} target="_blank" rel="noreferrer"
+                    <a href={shareUrlFor(r)} target="_blank" rel="noreferrer"
                        className={`h-8 px-2 border border-navy/15 text-[10px] uppercase tracking-widest inline-flex items-center gap-1 ${r.status === "Ended" ? "opacity-40 pointer-events-none" : "text-navy/65 hover:text-navy"}`}>
                       <ExternalLink size={11} /> Open
                     </a>
