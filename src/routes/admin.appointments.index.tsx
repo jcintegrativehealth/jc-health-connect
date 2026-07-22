@@ -2,8 +2,9 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { PageHeader, Toolbar, DataTable, Badge, Btn, Chip, ExportBtn, Pagination } from "@/components/admin/primitives";
 import { appointments } from "@/data/admin";
-import { useAppointments } from "@/lib/appointmentStore";
+import { APPOINTMENT_STATUSES, updateAppointmentStatus, useAppointments, type AppointmentStatus } from "@/lib/appointmentStore";
 import { CalendarPlus } from "lucide-react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/appointments/")({
   head: () => ({ meta: [{ title: "Appointments — JC Admin" }, { name: "robots", content: "noindex" }] }),
