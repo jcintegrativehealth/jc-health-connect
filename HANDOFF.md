@@ -179,3 +179,108 @@ Keep files in `src/lib/` (NOT `src/server/` — blocked from client bundle). Loa
 6. Migration: `comments`, `contact_submissions`.
 7. pg_cron → server route → send `appointment-reminder` 24h out.
 8. Real patient portal data (labs, care plans) — schema to be defined in a follow-up section here.
+
+---
+
+## 9. Billing & Finance (deferred module — do NOT block §1–§8)
+
+This module is **out of scope for the initial launch** described in §8. It is documented here so any parallel work stays aligned with the same contract. Claude Code should only start §9 after §1–§7 are shipped and the primary clinical flow is live.
+
+### 9.1 Scope
+
+The clinic charges for:
+- **Consultations** (one-off, per appointment) — Telehealth Consult, Follow-up, Extended Intake.
+- **Care Plans / Memberships** — monthly or quarterly recurring.
+- **Lab panels & add-ons** — one-off line items attached to an appointment.
+
+Cash pay only in v1. **No insurance claim submission**, no CPT/ICD coding pipeline. Receipts are patient-facing PDFs; superbills for insurance reimbursement are a v2 concern.
+
+### 9.2 Provider
+
+**Stripe (seamless, Lovable-managed)** — enable via `payments--enable_stripe_payments`. Digital/professional services in a supported seller country → default to Stripe **managed_payments** (full compliance handling) with tax codes on every product. Do NOT enable Paddle (physical exclusions do not apply, but Stripe fits professional healthcare services better and supports recurring memberships cleanly). Do NOT wire the legacy BYOK `enable_stripe` path.
+
+### 9.3 Tables (public schema — all require GRANTs + RLS per house rules)
+
+Order of creation matters (FKs):
+
+1. **`billing_products`** — catalog of purchasable items.
+   - `id uuid pk`, `slug text unique`, `name text`, `description text`, `kind text check in ('consult','membership','lab','addon')`, `unit_amount_cents int`, `currency text default 'usd'`, `stripe_product_id text`, `stripe_price_id text`, `interval text null` (`month` | `quarter` | null for one-off), `tax_code text` (Stripe tax code), `active bool default true`, timestamps.
+   - RLS: `SELECT` for `authenticated` where `active = true`; full CRUD for `admin` role only.
+
+2. **`billing_customers`** — 1:1 with `auth.users` mirror of Stripe customer.
+   - `user_id uuid pk references auth.users`, `stripe_customer_id text unique`, `default_payment_method text`, timestamps.
+   - RLS: user reads own row; `admin` reads all; writes only via server functions using `supabaseAdmin`.
+
+3. **`billing_invoices`** — one row per Stripe invoice (both one-off Checkout and subscription cycles).
+   - `id uuid pk`, `user_id uuid references auth.users`, `stripe_invoice_id text unique`, `stripe_checkout_session_id text null`, `appointment_id uuid null references appointments`, `subscription_id uuid null references billing_subscriptions`, `status text check in ('draft','open','paid','void','uncollectible','refunded')`, `amount_subtotal_cents int`, `amount_tax_cents int`, `amount_total_cents int`, `currency text`, `hosted_invoice_url text`, `pdf_url text`, `issued_at timestamptz`, `paid_at timestamptz null`, timestamps.
+   - RLS: user reads own; `admin` reads all; writes via webhook (`supabaseAdmin`).
+
+4. **`billing_invoice_items`** — line items (denormalized snapshot; do not FK to `billing_products` because product prices can change).
+   - `id uuid pk`, `invoice_id uuid references billing_invoices on delete cascade`, `product_slug text`, `description text`, `quantity int default 1`, `unit_amount_cents int`, `amount_cents int`, `tax_code text`.
+   - RLS: inherit through invoice (policy: readable if parent invoice is readable).
+
+5. **`billing_subscriptions`** — membership state mirror.
+   - `id uuid pk`, `user_id uuid references auth.users`, `stripe_subscription_id text unique`, `product_slug text`, `status text check in ('trialing','active','past_due','canceled','incomplete','incomplete_expired','unpaid','paused')`, `current_period_start timestamptz`, `current_period_end timestamptz`, `cancel_at_period_end bool default false`, `canceled_at timestamptz null`, timestamps.
+   - RLS: user reads own; `admin` reads all; writes via webhook.
+
+6. **`billing_refunds`** — audit trail for refunds issued from admin.
+   - `id uuid pk`, `invoice_id uuid references billing_invoices`, `stripe_refund_id text unique`, `amount_cents int`, `reason text`, `issued_by uuid references auth.users` (admin), `created_at`.
+   - RLS: user reads own (through invoice); `admin` full CRUD.
+
+**Cross-cutting:** every `CREATE TABLE` followed by `GRANT SELECT[, INSERT/UPDATE/DELETE where policy allows] TO authenticated; GRANT ALL TO service_role;`. No `anon` grants — billing is authenticated-only.
+
+### 9.4 Server functions (create in `src/lib/billing.functions.ts`)
+
+- `createCheckoutSession({ productSlug, appointmentId? })` — `requireSupabaseAuth`; creates or reuses `billing_customers.stripe_customer_id`; opens Stripe Checkout in `payment` or `subscription` mode based on product `interval`; returns `{ url }`. Uses `managed_payments: { enabled: true }` on the session.
+- `createBillingPortalSession()` — `requireSupabaseAuth`; returns Stripe Customer Portal URL for the current user (manage payment method, cancel subscription, download invoices).
+- `listMyInvoices()` — `requireSupabaseAuth`; reads `billing_invoices` scoped to `auth.uid()`.
+- `listMySubscriptions()` — same shape.
+- `adminIssueRefund({ invoiceId, amountCents, reason })` — `requireSupabaseAuth` + `has_role('admin')` check on `context.supabase`; only then imports `supabaseAdmin` for the Stripe call and audit insert.
+
+**Do NOT** put any `stripe.*` secret access in a server function that isn't gated on an admin role check or on the caller's own `user_id`.
+
+### 9.5 Webhook
+
+Public route: `src/routes/api/public/webhooks/stripe.ts`. Verify signature with `STRIPE_WEBHOOK_SECRET` before any DB write. Handle:
+- `checkout.session.completed` → upsert `billing_customers`, insert `billing_invoices` + items, link to `appointment_id` from `metadata`, mark appointment `paid = true`.
+- `invoice.paid` / `invoice.payment_failed` → update `billing_invoices.status`.
+- `customer.subscription.{created,updated,deleted}` → upsert `billing_subscriptions`.
+- `charge.refunded` → insert `billing_refunds`, update invoice status.
+
+Idempotency: use `stripe_invoice_id` / `stripe_subscription_id` unique constraints; upsert on conflict.
+
+### 9.6 Frontend contract (already scaffolded / to scaffold — frontend responsibility)
+
+Frontend will expose these surfaces; Claude Code fills the server side without renaming:
+- `/patient/billing` — invoice history table + "Manage payment methods" button (opens `createBillingPortalSession`).
+- `/patient/billing/plans` — subscription state + upgrade/cancel via portal.
+- **Booking flow** — after appointment request is created, if the selected service has a `billing_products.slug`, redirect to `createCheckoutSession` before showing confirmation.
+- `/admin/billing` — invoice list, subscription list, refund action.
+- Email templates to add later: `receipt`, `payment-failed`, `subscription-canceled`. Not in v1 email set.
+
+### 9.7 Emails triggered from billing (v2)
+
+Add to `src/lib/email-templates/` when this module ships:
+- `receipt.tsx` — sent on `invoice.paid`.
+- `payment-failed.tsx` — sent on `invoice.payment_failed`.
+- `subscription-canceled.tsx` — sent on `customer.subscription.deleted`.
+
+Same layout wrapper, same `LOGO_URL`, same palette tokens as existing templates. Preview page `/admin/emails` must be extended with these three entries.
+
+### 9.8 Ground rules specific to billing
+
+1. **Never store card data.** Everything sensitive stays on Stripe; we mirror only IDs, statuses, and display amounts.
+2. **Prices are snapshots.** `billing_invoice_items` copy the price at purchase time; do not join back to `billing_products` for historical display.
+3. **Admin authorization for refunds must query `user_roles` via `context.supabase` (RLS-scoped) before touching `supabaseAdmin`.** Never authorize by reading roles through the admin client — that's the escalation pattern the house rules forbid.
+4. **Tax codes are per product** and required when Stripe managed_payments is on. Look each product up in the Stripe tax code catalog; no single fallback.
+5. **Do not enable billing until §1–§7 are green.** Booking + email flow is the launch blocker; billing is post-launch revenue enablement.
+
+### 9.9 Suggested order (after §8 is done)
+
+1. `payments--enable_stripe_payments` (Lovable agent runs this — Claude Code cannot).
+2. Create Stripe products via `batch_create_product` with tax codes.
+3. Migration for §9.3 tables + RLS + grants, in one file.
+4. `billing.functions.ts` + Stripe webhook route.
+5. Wire `/patient/billing`, `/admin/billing` to real data (frontend replaces mocks).
+6. Add v2 email templates + preview entries.
+7. End-to-end test: book → pay → receipt → refund → subscription cancel.
