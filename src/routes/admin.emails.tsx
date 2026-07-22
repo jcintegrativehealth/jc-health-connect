@@ -9,6 +9,8 @@ import { WelcomeEmail } from "@/lib/email-templates/welcome";
 import { AppointmentRequestReceived } from "@/lib/email-templates/appointment-request-received";
 import { AppointmentConfirmed } from "@/lib/email-templates/appointment-confirmed";
 import { AppointmentReminder } from "@/lib/email-templates/appointment-reminder";
+import { AppointmentCancellation } from "@/lib/email-templates/appointment-cancellation";
+import { AppointmentRescheduled } from "@/lib/email-templates/appointment-rescheduled";
 import { ContactConfirmation } from "@/lib/email-templates/contact-confirmation";
 import { PasswordReset } from "@/lib/email-templates/password-reset";
 
