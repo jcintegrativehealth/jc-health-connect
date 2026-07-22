@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import { Menu, X, Calendar } from "lucide-react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import logoMark from "@/assets/logo-mark.png";
 
 // Hero nav: essentials only. Secondary pages live in the footer & drawer.
 const NAV: { to: string; key: string }[] = [
