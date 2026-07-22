@@ -198,6 +198,7 @@
       "documents": "Documentos",
       "tasks": "Tarefas",
       "notifications": "Notificações",
+      "emails": "Prévia de e-mails",
       "settings": "Configurações"
     },
     "sidebar": { "collapse": "Recolher", "backToSite": "Voltar ao site", "privateAdmin": "Admin privado" },
