@@ -36,8 +36,8 @@ function originJoinUrl(id: string) {
 }
 
 const SEED: Room[] = [
-  { id: "RM-A8F2-K91X", patientId: "P-1042", patientName: "Amelia Reyes", type: "Follow-up", duration: 30, language: "English", note: "Review labs from Aug 12.", createdAt: "Today · 09:12", expiresIn: 240, status: "Waiting" },
-  { id: "RM-BX22-77QP", patientId: "P-1043", patientName: "Rafael Marques", type: "Quick check-in", duration: 15, language: "Portuguese", note: "Medication tolerance.", createdAt: "Today · 08:04", expiresIn: 0, status: "Ended" },
+  { id: "RM-A8F2-K91X", patientId: "P-1042", patientName: "Amelia Reyes", type: "Follow-up", duration: 30, language: "English", note: "Review labs from Aug 12.", createdAt: "Today · 09:12", expiresIn: 240, status: "Waiting", provider: "JC Secure" },
+  { id: "RM-BX22-77QP", patientId: "P-1043", patientName: "Rafael Marques", type: "Quick check-in", duration: 15, language: "Portuguese", note: "Medication tolerance.", createdAt: "Today · 08:04", expiresIn: 0, status: "Ended", provider: "Google Meet", externalLink: "https://meet.google.com/abc-defg-hij" },
 ];
 
 function InstantRoom() {
