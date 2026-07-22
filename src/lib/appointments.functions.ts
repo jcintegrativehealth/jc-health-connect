@@ -273,8 +273,18 @@ async function sendChangeEmails(before: AppointmentRow, after: AppointmentRow): 
 export const createAppointmentFn = createServerFn({ method: "POST" })
   .validator(createInput)
   .handler(async ({ data }) => {
-    const { assertRateLimit, clientIp } = await import("@/lib/rate-limit.server");
-    assertRateLimit(`book:${clientIp()}`, 5, 10 * 60_000);
+    // Staff (admin/clinician) may schedule without the anonymous rate limit and
+    // may set source 'admin'; everyone else is rate-limited and forced to
+    // 'public'. Staff status is verified through an RLS-scoped client.
+    const { getRequestStaffUserId } = await import("@/lib/auth-check.server");
+    const staffUserId = await getRequestStaffUserId();
+
+    let source: "public" | "admin" = data.source;
+    if (!staffUserId) {
+      source = "public";
+      const { assertRateLimit, clientIp } = await import("@/lib/rate-limit.server");
+      assertRateLimit(`book:${clientIp()}`, 8, 10 * 60_000);
+    }
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const db = supabaseAdmin as unknown as Db;
@@ -282,7 +292,7 @@ export const createAppointmentFn = createServerFn({ method: "POST" })
     const { data: row, error } = await db
       .from("appointments")
       .insert({
-        source: data.source,
+        source,
         date: data.date,
         time: normalizeTime(data.time),
         patient_name: data.patient,

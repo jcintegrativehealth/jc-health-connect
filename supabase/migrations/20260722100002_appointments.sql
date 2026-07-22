@@ -43,6 +43,10 @@ alter table public.appointments enable row level security;
 grant select, update on public.appointments to authenticated;
 grant all on public.appointments to service_role;
 
+-- The "A-9001" id default calls nextval() at insert time; only the service role
+-- inserts (public /book fn + admin scheduling), so it needs sequence usage.
+grant usage, select on sequence public.appointment_ref_seq to service_role;
+
 create trigger appointments_set_updated_at
   before update on public.appointments
   for each row execute function public.set_updated_at();

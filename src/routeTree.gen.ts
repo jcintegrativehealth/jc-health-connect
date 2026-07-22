@@ -20,6 +20,7 @@ import { Route as InnovationRouteImport } from './routes/innovation'
 import { Route as MedicationsRouteImport } from './routes/medications'
 import { Route as PatientResourcesRouteImport } from './routes/patient-resources'
 import { Route as PortalRouteImport } from './routes/portal'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TelehealthRouteImport } from './routes/telehealth'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedPatientRouteImport } from './routes/_authenticated/patient'
@@ -138,6 +139,11 @@ const PatientResourcesRoute = PatientResourcesRouteImport.update({
 const PortalRoute = PortalRouteImport.update({
   id: '/portal',
   path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TelehealthRoute = TelehealthRouteImport.update({
@@ -522,6 +528,7 @@ export interface FileRoutesByFullPath {
   '/medications': typeof MedicationsRoute
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telehealth': typeof TelehealthRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/patient': typeof AuthenticatedPatientRouteWithChildren
@@ -599,6 +606,7 @@ export interface FileRoutesByTo {
   '/medications': typeof MedicationsRoute
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telehealth': typeof TelehealthRoute
   '/admin/login': typeof AdminLoginRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
@@ -676,6 +684,7 @@ export interface FileRoutesById {
   '/medications': typeof MedicationsRoute
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telehealth': typeof TelehealthRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/patient': typeof AuthenticatedPatientRouteWithChildren
@@ -755,6 +764,7 @@ export interface FileRouteTypes {
     | '/medications'
     | '/patient-resources'
     | '/portal'
+    | '/sitemap.xml'
     | '/telehealth'
     | '/admin'
     | '/patient'
@@ -832,6 +842,7 @@ export interface FileRouteTypes {
     | '/medications'
     | '/patient-resources'
     | '/portal'
+    | '/sitemap.xml'
     | '/telehealth'
     | '/admin/login'
     | '/conditions/$slug'
@@ -908,6 +919,7 @@ export interface FileRouteTypes {
     | '/medications'
     | '/patient-resources'
     | '/portal'
+    | '/sitemap.xml'
     | '/telehealth'
     | '/_authenticated/admin'
     | '/_authenticated/patient'
@@ -987,6 +999,7 @@ export interface RootRouteChildren {
   MedicationsRoute: typeof MedicationsRoute
   PatientResourcesRoute: typeof PatientResourcesRoute
   PortalRoute: typeof PortalRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TelehealthRoute: typeof TelehealthRoute
   AdminLoginRoute: typeof AdminLoginRoute
   ConditionsSlugRoute: typeof ConditionsSlugRoute
@@ -1081,6 +1094,13 @@ declare module '@tanstack/react-router' {
       path: '/portal'
       fullPath: '/portal'
       preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/telehealth': {
@@ -1688,6 +1708,7 @@ const rootRouteChildren: RootRouteChildren = {
   MedicationsRoute: MedicationsRoute,
   PatientResourcesRoute: PatientResourcesRoute,
   PortalRoute: PortalRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TelehealthRoute: TelehealthRoute,
   AdminLoginRoute: AdminLoginRoute,
   ConditionsSlugRoute: ConditionsSlugRoute,
