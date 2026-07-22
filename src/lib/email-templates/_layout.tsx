@@ -140,13 +140,24 @@ export function EmailLayout({
         <Container style={container}>
           <Section style={masthead}>
             <div style={brandRow}>
-              <Img
-                src={LOGO_URL}
-                alt="JC Integrative Health"
-                width={44}
-                height={44}
-                style={{ display: "block", marginBottom: 10, borderRadius: 4 }}
-              />
+              <div
+                style={{
+                  display: "inline-block",
+                  backgroundColor: brand.beige,
+                  borderRadius: 6,
+                  padding: 6,
+                  marginBottom: 10,
+                  lineHeight: 0,
+                }}
+              >
+                <Img
+                  src={LOGO_URL}
+                  alt="JC Integrative Health"
+                  width={36}
+                  height={36}
+                  style={{ display: "block" }}
+                />
+              </div>
               <div style={brandSub}>Integrative Health</div>
             </div>
           </Section>
