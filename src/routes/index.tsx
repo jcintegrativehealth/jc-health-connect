@@ -76,7 +76,9 @@ function HomePage() {
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start relative">
             <div className="lg:col-span-7 relative">
               <div className="flex justify-center md:justify-start mb-7">
-                <img src={logoMark} alt="JC Integrative Health" className="h-16 w-16 md:h-20 md:w-20" width={80} height={80} />
+                <span className="inline-flex items-center justify-center h-16 w-16 md:h-20 md:w-20 rounded-lg bg-beige">
+                  <img src={logoMark} alt="JC Integrative Health" className="h-12 w-12 md:h-14 md:w-14 object-contain" width={80} height={80} />
+                </span>
               </div>
               <div className="eyebrow text-terracotta mb-6">Section 01 · Evidence-Based Care</div>
               <h1 className="font-serif text-[2.5rem] leading-[1.05] md:text-5xl lg:text-[3.75rem] text-balance text-navy">
