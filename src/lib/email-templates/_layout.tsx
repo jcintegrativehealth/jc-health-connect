@@ -16,7 +16,7 @@ import {
 } from "@react-email/components";
 
 export const LOGO_URL =
-  "https://jc-health-connect.lovable.app/__l5e/assets-v1/533419ac-8544-45ad-a2ed-53f59304d236/logo-mark.png";
+  "https://jc-health-connect.lovable.app/__l5e/assets-v1/bad89668-d5f4-4f91-8f98-bcb5316ed10a/logo-mark.png";
 
 export const brand = {
   navy: "#1F3D2E",
