@@ -217,10 +217,10 @@ function HomePage() {
       <section className="py-28 bg-mist/50">
         <Container>
           <div className="grid lg:grid-cols-[400px_1fr] gap-16 items-start">
-            <div className="aspect-[4/5] bg-linear-to-b from-navy/10 to-navy/5 ring-1 ring-navy/10 grid place-items-center">
+            <div role="img" aria-label="Portrait of Dr. Jason Chen, DO — founder of JC Integrative Health" className="aspect-[4/5] bg-linear-to-b from-navy/10 to-navy/5 ring-1 ring-navy/10 grid place-items-center">
               <div className="text-center">
                 <div className="eyebrow text-navy/35 mb-2">Portrait</div>
-                <div className="font-serif italic text-navy/25 text-sm">Photography placeholder</div>
+                <div className="font-serif italic text-navy/25 text-sm">Dr. Jason Chen, DO</div>
               </div>
             </div>
             <div>
