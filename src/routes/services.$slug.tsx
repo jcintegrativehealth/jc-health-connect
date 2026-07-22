@@ -11,14 +11,44 @@ export const Route = createFileRoute("/services/$slug")({
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) return { meta: [{ title: "Service — JC Integrative Health" }, { name: "robots", content: "noindex" }] };
+    const serviceUrl = `https://jcintegrativehealth.com/services/${params.slug}`;
+    const schemas = [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: loaderData.service.name,
+        description: loaderData.service.summary,
+        url: serviceUrl,
+        provider: {
+          "@type": "MedicalOrganization",
+          name: "JC Integrative Health",
+          url: "https://jcintegrativehealth.com",
+        },
+      },
+      ...(loaderData.service.faqs.length > 0
+        ? [
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: loaderData.service.faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            },
+          ]
+        : []),
+    ];
     return {
       meta: [
         { title: `${loaderData.service.name} — JC Integrative Health` },
         { name: "description", content: loaderData.service.summary },
         { property: "og:title", content: loaderData.service.name },
-        { property: "og:url", content: `/services/${params.slug}` },
+        { property: "og:description", content: loaderData.service.summary },
+        { property: "og:url", content: serviceUrl },
       ],
-      links: [{ rel: "canonical", href: `/services/${params.slug}` }],
+      links: [{ rel: "canonical", href: serviceUrl }],
+      scripts: [{ type: "application/ld+json", children: JSON.stringify(schemas) }],
     };
   },
   component: ServiceDetail,
