@@ -205,6 +205,7 @@
       "documents": "Documents",
       "tasks": "Tasks",
       "notifications": "Notifications",
+      "emails": "Email Previews",
       "settings": "Settings"
     },
     "sidebar": { "collapse": "Collapse", "backToSite": "Back to site", "privateAdmin": "Private admin" },
