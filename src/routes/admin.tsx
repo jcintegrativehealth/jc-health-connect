@@ -51,6 +51,7 @@ const NAV: Item[] = [
   { to: "/admin/documents", label: "documents", icon: Files, group: "operations" },
   { to: "/admin/tasks", label: "tasks", icon: ListChecks, group: "operations" },
   { to: "/admin/notifications", label: "notifications", icon: Bell, group: "operations" },
+  { to: "/admin/emails", label: "emails", icon: Mail, group: "operations" },
   { to: "/admin/settings", label: "settings", icon: Settings, group: "operations" },
 ];
 
