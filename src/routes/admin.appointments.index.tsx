@@ -79,7 +79,21 @@ function AppointmentsList() {
           { key: "lang", label: "Lang" },
           { key: "format", label: "Format" },
           { key: "duration", label: "Min", align: "right" },
-          { key: "status", label: "Status", render: (r) => <Badge tone={r.status}>{r.status}</Badge> },
+          { key: "status", label: "Status", render: (r) => (
+            <select
+              value={r.status}
+              onClick={(e) => e.stopPropagation()}
+              onChange={(e) => {
+                e.stopPropagation();
+                const v = e.target.value as AppointmentStatus;
+                updateAppointmentStatus(r.id, v);
+                toast.success(`${r.id} → ${v}`);
+              }}
+              className="h-8 border border-navy/15 bg-card px-2 text-xs text-navy outline-none focus:border-teal"
+            >
+              {APPOINTMENT_STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+          ) },
           { key: "pay", label: "Payment", render: (r) => <Badge tone={r.pay}>{r.pay}</Badge> },
         ]}
       />
