@@ -81,7 +81,6 @@ function HomePage() {
                 </span>
                 <span className="font-serif italic text-lg md:text-xl text-navy/80 tracking-tight">Integrative Health</span>
               </div>
-              </div>
               <div className="eyebrow text-terracotta mb-6">Section 01 · Evidence-Based Care</div>
               <h1 className="font-serif text-[2.5rem] leading-[1.05] md:text-5xl lg:text-[3.75rem] text-balance text-navy">
                 {t("hero.title")}
