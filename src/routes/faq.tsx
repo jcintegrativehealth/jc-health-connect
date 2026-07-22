@@ -7,7 +7,7 @@ const FAQ: { cat: string; items: { q: string; a: string }[] }[] = [
     { q: "How long is an initial visit?", a: "Typically 60–90 minutes for a comprehensive initial consultation." },
   ] },
   { cat: "Telehealth", items: [
-    { q: "Which states can I have a telehealth visit in?", a: "Currently Colorado and Washington." },
+    { q: "Which states can I have a telehealth visit in?", a: "Currently Virginia, Maryland, and Colorado." },
     { q: "What do I need for a telehealth visit?", a: "A modern browser, camera, microphone, and stable internet." },
   ] },
   { cat: "Languages", items: [{ q: "Which languages are supported?", a: "English, Spanish, Portuguese, and Mandarin." }] },

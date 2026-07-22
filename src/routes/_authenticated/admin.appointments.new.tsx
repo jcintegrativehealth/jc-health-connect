@@ -18,7 +18,7 @@ function NewAppointment() {
   const [saving, setSaving] = useState(false);
   const [data, setData] = useState({
     patient: "", visitType: "Follow-up", service: "Longevity", format: "Telehealth",
-    state: "California", language: "English", date: "", time: "", duration: "30", notes: "", pay: "Card on file",
+    state: "Virginia", language: "English", date: "", time: "", duration: "30", notes: "", pay: "Card on file",
   });
 
   const set = (k: keyof typeof data, v: string) => setData((d) => ({ ...d, [k]: v }));
@@ -68,7 +68,7 @@ function NewAppointment() {
             <label className="block">
               <span className="text-[11px] uppercase tracking-widest text-navy/55">State</span>
               <select value={data.state} onChange={(e) => set("state", e.target.value)} className="mt-1.5 w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal">
-                {["California", "New York", "Texas", "Florida", "Washington"].map((s) => <option key={s}>{s}</option>)}
+                {["Virginia", "Maryland", "Colorado"].map((s) => <option key={s}>{s}</option>)}
               </select>
             </label>
             <label className="block">

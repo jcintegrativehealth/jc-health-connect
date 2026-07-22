@@ -111,8 +111,9 @@ function ContactPage() {
               </Field>
               <Field label={t("contact.fields.state")}>
                 <select className="input" value={f.state} onChange={(e) => set("state")(e.target.value)}>
+                  <option>{t("contact.states.va")}</option>
+                  <option>{t("contact.states.md")}</option>
                   <option>{t("contact.states.co")}</option>
-                  <option>{t("contact.states.wa")}</option>
                   <option>{t("contact.states.other")}</option>
                 </select>
               </Field>

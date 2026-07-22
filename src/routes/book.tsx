@@ -96,7 +96,7 @@ function BookPage() {
             )}
             {step === 1 && (
               <StepGrid cols={2}>
-                <Choice active={f.mode === "in-person"} onClick={() => setF({ ...f, mode: "in-person" })} title="In-Person" sub="Colorado and Washington" />
+                <Choice active={f.mode === "in-person"} onClick={() => setF({ ...f, mode: "in-person" })} title="In-Person" sub="Virginia, Maryland, and Colorado" />
                 <Choice active={f.mode === "telehealth"} onClick={() => setF({ ...f, mode: "telehealth" })} title="Telehealth" sub="Available in supported states" />
               </StepGrid>
             )}

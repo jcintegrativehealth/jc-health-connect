@@ -13,7 +13,7 @@ function TelehealthPage() {
       <PortalPageHeader
         eyebrow="Care · Telehealth"
         title="Telehealth visits"
-        lede="Meet with Dr. Jason Chen from anywhere in Colorado or Washington. Secure, private, and clinically integrated."
+        lede="Meet with Dr. Jason Chen from anywhere in Virginia, Maryland, or Colorado. Secure, private, and clinically integrated."
         actions={<Link to="/patient/telehealth/waiting-room"><BtnPrimary>Enter Waiting Room</BtnPrimary></Link>}
       />
 
@@ -28,7 +28,7 @@ function TelehealthPage() {
 
         <PortalCard title="Supported states">
           <div className="flex flex-wrap gap-2">
-            {["Colorado", "Washington"].map((s) => (
+            {["Virginia", "Maryland", "Colorado"].map((s) => (
               <span key={s} className="border border-navy/15 rounded-sm px-3 py-1.5 text-xs text-navy inline-flex items-center gap-1.5"><MapPin size={12} className="text-gold" /> {s}</span>
             ))}
           </div>

@@ -45,8 +45,9 @@ export function Footer() {
           </FooterCol>
 
           <FooterCol title={t("footer.columns.contact")}>
+            <FLink to="/locations/virginia">{t("footer.links.virginia")}</FLink>
+            <FLink to="/locations/maryland">{t("footer.links.maryland")}</FLink>
             <FLink to="/locations/colorado">{t("footer.links.colorado")}</FLink>
-            <FLink to="/locations/washington">{t("footer.links.washington")}</FLink>
             <FLink to="/contact">{t("nav.contact")}</FLink>
             <FLink to="/dr-chen">{t("footer.links.drChen")}</FLink>
           </FooterCol>

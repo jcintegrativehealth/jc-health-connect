@@ -86,7 +86,7 @@ function NewPatient() {
               <label className="block">
                 <span className="text-[11px] uppercase tracking-widest text-navy/55">State</span>
                 <select className="mt-1.5 w-full h-10 border border-navy/15 bg-card px-3 text-sm text-navy outline-none focus:border-teal">
-                  <option>California</option><option>New York</option><option>Texas</option><option>Florida</option><option>Washington</option>
+                  <option>Virginia</option><option>Maryland</option><option>Colorado</option>
                 </select>
               </label>
               <Field label="ZIP" />

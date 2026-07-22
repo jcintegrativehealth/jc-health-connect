@@ -13,9 +13,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "JC Integrative Health — Evidence-Based Care" },
-      { name: "description", content: "Personalized care from Dr. Jason Chen, DO. Integrative medicine, longevity, and telehealth for Colorado, Washington, and beyond." },
+      { name: "description", content: "Personalized care from Dr. Jason Chen, DO. Integrative medicine, longevity, and telehealth for Virginia, Maryland, Colorado, and beyond." },
       { property: "og:title", content: "JC Integrative Health — Evidence-Based Care" },
-      { property: "og:description", content: "Personalized care from Dr. Jason Chen, DO. Integrative medicine, longevity, and telehealth for Colorado, Washington, and beyond." },
+      { property: "og:description", content: "Personalized care from Dr. Jason Chen, DO. Integrative medicine, longevity, and telehealth for Virginia, Maryland, Colorado, and beyond." },
       { property: "og:url", content: "https://jcintegrativehealth.com/" },
     ],
     links: [
@@ -72,7 +72,7 @@ function HomePage() {
               </span>
               Now accepting new patients
             </div>
-            <div className="hidden sm:block">Est. 2019 · Colorado · Washington · Telehealth</div>
+            <div className="hidden sm:block">Est. 2019 · Virginia · Maryland · Colorado · Telehealth</div>
             <div>NPI-verified · HIPAA compliant</div>
           </div>
 
@@ -230,7 +230,7 @@ function HomePage() {
                 Physician in integrative medicine, university lecturer, and clinic director with a research interest in longevity, prevention, and the responsible integration of medical technology into everyday practice.
               </p>
               <p className="text-navy/60 leading-relaxed max-w-2xl mb-8">
-                Practicing in Colorado and Washington and available via telehealth for eligible patients across supported states. Fluent clinical communication in English, Spanish, Portuguese, and Mandarin.
+                Practicing in Virginia, Maryland, and Colorado and available via telehealth for eligible patients across supported states. Fluent clinical communication in English, Spanish, Portuguese, and Mandarin.
               </p>
               <dl className="grid grid-cols-2 sm:grid-cols-4 gap-6 border-t border-navy/10 pt-8 max-w-2xl">
                 {[

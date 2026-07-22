@@ -5,12 +5,12 @@ export const Route = createFileRoute("/dr-chen")({
   head: () => ({
     meta: [
       { title: "Dr. Jason Chen — JC Integrative Health" },
-      { name: "description", content: "Dr. Jason Chen — physician in integrative medicine, university lecturer, and clinic director. Practicing in Colorado and Washington." },
-      { property: "og:description", content: 'Dr. Jason Chen — physician in integrative medicine, university lecturer, and clinic director. Practicing in Colorado and Washington.' },
+      { name: "description", content: "Dr. Jason Chen — physician in integrative medicine, university lecturer, and clinic director. Practicing in Virginia, Maryland, and Colorado." },
+      { property: "og:description", content: 'Dr. Jason Chen — physician in integrative medicine, university lecturer, and clinic director. Practicing in Virginia, Maryland, and Colorado.' },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: 'Dr. Jason Chen — JC Integrative Health' },
-      { name: "twitter:description", content: 'Dr. Jason Chen — physician in integrative medicine, university lecturer, and clinic director. Practicing in Colorado and Washington.' },
+      { name: "twitter:description", content: 'Dr. Jason Chen — physician in integrative medicine, university lecturer, and clinic director. Practicing in Virginia, Maryland, and Colorado.' },
       { property: "og:title", content: "Dr. Jason Chen" },
       { property: "og:url", content: "/dr-chen" },
     ],
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/dr-chen")({
         "@type": "Physician",
         name: "Jason Chen, DO",
         medicalSpecialty: ["IntegrativeMedicine", "PreventiveMedicine"],
-        areaServed: ["Colorado", "Washington"],
+        areaServed: ["Virginia", "Maryland", "Colorado"],
         knowsLanguage: ["English", "Spanish", "Portuguese", "Mandarin Chinese"],
       }),
     }],
@@ -58,7 +58,7 @@ function DrChenPage() {
               </ul>
             </Section>
             <Section title="Languages">English · Spanish · Portuguese · Mandarin</Section>
-            <Section title="States served">Colorado · Washington · Telehealth in supported states.</Section>
+            <Section title="States served">Virginia · Maryland · Colorado · Telehealth in supported states.</Section>
 
             <div className="grid md:grid-cols-2 gap-6 pt-4">
               <Link to="/contact" className="border border-navy/10 p-6 hover:border-teal transition-colors block">

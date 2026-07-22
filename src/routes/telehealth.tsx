@@ -24,7 +24,7 @@ export const Route = createFileRoute("/telehealth")({
           <div className="space-y-8">
             {[
               ["How Telehealth Works", "A structured video consultation with your physician, including a review of your intake and records."],
-              ["States Available", "Colorado and Washington. Additional states are added periodically."],
+              ["States Available", "Virginia, Maryland, and Colorado. Additional states are added periodically."],
               ["Technology Requirements", "A modern browser, stable internet, and a device with a camera and microphone."],
               ["Appointment Preparation", "Have recent labs and medication list ready. Choose a quiet, well-lit space."],
               ["Privacy", "Visits use a HIPAA-conformant video platform. Recordings are not made unless explicitly agreed."],

@@ -38,9 +38,7 @@ function Settings() {
           {tab === "States" && (
             <>
               <div className="eyebrow text-navy/50 mb-3">Licensed states</div>
-              <div className="flex flex-wrap gap-2">{["California", "New York", "Texas", "Florida", "Washington"].map((s) => <Chip key={s} active>{s}</Chip>)}</div>
-              <div className="mt-6 eyebrow text-navy/50 mb-3">Pending</div>
-              <div className="flex flex-wrap gap-2">{["Massachusetts", "Colorado"].map((s) => <Chip key={s}>{s}</Chip>)}</div>
+              <div className="flex flex-wrap gap-2">{["Virginia", "Maryland", "Colorado"].map((s) => <Chip key={s} active>{s}</Chip>)}</div>
             </>
           )}
           {tab === "Languages" && (

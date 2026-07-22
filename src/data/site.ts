@@ -158,8 +158,9 @@ export const medications: Medication[] = [
 ];
 
 export const states = [
+  { slug: "virginia", name: "Virginia", short: "VA" },
+  { slug: "maryland", name: "Maryland", short: "MD" },
   { slug: "colorado", name: "Colorado", short: "CO" },
-  { slug: "washington", name: "Washington", short: "WA" },
 ];
 
 export const visitTypes = [

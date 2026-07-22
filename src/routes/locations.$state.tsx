@@ -3,8 +3,9 @@ import { Container, PageHeader } from "@/components/site/primitives";
 import { NotFoundInline } from "@/components/site/not-found-inline";
 
 const LOCATIONS: Record<string, { name: string; short: string; description: string }> = {
+  virginia: { name: "Virginia", short: "VA", description: "In-person and telehealth care in Virginia." },
+  maryland: { name: "Maryland", short: "MD", description: "In-person and telehealth care in Maryland." },
   colorado: { name: "Colorado", short: "CO", description: "In-person and telehealth care in Colorado." },
-  washington: { name: "Washington", short: "WA", description: "In-person and telehealth care in Washington." },
   telehealth: { name: "Telehealth", short: "Virtual", description: "Virtual care for eligible patients in supported states." },
 };
 
@@ -54,7 +55,7 @@ export const Route = createFileRoute("/locations/$state")({
       label="Location unavailable"
       title="This location is not listed"
       description="We do not currently operate in this state. See where Dr. Chen is licensed to practice."
-      backTo="/locations/co"
+      backTo="/locations/colorado"
       backLabel="View locations"
     />
   ),

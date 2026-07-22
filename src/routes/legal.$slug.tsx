@@ -11,7 +11,7 @@ const LEGAL: Record<string, { title: string; summary: string; body: string[] }> 
       "Information we collect. We collect information you provide directly — name, contact details, appointment preferences, and messages you send through the patient portal — as well as limited technical data (device, browser, coarse location) required to operate the site securely.",
       "How we use it. We use your information to schedule care, communicate about your treatment, deliver telehealth visits, respond to inquiries, and improve our services. Protected health information is handled under our Notice of Privacy Practices and applicable HIPAA rules.",
       "How we share it. We share information only with clinicians involved in your care, business associates bound by written agreements, and authorities where required by law. We never sell personal or health information.",
-      "Your choices. You can request access, correction, or deletion of your information at any time. Patients in Colorado, Washington, and other regulated states have additional rights under state law, which we honor.",
+      "Your choices. You can request access, correction, or deletion of your information at any time. Patients in Virginia, Maryland, Colorado, and other regulated states have additional rights under state law, which we honor.",
       "Contact. Questions about this policy can be sent to privacy@jcintegrativehealth.com.",
     ],
   },

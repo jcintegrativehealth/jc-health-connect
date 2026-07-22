@@ -109,8 +109,9 @@
       "faq": "FAQ",
       "conditions": "Conditions",
       "guestPhysicians": "Guest Physicians",
+      "virginia": "Virginia",
+      "maryland": "Maryland",
       "colorado": "Colorado",
-      "washington": "Washington",
       "drChen": "Dr. Jason Chen",
       "accessibility": "Accessibility",
       "adminPreview": "Admin Preview · Development only"
@@ -130,7 +131,7 @@
       "prevention": { "t": "Prevention and Longevity", "d": "A long view of health — measuring what matters, acting early, and prioritizing sustained function." },
       "innovation": { "t": "Medical Innovation", "d": "Considered use of new diagnostics, therapies, and technologies as they mature into responsible clinical tools." },
       "multilingual": { "t": "Multilingual Care", "d": "Clinical communication in English, Spanish, Portuguese, and Mandarin so that language does not stand between patients and care." },
-      "locations": { "t": "Locations and States Served", "d": "In-person visits in Colorado and Washington; telehealth for eligible patients across supported states." },
+      "locations": { "t": "Locations and States Served", "d": "In-person visits in Virginia, Maryland, and Colorado; telehealth for eligible patients across supported states." },
       "education": { "t": "Commitment to Education", "d": "Active involvement in teaching and public health literacy through university lectures and clinical mentorship." },
       "research": { "t": "Commitment to Research", "d": "Continuous engagement with published research, clinical trials, and evidence review." },
       "patient": { "t": "Patient-Centered Experience", "d": "A calm, respectful clinical environment that values time, clarity, and dignity." }
@@ -151,7 +152,7 @@
       "message": "Message"
     },
     "languages": { "en": "English", "es": "Spanish", "pt": "Portuguese", "zh": "Mandarin" },
-    "states": { "co": "Colorado", "wa": "Washington", "other": "Other / Not Applicable" },
+    "states": { "va": "Virginia", "md": "Maryland", "co": "Colorado", "other": "Other / Not Applicable" },
     "inquiries": {
       "patient": "Patient Inquiry",
       "appointment": "Appointment Question",

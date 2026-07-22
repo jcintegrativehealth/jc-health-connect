@@ -172,8 +172,8 @@ export function EmailLayout({
               <Text style={footerText}>{postscript}</Text>
             ) : null}
             <Text style={footerText}>
-              JC Integrative Health · Colorado &amp; Washington · Telehealth in
-              supported states
+              JC Integrative Health · Virginia · Maryland · Colorado · Telehealth
+              in supported states
             </Text>
             <Text style={footerText}>
               drjason@jcintegrativehealth.com

@@ -7,7 +7,7 @@ export const clinic = {
   role: "Founder · Medical Director",
   npi: "1234567890",
   hours: "Mon–Fri · 08:00–18:00 · Sat 09:00–13:00",
-  states: ["California", "New York", "Texas", "Florida", "Washington"],
+  states: ["Virginia", "Maryland", "Colorado"],
   languages: ["English", "Spanish", "Portuguese", "Mandarin"],
 };
 
@@ -43,27 +43,27 @@ export type Status =
   | "Reviewed" | "Requires Follow-Up";
 
 export const todayAgenda = [
-  { time: "08:30", patient: "Amelia R.", type: "Longevity consult", modality: "In-person", lang: "EN", state: "CA", status: "Confirmed" as Status },
-  { time: "09:15", patient: "Rafael M.", type: "Metabolic follow-up", modality: "Telehealth", lang: "PT", state: "FL", status: "Checked In" as Status },
-  { time: "10:00", patient: "Sofía L.", type: "Initial consultation", modality: "In-person", lang: "ES", state: "NY", status: "In Progress" as Status },
-  { time: "11:00", patient: "Wei Z.", type: "Preventive review", modality: "Telehealth", lang: "ZH", state: "WA", status: "Confirmed" as Status },
-  { time: "13:30", patient: "Marcus B.", type: "Care plan review", modality: "Telehealth", lang: "EN", state: "TX", status: "Confirmed" as Status },
-  { time: "14:15", patient: "Priya N.", type: "Weight management", modality: "In-person", lang: "EN", state: "CA", status: "Confirmed" as Status },
-  { time: "15:00", patient: "Julia F.", type: "Lab review", modality: "Telehealth", lang: "PT", state: "FL", status: "Confirmed" as Status },
-  { time: "16:00", patient: "David C.", type: "Follow-up", modality: "Telehealth", lang: "EN", state: "NY", status: "Confirmed" as Status },
+  { time: "08:30", patient: "Amelia R.", type: "Longevity consult", modality: "In-person", lang: "EN", state: "VA", status: "Confirmed" as Status },
+  { time: "09:15", patient: "Rafael M.", type: "Metabolic follow-up", modality: "Telehealth", lang: "PT", state: "MD", status: "Checked In" as Status },
+  { time: "10:00", patient: "Sofía L.", type: "Initial consultation", modality: "In-person", lang: "ES", state: "MD", status: "In Progress" as Status },
+  { time: "11:00", patient: "Wei Z.", type: "Preventive review", modality: "Telehealth", lang: "ZH", state: "VA", status: "Confirmed" as Status },
+  { time: "13:30", patient: "Marcus B.", type: "Care plan review", modality: "Telehealth", lang: "EN", state: "CO", status: "Confirmed" as Status },
+  { time: "14:15", patient: "Priya N.", type: "Weight management", modality: "In-person", lang: "EN", state: "VA", status: "Confirmed" as Status },
+  { time: "15:00", patient: "Julia F.", type: "Lab review", modality: "Telehealth", lang: "PT", state: "MD", status: "Confirmed" as Status },
+  { time: "16:00", patient: "David C.", type: "Follow-up", modality: "Telehealth", lang: "EN", state: "MD", status: "Confirmed" as Status },
 ];
 
 export const patients = [
-  { id: "P-1042", name: "Amelia Reyes", age: 42, state: "CA", lang: "EN", service: "Longevity", last: "Aug 12", next: "Sep 04", plan: "Active", balance: 0, status: "Active" as Status },
-  { id: "P-1043", name: "Rafael Marques", age: 38, state: "FL", lang: "PT", service: "Metabolic", last: "Aug 15", next: "Aug 28", plan: "Active", balance: 240, status: "Follow-Up" as Status },
-  { id: "P-1044", name: "Sofía Lopez", age: 51, state: "NY", lang: "ES", service: "Preventive", last: "—", next: "Aug 22", plan: "Draft", balance: 0, status: "New" as Status },
-  { id: "P-1045", name: "Wei Zhang", age: 47, state: "WA", lang: "ZH", service: "Longevity", last: "Jul 30", next: "Sep 11", plan: "Active", balance: 0, status: "Active" as Status },
-  { id: "P-1046", name: "Marcus Brown", age: 55, state: "TX", lang: "EN", service: "Cardio-metabolic", last: "Aug 05", next: "—", plan: "Needs Review", balance: 850, status: "Follow-Up" as Status },
-  { id: "P-1047", name: "Priya Nair", age: 34, state: "CA", lang: "EN", service: "Weight", last: "Aug 10", next: "Aug 25", plan: "Active", balance: 0, status: "Active" as Status },
-  { id: "P-1048", name: "Julia Ferreira", age: 60, state: "FL", lang: "PT", service: "Longevity", last: "Aug 03", next: "Sep 02", plan: "Active", balance: 120, status: "Active" as Status },
-  { id: "P-1049", name: "David Chen", age: 45, state: "NY", lang: "EN", service: "Preventive", last: "Jul 20", next: "Aug 21", plan: "Active", balance: 0, status: "Active" as Status },
-  { id: "P-1050", name: "Elena Duarte", age: 39, state: "TX", lang: "ES", service: "Metabolic", last: "—", next: "—", plan: "—", balance: 0, status: "New" as Status },
-  { id: "P-1051", name: "Hiroshi K.", age: 62, state: "WA", lang: "EN", service: "Longevity", last: "Jun 12", next: "—", plan: "Paused", balance: 0, status: "Inactive" as Status },
+  { id: "P-1042", name: "Amelia Reyes", age: 42, state: "VA", lang: "EN", service: "Longevity", last: "Aug 12", next: "Sep 04", plan: "Active", balance: 0, status: "Active" as Status },
+  { id: "P-1043", name: "Rafael Marques", age: 38, state: "MD", lang: "PT", service: "Metabolic", last: "Aug 15", next: "Aug 28", plan: "Active", balance: 240, status: "Follow-Up" as Status },
+  { id: "P-1044", name: "Sofía Lopez", age: 51, state: "MD", lang: "ES", service: "Preventive", last: "—", next: "Aug 22", plan: "Draft", balance: 0, status: "New" as Status },
+  { id: "P-1045", name: "Wei Zhang", age: 47, state: "VA", lang: "ZH", service: "Longevity", last: "Jul 30", next: "Sep 11", plan: "Active", balance: 0, status: "Active" as Status },
+  { id: "P-1046", name: "Marcus Brown", age: 55, state: "CO", lang: "EN", service: "Cardio-metabolic", last: "Aug 05", next: "—", plan: "Needs Review", balance: 850, status: "Follow-Up" as Status },
+  { id: "P-1047", name: "Priya Nair", age: 34, state: "VA", lang: "EN", service: "Weight", last: "Aug 10", next: "Aug 25", plan: "Active", balance: 0, status: "Active" as Status },
+  { id: "P-1048", name: "Julia Ferreira", age: 60, state: "MD", lang: "PT", service: "Longevity", last: "Aug 03", next: "Sep 02", plan: "Active", balance: 120, status: "Active" as Status },
+  { id: "P-1049", name: "David Chen", age: 45, state: "MD", lang: "EN", service: "Preventive", last: "Jul 20", next: "Aug 21", plan: "Active", balance: 0, status: "Active" as Status },
+  { id: "P-1050", name: "Elena Duarte", age: 39, state: "CO", lang: "ES", service: "Metabolic", last: "—", next: "—", plan: "—", balance: 0, status: "New" as Status },
+  { id: "P-1051", name: "Hiroshi K.", age: 62, state: "VA", lang: "EN", service: "Longevity", last: "Jun 12", next: "—", plan: "Paused", balance: 0, status: "Inactive" as Status },
 ];
 
 export const activity = [
@@ -87,14 +87,14 @@ export const tasks = [
 ];
 
 export const appointments = [
-  { id: "A-8801", date: "2026-08-19", time: "08:30", patient: "Amelia Reyes", type: "Longevity consult", service: "Longevity", state: "CA", lang: "EN", format: "In-person", duration: 60, status: "Confirmed" as Status, pay: "Paid" as Status },
-  { id: "A-8802", date: "2026-08-19", time: "09:15", patient: "Rafael Marques", type: "Metabolic follow-up", service: "Metabolic", state: "FL", lang: "PT", format: "Telehealth", duration: 30, status: "Checked In" as Status, pay: "Partial" as Status },
-  { id: "A-8803", date: "2026-08-19", time: "10:00", patient: "Sofía Lopez", type: "Initial consultation", service: "Preventive", state: "NY", lang: "ES", format: "In-person", duration: 75, status: "In Progress" as Status, pay: "Paid" as Status },
-  { id: "A-8804", date: "2026-08-19", time: "11:00", patient: "Wei Zhang", type: "Preventive review", service: "Preventive", state: "WA", lang: "ZH", format: "Telehealth", duration: 45, status: "Confirmed" as Status, pay: "Paid" as Status },
-  { id: "A-8805", date: "2026-08-19", time: "13:30", patient: "Marcus Brown", type: "Care plan review", service: "Cardio-metabolic", state: "TX", lang: "EN", format: "Telehealth", duration: 30, status: "Confirmed" as Status, pay: "Overdue" as Status },
-  { id: "A-8806", date: "2026-08-19", time: "14:15", patient: "Priya Nair", type: "Weight management", service: "Weight", state: "CA", lang: "EN", format: "In-person", duration: 45, status: "Confirmed" as Status, pay: "Paid" as Status },
-  { id: "A-8807", date: "2026-08-20", time: "09:00", patient: "Julia Ferreira", type: "Lab review", service: "Longevity", state: "FL", lang: "PT", format: "Telehealth", duration: 30, status: "Confirmed" as Status, pay: "Paid" as Status },
-  { id: "A-8808", date: "2026-08-20", time: "10:00", patient: "David Chen", type: "Follow-up", service: "Preventive", state: "NY", lang: "EN", format: "Telehealth", duration: 30, status: "Confirmed" as Status, pay: "Paid" as Status },
+  { id: "A-8801", date: "2026-08-19", time: "08:30", patient: "Amelia Reyes", type: "Longevity consult", service: "Longevity", state: "VA", lang: "EN", format: "In-person", duration: 60, status: "Confirmed" as Status, pay: "Paid" as Status },
+  { id: "A-8802", date: "2026-08-19", time: "09:15", patient: "Rafael Marques", type: "Metabolic follow-up", service: "Metabolic", state: "MD", lang: "PT", format: "Telehealth", duration: 30, status: "Checked In" as Status, pay: "Partial" as Status },
+  { id: "A-8803", date: "2026-08-19", time: "10:00", patient: "Sofía Lopez", type: "Initial consultation", service: "Preventive", state: "MD", lang: "ES", format: "In-person", duration: 75, status: "In Progress" as Status, pay: "Paid" as Status },
+  { id: "A-8804", date: "2026-08-19", time: "11:00", patient: "Wei Zhang", type: "Preventive review", service: "Preventive", state: "VA", lang: "ZH", format: "Telehealth", duration: 45, status: "Confirmed" as Status, pay: "Paid" as Status },
+  { id: "A-8805", date: "2026-08-19", time: "13:30", patient: "Marcus Brown", type: "Care plan review", service: "Cardio-metabolic", state: "CO", lang: "EN", format: "Telehealth", duration: 30, status: "Confirmed" as Status, pay: "Overdue" as Status },
+  { id: "A-8806", date: "2026-08-19", time: "14:15", patient: "Priya Nair", type: "Weight management", service: "Weight", state: "VA", lang: "EN", format: "In-person", duration: 45, status: "Confirmed" as Status, pay: "Paid" as Status },
+  { id: "A-8807", date: "2026-08-20", time: "09:00", patient: "Julia Ferreira", type: "Lab review", service: "Longevity", state: "MD", lang: "PT", format: "Telehealth", duration: 30, status: "Confirmed" as Status, pay: "Paid" as Status },
+  { id: "A-8808", date: "2026-08-20", time: "10:00", patient: "David Chen", type: "Follow-up", service: "Preventive", state: "MD", lang: "EN", format: "Telehealth", duration: 30, status: "Confirmed" as Status, pay: "Paid" as Status },
 ];
 
 export const labs = [
@@ -141,13 +141,13 @@ export const payments = [
 ];
 
 export const leads = [
-  { name: "Camila Rossi", inquiry: "Longevity consult", state: "FL", lang: "PT", source: "Website", stage: "New Inquiry", priority: "High" },
-  { name: "Anthony Ward", inquiry: "Weight management", state: "CA", lang: "EN", source: "Search", stage: "New Inquiry", priority: "Medium" },
-  { name: "Fatima H.", inquiry: "Preventive", state: "NY", lang: "EN", source: "Physician referral", stage: "Contacted", priority: "High" },
-  { name: "Isabela Costa", inquiry: "Metabolic", state: "FL", lang: "PT", source: "Patient referral", stage: "Consultation Requested", priority: "Medium" },
-  { name: "Lin Yu", inquiry: "Longevity", state: "WA", lang: "ZH", source: "University", stage: "Appointment Scheduled", priority: "Medium" },
-  { name: "Diego Ortiz", inquiry: "Cardio-metabolic", state: "TX", lang: "ES", source: "Social", stage: "Became Patient", priority: "Low" },
-  { name: "Nora Bright", inquiry: "Preventive", state: "CA", lang: "EN", source: "Website", stage: "Follow-Up Later", priority: "Low" },
+  { name: "Camila Rossi", inquiry: "Longevity consult", state: "MD", lang: "PT", source: "Website", stage: "New Inquiry", priority: "High" },
+  { name: "Anthony Ward", inquiry: "Weight management", state: "VA", lang: "EN", source: "Search", stage: "New Inquiry", priority: "Medium" },
+  { name: "Fatima H.", inquiry: "Preventive", state: "MD", lang: "EN", source: "Physician referral", stage: "Contacted", priority: "High" },
+  { name: "Isabela Costa", inquiry: "Metabolic", state: "MD", lang: "PT", source: "Patient referral", stage: "Consultation Requested", priority: "Medium" },
+  { name: "Lin Yu", inquiry: "Longevity", state: "VA", lang: "ZH", source: "University", stage: "Appointment Scheduled", priority: "Medium" },
+  { name: "Diego Ortiz", inquiry: "Cardio-metabolic", state: "CO", lang: "ES", source: "Social", stage: "Became Patient", priority: "Low" },
+  { name: "Nora Bright", inquiry: "Preventive", state: "VA", lang: "EN", source: "Website", stage: "Follow-Up Later", priority: "Low" },
 ];
 
 export const research = [
