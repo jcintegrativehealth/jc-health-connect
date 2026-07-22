@@ -13,6 +13,7 @@ import { AppointmentCancellation } from "@/lib/email-templates/appointment-cance
 import { AppointmentRescheduled } from "@/lib/email-templates/appointment-rescheduled";
 import { ContactConfirmation } from "@/lib/email-templates/contact-confirmation";
 import { PasswordReset } from "@/lib/email-templates/password-reset";
+import { NewAppointmentRequestAdmin } from "@/lib/email-templates/new-appointment-request-admin";
 
 export const Route = createFileRoute("/admin/emails")({
   head: () => ({
@@ -63,6 +64,30 @@ const TEMPLATES: TemplateDef[] = [
       referenceCode: "JC-2026-08421",
     },
     render: (p) => <AppointmentRequestReceived {...p} />,
+  },
+  {
+    id: "new-appointment-request-admin",
+    name: "New Appointment Request (Admin)",
+    description: "Internal notification to the clinic when a booking is submitted.",
+    subject: "New appointment request — Emily Chen",
+    audience: "Clinical team",
+    sample: {
+      patientName: "Emily Chen",
+      patientEmail: "emily.chen@example.com",
+      patientPhone: "+1 (415) 555-0142",
+      requestedDate: "Thursday, August 6, 2026",
+      requestedTime: "10:30 AM ET",
+      format: "Telehealth",
+      service: "Integrative Consultation",
+      visitType: "Initial Visit",
+      state: "Colorado",
+      language: "English",
+      notes: "History of Hashimoto's — would like to discuss lab trends and current supplement stack.",
+      referenceCode: "JC-2026-08421",
+      submittedAt: "July 22, 2026 · 3:14 PM ET",
+      reviewUrl: "https://jc-health-connect.lovable.app/admin/appointments",
+    },
+    render: (p) => <NewAppointmentRequestAdmin {...p} />,
   },
   {
     id: "appointment-confirmed",
