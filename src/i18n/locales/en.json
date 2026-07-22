@@ -63,7 +63,12 @@
     "minRead": "{{n}} min read",
     "min": "{{n}} min",
     "recent": "Recent essays",
-    "countOf": "{{shown}} of {{total}}"
+    "countOf": "{{shown}} of {{total}}",
+    "searchPlaceholder": "Search by title, topic, or author…",
+    "all": "All",
+    "results": "{{count}} results",
+    "noResults": "No articles match your search.",
+    "clear": "Clear"
   },
   "servicesIndex": {
     "eyebrow": "Services",
