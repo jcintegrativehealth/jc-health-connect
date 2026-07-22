@@ -9,6 +9,8 @@ import { WelcomeEmail } from "@/lib/email-templates/welcome";
 import { AppointmentRequestReceived } from "@/lib/email-templates/appointment-request-received";
 import { AppointmentConfirmed } from "@/lib/email-templates/appointment-confirmed";
 import { AppointmentReminder } from "@/lib/email-templates/appointment-reminder";
+import { AppointmentCancellation } from "@/lib/email-templates/appointment-cancellation";
+import { AppointmentRescheduled } from "@/lib/email-templates/appointment-rescheduled";
 import { ContactConfirmation } from "@/lib/email-templates/contact-confirmation";
 import { PasswordReset } from "@/lib/email-templates/password-reset";
 
@@ -99,6 +101,49 @@ const TEMPLATES: TemplateDef[] = [
       rescheduleUrl: "https://jc-health-connect.lovable.app/portal/appointments",
     },
     render: (p) => <AppointmentReminder {...p} />,
+  },
+  {
+    id: "appointment-cancellation",
+    name: "Appointment Cancellation",
+    description: "Sent when a patient or clinic cancels a scheduled visit.",
+    subject: "Your appointment has been cancelled",
+    audience: "Patient",
+    sample: {
+      firstName: "Emily",
+      date: "Thursday, August 6, 2026",
+      time: "10:30 AM ET",
+      format: "Telehealth",
+      provider: "Dr. Jason Chen, DO",
+      service: "Integrative Consultation",
+      reason: "Patient request",
+      cancelledBy: "patient",
+      bookUrl: "https://jc-health-connect.lovable.app/book",
+      portalUrl: "https://jc-health-connect.lovable.app/portal",
+    },
+    render: (p) => <AppointmentCancellation {...p} />,
+  },
+  {
+    id: "appointment-rescheduled",
+    name: "Appointment Rescheduled",
+    description: "Sent when a scheduled visit is moved to a new time.",
+    subject: "Your appointment has been rescheduled",
+    audience: "Patient",
+    sample: {
+      firstName: "Emily",
+      previousDate: "Thursday, August 6, 2026",
+      previousTime: "10:30 AM ET",
+      newDate: "Monday, August 10, 2026",
+      newTime: "2:00 PM ET",
+      format: "Telehealth",
+      provider: "Dr. Jason Chen, DO",
+      service: "Integrative Consultation",
+      duration: "50 minutes",
+      reason: "Provider schedule change",
+      joinUrl: "https://jc-health-connect.lovable.app/join/demo-room",
+      rescheduleUrl: "https://jc-health-connect.lovable.app/portal/appointments",
+      portalUrl: "https://jc-health-connect.lovable.app/portal",
+    },
+    render: (p) => <AppointmentRescheduled {...p} />,
   },
   {
     id: "contact-confirmation",
