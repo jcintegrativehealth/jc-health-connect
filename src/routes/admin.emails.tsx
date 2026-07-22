@@ -13,6 +13,7 @@ import { AppointmentCancellation } from "@/lib/email-templates/appointment-cance
 import { AppointmentRescheduled } from "@/lib/email-templates/appointment-rescheduled";
 import { ContactConfirmation } from "@/lib/email-templates/contact-confirmation";
 import { PasswordReset } from "@/lib/email-templates/password-reset";
+import { NewAppointmentRequestAdmin } from "@/lib/email-templates/new-appointment-request-admin";
 
 export const Route = createFileRoute("/admin/emails")({
   head: () => ({
