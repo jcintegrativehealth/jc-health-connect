@@ -112,7 +112,7 @@ function HomePage() {
 
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[4/5] w-full rounded-md overflow-hidden ring-1 ring-navy/10 shadow-[0_30px_80px_-40px_rgba(31,61,46,0.35)]">
-                <img src={heroBotanical} alt="Fresh sage and eucalyptus on linen" className="absolute inset-0 h-full w-full object-cover" width={1100} height={1400} />
+                <img src={heroBotanical} alt="Fresh sage and eucalyptus on linen" className="absolute inset-0 h-full w-full object-cover" width={1100} height={1400} fetchPriority="high" decoding="async" />
                 <div className="absolute top-4 left-4 eyebrow text-paper/80 mix-blend-difference">JC · Fig. 001</div>
               </div>
 
