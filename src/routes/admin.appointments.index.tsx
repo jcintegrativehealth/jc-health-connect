@@ -2,8 +2,9 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { PageHeader, Toolbar, DataTable, Badge, Btn, Chip, ExportBtn, Pagination } from "@/components/admin/primitives";
 import { appointments } from "@/data/admin";
-import { useAppointments } from "@/lib/appointmentStore";
+import { APPOINTMENT_STATUSES, updateAppointmentStatus, useAppointments, type AppointmentStatus } from "@/lib/appointmentStore";
 import { CalendarPlus } from "lucide-react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/appointments/")({
   head: () => ({ meta: [{ title: "Appointments — JC Admin" }, { name: "robots", content: "noindex" }] }),
@@ -56,7 +57,7 @@ function AppointmentsList() {
         searchPlaceholder="Search patient or appointment ID…"
         onSearch={setQ}
         filters={<>
-          {["All", "Pending", "Confirmed", "Checked In", "In Progress", "Completed", "Cancelled", "No Show"].map((s) => (
+          {["All", ...APPOINTMENT_STATUSES].map((s) => (
             <Chip key={s} active={status === s} onClick={() => setStatus(s)}>{s}</Chip>
           ))}
           <span className="mx-2 h-4 w-px bg-navy/15" />
@@ -78,7 +79,21 @@ function AppointmentsList() {
           { key: "lang", label: "Lang" },
           { key: "format", label: "Format" },
           { key: "duration", label: "Min", align: "right" },
-          { key: "status", label: "Status", render: (r) => <Badge tone={r.status}>{r.status}</Badge> },
+          { key: "status", label: "Status", render: (r) => (
+            <select
+              value={r.status}
+              onClick={(e) => e.stopPropagation()}
+              onChange={(e) => {
+                e.stopPropagation();
+                const v = e.target.value as AppointmentStatus;
+                updateAppointmentStatus(r.id, v);
+                toast.success(`${r.id} → ${v}`);
+              }}
+              className="h-8 border border-navy/15 bg-card px-2 text-xs text-navy outline-none focus:border-teal"
+            >
+              {APPOINTMENT_STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+          ) },
           { key: "pay", label: "Payment", render: (r) => <Badge tone={r.pay}>{r.pay}</Badge> },
         ]}
       />
