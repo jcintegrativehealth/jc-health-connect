@@ -9,140 +9,90 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TelehealthRouteImport } from './routes/telehealth'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as PortalRouteImport } from './routes/portal'
-import { Route as PatientResourcesRouteImport } from './routes/patient-resources'
-import { Route as PatientRouteImport } from './routes/patient'
-import { Route as MedicationsRouteImport } from './routes/medications'
-import { Route as InnovationRouteImport } from './routes/innovation'
-import { Route as FaqRouteImport } from './routes/faq'
-import { Route as DrChenRouteImport } from './routes/dr-chen'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as BookRouteImport } from './routes/book'
-import { Route as AdminRouteImport } from './routes/admin'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ServicesIndexRouteImport } from './routes/services.index'
-import { Route as ResearchIndexRouteImport } from './routes/research.index'
-import { Route as PhysiciansIndexRouteImport } from './routes/physicians.index'
-import { Route as PatientIndexRouteImport } from './routes/patient.index'
-import { Route as InsightsIndexRouteImport } from './routes/insights.index'
-import { Route as ConditionsIndexRouteImport } from './routes/conditions.index'
-import { Route as AdminIndexRouteImport } from './routes/admin.index'
-import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
-import { Route as PhysiciansSlugRouteImport } from './routes/physicians.$slug'
-import { Route as PatientProgramsRouteImport } from './routes/patient.programs'
-import { Route as PatientProfileRouteImport } from './routes/patient.profile'
-import { Route as PatientNotificationsRouteImport } from './routes/patient.notifications'
-import { Route as PatientMessagesRouteImport } from './routes/patient.messages'
-import { Route as PatientMedicationsRouteImport } from './routes/patient.medications'
-import { Route as PatientHelpRouteImport } from './routes/patient.help'
-import { Route as PatientFormsRouteImport } from './routes/patient.forms'
-import { Route as PatientEducationRouteImport } from './routes/patient.education'
-import { Route as PatientDocumentsRouteImport } from './routes/patient.documents'
-import { Route as PatientCarePlanRouteImport } from './routes/patient.care-plan'
-import { Route as PatientBillingRouteImport } from './routes/patient.billing'
-import { Route as LocationsStateRouteImport } from './routes/locations.$state'
-import { Route as LegalSlugRouteImport } from './routes/legal.$slug'
-import { Route as JoinRoomIdRouteImport } from './routes/join.$roomId'
-import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
-import { Route as ConditionsSlugRouteImport } from './routes/conditions.$slug'
-import { Route as AdminWebsiteRouteImport } from './routes/admin.website'
-import { Route as AdminTasksRouteImport } from './routes/admin.tasks'
-import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
-import { Route as AdminReportsRouteImport } from './routes/admin.reports'
-import { Route as AdminRecordsRouteImport } from './routes/admin.records'
-import { Route as AdminNotificationsRouteImport } from './routes/admin.notifications'
-import { Route as AdminMessagesRouteImport } from './routes/admin.messages'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as BookRouteImport } from './routes/book'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DrChenRouteImport } from './routes/dr-chen'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as InnovationRouteImport } from './routes/innovation'
+import { Route as MedicationsRouteImport } from './routes/medications'
+import { Route as PatientResourcesRouteImport } from './routes/patient-resources'
+import { Route as PortalRouteImport } from './routes/portal'
+import { Route as TelehealthRouteImport } from './routes/telehealth'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedPatientRouteImport } from './routes/_authenticated/patient'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
-import { Route as AdminLabsRouteImport } from './routes/admin.labs'
-import { Route as AdminInstantRoomRouteImport } from './routes/admin.instant-room'
-import { Route as AdminInsightsRouteImport } from './routes/admin.insights'
-import { Route as AdminEmailsRouteImport } from './routes/admin.emails'
-import { Route as AdminDocumentsRouteImport } from './routes/admin.documents'
-import { Route as AdminCrmRouteImport } from './routes/admin.crm'
-import { Route as AdminCommentsRouteImport } from './routes/admin.comments'
-import { Route as AdminClinicalRouteImport } from './routes/admin.clinical'
-import { Route as AdminCarePlansRouteImport } from './routes/admin.care-plans'
-import { Route as AdminCalendarRouteImport } from './routes/admin.calendar'
-import { Route as AdminBillingRouteImport } from './routes/admin.billing'
-import { Route as AdminAnalyticsRouteImport } from './routes/admin.analytics'
-import { Route as PatientTelehealthIndexRouteImport } from './routes/patient.telehealth.index'
-import { Route as PatientLabsIndexRouteImport } from './routes/patient.labs.index'
-import { Route as PatientHealthIndexRouteImport } from './routes/patient.health.index'
-import { Route as PatientAppointmentsIndexRouteImport } from './routes/patient.appointments.index'
-import { Route as AdminResearchIndexRouteImport } from './routes/admin.research.index'
-import { Route as AdminPatientsIndexRouteImport } from './routes/admin.patients.index'
-import { Route as AdminAppointmentsIndexRouteImport } from './routes/admin.appointments.index'
-import { Route as PatientTelehealthWaitingRoomRouteImport } from './routes/patient.telehealth.waiting-room'
-import { Route as PatientLabsIdRouteImport } from './routes/patient.labs.$id'
-import { Route as PatientHealthVitalsRouteImport } from './routes/patient.health.vitals'
-import { Route as PatientAppointmentsIdRouteImport } from './routes/patient.appointments.$id'
-import { Route as AdminResearchIdRouteImport } from './routes/admin.research.$id'
-import { Route as AdminPatientsNewRouteImport } from './routes/admin.patients.new'
-import { Route as AdminPatientsIdRouteImport } from './routes/admin.patients.$id'
-import { Route as AdminAppointmentsNewRouteImport } from './routes/admin.appointments.new'
-import { Route as AdminAppointmentsIdRouteImport } from './routes/admin.appointments.$id'
+import { Route as ConditionsIndexRouteImport } from './routes/conditions.index'
+import { Route as ConditionsSlugRouteImport } from './routes/conditions.$slug'
+import { Route as InsightsIndexRouteImport } from './routes/insights.index'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as JoinRoomIdRouteImport } from './routes/join.$roomId'
+import { Route as LegalSlugRouteImport } from './routes/legal.$slug'
+import { Route as LocationsStateRouteImport } from './routes/locations.$state'
+import { Route as PhysiciansIndexRouteImport } from './routes/physicians.index'
+import { Route as PhysiciansSlugRouteImport } from './routes/physicians.$slug'
+import { Route as ResearchIndexRouteImport } from './routes/research.index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminAnalyticsRouteImport } from './routes/_authenticated/admin.analytics'
+import { Route as AuthenticatedAdminBillingRouteImport } from './routes/_authenticated/admin.billing'
+import { Route as AuthenticatedAdminCalendarRouteImport } from './routes/_authenticated/admin.calendar'
+import { Route as AuthenticatedAdminCarePlansRouteImport } from './routes/_authenticated/admin.care-plans'
+import { Route as AuthenticatedAdminClinicalRouteImport } from './routes/_authenticated/admin.clinical'
+import { Route as AuthenticatedAdminCommentsRouteImport } from './routes/_authenticated/admin.comments'
+import { Route as AuthenticatedAdminCrmRouteImport } from './routes/_authenticated/admin.crm'
+import { Route as AuthenticatedAdminDocumentsRouteImport } from './routes/_authenticated/admin.documents'
+import { Route as AuthenticatedAdminEmailsRouteImport } from './routes/_authenticated/admin.emails'
+import { Route as AuthenticatedAdminInsightsRouteImport } from './routes/_authenticated/admin.insights'
+import { Route as AuthenticatedAdminInstantRoomRouteImport } from './routes/_authenticated/admin.instant-room'
+import { Route as AuthenticatedAdminLabsRouteImport } from './routes/_authenticated/admin.labs'
+import { Route as AuthenticatedAdminMessagesRouteImport } from './routes/_authenticated/admin.messages'
+import { Route as AuthenticatedAdminNotificationsRouteImport } from './routes/_authenticated/admin.notifications'
+import { Route as AuthenticatedAdminRecordsRouteImport } from './routes/_authenticated/admin.records'
+import { Route as AuthenticatedAdminReportsRouteImport } from './routes/_authenticated/admin.reports'
+import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin.settings'
+import { Route as AuthenticatedAdminTasksRouteImport } from './routes/_authenticated/admin.tasks'
+import { Route as AuthenticatedAdminWebsiteRouteImport } from './routes/_authenticated/admin.website'
+import { Route as AuthenticatedPatientIndexRouteImport } from './routes/_authenticated/patient.index'
+import { Route as AuthenticatedPatientBillingRouteImport } from './routes/_authenticated/patient.billing'
+import { Route as AuthenticatedPatientCarePlanRouteImport } from './routes/_authenticated/patient.care-plan'
+import { Route as AuthenticatedPatientDocumentsRouteImport } from './routes/_authenticated/patient.documents'
+import { Route as AuthenticatedPatientEducationRouteImport } from './routes/_authenticated/patient.education'
+import { Route as AuthenticatedPatientFormsRouteImport } from './routes/_authenticated/patient.forms'
+import { Route as AuthenticatedPatientHelpRouteImport } from './routes/_authenticated/patient.help'
+import { Route as AuthenticatedPatientMedicationsRouteImport } from './routes/_authenticated/patient.medications'
+import { Route as AuthenticatedPatientMessagesRouteImport } from './routes/_authenticated/patient.messages'
+import { Route as AuthenticatedPatientNotificationsRouteImport } from './routes/_authenticated/patient.notifications'
+import { Route as AuthenticatedPatientProfileRouteImport } from './routes/_authenticated/patient.profile'
+import { Route as AuthenticatedPatientProgramsRouteImport } from './routes/_authenticated/patient.programs'
+import { Route as AuthenticatedAdminAppointmentsIndexRouteImport } from './routes/_authenticated/admin.appointments.index'
+import { Route as AuthenticatedAdminAppointmentsIdRouteImport } from './routes/_authenticated/admin.appointments.$id'
+import { Route as AuthenticatedAdminAppointmentsNewRouteImport } from './routes/_authenticated/admin.appointments.new'
+import { Route as AuthenticatedAdminPatientsIndexRouteImport } from './routes/_authenticated/admin.patients.index'
+import { Route as AuthenticatedAdminPatientsIdRouteImport } from './routes/_authenticated/admin.patients.$id'
+import { Route as AuthenticatedAdminPatientsNewRouteImport } from './routes/_authenticated/admin.patients.new'
+import { Route as AuthenticatedAdminResearchIndexRouteImport } from './routes/_authenticated/admin.research.index'
+import { Route as AuthenticatedAdminResearchIdRouteImport } from './routes/_authenticated/admin.research.$id'
+import { Route as AuthenticatedPatientAppointmentsIndexRouteImport } from './routes/_authenticated/patient.appointments.index'
+import { Route as AuthenticatedPatientAppointmentsIdRouteImport } from './routes/_authenticated/patient.appointments.$id'
+import { Route as AuthenticatedPatientHealthIndexRouteImport } from './routes/_authenticated/patient.health.index'
+import { Route as AuthenticatedPatientHealthVitalsRouteImport } from './routes/_authenticated/patient.health.vitals'
+import { Route as AuthenticatedPatientLabsIndexRouteImport } from './routes/_authenticated/patient.labs.index'
+import { Route as AuthenticatedPatientLabsIdRouteImport } from './routes/_authenticated/patient.labs.$id'
+import { Route as AuthenticatedPatientTelehealthIndexRouteImport } from './routes/_authenticated/patient.telehealth.index'
+import { Route as AuthenticatedPatientTelehealthWaitingRoomRouteImport } from './routes/_authenticated/patient.telehealth.waiting-room'
+import { Route as ApiPublicCronAppointmentRemindersRouteImport } from './routes/api/public/cron/appointment-reminders'
 
-const TelehealthRoute = TelehealthRouteImport.update({
-  id: '/telehealth',
-  path: '/telehealth',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PortalRoute = PortalRouteImport.update({
-  id: '/portal',
-  path: '/portal',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PatientResourcesRoute = PatientResourcesRouteImport.update({
-  id: '/patient-resources',
-  path: '/patient-resources',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PatientRoute = PatientRouteImport.update({
-  id: '/patient',
-  path: '/patient',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MedicationsRoute = MedicationsRouteImport.update({
-  id: '/medications',
-  path: '/medications',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InnovationRoute = InnovationRouteImport.update({
-  id: '/innovation',
-  path: '/innovation',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FaqRoute = FaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DrChenRoute = DrChenRouteImport.update({
-  id: '/dr-chen',
-  path: '/dr-chen',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BookRoute = BookRouteImport.update({
-  id: '/book',
-  path: '/book',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -150,34 +100,64 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const BookRoute = BookRouteImport.update({
+  id: '/book',
+  path: '/book',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesIndexRoute = ServicesIndexRouteImport.update({
-  id: '/services/',
-  path: '/services/',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResearchIndexRoute = ResearchIndexRouteImport.update({
-  id: '/research/',
-  path: '/research/',
+const DrChenRoute = DrChenRouteImport.update({
+  id: '/dr-chen',
+  path: '/dr-chen',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PhysiciansIndexRoute = PhysiciansIndexRouteImport.update({
-  id: '/physicians/',
-  path: '/physicians/',
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PatientIndexRoute = PatientIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => PatientRoute,
+const InnovationRoute = InnovationRouteImport.update({
+  id: '/innovation',
+  path: '/innovation',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const InsightsIndexRoute = InsightsIndexRouteImport.update({
-  id: '/insights/',
-  path: '/insights/',
+const MedicationsRoute = MedicationsRouteImport.update({
+  id: '/medications',
+  path: '/medications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PatientResourcesRoute = PatientResourcesRouteImport.update({
+  id: '/patient-resources',
+  path: '/patient-resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TelehealthRoute = TelehealthRouteImport.update({
+  id: '/telehealth',
+  path: '/telehealth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedPatientRoute = AuthenticatedPatientRouteImport.update({
+  id: '/patient',
+  path: '/patient',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConditionsIndexRoute = ConditionsIndexRouteImport.update({
@@ -185,89 +165,14 @@ const ConditionsIndexRoute = ConditionsIndexRouteImport.update({
   path: '/conditions/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminIndexRoute = AdminIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AdminRoute,
-} as any)
-const ServicesSlugRoute = ServicesSlugRouteImport.update({
-  id: '/services/$slug',
-  path: '/services/$slug',
+const ConditionsSlugRoute = ConditionsSlugRouteImport.update({
+  id: '/conditions/$slug',
+  path: '/conditions/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PhysiciansSlugRoute = PhysiciansSlugRouteImport.update({
-  id: '/physicians/$slug',
-  path: '/physicians/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PatientProgramsRoute = PatientProgramsRouteImport.update({
-  id: '/programs',
-  path: '/programs',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientProfileRoute = PatientProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientNotificationsRoute = PatientNotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientMessagesRoute = PatientMessagesRouteImport.update({
-  id: '/messages',
-  path: '/messages',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientMedicationsRoute = PatientMedicationsRouteImport.update({
-  id: '/medications',
-  path: '/medications',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientHelpRoute = PatientHelpRouteImport.update({
-  id: '/help',
-  path: '/help',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientFormsRoute = PatientFormsRouteImport.update({
-  id: '/forms',
-  path: '/forms',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientEducationRoute = PatientEducationRouteImport.update({
-  id: '/education',
-  path: '/education',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientDocumentsRoute = PatientDocumentsRouteImport.update({
-  id: '/documents',
-  path: '/documents',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientCarePlanRoute = PatientCarePlanRouteImport.update({
-  id: '/care-plan',
-  path: '/care-plan',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientBillingRoute = PatientBillingRouteImport.update({
-  id: '/billing',
-  path: '/billing',
-  getParentRoute: () => PatientRoute,
-} as any)
-const LocationsStateRoute = LocationsStateRouteImport.update({
-  id: '/locations/$state',
-  path: '/locations/$state',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalSlugRoute = LegalSlugRouteImport.update({
-  id: '/legal/$slug',
-  path: '/legal/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JoinRoomIdRoute = JoinRoomIdRouteImport.update({
-  id: '/join/$roomId',
-  path: '/join/$roomId',
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/insights/',
+  path: '/insights/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsightsSlugRoute = InsightsSlugRouteImport.update({
@@ -275,270 +180,413 @@ const InsightsSlugRoute = InsightsSlugRouteImport.update({
   path: '/insights/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ConditionsSlugRoute = ConditionsSlugRouteImport.update({
-  id: '/conditions/$slug',
-  path: '/conditions/$slug',
+const JoinRoomIdRoute = JoinRoomIdRouteImport.update({
+  id: '/join/$roomId',
+  path: '/join/$roomId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminWebsiteRoute = AdminWebsiteRouteImport.update({
-  id: '/website',
-  path: '/website',
-  getParentRoute: () => AdminRoute,
+const LegalSlugRoute = LegalSlugRouteImport.update({
+  id: '/legal/$slug',
+  path: '/legal/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const AdminTasksRoute = AdminTasksRouteImport.update({
-  id: '/tasks',
-  path: '/tasks',
-  getParentRoute: () => AdminRoute,
+const LocationsStateRoute = LocationsStateRouteImport.update({
+  id: '/locations/$state',
+  path: '/locations/$state',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const AdminSettingsRoute = AdminSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => AdminRoute,
+const PhysiciansIndexRoute = PhysiciansIndexRouteImport.update({
+  id: '/physicians/',
+  path: '/physicians/',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const AdminReportsRoute = AdminReportsRouteImport.update({
-  id: '/reports',
-  path: '/reports',
-  getParentRoute: () => AdminRoute,
+const PhysiciansSlugRoute = PhysiciansSlugRouteImport.update({
+  id: '/physicians/$slug',
+  path: '/physicians/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const AdminRecordsRoute = AdminRecordsRouteImport.update({
-  id: '/records',
-  path: '/records',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminNotificationsRoute = AdminNotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminMessagesRoute = AdminMessagesRouteImport.update({
-  id: '/messages',
-  path: '/messages',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminLabsRoute = AdminLabsRouteImport.update({
-  id: '/labs',
-  path: '/labs',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminInstantRoomRoute = AdminInstantRoomRouteImport.update({
-  id: '/instant-room',
-  path: '/instant-room',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminInsightsRoute = AdminInsightsRouteImport.update({
-  id: '/insights',
-  path: '/insights',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminEmailsRoute = AdminEmailsRouteImport.update({
-  id: '/emails',
-  path: '/emails',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminDocumentsRoute = AdminDocumentsRouteImport.update({
-  id: '/documents',
-  path: '/documents',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminCrmRoute = AdminCrmRouteImport.update({
-  id: '/crm',
-  path: '/crm',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminCommentsRoute = AdminCommentsRouteImport.update({
-  id: '/comments',
-  path: '/comments',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminClinicalRoute = AdminClinicalRouteImport.update({
-  id: '/clinical',
-  path: '/clinical',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminCarePlansRoute = AdminCarePlansRouteImport.update({
-  id: '/care-plans',
-  path: '/care-plans',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminCalendarRoute = AdminCalendarRouteImport.update({
-  id: '/calendar',
-  path: '/calendar',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminBillingRoute = AdminBillingRouteImport.update({
-  id: '/billing',
-  path: '/billing',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
-  id: '/analytics',
-  path: '/analytics',
-  getParentRoute: () => AdminRoute,
-} as any)
-const PatientTelehealthIndexRoute = PatientTelehealthIndexRouteImport.update({
-  id: '/telehealth/',
-  path: '/telehealth/',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientLabsIndexRoute = PatientLabsIndexRouteImport.update({
-  id: '/labs/',
-  path: '/labs/',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientHealthIndexRoute = PatientHealthIndexRouteImport.update({
-  id: '/health/',
-  path: '/health/',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientAppointmentsIndexRoute =
-  PatientAppointmentsIndexRouteImport.update({
-    id: '/appointments/',
-    path: '/appointments/',
-    getParentRoute: () => PatientRoute,
-  } as any)
-const AdminResearchIndexRoute = AdminResearchIndexRouteImport.update({
+const ResearchIndexRoute = ResearchIndexRouteImport.update({
   id: '/research/',
   path: '/research/',
-  getParentRoute: () => AdminRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-const AdminPatientsIndexRoute = AdminPatientsIndexRouteImport.update({
-  id: '/patients/',
-  path: '/patients/',
-  getParentRoute: () => AdminRoute,
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const AdminAppointmentsIndexRoute = AdminAppointmentsIndexRouteImport.update({
-  id: '/appointments/',
-  path: '/appointments/',
-  getParentRoute: () => AdminRoute,
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services/$slug',
+  path: '/services/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const PatientTelehealthWaitingRoomRoute =
-  PatientTelehealthWaitingRoomRouteImport.update({
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminAnalyticsRoute =
+  AuthenticatedAdminAnalyticsRouteImport.update({
+    id: '/analytics',
+    path: '/analytics',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminBillingRoute =
+  AuthenticatedAdminBillingRouteImport.update({
+    id: '/billing',
+    path: '/billing',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCalendarRoute =
+  AuthenticatedAdminCalendarRouteImport.update({
+    id: '/calendar',
+    path: '/calendar',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCarePlansRoute =
+  AuthenticatedAdminCarePlansRouteImport.update({
+    id: '/care-plans',
+    path: '/care-plans',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminClinicalRoute =
+  AuthenticatedAdminClinicalRouteImport.update({
+    id: '/clinical',
+    path: '/clinical',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCommentsRoute =
+  AuthenticatedAdminCommentsRouteImport.update({
+    id: '/comments',
+    path: '/comments',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCrmRoute = AuthenticatedAdminCrmRouteImport.update({
+  id: '/crm',
+  path: '/crm',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminDocumentsRoute =
+  AuthenticatedAdminDocumentsRouteImport.update({
+    id: '/documents',
+    path: '/documents',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminEmailsRoute =
+  AuthenticatedAdminEmailsRouteImport.update({
+    id: '/emails',
+    path: '/emails',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminInsightsRoute =
+  AuthenticatedAdminInsightsRouteImport.update({
+    id: '/insights',
+    path: '/insights',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminInstantRoomRoute =
+  AuthenticatedAdminInstantRoomRouteImport.update({
+    id: '/instant-room',
+    path: '/instant-room',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminLabsRoute = AuthenticatedAdminLabsRouteImport.update({
+  id: '/labs',
+  path: '/labs',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminMessagesRoute =
+  AuthenticatedAdminMessagesRouteImport.update({
+    id: '/messages',
+    path: '/messages',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminNotificationsRoute =
+  AuthenticatedAdminNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminRecordsRoute =
+  AuthenticatedAdminRecordsRouteImport.update({
+    id: '/records',
+    path: '/records',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminReportsRoute =
+  AuthenticatedAdminReportsRouteImport.update({
+    id: '/reports',
+    path: '/reports',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminSettingsRoute =
+  AuthenticatedAdminSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminTasksRoute = AuthenticatedAdminTasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminWebsiteRoute =
+  AuthenticatedAdminWebsiteRouteImport.update({
+    id: '/website',
+    path: '/website',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedPatientIndexRoute =
+  AuthenticatedPatientIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientBillingRoute =
+  AuthenticatedPatientBillingRouteImport.update({
+    id: '/billing',
+    path: '/billing',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientCarePlanRoute =
+  AuthenticatedPatientCarePlanRouteImport.update({
+    id: '/care-plan',
+    path: '/care-plan',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientDocumentsRoute =
+  AuthenticatedPatientDocumentsRouteImport.update({
+    id: '/documents',
+    path: '/documents',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientEducationRoute =
+  AuthenticatedPatientEducationRouteImport.update({
+    id: '/education',
+    path: '/education',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientFormsRoute =
+  AuthenticatedPatientFormsRouteImport.update({
+    id: '/forms',
+    path: '/forms',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientHelpRoute =
+  AuthenticatedPatientHelpRouteImport.update({
+    id: '/help',
+    path: '/help',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientMedicationsRoute =
+  AuthenticatedPatientMedicationsRouteImport.update({
+    id: '/medications',
+    path: '/medications',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientMessagesRoute =
+  AuthenticatedPatientMessagesRouteImport.update({
+    id: '/messages',
+    path: '/messages',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientNotificationsRoute =
+  AuthenticatedPatientNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientProfileRoute =
+  AuthenticatedPatientProfileRouteImport.update({
+    id: '/profile',
+    path: '/profile',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientProgramsRoute =
+  AuthenticatedPatientProgramsRouteImport.update({
+    id: '/programs',
+    path: '/programs',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedAdminAppointmentsIndexRoute =
+  AuthenticatedAdminAppointmentsIndexRouteImport.update({
+    id: '/appointments/',
+    path: '/appointments/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminAppointmentsIdRoute =
+  AuthenticatedAdminAppointmentsIdRouteImport.update({
+    id: '/appointments/$id',
+    path: '/appointments/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminAppointmentsNewRoute =
+  AuthenticatedAdminAppointmentsNewRouteImport.update({
+    id: '/appointments/new',
+    path: '/appointments/new',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPatientsIndexRoute =
+  AuthenticatedAdminPatientsIndexRouteImport.update({
+    id: '/patients/',
+    path: '/patients/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPatientsIdRoute =
+  AuthenticatedAdminPatientsIdRouteImport.update({
+    id: '/patients/$id',
+    path: '/patients/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPatientsNewRoute =
+  AuthenticatedAdminPatientsNewRouteImport.update({
+    id: '/patients/new',
+    path: '/patients/new',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminResearchIndexRoute =
+  AuthenticatedAdminResearchIndexRouteImport.update({
+    id: '/research/',
+    path: '/research/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminResearchIdRoute =
+  AuthenticatedAdminResearchIdRouteImport.update({
+    id: '/research/$id',
+    path: '/research/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedPatientAppointmentsIndexRoute =
+  AuthenticatedPatientAppointmentsIndexRouteImport.update({
+    id: '/appointments/',
+    path: '/appointments/',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientAppointmentsIdRoute =
+  AuthenticatedPatientAppointmentsIdRouteImport.update({
+    id: '/appointments/$id',
+    path: '/appointments/$id',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientHealthIndexRoute =
+  AuthenticatedPatientHealthIndexRouteImport.update({
+    id: '/health/',
+    path: '/health/',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientHealthVitalsRoute =
+  AuthenticatedPatientHealthVitalsRouteImport.update({
+    id: '/health/vitals',
+    path: '/health/vitals',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientLabsIndexRoute =
+  AuthenticatedPatientLabsIndexRouteImport.update({
+    id: '/labs/',
+    path: '/labs/',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientLabsIdRoute =
+  AuthenticatedPatientLabsIdRouteImport.update({
+    id: '/labs/$id',
+    path: '/labs/$id',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientTelehealthIndexRoute =
+  AuthenticatedPatientTelehealthIndexRouteImport.update({
+    id: '/telehealth/',
+    path: '/telehealth/',
+    getParentRoute: () => AuthenticatedPatientRoute,
+  } as any)
+const AuthenticatedPatientTelehealthWaitingRoomRoute =
+  AuthenticatedPatientTelehealthWaitingRoomRouteImport.update({
     id: '/telehealth/waiting-room',
     path: '/telehealth/waiting-room',
-    getParentRoute: () => PatientRoute,
+    getParentRoute: () => AuthenticatedPatientRoute,
   } as any)
-const PatientLabsIdRoute = PatientLabsIdRouteImport.update({
-  id: '/labs/$id',
-  path: '/labs/$id',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientHealthVitalsRoute = PatientHealthVitalsRouteImport.update({
-  id: '/health/vitals',
-  path: '/health/vitals',
-  getParentRoute: () => PatientRoute,
-} as any)
-const PatientAppointmentsIdRoute = PatientAppointmentsIdRouteImport.update({
-  id: '/appointments/$id',
-  path: '/appointments/$id',
-  getParentRoute: () => PatientRoute,
-} as any)
-const AdminResearchIdRoute = AdminResearchIdRouteImport.update({
-  id: '/research/$id',
-  path: '/research/$id',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminPatientsNewRoute = AdminPatientsNewRouteImport.update({
-  id: '/patients/new',
-  path: '/patients/new',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminPatientsIdRoute = AdminPatientsIdRouteImport.update({
-  id: '/patients/$id',
-  path: '/patients/$id',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminAppointmentsNewRoute = AdminAppointmentsNewRouteImport.update({
-  id: '/appointments/new',
-  path: '/appointments/new',
-  getParentRoute: () => AdminRoute,
-} as any)
-const AdminAppointmentsIdRoute = AdminAppointmentsIdRouteImport.update({
-  id: '/appointments/$id',
-  path: '/appointments/$id',
-  getParentRoute: () => AdminRoute,
-} as any)
+const ApiPublicCronAppointmentRemindersRoute =
+  ApiPublicCronAppointmentRemindersRouteImport.update({
+    id: '/api/public/cron/appointment-reminders',
+    path: '/api/public/cron/appointment-reminders',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRouteWithChildren
   '/book': typeof BookRoute
   '/contact': typeof ContactRoute
   '/dr-chen': typeof DrChenRoute
   '/faq': typeof FaqRoute
   '/innovation': typeof InnovationRoute
   '/medications': typeof MedicationsRoute
-  '/patient': typeof PatientRouteWithChildren
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telehealth': typeof TelehealthRoute
-  '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/billing': typeof AdminBillingRoute
-  '/admin/calendar': typeof AdminCalendarRoute
-  '/admin/care-plans': typeof AdminCarePlansRoute
-  '/admin/clinical': typeof AdminClinicalRoute
-  '/admin/comments': typeof AdminCommentsRoute
-  '/admin/crm': typeof AdminCrmRoute
-  '/admin/documents': typeof AdminDocumentsRoute
-  '/admin/emails': typeof AdminEmailsRoute
-  '/admin/insights': typeof AdminInsightsRoute
-  '/admin/instant-room': typeof AdminInstantRoomRoute
-  '/admin/labs': typeof AdminLabsRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/patient': typeof AuthenticatedPatientRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
-  '/admin/messages': typeof AdminMessagesRoute
-  '/admin/notifications': typeof AdminNotificationsRoute
-  '/admin/records': typeof AdminRecordsRoute
-  '/admin/reports': typeof AdminReportsRoute
-  '/admin/settings': typeof AdminSettingsRoute
-  '/admin/tasks': typeof AdminTasksRoute
-  '/admin/website': typeof AdminWebsiteRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/join/$roomId': typeof JoinRoomIdRoute
   '/legal/$slug': typeof LegalSlugRoute
   '/locations/$state': typeof LocationsStateRoute
-  '/patient/billing': typeof PatientBillingRoute
-  '/patient/care-plan': typeof PatientCarePlanRoute
-  '/patient/documents': typeof PatientDocumentsRoute
-  '/patient/education': typeof PatientEducationRoute
-  '/patient/forms': typeof PatientFormsRoute
-  '/patient/help': typeof PatientHelpRoute
-  '/patient/medications': typeof PatientMedicationsRoute
-  '/patient/messages': typeof PatientMessagesRoute
-  '/patient/notifications': typeof PatientNotificationsRoute
-  '/patient/profile': typeof PatientProfileRoute
-  '/patient/programs': typeof PatientProgramsRoute
   '/physicians/$slug': typeof PhysiciansSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
-  '/admin/': typeof AdminIndexRoute
   '/conditions/': typeof ConditionsIndexRoute
   '/insights/': typeof InsightsIndexRoute
-  '/patient/': typeof PatientIndexRoute
   '/physicians/': typeof PhysiciansIndexRoute
   '/research/': typeof ResearchIndexRoute
   '/services/': typeof ServicesIndexRoute
-  '/admin/appointments/$id': typeof AdminAppointmentsIdRoute
-  '/admin/appointments/new': typeof AdminAppointmentsNewRoute
-  '/admin/patients/$id': typeof AdminPatientsIdRoute
-  '/admin/patients/new': typeof AdminPatientsNewRoute
-  '/admin/research/$id': typeof AdminResearchIdRoute
-  '/patient/appointments/$id': typeof PatientAppointmentsIdRoute
-  '/patient/health/vitals': typeof PatientHealthVitalsRoute
-  '/patient/labs/$id': typeof PatientLabsIdRoute
-  '/patient/telehealth/waiting-room': typeof PatientTelehealthWaitingRoomRoute
-  '/admin/appointments/': typeof AdminAppointmentsIndexRoute
-  '/admin/patients/': typeof AdminPatientsIndexRoute
-  '/admin/research/': typeof AdminResearchIndexRoute
-  '/patient/appointments/': typeof PatientAppointmentsIndexRoute
-  '/patient/health/': typeof PatientHealthIndexRoute
-  '/patient/labs/': typeof PatientLabsIndexRoute
-  '/patient/telehealth/': typeof PatientTelehealthIndexRoute
+  '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/billing': typeof AuthenticatedAdminBillingRoute
+  '/admin/calendar': typeof AuthenticatedAdminCalendarRoute
+  '/admin/care-plans': typeof AuthenticatedAdminCarePlansRoute
+  '/admin/clinical': typeof AuthenticatedAdminClinicalRoute
+  '/admin/comments': typeof AuthenticatedAdminCommentsRoute
+  '/admin/crm': typeof AuthenticatedAdminCrmRoute
+  '/admin/documents': typeof AuthenticatedAdminDocumentsRoute
+  '/admin/emails': typeof AuthenticatedAdminEmailsRoute
+  '/admin/insights': typeof AuthenticatedAdminInsightsRoute
+  '/admin/instant-room': typeof AuthenticatedAdminInstantRoomRoute
+  '/admin/labs': typeof AuthenticatedAdminLabsRoute
+  '/admin/messages': typeof AuthenticatedAdminMessagesRoute
+  '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/admin/records': typeof AuthenticatedAdminRecordsRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/admin/tasks': typeof AuthenticatedAdminTasksRoute
+  '/admin/website': typeof AuthenticatedAdminWebsiteRoute
+  '/patient/billing': typeof AuthenticatedPatientBillingRoute
+  '/patient/care-plan': typeof AuthenticatedPatientCarePlanRoute
+  '/patient/documents': typeof AuthenticatedPatientDocumentsRoute
+  '/patient/education': typeof AuthenticatedPatientEducationRoute
+  '/patient/forms': typeof AuthenticatedPatientFormsRoute
+  '/patient/help': typeof AuthenticatedPatientHelpRoute
+  '/patient/medications': typeof AuthenticatedPatientMedicationsRoute
+  '/patient/messages': typeof AuthenticatedPatientMessagesRoute
+  '/patient/notifications': typeof AuthenticatedPatientNotificationsRoute
+  '/patient/profile': typeof AuthenticatedPatientProfileRoute
+  '/patient/programs': typeof AuthenticatedPatientProgramsRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/patient/': typeof AuthenticatedPatientIndexRoute
+  '/admin/appointments/$id': typeof AuthenticatedAdminAppointmentsIdRoute
+  '/admin/appointments/new': typeof AuthenticatedAdminAppointmentsNewRoute
+  '/admin/patients/$id': typeof AuthenticatedAdminPatientsIdRoute
+  '/admin/patients/new': typeof AuthenticatedAdminPatientsNewRoute
+  '/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
+  '/patient/appointments/$id': typeof AuthenticatedPatientAppointmentsIdRoute
+  '/patient/health/vitals': typeof AuthenticatedPatientHealthVitalsRoute
+  '/patient/labs/$id': typeof AuthenticatedPatientLabsIdRoute
+  '/patient/telehealth/waiting-room': typeof AuthenticatedPatientTelehealthWaitingRoomRoute
+  '/api/public/cron/appointment-reminders': typeof ApiPublicCronAppointmentRemindersRoute
+  '/admin/appointments/': typeof AuthenticatedAdminAppointmentsIndexRoute
+  '/admin/patients/': typeof AuthenticatedAdminPatientsIndexRoute
+  '/admin/research/': typeof AuthenticatedAdminResearchIndexRoute
+  '/patient/appointments/': typeof AuthenticatedPatientAppointmentsIndexRoute
+  '/patient/health/': typeof AuthenticatedPatientHealthIndexRoute
+  '/patient/labs/': typeof AuthenticatedPatientLabsIndexRoute
+  '/patient/telehealth/': typeof AuthenticatedPatientTelehealthIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -551,165 +599,178 @@ export interface FileRoutesByTo {
   '/medications': typeof MedicationsRoute
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telehealth': typeof TelehealthRoute
-  '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/billing': typeof AdminBillingRoute
-  '/admin/calendar': typeof AdminCalendarRoute
-  '/admin/care-plans': typeof AdminCarePlansRoute
-  '/admin/clinical': typeof AdminClinicalRoute
-  '/admin/comments': typeof AdminCommentsRoute
-  '/admin/crm': typeof AdminCrmRoute
-  '/admin/documents': typeof AdminDocumentsRoute
-  '/admin/emails': typeof AdminEmailsRoute
-  '/admin/insights': typeof AdminInsightsRoute
-  '/admin/instant-room': typeof AdminInstantRoomRoute
-  '/admin/labs': typeof AdminLabsRoute
   '/admin/login': typeof AdminLoginRoute
-  '/admin/messages': typeof AdminMessagesRoute
-  '/admin/notifications': typeof AdminNotificationsRoute
-  '/admin/records': typeof AdminRecordsRoute
-  '/admin/reports': typeof AdminReportsRoute
-  '/admin/settings': typeof AdminSettingsRoute
-  '/admin/tasks': typeof AdminTasksRoute
-  '/admin/website': typeof AdminWebsiteRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/join/$roomId': typeof JoinRoomIdRoute
   '/legal/$slug': typeof LegalSlugRoute
   '/locations/$state': typeof LocationsStateRoute
-  '/patient/billing': typeof PatientBillingRoute
-  '/patient/care-plan': typeof PatientCarePlanRoute
-  '/patient/documents': typeof PatientDocumentsRoute
-  '/patient/education': typeof PatientEducationRoute
-  '/patient/forms': typeof PatientFormsRoute
-  '/patient/help': typeof PatientHelpRoute
-  '/patient/medications': typeof PatientMedicationsRoute
-  '/patient/messages': typeof PatientMessagesRoute
-  '/patient/notifications': typeof PatientNotificationsRoute
-  '/patient/profile': typeof PatientProfileRoute
-  '/patient/programs': typeof PatientProgramsRoute
   '/physicians/$slug': typeof PhysiciansSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
-  '/admin': typeof AdminIndexRoute
   '/conditions': typeof ConditionsIndexRoute
   '/insights': typeof InsightsIndexRoute
-  '/patient': typeof PatientIndexRoute
   '/physicians': typeof PhysiciansIndexRoute
   '/research': typeof ResearchIndexRoute
   '/services': typeof ServicesIndexRoute
-  '/admin/appointments/$id': typeof AdminAppointmentsIdRoute
-  '/admin/appointments/new': typeof AdminAppointmentsNewRoute
-  '/admin/patients/$id': typeof AdminPatientsIdRoute
-  '/admin/patients/new': typeof AdminPatientsNewRoute
-  '/admin/research/$id': typeof AdminResearchIdRoute
-  '/patient/appointments/$id': typeof PatientAppointmentsIdRoute
-  '/patient/health/vitals': typeof PatientHealthVitalsRoute
-  '/patient/labs/$id': typeof PatientLabsIdRoute
-  '/patient/telehealth/waiting-room': typeof PatientTelehealthWaitingRoomRoute
-  '/admin/appointments': typeof AdminAppointmentsIndexRoute
-  '/admin/patients': typeof AdminPatientsIndexRoute
-  '/admin/research': typeof AdminResearchIndexRoute
-  '/patient/appointments': typeof PatientAppointmentsIndexRoute
-  '/patient/health': typeof PatientHealthIndexRoute
-  '/patient/labs': typeof PatientLabsIndexRoute
-  '/patient/telehealth': typeof PatientTelehealthIndexRoute
+  '/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/admin/billing': typeof AuthenticatedAdminBillingRoute
+  '/admin/calendar': typeof AuthenticatedAdminCalendarRoute
+  '/admin/care-plans': typeof AuthenticatedAdminCarePlansRoute
+  '/admin/clinical': typeof AuthenticatedAdminClinicalRoute
+  '/admin/comments': typeof AuthenticatedAdminCommentsRoute
+  '/admin/crm': typeof AuthenticatedAdminCrmRoute
+  '/admin/documents': typeof AuthenticatedAdminDocumentsRoute
+  '/admin/emails': typeof AuthenticatedAdminEmailsRoute
+  '/admin/insights': typeof AuthenticatedAdminInsightsRoute
+  '/admin/instant-room': typeof AuthenticatedAdminInstantRoomRoute
+  '/admin/labs': typeof AuthenticatedAdminLabsRoute
+  '/admin/messages': typeof AuthenticatedAdminMessagesRoute
+  '/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/admin/records': typeof AuthenticatedAdminRecordsRoute
+  '/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/admin/tasks': typeof AuthenticatedAdminTasksRoute
+  '/admin/website': typeof AuthenticatedAdminWebsiteRoute
+  '/patient/billing': typeof AuthenticatedPatientBillingRoute
+  '/patient/care-plan': typeof AuthenticatedPatientCarePlanRoute
+  '/patient/documents': typeof AuthenticatedPatientDocumentsRoute
+  '/patient/education': typeof AuthenticatedPatientEducationRoute
+  '/patient/forms': typeof AuthenticatedPatientFormsRoute
+  '/patient/help': typeof AuthenticatedPatientHelpRoute
+  '/patient/medications': typeof AuthenticatedPatientMedicationsRoute
+  '/patient/messages': typeof AuthenticatedPatientMessagesRoute
+  '/patient/notifications': typeof AuthenticatedPatientNotificationsRoute
+  '/patient/profile': typeof AuthenticatedPatientProfileRoute
+  '/patient/programs': typeof AuthenticatedPatientProgramsRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/patient': typeof AuthenticatedPatientIndexRoute
+  '/admin/appointments/$id': typeof AuthenticatedAdminAppointmentsIdRoute
+  '/admin/appointments/new': typeof AuthenticatedAdminAppointmentsNewRoute
+  '/admin/patients/$id': typeof AuthenticatedAdminPatientsIdRoute
+  '/admin/patients/new': typeof AuthenticatedAdminPatientsNewRoute
+  '/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
+  '/patient/appointments/$id': typeof AuthenticatedPatientAppointmentsIdRoute
+  '/patient/health/vitals': typeof AuthenticatedPatientHealthVitalsRoute
+  '/patient/labs/$id': typeof AuthenticatedPatientLabsIdRoute
+  '/patient/telehealth/waiting-room': typeof AuthenticatedPatientTelehealthWaitingRoomRoute
+  '/api/public/cron/appointment-reminders': typeof ApiPublicCronAppointmentRemindersRoute
+  '/admin/appointments': typeof AuthenticatedAdminAppointmentsIndexRoute
+  '/admin/patients': typeof AuthenticatedAdminPatientsIndexRoute
+  '/admin/research': typeof AuthenticatedAdminResearchIndexRoute
+  '/patient/appointments': typeof AuthenticatedPatientAppointmentsIndexRoute
+  '/patient/health': typeof AuthenticatedPatientHealthIndexRoute
+  '/patient/labs': typeof AuthenticatedPatientLabsIndexRoute
+  '/patient/telehealth': typeof AuthenticatedPatientTelehealthIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRouteWithChildren
   '/book': typeof BookRoute
   '/contact': typeof ContactRoute
   '/dr-chen': typeof DrChenRoute
   '/faq': typeof FaqRoute
   '/innovation': typeof InnovationRoute
   '/medications': typeof MedicationsRoute
-  '/patient': typeof PatientRouteWithChildren
   '/patient-resources': typeof PatientResourcesRoute
   '/portal': typeof PortalRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telehealth': typeof TelehealthRoute
-  '/admin/analytics': typeof AdminAnalyticsRoute
-  '/admin/billing': typeof AdminBillingRoute
-  '/admin/calendar': typeof AdminCalendarRoute
-  '/admin/care-plans': typeof AdminCarePlansRoute
-  '/admin/clinical': typeof AdminClinicalRoute
-  '/admin/comments': typeof AdminCommentsRoute
-  '/admin/crm': typeof AdminCrmRoute
-  '/admin/documents': typeof AdminDocumentsRoute
-  '/admin/emails': typeof AdminEmailsRoute
-  '/admin/insights': typeof AdminInsightsRoute
-  '/admin/instant-room': typeof AdminInstantRoomRoute
-  '/admin/labs': typeof AdminLabsRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/patient': typeof AuthenticatedPatientRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
-  '/admin/messages': typeof AdminMessagesRoute
-  '/admin/notifications': typeof AdminNotificationsRoute
-  '/admin/records': typeof AdminRecordsRoute
-  '/admin/reports': typeof AdminReportsRoute
-  '/admin/settings': typeof AdminSettingsRoute
-  '/admin/tasks': typeof AdminTasksRoute
-  '/admin/website': typeof AdminWebsiteRoute
   '/conditions/$slug': typeof ConditionsSlugRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/join/$roomId': typeof JoinRoomIdRoute
   '/legal/$slug': typeof LegalSlugRoute
   '/locations/$state': typeof LocationsStateRoute
-  '/patient/billing': typeof PatientBillingRoute
-  '/patient/care-plan': typeof PatientCarePlanRoute
-  '/patient/documents': typeof PatientDocumentsRoute
-  '/patient/education': typeof PatientEducationRoute
-  '/patient/forms': typeof PatientFormsRoute
-  '/patient/help': typeof PatientHelpRoute
-  '/patient/medications': typeof PatientMedicationsRoute
-  '/patient/messages': typeof PatientMessagesRoute
-  '/patient/notifications': typeof PatientNotificationsRoute
-  '/patient/profile': typeof PatientProfileRoute
-  '/patient/programs': typeof PatientProgramsRoute
   '/physicians/$slug': typeof PhysiciansSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
-  '/admin/': typeof AdminIndexRoute
   '/conditions/': typeof ConditionsIndexRoute
   '/insights/': typeof InsightsIndexRoute
-  '/patient/': typeof PatientIndexRoute
   '/physicians/': typeof PhysiciansIndexRoute
   '/research/': typeof ResearchIndexRoute
   '/services/': typeof ServicesIndexRoute
-  '/admin/appointments/$id': typeof AdminAppointmentsIdRoute
-  '/admin/appointments/new': typeof AdminAppointmentsNewRoute
-  '/admin/patients/$id': typeof AdminPatientsIdRoute
-  '/admin/patients/new': typeof AdminPatientsNewRoute
-  '/admin/research/$id': typeof AdminResearchIdRoute
-  '/patient/appointments/$id': typeof PatientAppointmentsIdRoute
-  '/patient/health/vitals': typeof PatientHealthVitalsRoute
-  '/patient/labs/$id': typeof PatientLabsIdRoute
-  '/patient/telehealth/waiting-room': typeof PatientTelehealthWaitingRoomRoute
-  '/admin/appointments/': typeof AdminAppointmentsIndexRoute
-  '/admin/patients/': typeof AdminPatientsIndexRoute
-  '/admin/research/': typeof AdminResearchIndexRoute
-  '/patient/appointments/': typeof PatientAppointmentsIndexRoute
-  '/patient/health/': typeof PatientHealthIndexRoute
-  '/patient/labs/': typeof PatientLabsIndexRoute
-  '/patient/telehealth/': typeof PatientTelehealthIndexRoute
+  '/_authenticated/admin/analytics': typeof AuthenticatedAdminAnalyticsRoute
+  '/_authenticated/admin/billing': typeof AuthenticatedAdminBillingRoute
+  '/_authenticated/admin/calendar': typeof AuthenticatedAdminCalendarRoute
+  '/_authenticated/admin/care-plans': typeof AuthenticatedAdminCarePlansRoute
+  '/_authenticated/admin/clinical': typeof AuthenticatedAdminClinicalRoute
+  '/_authenticated/admin/comments': typeof AuthenticatedAdminCommentsRoute
+  '/_authenticated/admin/crm': typeof AuthenticatedAdminCrmRoute
+  '/_authenticated/admin/documents': typeof AuthenticatedAdminDocumentsRoute
+  '/_authenticated/admin/emails': typeof AuthenticatedAdminEmailsRoute
+  '/_authenticated/admin/insights': typeof AuthenticatedAdminInsightsRoute
+  '/_authenticated/admin/instant-room': typeof AuthenticatedAdminInstantRoomRoute
+  '/_authenticated/admin/labs': typeof AuthenticatedAdminLabsRoute
+  '/_authenticated/admin/messages': typeof AuthenticatedAdminMessagesRoute
+  '/_authenticated/admin/notifications': typeof AuthenticatedAdminNotificationsRoute
+  '/_authenticated/admin/records': typeof AuthenticatedAdminRecordsRoute
+  '/_authenticated/admin/reports': typeof AuthenticatedAdminReportsRoute
+  '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
+  '/_authenticated/admin/tasks': typeof AuthenticatedAdminTasksRoute
+  '/_authenticated/admin/website': typeof AuthenticatedAdminWebsiteRoute
+  '/_authenticated/patient/billing': typeof AuthenticatedPatientBillingRoute
+  '/_authenticated/patient/care-plan': typeof AuthenticatedPatientCarePlanRoute
+  '/_authenticated/patient/documents': typeof AuthenticatedPatientDocumentsRoute
+  '/_authenticated/patient/education': typeof AuthenticatedPatientEducationRoute
+  '/_authenticated/patient/forms': typeof AuthenticatedPatientFormsRoute
+  '/_authenticated/patient/help': typeof AuthenticatedPatientHelpRoute
+  '/_authenticated/patient/medications': typeof AuthenticatedPatientMedicationsRoute
+  '/_authenticated/patient/messages': typeof AuthenticatedPatientMessagesRoute
+  '/_authenticated/patient/notifications': typeof AuthenticatedPatientNotificationsRoute
+  '/_authenticated/patient/profile': typeof AuthenticatedPatientProfileRoute
+  '/_authenticated/patient/programs': typeof AuthenticatedPatientProgramsRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/patient/': typeof AuthenticatedPatientIndexRoute
+  '/_authenticated/admin/appointments/$id': typeof AuthenticatedAdminAppointmentsIdRoute
+  '/_authenticated/admin/appointments/new': typeof AuthenticatedAdminAppointmentsNewRoute
+  '/_authenticated/admin/patients/$id': typeof AuthenticatedAdminPatientsIdRoute
+  '/_authenticated/admin/patients/new': typeof AuthenticatedAdminPatientsNewRoute
+  '/_authenticated/admin/research/$id': typeof AuthenticatedAdminResearchIdRoute
+  '/_authenticated/patient/appointments/$id': typeof AuthenticatedPatientAppointmentsIdRoute
+  '/_authenticated/patient/health/vitals': typeof AuthenticatedPatientHealthVitalsRoute
+  '/_authenticated/patient/labs/$id': typeof AuthenticatedPatientLabsIdRoute
+  '/_authenticated/patient/telehealth/waiting-room': typeof AuthenticatedPatientTelehealthWaitingRoomRoute
+  '/api/public/cron/appointment-reminders': typeof ApiPublicCronAppointmentRemindersRoute
+  '/_authenticated/admin/appointments/': typeof AuthenticatedAdminAppointmentsIndexRoute
+  '/_authenticated/admin/patients/': typeof AuthenticatedAdminPatientsIndexRoute
+  '/_authenticated/admin/research/': typeof AuthenticatedAdminResearchIndexRoute
+  '/_authenticated/patient/appointments/': typeof AuthenticatedPatientAppointmentsIndexRoute
+  '/_authenticated/patient/health/': typeof AuthenticatedPatientHealthIndexRoute
+  '/_authenticated/patient/labs/': typeof AuthenticatedPatientLabsIndexRoute
+  '/_authenticated/patient/telehealth/': typeof AuthenticatedPatientTelehealthIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
-    | '/admin'
     | '/book'
     | '/contact'
     | '/dr-chen'
     | '/faq'
     | '/innovation'
     | '/medications'
-    | '/patient'
     | '/patient-resources'
     | '/portal'
-    | '/sitemap.xml'
     | '/telehealth'
+    | '/admin'
+    | '/patient'
+    | '/admin/login'
+    | '/conditions/$slug'
+    | '/insights/$slug'
+    | '/join/$roomId'
+    | '/legal/$slug'
+    | '/locations/$state'
+    | '/physicians/$slug'
+    | '/services/$slug'
+    | '/conditions/'
+    | '/insights/'
+    | '/physicians/'
+    | '/research/'
+    | '/services/'
     | '/admin/analytics'
     | '/admin/billing'
     | '/admin/calendar'
@@ -722,7 +783,6 @@ export interface FileRouteTypes {
     | '/admin/insights'
     | '/admin/instant-room'
     | '/admin/labs'
-    | '/admin/login'
     | '/admin/messages'
     | '/admin/notifications'
     | '/admin/records'
@@ -730,11 +790,6 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/tasks'
     | '/admin/website'
-    | '/conditions/$slug'
-    | '/insights/$slug'
-    | '/join/$roomId'
-    | '/legal/$slug'
-    | '/locations/$state'
     | '/patient/billing'
     | '/patient/care-plan'
     | '/patient/documents'
@@ -746,15 +801,8 @@ export interface FileRouteTypes {
     | '/patient/notifications'
     | '/patient/profile'
     | '/patient/programs'
-    | '/physicians/$slug'
-    | '/services/$slug'
     | '/admin/'
-    | '/conditions/'
-    | '/insights/'
     | '/patient/'
-    | '/physicians/'
-    | '/research/'
-    | '/services/'
     | '/admin/appointments/$id'
     | '/admin/appointments/new'
     | '/admin/patients/$id'
@@ -764,6 +812,7 @@ export interface FileRouteTypes {
     | '/patient/health/vitals'
     | '/patient/labs/$id'
     | '/patient/telehealth/waiting-room'
+    | '/api/public/cron/appointment-reminders'
     | '/admin/appointments/'
     | '/admin/patients/'
     | '/admin/research/'
@@ -783,8 +832,20 @@ export interface FileRouteTypes {
     | '/medications'
     | '/patient-resources'
     | '/portal'
-    | '/sitemap.xml'
     | '/telehealth'
+    | '/admin/login'
+    | '/conditions/$slug'
+    | '/insights/$slug'
+    | '/join/$roomId'
+    | '/legal/$slug'
+    | '/locations/$state'
+    | '/physicians/$slug'
+    | '/services/$slug'
+    | '/conditions'
+    | '/insights'
+    | '/physicians'
+    | '/research'
+    | '/services'
     | '/admin/analytics'
     | '/admin/billing'
     | '/admin/calendar'
@@ -797,7 +858,6 @@ export interface FileRouteTypes {
     | '/admin/insights'
     | '/admin/instant-room'
     | '/admin/labs'
-    | '/admin/login'
     | '/admin/messages'
     | '/admin/notifications'
     | '/admin/records'
@@ -805,11 +865,6 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/tasks'
     | '/admin/website'
-    | '/conditions/$slug'
-    | '/insights/$slug'
-    | '/join/$roomId'
-    | '/legal/$slug'
-    | '/locations/$state'
     | '/patient/billing'
     | '/patient/care-plan'
     | '/patient/documents'
@@ -821,15 +876,8 @@ export interface FileRouteTypes {
     | '/patient/notifications'
     | '/patient/profile'
     | '/patient/programs'
-    | '/physicians/$slug'
-    | '/services/$slug'
     | '/admin'
-    | '/conditions'
-    | '/insights'
     | '/patient'
-    | '/physicians'
-    | '/research'
-    | '/services'
     | '/admin/appointments/$id'
     | '/admin/appointments/new'
     | '/admin/patients/$id'
@@ -839,6 +887,7 @@ export interface FileRouteTypes {
     | '/patient/health/vitals'
     | '/patient/labs/$id'
     | '/patient/telehealth/waiting-room'
+    | '/api/public/cron/appointment-reminders'
     | '/admin/appointments'
     | '/admin/patients'
     | '/admin/research'
@@ -849,97 +898,97 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/about'
-    | '/admin'
     | '/book'
     | '/contact'
     | '/dr-chen'
     | '/faq'
     | '/innovation'
     | '/medications'
-    | '/patient'
     | '/patient-resources'
     | '/portal'
-    | '/sitemap.xml'
     | '/telehealth'
-    | '/admin/analytics'
-    | '/admin/billing'
-    | '/admin/calendar'
-    | '/admin/care-plans'
-    | '/admin/clinical'
-    | '/admin/comments'
-    | '/admin/crm'
-    | '/admin/documents'
-    | '/admin/emails'
-    | '/admin/insights'
-    | '/admin/instant-room'
-    | '/admin/labs'
+    | '/_authenticated/admin'
+    | '/_authenticated/patient'
     | '/admin/login'
-    | '/admin/messages'
-    | '/admin/notifications'
-    | '/admin/records'
-    | '/admin/reports'
-    | '/admin/settings'
-    | '/admin/tasks'
-    | '/admin/website'
     | '/conditions/$slug'
     | '/insights/$slug'
     | '/join/$roomId'
     | '/legal/$slug'
     | '/locations/$state'
-    | '/patient/billing'
-    | '/patient/care-plan'
-    | '/patient/documents'
-    | '/patient/education'
-    | '/patient/forms'
-    | '/patient/help'
-    | '/patient/medications'
-    | '/patient/messages'
-    | '/patient/notifications'
-    | '/patient/profile'
-    | '/patient/programs'
     | '/physicians/$slug'
     | '/services/$slug'
-    | '/admin/'
     | '/conditions/'
     | '/insights/'
-    | '/patient/'
     | '/physicians/'
     | '/research/'
     | '/services/'
-    | '/admin/appointments/$id'
-    | '/admin/appointments/new'
-    | '/admin/patients/$id'
-    | '/admin/patients/new'
-    | '/admin/research/$id'
-    | '/patient/appointments/$id'
-    | '/patient/health/vitals'
-    | '/patient/labs/$id'
-    | '/patient/telehealth/waiting-room'
-    | '/admin/appointments/'
-    | '/admin/patients/'
-    | '/admin/research/'
-    | '/patient/appointments/'
-    | '/patient/health/'
-    | '/patient/labs/'
-    | '/patient/telehealth/'
+    | '/_authenticated/admin/analytics'
+    | '/_authenticated/admin/billing'
+    | '/_authenticated/admin/calendar'
+    | '/_authenticated/admin/care-plans'
+    | '/_authenticated/admin/clinical'
+    | '/_authenticated/admin/comments'
+    | '/_authenticated/admin/crm'
+    | '/_authenticated/admin/documents'
+    | '/_authenticated/admin/emails'
+    | '/_authenticated/admin/insights'
+    | '/_authenticated/admin/instant-room'
+    | '/_authenticated/admin/labs'
+    | '/_authenticated/admin/messages'
+    | '/_authenticated/admin/notifications'
+    | '/_authenticated/admin/records'
+    | '/_authenticated/admin/reports'
+    | '/_authenticated/admin/settings'
+    | '/_authenticated/admin/tasks'
+    | '/_authenticated/admin/website'
+    | '/_authenticated/patient/billing'
+    | '/_authenticated/patient/care-plan'
+    | '/_authenticated/patient/documents'
+    | '/_authenticated/patient/education'
+    | '/_authenticated/patient/forms'
+    | '/_authenticated/patient/help'
+    | '/_authenticated/patient/medications'
+    | '/_authenticated/patient/messages'
+    | '/_authenticated/patient/notifications'
+    | '/_authenticated/patient/profile'
+    | '/_authenticated/patient/programs'
+    | '/_authenticated/admin/'
+    | '/_authenticated/patient/'
+    | '/_authenticated/admin/appointments/$id'
+    | '/_authenticated/admin/appointments/new'
+    | '/_authenticated/admin/patients/$id'
+    | '/_authenticated/admin/patients/new'
+    | '/_authenticated/admin/research/$id'
+    | '/_authenticated/patient/appointments/$id'
+    | '/_authenticated/patient/health/vitals'
+    | '/_authenticated/patient/labs/$id'
+    | '/_authenticated/patient/telehealth/waiting-room'
+    | '/api/public/cron/appointment-reminders'
+    | '/_authenticated/admin/appointments/'
+    | '/_authenticated/admin/patients/'
+    | '/_authenticated/admin/research/'
+    | '/_authenticated/patient/appointments/'
+    | '/_authenticated/patient/health/'
+    | '/_authenticated/patient/labs/'
+    | '/_authenticated/patient/telehealth/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AboutRoute: typeof AboutRoute
-  AdminRoute: typeof AdminRouteWithChildren
   BookRoute: typeof BookRoute
   ContactRoute: typeof ContactRoute
   DrChenRoute: typeof DrChenRoute
   FaqRoute: typeof FaqRoute
   InnovationRoute: typeof InnovationRoute
   MedicationsRoute: typeof MedicationsRoute
-  PatientRoute: typeof PatientRouteWithChildren
   PatientResourcesRoute: typeof PatientResourcesRoute
   PortalRoute: typeof PortalRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TelehealthRoute: typeof TelehealthRoute
+  AdminLoginRoute: typeof AdminLoginRoute
   ConditionsSlugRoute: typeof ConditionsSlugRoute
   InsightsSlugRoute: typeof InsightsSlugRoute
   JoinRoomIdRoute: typeof JoinRoomIdRoute
@@ -952,92 +1001,23 @@ export interface RootRouteChildren {
   PhysiciansIndexRoute: typeof PhysiciansIndexRoute
   ResearchIndexRoute: typeof ResearchIndexRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
+  ApiPublicCronAppointmentRemindersRoute: typeof ApiPublicCronAppointmentRemindersRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/telehealth': {
-      id: '/telehealth'
-      path: '/telehealth'
-      fullPath: '/telehealth'
-      preLoaderRoute: typeof TelehealthRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/portal': {
-      id: '/portal'
-      path: '/portal'
-      fullPath: '/portal'
-      preLoaderRoute: typeof PortalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/patient-resources': {
-      id: '/patient-resources'
-      path: '/patient-resources'
-      fullPath: '/patient-resources'
-      preLoaderRoute: typeof PatientResourcesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/patient': {
-      id: '/patient'
-      path: '/patient'
-      fullPath: '/patient'
-      preLoaderRoute: typeof PatientRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/medications': {
-      id: '/medications'
-      path: '/medications'
-      fullPath: '/medications'
-      preLoaderRoute: typeof MedicationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/innovation': {
-      id: '/innovation'
-      path: '/innovation'
-      fullPath: '/innovation'
-      preLoaderRoute: typeof InnovationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/faq': {
-      id: '/faq'
-      path: '/faq'
-      fullPath: '/faq'
-      preLoaderRoute: typeof FaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dr-chen': {
-      id: '/dr-chen'
-      path: '/dr-chen'
-      fullPath: '/dr-chen'
-      preLoaderRoute: typeof DrChenRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/book': {
-      id: '/book'
-      path: '/book'
-      fullPath: '/book'
-      preLoaderRoute: typeof BookRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -1047,46 +1027,88 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/': {
-      id: '/services/'
-      path: '/services'
-      fullPath: '/services/'
-      preLoaderRoute: typeof ServicesIndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/research/': {
-      id: '/research/'
-      path: '/research'
-      fullPath: '/research/'
-      preLoaderRoute: typeof ResearchIndexRouteImport
+    '/dr-chen': {
+      id: '/dr-chen'
+      path: '/dr-chen'
+      fullPath: '/dr-chen'
+      preLoaderRoute: typeof DrChenRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/physicians/': {
-      id: '/physicians/'
-      path: '/physicians'
-      fullPath: '/physicians/'
-      preLoaderRoute: typeof PhysiciansIndexRouteImport
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/patient/': {
-      id: '/patient/'
-      path: '/'
-      fullPath: '/patient/'
-      preLoaderRoute: typeof PatientIndexRouteImport
-      parentRoute: typeof PatientRoute
+    '/innovation': {
+      id: '/innovation'
+      path: '/innovation'
+      fullPath: '/innovation'
+      preLoaderRoute: typeof InnovationRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/insights/': {
-      id: '/insights/'
-      path: '/insights'
-      fullPath: '/insights/'
-      preLoaderRoute: typeof InsightsIndexRouteImport
+    '/medications': {
+      id: '/medications'
+      path: '/medications'
+      fullPath: '/medications'
+      preLoaderRoute: typeof MedicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/patient-resources': {
+      id: '/patient-resources'
+      path: '/patient-resources'
+      fullPath: '/patient-resources'
+      preLoaderRoute: typeof PatientResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/telehealth': {
+      id: '/telehealth'
+      path: '/telehealth'
+      fullPath: '/telehealth'
+      preLoaderRoute: typeof TelehealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/patient': {
+      id: '/_authenticated/patient'
+      path: '/patient'
+      fullPath: '/patient'
+      preLoaderRoute: typeof AuthenticatedPatientRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/conditions/': {
@@ -1096,123 +1118,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConditionsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/': {
-      id: '/admin/'
-      path: '/'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/services/$slug': {
-      id: '/services/$slug'
-      path: '/services/$slug'
-      fullPath: '/services/$slug'
-      preLoaderRoute: typeof ServicesSlugRouteImport
+    '/conditions/$slug': {
+      id: '/conditions/$slug'
+      path: '/conditions/$slug'
+      fullPath: '/conditions/$slug'
+      preLoaderRoute: typeof ConditionsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/physicians/$slug': {
-      id: '/physicians/$slug'
-      path: '/physicians/$slug'
-      fullPath: '/physicians/$slug'
-      preLoaderRoute: typeof PhysiciansSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/patient/programs': {
-      id: '/patient/programs'
-      path: '/programs'
-      fullPath: '/patient/programs'
-      preLoaderRoute: typeof PatientProgramsRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/profile': {
-      id: '/patient/profile'
-      path: '/profile'
-      fullPath: '/patient/profile'
-      preLoaderRoute: typeof PatientProfileRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/notifications': {
-      id: '/patient/notifications'
-      path: '/notifications'
-      fullPath: '/patient/notifications'
-      preLoaderRoute: typeof PatientNotificationsRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/messages': {
-      id: '/patient/messages'
-      path: '/messages'
-      fullPath: '/patient/messages'
-      preLoaderRoute: typeof PatientMessagesRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/medications': {
-      id: '/patient/medications'
-      path: '/medications'
-      fullPath: '/patient/medications'
-      preLoaderRoute: typeof PatientMedicationsRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/help': {
-      id: '/patient/help'
-      path: '/help'
-      fullPath: '/patient/help'
-      preLoaderRoute: typeof PatientHelpRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/forms': {
-      id: '/patient/forms'
-      path: '/forms'
-      fullPath: '/patient/forms'
-      preLoaderRoute: typeof PatientFormsRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/education': {
-      id: '/patient/education'
-      path: '/education'
-      fullPath: '/patient/education'
-      preLoaderRoute: typeof PatientEducationRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/documents': {
-      id: '/patient/documents'
-      path: '/documents'
-      fullPath: '/patient/documents'
-      preLoaderRoute: typeof PatientDocumentsRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/care-plan': {
-      id: '/patient/care-plan'
-      path: '/care-plan'
-      fullPath: '/patient/care-plan'
-      preLoaderRoute: typeof PatientCarePlanRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/billing': {
-      id: '/patient/billing'
-      path: '/billing'
-      fullPath: '/patient/billing'
-      preLoaderRoute: typeof PatientBillingRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/locations/$state': {
-      id: '/locations/$state'
-      path: '/locations/$state'
-      fullPath: '/locations/$state'
-      preLoaderRoute: typeof LocationsStateRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal/$slug': {
-      id: '/legal/$slug'
-      path: '/legal/$slug'
-      fullPath: '/legal/$slug'
-      preLoaderRoute: typeof LegalSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/join/$roomId': {
-      id: '/join/$roomId'
-      path: '/join/$roomId'
-      fullPath: '/join/$roomId'
-      preLoaderRoute: typeof JoinRoomIdRouteImport
+    '/insights/': {
+      id: '/insights/'
+      path: '/insights'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insights/$slug': {
@@ -1222,398 +1139,557 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/conditions/$slug': {
-      id: '/conditions/$slug'
-      path: '/conditions/$slug'
-      fullPath: '/conditions/$slug'
-      preLoaderRoute: typeof ConditionsSlugRouteImport
+    '/join/$roomId': {
+      id: '/join/$roomId'
+      path: '/join/$roomId'
+      fullPath: '/join/$roomId'
+      preLoaderRoute: typeof JoinRoomIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/website': {
-      id: '/admin/website'
-      path: '/website'
-      fullPath: '/admin/website'
-      preLoaderRoute: typeof AdminWebsiteRouteImport
-      parentRoute: typeof AdminRoute
+    '/legal/$slug': {
+      id: '/legal/$slug'
+      path: '/legal/$slug'
+      fullPath: '/legal/$slug'
+      preLoaderRoute: typeof LegalSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/admin/tasks': {
-      id: '/admin/tasks'
-      path: '/tasks'
-      fullPath: '/admin/tasks'
-      preLoaderRoute: typeof AdminTasksRouteImport
-      parentRoute: typeof AdminRoute
+    '/locations/$state': {
+      id: '/locations/$state'
+      path: '/locations/$state'
+      fullPath: '/locations/$state'
+      preLoaderRoute: typeof LocationsStateRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/admin/settings': {
-      id: '/admin/settings'
-      path: '/settings'
-      fullPath: '/admin/settings'
-      preLoaderRoute: typeof AdminSettingsRouteImport
-      parentRoute: typeof AdminRoute
+    '/physicians/': {
+      id: '/physicians/'
+      path: '/physicians'
+      fullPath: '/physicians/'
+      preLoaderRoute: typeof PhysiciansIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/admin/reports': {
-      id: '/admin/reports'
-      path: '/reports'
-      fullPath: '/admin/reports'
-      preLoaderRoute: typeof AdminReportsRouteImport
-      parentRoute: typeof AdminRoute
+    '/physicians/$slug': {
+      id: '/physicians/$slug'
+      path: '/physicians/$slug'
+      fullPath: '/physicians/$slug'
+      preLoaderRoute: typeof PhysiciansSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/admin/records': {
-      id: '/admin/records'
-      path: '/records'
-      fullPath: '/admin/records'
-      preLoaderRoute: typeof AdminRecordsRouteImport
-      parentRoute: typeof AdminRoute
+    '/research/': {
+      id: '/research/'
+      path: '/research'
+      fullPath: '/research/'
+      preLoaderRoute: typeof ResearchIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/admin/notifications': {
-      id: '/admin/notifications'
-      path: '/notifications'
-      fullPath: '/admin/notifications'
-      preLoaderRoute: typeof AdminNotificationsRouteImport
-      parentRoute: typeof AdminRoute
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/admin/messages': {
-      id: '/admin/messages'
-      path: '/messages'
-      fullPath: '/admin/messages'
-      preLoaderRoute: typeof AdminMessagesRouteImport
-      parentRoute: typeof AdminRoute
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/admin/login': {
-      id: '/admin/login'
-      path: '/login'
-      fullPath: '/admin/login'
-      preLoaderRoute: typeof AdminLoginRouteImport
-      parentRoute: typeof AdminRoute
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/admin/labs': {
-      id: '/admin/labs'
-      path: '/labs'
-      fullPath: '/admin/labs'
-      preLoaderRoute: typeof AdminLabsRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/instant-room': {
-      id: '/admin/instant-room'
-      path: '/instant-room'
-      fullPath: '/admin/instant-room'
-      preLoaderRoute: typeof AdminInstantRoomRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/insights': {
-      id: '/admin/insights'
-      path: '/insights'
-      fullPath: '/admin/insights'
-      preLoaderRoute: typeof AdminInsightsRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/emails': {
-      id: '/admin/emails'
-      path: '/emails'
-      fullPath: '/admin/emails'
-      preLoaderRoute: typeof AdminEmailsRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/documents': {
-      id: '/admin/documents'
-      path: '/documents'
-      fullPath: '/admin/documents'
-      preLoaderRoute: typeof AdminDocumentsRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/crm': {
-      id: '/admin/crm'
-      path: '/crm'
-      fullPath: '/admin/crm'
-      preLoaderRoute: typeof AdminCrmRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/comments': {
-      id: '/admin/comments'
-      path: '/comments'
-      fullPath: '/admin/comments'
-      preLoaderRoute: typeof AdminCommentsRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/clinical': {
-      id: '/admin/clinical'
-      path: '/clinical'
-      fullPath: '/admin/clinical'
-      preLoaderRoute: typeof AdminClinicalRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/care-plans': {
-      id: '/admin/care-plans'
-      path: '/care-plans'
-      fullPath: '/admin/care-plans'
-      preLoaderRoute: typeof AdminCarePlansRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/calendar': {
-      id: '/admin/calendar'
-      path: '/calendar'
-      fullPath: '/admin/calendar'
-      preLoaderRoute: typeof AdminCalendarRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/billing': {
-      id: '/admin/billing'
-      path: '/billing'
-      fullPath: '/admin/billing'
-      preLoaderRoute: typeof AdminBillingRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/analytics': {
-      id: '/admin/analytics'
+    '/_authenticated/admin/analytics': {
+      id: '/_authenticated/admin/analytics'
       path: '/analytics'
       fullPath: '/admin/analytics'
-      preLoaderRoute: typeof AdminAnalyticsRouteImport
-      parentRoute: typeof AdminRoute
+      preLoaderRoute: typeof AuthenticatedAdminAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/patient/telehealth/': {
-      id: '/patient/telehealth/'
-      path: '/telehealth'
-      fullPath: '/patient/telehealth/'
-      preLoaderRoute: typeof PatientTelehealthIndexRouteImport
-      parentRoute: typeof PatientRoute
+    '/_authenticated/admin/billing': {
+      id: '/_authenticated/admin/billing'
+      path: '/billing'
+      fullPath: '/admin/billing'
+      preLoaderRoute: typeof AuthenticatedAdminBillingRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/patient/labs/': {
-      id: '/patient/labs/'
+    '/_authenticated/admin/calendar': {
+      id: '/_authenticated/admin/calendar'
+      path: '/calendar'
+      fullPath: '/admin/calendar'
+      preLoaderRoute: typeof AuthenticatedAdminCalendarRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/care-plans': {
+      id: '/_authenticated/admin/care-plans'
+      path: '/care-plans'
+      fullPath: '/admin/care-plans'
+      preLoaderRoute: typeof AuthenticatedAdminCarePlansRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/clinical': {
+      id: '/_authenticated/admin/clinical'
+      path: '/clinical'
+      fullPath: '/admin/clinical'
+      preLoaderRoute: typeof AuthenticatedAdminClinicalRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/comments': {
+      id: '/_authenticated/admin/comments'
+      path: '/comments'
+      fullPath: '/admin/comments'
+      preLoaderRoute: typeof AuthenticatedAdminCommentsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/crm': {
+      id: '/_authenticated/admin/crm'
+      path: '/crm'
+      fullPath: '/admin/crm'
+      preLoaderRoute: typeof AuthenticatedAdminCrmRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/documents': {
+      id: '/_authenticated/admin/documents'
+      path: '/documents'
+      fullPath: '/admin/documents'
+      preLoaderRoute: typeof AuthenticatedAdminDocumentsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/emails': {
+      id: '/_authenticated/admin/emails'
+      path: '/emails'
+      fullPath: '/admin/emails'
+      preLoaderRoute: typeof AuthenticatedAdminEmailsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/insights': {
+      id: '/_authenticated/admin/insights'
+      path: '/insights'
+      fullPath: '/admin/insights'
+      preLoaderRoute: typeof AuthenticatedAdminInsightsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/instant-room': {
+      id: '/_authenticated/admin/instant-room'
+      path: '/instant-room'
+      fullPath: '/admin/instant-room'
+      preLoaderRoute: typeof AuthenticatedAdminInstantRoomRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/labs': {
+      id: '/_authenticated/admin/labs'
       path: '/labs'
-      fullPath: '/patient/labs/'
-      preLoaderRoute: typeof PatientLabsIndexRouteImport
-      parentRoute: typeof PatientRoute
+      fullPath: '/admin/labs'
+      preLoaderRoute: typeof AuthenticatedAdminLabsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/patient/health/': {
-      id: '/patient/health/'
-      path: '/health'
-      fullPath: '/patient/health/'
-      preLoaderRoute: typeof PatientHealthIndexRouteImport
-      parentRoute: typeof PatientRoute
+    '/_authenticated/admin/messages': {
+      id: '/_authenticated/admin/messages'
+      path: '/messages'
+      fullPath: '/admin/messages'
+      preLoaderRoute: typeof AuthenticatedAdminMessagesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/patient/appointments/': {
-      id: '/patient/appointments/'
-      path: '/appointments'
-      fullPath: '/patient/appointments/'
-      preLoaderRoute: typeof PatientAppointmentsIndexRouteImport
-      parentRoute: typeof PatientRoute
+    '/_authenticated/admin/notifications': {
+      id: '/_authenticated/admin/notifications'
+      path: '/notifications'
+      fullPath: '/admin/notifications'
+      preLoaderRoute: typeof AuthenticatedAdminNotificationsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/admin/research/': {
-      id: '/admin/research/'
-      path: '/research'
-      fullPath: '/admin/research/'
-      preLoaderRoute: typeof AdminResearchIndexRouteImport
-      parentRoute: typeof AdminRoute
+    '/_authenticated/admin/records': {
+      id: '/_authenticated/admin/records'
+      path: '/records'
+      fullPath: '/admin/records'
+      preLoaderRoute: typeof AuthenticatedAdminRecordsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/admin/patients/': {
-      id: '/admin/patients/'
-      path: '/patients'
-      fullPath: '/admin/patients/'
-      preLoaderRoute: typeof AdminPatientsIndexRouteImport
-      parentRoute: typeof AdminRoute
+    '/_authenticated/admin/reports': {
+      id: '/_authenticated/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AuthenticatedAdminReportsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/admin/appointments/': {
-      id: '/admin/appointments/'
+    '/_authenticated/admin/settings': {
+      id: '/_authenticated/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AuthenticatedAdminSettingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/tasks': {
+      id: '/_authenticated/admin/tasks'
+      path: '/tasks'
+      fullPath: '/admin/tasks'
+      preLoaderRoute: typeof AuthenticatedAdminTasksRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/website': {
+      id: '/_authenticated/admin/website'
+      path: '/website'
+      fullPath: '/admin/website'
+      preLoaderRoute: typeof AuthenticatedAdminWebsiteRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/patient/': {
+      id: '/_authenticated/patient/'
+      path: '/'
+      fullPath: '/patient/'
+      preLoaderRoute: typeof AuthenticatedPatientIndexRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/billing': {
+      id: '/_authenticated/patient/billing'
+      path: '/billing'
+      fullPath: '/patient/billing'
+      preLoaderRoute: typeof AuthenticatedPatientBillingRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/care-plan': {
+      id: '/_authenticated/patient/care-plan'
+      path: '/care-plan'
+      fullPath: '/patient/care-plan'
+      preLoaderRoute: typeof AuthenticatedPatientCarePlanRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/documents': {
+      id: '/_authenticated/patient/documents'
+      path: '/documents'
+      fullPath: '/patient/documents'
+      preLoaderRoute: typeof AuthenticatedPatientDocumentsRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/education': {
+      id: '/_authenticated/patient/education'
+      path: '/education'
+      fullPath: '/patient/education'
+      preLoaderRoute: typeof AuthenticatedPatientEducationRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/forms': {
+      id: '/_authenticated/patient/forms'
+      path: '/forms'
+      fullPath: '/patient/forms'
+      preLoaderRoute: typeof AuthenticatedPatientFormsRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/help': {
+      id: '/_authenticated/patient/help'
+      path: '/help'
+      fullPath: '/patient/help'
+      preLoaderRoute: typeof AuthenticatedPatientHelpRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/medications': {
+      id: '/_authenticated/patient/medications'
+      path: '/medications'
+      fullPath: '/patient/medications'
+      preLoaderRoute: typeof AuthenticatedPatientMedicationsRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/messages': {
+      id: '/_authenticated/patient/messages'
+      path: '/messages'
+      fullPath: '/patient/messages'
+      preLoaderRoute: typeof AuthenticatedPatientMessagesRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/notifications': {
+      id: '/_authenticated/patient/notifications'
+      path: '/notifications'
+      fullPath: '/patient/notifications'
+      preLoaderRoute: typeof AuthenticatedPatientNotificationsRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/profile': {
+      id: '/_authenticated/patient/profile'
+      path: '/profile'
+      fullPath: '/patient/profile'
+      preLoaderRoute: typeof AuthenticatedPatientProfileRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/programs': {
+      id: '/_authenticated/patient/programs'
+      path: '/programs'
+      fullPath: '/patient/programs'
+      preLoaderRoute: typeof AuthenticatedPatientProgramsRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/admin/appointments/': {
+      id: '/_authenticated/admin/appointments/'
       path: '/appointments'
       fullPath: '/admin/appointments/'
-      preLoaderRoute: typeof AdminAppointmentsIndexRouteImport
-      parentRoute: typeof AdminRoute
+      preLoaderRoute: typeof AuthenticatedAdminAppointmentsIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
-    '/patient/telehealth/waiting-room': {
-      id: '/patient/telehealth/waiting-room'
-      path: '/telehealth/waiting-room'
-      fullPath: '/patient/telehealth/waiting-room'
-      preLoaderRoute: typeof PatientTelehealthWaitingRoomRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/labs/$id': {
-      id: '/patient/labs/$id'
-      path: '/labs/$id'
-      fullPath: '/patient/labs/$id'
-      preLoaderRoute: typeof PatientLabsIdRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/health/vitals': {
-      id: '/patient/health/vitals'
-      path: '/health/vitals'
-      fullPath: '/patient/health/vitals'
-      preLoaderRoute: typeof PatientHealthVitalsRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/patient/appointments/$id': {
-      id: '/patient/appointments/$id'
-      path: '/appointments/$id'
-      fullPath: '/patient/appointments/$id'
-      preLoaderRoute: typeof PatientAppointmentsIdRouteImport
-      parentRoute: typeof PatientRoute
-    }
-    '/admin/research/$id': {
-      id: '/admin/research/$id'
-      path: '/research/$id'
-      fullPath: '/admin/research/$id'
-      preLoaderRoute: typeof AdminResearchIdRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/patients/new': {
-      id: '/admin/patients/new'
-      path: '/patients/new'
-      fullPath: '/admin/patients/new'
-      preLoaderRoute: typeof AdminPatientsNewRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/patients/$id': {
-      id: '/admin/patients/$id'
-      path: '/patients/$id'
-      fullPath: '/admin/patients/$id'
-      preLoaderRoute: typeof AdminPatientsIdRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/appointments/new': {
-      id: '/admin/appointments/new'
-      path: '/appointments/new'
-      fullPath: '/admin/appointments/new'
-      preLoaderRoute: typeof AdminAppointmentsNewRouteImport
-      parentRoute: typeof AdminRoute
-    }
-    '/admin/appointments/$id': {
-      id: '/admin/appointments/$id'
+    '/_authenticated/admin/appointments/$id': {
+      id: '/_authenticated/admin/appointments/$id'
       path: '/appointments/$id'
       fullPath: '/admin/appointments/$id'
-      preLoaderRoute: typeof AdminAppointmentsIdRouteImport
-      parentRoute: typeof AdminRoute
+      preLoaderRoute: typeof AuthenticatedAdminAppointmentsIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/appointments/new': {
+      id: '/_authenticated/admin/appointments/new'
+      path: '/appointments/new'
+      fullPath: '/admin/appointments/new'
+      preLoaderRoute: typeof AuthenticatedAdminAppointmentsNewRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/patients/': {
+      id: '/_authenticated/admin/patients/'
+      path: '/patients'
+      fullPath: '/admin/patients/'
+      preLoaderRoute: typeof AuthenticatedAdminPatientsIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/patients/$id': {
+      id: '/_authenticated/admin/patients/$id'
+      path: '/patients/$id'
+      fullPath: '/admin/patients/$id'
+      preLoaderRoute: typeof AuthenticatedAdminPatientsIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/patients/new': {
+      id: '/_authenticated/admin/patients/new'
+      path: '/patients/new'
+      fullPath: '/admin/patients/new'
+      preLoaderRoute: typeof AuthenticatedAdminPatientsNewRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/research/': {
+      id: '/_authenticated/admin/research/'
+      path: '/research'
+      fullPath: '/admin/research/'
+      preLoaderRoute: typeof AuthenticatedAdminResearchIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/research/$id': {
+      id: '/_authenticated/admin/research/$id'
+      path: '/research/$id'
+      fullPath: '/admin/research/$id'
+      preLoaderRoute: typeof AuthenticatedAdminResearchIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/patient/appointments/': {
+      id: '/_authenticated/patient/appointments/'
+      path: '/appointments'
+      fullPath: '/patient/appointments/'
+      preLoaderRoute: typeof AuthenticatedPatientAppointmentsIndexRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/appointments/$id': {
+      id: '/_authenticated/patient/appointments/$id'
+      path: '/appointments/$id'
+      fullPath: '/patient/appointments/$id'
+      preLoaderRoute: typeof AuthenticatedPatientAppointmentsIdRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/health/': {
+      id: '/_authenticated/patient/health/'
+      path: '/health'
+      fullPath: '/patient/health/'
+      preLoaderRoute: typeof AuthenticatedPatientHealthIndexRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/health/vitals': {
+      id: '/_authenticated/patient/health/vitals'
+      path: '/health/vitals'
+      fullPath: '/patient/health/vitals'
+      preLoaderRoute: typeof AuthenticatedPatientHealthVitalsRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/labs/': {
+      id: '/_authenticated/patient/labs/'
+      path: '/labs'
+      fullPath: '/patient/labs/'
+      preLoaderRoute: typeof AuthenticatedPatientLabsIndexRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/labs/$id': {
+      id: '/_authenticated/patient/labs/$id'
+      path: '/labs/$id'
+      fullPath: '/patient/labs/$id'
+      preLoaderRoute: typeof AuthenticatedPatientLabsIdRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/telehealth/': {
+      id: '/_authenticated/patient/telehealth/'
+      path: '/telehealth'
+      fullPath: '/patient/telehealth/'
+      preLoaderRoute: typeof AuthenticatedPatientTelehealthIndexRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/_authenticated/patient/telehealth/waiting-room': {
+      id: '/_authenticated/patient/telehealth/waiting-room'
+      path: '/telehealth/waiting-room'
+      fullPath: '/patient/telehealth/waiting-room'
+      preLoaderRoute: typeof AuthenticatedPatientTelehealthWaitingRoomRouteImport
+      parentRoute: typeof AuthenticatedPatientRoute
+    }
+    '/api/public/cron/appointment-reminders': {
+      id: '/api/public/cron/appointment-reminders'
+      path: '/api/public/cron/appointment-reminders'
+      fullPath: '/api/public/cron/appointment-reminders'
+      preLoaderRoute: typeof ApiPublicCronAppointmentRemindersRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface AdminRouteChildren {
-  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
-  AdminBillingRoute: typeof AdminBillingRoute
-  AdminCalendarRoute: typeof AdminCalendarRoute
-  AdminCarePlansRoute: typeof AdminCarePlansRoute
-  AdminClinicalRoute: typeof AdminClinicalRoute
-  AdminCommentsRoute: typeof AdminCommentsRoute
-  AdminCrmRoute: typeof AdminCrmRoute
-  AdminDocumentsRoute: typeof AdminDocumentsRoute
-  AdminEmailsRoute: typeof AdminEmailsRoute
-  AdminInsightsRoute: typeof AdminInsightsRoute
-  AdminInstantRoomRoute: typeof AdminInstantRoomRoute
-  AdminLabsRoute: typeof AdminLabsRoute
-  AdminLoginRoute: typeof AdminLoginRoute
-  AdminMessagesRoute: typeof AdminMessagesRoute
-  AdminNotificationsRoute: typeof AdminNotificationsRoute
-  AdminRecordsRoute: typeof AdminRecordsRoute
-  AdminReportsRoute: typeof AdminReportsRoute
-  AdminSettingsRoute: typeof AdminSettingsRoute
-  AdminTasksRoute: typeof AdminTasksRoute
-  AdminWebsiteRoute: typeof AdminWebsiteRoute
-  AdminIndexRoute: typeof AdminIndexRoute
-  AdminAppointmentsIdRoute: typeof AdminAppointmentsIdRoute
-  AdminAppointmentsNewRoute: typeof AdminAppointmentsNewRoute
-  AdminPatientsIdRoute: typeof AdminPatientsIdRoute
-  AdminPatientsNewRoute: typeof AdminPatientsNewRoute
-  AdminResearchIdRoute: typeof AdminResearchIdRoute
-  AdminAppointmentsIndexRoute: typeof AdminAppointmentsIndexRoute
-  AdminPatientsIndexRoute: typeof AdminPatientsIndexRoute
-  AdminResearchIndexRoute: typeof AdminResearchIndexRoute
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminAnalyticsRoute: typeof AuthenticatedAdminAnalyticsRoute
+  AuthenticatedAdminBillingRoute: typeof AuthenticatedAdminBillingRoute
+  AuthenticatedAdminCalendarRoute: typeof AuthenticatedAdminCalendarRoute
+  AuthenticatedAdminCarePlansRoute: typeof AuthenticatedAdminCarePlansRoute
+  AuthenticatedAdminClinicalRoute: typeof AuthenticatedAdminClinicalRoute
+  AuthenticatedAdminCommentsRoute: typeof AuthenticatedAdminCommentsRoute
+  AuthenticatedAdminCrmRoute: typeof AuthenticatedAdminCrmRoute
+  AuthenticatedAdminDocumentsRoute: typeof AuthenticatedAdminDocumentsRoute
+  AuthenticatedAdminEmailsRoute: typeof AuthenticatedAdminEmailsRoute
+  AuthenticatedAdminInsightsRoute: typeof AuthenticatedAdminInsightsRoute
+  AuthenticatedAdminInstantRoomRoute: typeof AuthenticatedAdminInstantRoomRoute
+  AuthenticatedAdminLabsRoute: typeof AuthenticatedAdminLabsRoute
+  AuthenticatedAdminMessagesRoute: typeof AuthenticatedAdminMessagesRoute
+  AuthenticatedAdminNotificationsRoute: typeof AuthenticatedAdminNotificationsRoute
+  AuthenticatedAdminRecordsRoute: typeof AuthenticatedAdminRecordsRoute
+  AuthenticatedAdminReportsRoute: typeof AuthenticatedAdminReportsRoute
+  AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
+  AuthenticatedAdminTasksRoute: typeof AuthenticatedAdminTasksRoute
+  AuthenticatedAdminWebsiteRoute: typeof AuthenticatedAdminWebsiteRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminAppointmentsIdRoute: typeof AuthenticatedAdminAppointmentsIdRoute
+  AuthenticatedAdminAppointmentsNewRoute: typeof AuthenticatedAdminAppointmentsNewRoute
+  AuthenticatedAdminPatientsIdRoute: typeof AuthenticatedAdminPatientsIdRoute
+  AuthenticatedAdminPatientsNewRoute: typeof AuthenticatedAdminPatientsNewRoute
+  AuthenticatedAdminResearchIdRoute: typeof AuthenticatedAdminResearchIdRoute
+  AuthenticatedAdminAppointmentsIndexRoute: typeof AuthenticatedAdminAppointmentsIndexRoute
+  AuthenticatedAdminPatientsIndexRoute: typeof AuthenticatedAdminPatientsIndexRoute
+  AuthenticatedAdminResearchIndexRoute: typeof AuthenticatedAdminResearchIndexRoute
 }
 
-const AdminRouteChildren: AdminRouteChildren = {
-  AdminAnalyticsRoute: AdminAnalyticsRoute,
-  AdminBillingRoute: AdminBillingRoute,
-  AdminCalendarRoute: AdminCalendarRoute,
-  AdminCarePlansRoute: AdminCarePlansRoute,
-  AdminClinicalRoute: AdminClinicalRoute,
-  AdminCommentsRoute: AdminCommentsRoute,
-  AdminCrmRoute: AdminCrmRoute,
-  AdminDocumentsRoute: AdminDocumentsRoute,
-  AdminEmailsRoute: AdminEmailsRoute,
-  AdminInsightsRoute: AdminInsightsRoute,
-  AdminInstantRoomRoute: AdminInstantRoomRoute,
-  AdminLabsRoute: AdminLabsRoute,
-  AdminLoginRoute: AdminLoginRoute,
-  AdminMessagesRoute: AdminMessagesRoute,
-  AdminNotificationsRoute: AdminNotificationsRoute,
-  AdminRecordsRoute: AdminRecordsRoute,
-  AdminReportsRoute: AdminReportsRoute,
-  AdminSettingsRoute: AdminSettingsRoute,
-  AdminTasksRoute: AdminTasksRoute,
-  AdminWebsiteRoute: AdminWebsiteRoute,
-  AdminIndexRoute: AdminIndexRoute,
-  AdminAppointmentsIdRoute: AdminAppointmentsIdRoute,
-  AdminAppointmentsNewRoute: AdminAppointmentsNewRoute,
-  AdminPatientsIdRoute: AdminPatientsIdRoute,
-  AdminPatientsNewRoute: AdminPatientsNewRoute,
-  AdminResearchIdRoute: AdminResearchIdRoute,
-  AdminAppointmentsIndexRoute: AdminAppointmentsIndexRoute,
-  AdminPatientsIndexRoute: AdminPatientsIndexRoute,
-  AdminResearchIndexRoute: AdminResearchIndexRoute,
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminAnalyticsRoute: AuthenticatedAdminAnalyticsRoute,
+  AuthenticatedAdminBillingRoute: AuthenticatedAdminBillingRoute,
+  AuthenticatedAdminCalendarRoute: AuthenticatedAdminCalendarRoute,
+  AuthenticatedAdminCarePlansRoute: AuthenticatedAdminCarePlansRoute,
+  AuthenticatedAdminClinicalRoute: AuthenticatedAdminClinicalRoute,
+  AuthenticatedAdminCommentsRoute: AuthenticatedAdminCommentsRoute,
+  AuthenticatedAdminCrmRoute: AuthenticatedAdminCrmRoute,
+  AuthenticatedAdminDocumentsRoute: AuthenticatedAdminDocumentsRoute,
+  AuthenticatedAdminEmailsRoute: AuthenticatedAdminEmailsRoute,
+  AuthenticatedAdminInsightsRoute: AuthenticatedAdminInsightsRoute,
+  AuthenticatedAdminInstantRoomRoute: AuthenticatedAdminInstantRoomRoute,
+  AuthenticatedAdminLabsRoute: AuthenticatedAdminLabsRoute,
+  AuthenticatedAdminMessagesRoute: AuthenticatedAdminMessagesRoute,
+  AuthenticatedAdminNotificationsRoute: AuthenticatedAdminNotificationsRoute,
+  AuthenticatedAdminRecordsRoute: AuthenticatedAdminRecordsRoute,
+  AuthenticatedAdminReportsRoute: AuthenticatedAdminReportsRoute,
+  AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
+  AuthenticatedAdminTasksRoute: AuthenticatedAdminTasksRoute,
+  AuthenticatedAdminWebsiteRoute: AuthenticatedAdminWebsiteRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminAppointmentsIdRoute: AuthenticatedAdminAppointmentsIdRoute,
+  AuthenticatedAdminAppointmentsNewRoute:
+    AuthenticatedAdminAppointmentsNewRoute,
+  AuthenticatedAdminPatientsIdRoute: AuthenticatedAdminPatientsIdRoute,
+  AuthenticatedAdminPatientsNewRoute: AuthenticatedAdminPatientsNewRoute,
+  AuthenticatedAdminResearchIdRoute: AuthenticatedAdminResearchIdRoute,
+  AuthenticatedAdminAppointmentsIndexRoute:
+    AuthenticatedAdminAppointmentsIndexRoute,
+  AuthenticatedAdminPatientsIndexRoute: AuthenticatedAdminPatientsIndexRoute,
+  AuthenticatedAdminResearchIndexRoute: AuthenticatedAdminResearchIndexRoute,
 }
 
-const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
 
-interface PatientRouteChildren {
-  PatientBillingRoute: typeof PatientBillingRoute
-  PatientCarePlanRoute: typeof PatientCarePlanRoute
-  PatientDocumentsRoute: typeof PatientDocumentsRoute
-  PatientEducationRoute: typeof PatientEducationRoute
-  PatientFormsRoute: typeof PatientFormsRoute
-  PatientHelpRoute: typeof PatientHelpRoute
-  PatientMedicationsRoute: typeof PatientMedicationsRoute
-  PatientMessagesRoute: typeof PatientMessagesRoute
-  PatientNotificationsRoute: typeof PatientNotificationsRoute
-  PatientProfileRoute: typeof PatientProfileRoute
-  PatientProgramsRoute: typeof PatientProgramsRoute
-  PatientIndexRoute: typeof PatientIndexRoute
-  PatientAppointmentsIdRoute: typeof PatientAppointmentsIdRoute
-  PatientHealthVitalsRoute: typeof PatientHealthVitalsRoute
-  PatientLabsIdRoute: typeof PatientLabsIdRoute
-  PatientTelehealthWaitingRoomRoute: typeof PatientTelehealthWaitingRoomRoute
-  PatientAppointmentsIndexRoute: typeof PatientAppointmentsIndexRoute
-  PatientHealthIndexRoute: typeof PatientHealthIndexRoute
-  PatientLabsIndexRoute: typeof PatientLabsIndexRoute
-  PatientTelehealthIndexRoute: typeof PatientTelehealthIndexRoute
+interface AuthenticatedPatientRouteChildren {
+  AuthenticatedPatientBillingRoute: typeof AuthenticatedPatientBillingRoute
+  AuthenticatedPatientCarePlanRoute: typeof AuthenticatedPatientCarePlanRoute
+  AuthenticatedPatientDocumentsRoute: typeof AuthenticatedPatientDocumentsRoute
+  AuthenticatedPatientEducationRoute: typeof AuthenticatedPatientEducationRoute
+  AuthenticatedPatientFormsRoute: typeof AuthenticatedPatientFormsRoute
+  AuthenticatedPatientHelpRoute: typeof AuthenticatedPatientHelpRoute
+  AuthenticatedPatientMedicationsRoute: typeof AuthenticatedPatientMedicationsRoute
+  AuthenticatedPatientMessagesRoute: typeof AuthenticatedPatientMessagesRoute
+  AuthenticatedPatientNotificationsRoute: typeof AuthenticatedPatientNotificationsRoute
+  AuthenticatedPatientProfileRoute: typeof AuthenticatedPatientProfileRoute
+  AuthenticatedPatientProgramsRoute: typeof AuthenticatedPatientProgramsRoute
+  AuthenticatedPatientIndexRoute: typeof AuthenticatedPatientIndexRoute
+  AuthenticatedPatientAppointmentsIdRoute: typeof AuthenticatedPatientAppointmentsIdRoute
+  AuthenticatedPatientHealthVitalsRoute: typeof AuthenticatedPatientHealthVitalsRoute
+  AuthenticatedPatientLabsIdRoute: typeof AuthenticatedPatientLabsIdRoute
+  AuthenticatedPatientTelehealthWaitingRoomRoute: typeof AuthenticatedPatientTelehealthWaitingRoomRoute
+  AuthenticatedPatientAppointmentsIndexRoute: typeof AuthenticatedPatientAppointmentsIndexRoute
+  AuthenticatedPatientHealthIndexRoute: typeof AuthenticatedPatientHealthIndexRoute
+  AuthenticatedPatientLabsIndexRoute: typeof AuthenticatedPatientLabsIndexRoute
+  AuthenticatedPatientTelehealthIndexRoute: typeof AuthenticatedPatientTelehealthIndexRoute
 }
 
-const PatientRouteChildren: PatientRouteChildren = {
-  PatientBillingRoute: PatientBillingRoute,
-  PatientCarePlanRoute: PatientCarePlanRoute,
-  PatientDocumentsRoute: PatientDocumentsRoute,
-  PatientEducationRoute: PatientEducationRoute,
-  PatientFormsRoute: PatientFormsRoute,
-  PatientHelpRoute: PatientHelpRoute,
-  PatientMedicationsRoute: PatientMedicationsRoute,
-  PatientMessagesRoute: PatientMessagesRoute,
-  PatientNotificationsRoute: PatientNotificationsRoute,
-  PatientProfileRoute: PatientProfileRoute,
-  PatientProgramsRoute: PatientProgramsRoute,
-  PatientIndexRoute: PatientIndexRoute,
-  PatientAppointmentsIdRoute: PatientAppointmentsIdRoute,
-  PatientHealthVitalsRoute: PatientHealthVitalsRoute,
-  PatientLabsIdRoute: PatientLabsIdRoute,
-  PatientTelehealthWaitingRoomRoute: PatientTelehealthWaitingRoomRoute,
-  PatientAppointmentsIndexRoute: PatientAppointmentsIndexRoute,
-  PatientHealthIndexRoute: PatientHealthIndexRoute,
-  PatientLabsIndexRoute: PatientLabsIndexRoute,
-  PatientTelehealthIndexRoute: PatientTelehealthIndexRoute,
+const AuthenticatedPatientRouteChildren: AuthenticatedPatientRouteChildren = {
+  AuthenticatedPatientBillingRoute: AuthenticatedPatientBillingRoute,
+  AuthenticatedPatientCarePlanRoute: AuthenticatedPatientCarePlanRoute,
+  AuthenticatedPatientDocumentsRoute: AuthenticatedPatientDocumentsRoute,
+  AuthenticatedPatientEducationRoute: AuthenticatedPatientEducationRoute,
+  AuthenticatedPatientFormsRoute: AuthenticatedPatientFormsRoute,
+  AuthenticatedPatientHelpRoute: AuthenticatedPatientHelpRoute,
+  AuthenticatedPatientMedicationsRoute: AuthenticatedPatientMedicationsRoute,
+  AuthenticatedPatientMessagesRoute: AuthenticatedPatientMessagesRoute,
+  AuthenticatedPatientNotificationsRoute:
+    AuthenticatedPatientNotificationsRoute,
+  AuthenticatedPatientProfileRoute: AuthenticatedPatientProfileRoute,
+  AuthenticatedPatientProgramsRoute: AuthenticatedPatientProgramsRoute,
+  AuthenticatedPatientIndexRoute: AuthenticatedPatientIndexRoute,
+  AuthenticatedPatientAppointmentsIdRoute:
+    AuthenticatedPatientAppointmentsIdRoute,
+  AuthenticatedPatientHealthVitalsRoute: AuthenticatedPatientHealthVitalsRoute,
+  AuthenticatedPatientLabsIdRoute: AuthenticatedPatientLabsIdRoute,
+  AuthenticatedPatientTelehealthWaitingRoomRoute:
+    AuthenticatedPatientTelehealthWaitingRoomRoute,
+  AuthenticatedPatientAppointmentsIndexRoute:
+    AuthenticatedPatientAppointmentsIndexRoute,
+  AuthenticatedPatientHealthIndexRoute: AuthenticatedPatientHealthIndexRoute,
+  AuthenticatedPatientLabsIndexRoute: AuthenticatedPatientLabsIndexRoute,
+  AuthenticatedPatientTelehealthIndexRoute:
+    AuthenticatedPatientTelehealthIndexRoute,
 }
 
-const PatientRouteWithChildren =
-  PatientRoute._addFileChildren(PatientRouteChildren)
+const AuthenticatedPatientRouteWithChildren =
+  AuthenticatedPatientRoute._addFileChildren(AuthenticatedPatientRouteChildren)
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+  AuthenticatedPatientRoute: typeof AuthenticatedPatientRouteWithChildren
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+  AuthenticatedPatientRoute: AuthenticatedPatientRouteWithChildren,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AboutRoute: AboutRoute,
-  AdminRoute: AdminRouteWithChildren,
   BookRoute: BookRoute,
   ContactRoute: ContactRoute,
   DrChenRoute: DrChenRoute,
   FaqRoute: FaqRoute,
   InnovationRoute: InnovationRoute,
   MedicationsRoute: MedicationsRoute,
-  PatientRoute: PatientRouteWithChildren,
   PatientResourcesRoute: PatientResourcesRoute,
   PortalRoute: PortalRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TelehealthRoute: TelehealthRoute,
+  AdminLoginRoute: AdminLoginRoute,
   ConditionsSlugRoute: ConditionsSlugRoute,
   InsightsSlugRoute: InsightsSlugRoute,
   JoinRoomIdRoute: JoinRoomIdRoute,
@@ -1626,7 +1702,19 @@ const rootRouteChildren: RootRouteChildren = {
   PhysiciansIndexRoute: PhysiciansIndexRoute,
   ResearchIndexRoute: ResearchIndexRoute,
   ServicesIndexRoute: ServicesIndexRoute,
+  ApiPublicCronAppointmentRemindersRoute:
+    ApiPublicCronAppointmentRemindersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

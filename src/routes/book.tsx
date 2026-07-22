@@ -45,6 +45,7 @@ const TIMES = ["9:00 AM", "10:30 AM", "1:00 PM", "2:30 PM", "4:00 PM"];
 
 function BookPage() {
   const [step, setStep] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
   const [f, setF] = useState<FormState>({
     visitType: "", mode: "", state: "", language: "English", service: "", date: "", time: "",
     firstName: "", lastName: "", email: "", phone: "", notes: "",
@@ -193,11 +194,12 @@ function BookPage() {
               <div className="mt-12 flex flex-col-reverse sm:flex-row justify-between gap-3 border-t border-navy/10 pt-6">
                 <button onClick={() => setStep((s) => Math.max(0, s - 1))} disabled={step === 0} className="w-full sm:w-auto px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-navy/60 disabled:opacity-30 hover:text-navy transition-colors">← Back</button>
                 <button
-                  onClick={() => {
-                    if (!canNext) return;
+                  onClick={async () => {
+                    if (!canNext || submitting) return;
                     if (step === 8) {
+                      setSubmitting(true);
                       try {
-                        createAppointment({
+                        await createAppointment({
                           source: "public",
                           date: f.date,
                           time: f.time,
@@ -218,14 +220,16 @@ function BookPage() {
                       } catch {
                         toast.error("Could not submit request. Please try again.");
                         return;
+                      } finally {
+                        setSubmitting(false);
                       }
                     }
                     setStep((s) => s + 1);
                   }}
-                  disabled={!canNext}
+                  disabled={!canNext || submitting}
                   className="w-full sm:w-auto px-6 py-3 bg-navy text-paper text-xs font-semibold uppercase tracking-[0.18em] disabled:opacity-30 hover:bg-academic transition-colors"
                 >
-                  {step === 8 ? "Confirm request" : "Continue →"}
+                  {step === 8 ? (submitting ? "Submitting…" : "Confirm request") : "Continue →"}
                 </button>
               </div>
             )}

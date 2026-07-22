@@ -17,7 +17,7 @@
 | Bearer attacher | `src/integrations/supabase/auth-attacher.ts` registered in `src/start.ts` | ✅ |
 | Server secrets | `LOVABLE_API_KEY`, `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_DB_URL` | ✅ |
 
-**Nothing in the database yet.** `public` schema is empty. No RLS, no policies, no server functions calling the DB. All app data currently lives in `localStorage` (see §3).
+**Status (2026-07-22):** migrations for §2 are written in `supabase/migrations/` and the §5 server functions exist in `src/lib/*.functions.ts` — pending application/config by the Lovable agent (checklist in `LOVABLE-TODO.md`). Until the migrations run, `public` schema is empty.
 
 ---
 
@@ -40,8 +40,12 @@ created_at    timestamptz default now()
 updated_at    timestamptz default now()
 ```
 
+**Policies (profiles):** SELECT — own row, or `admin`/`clinician` via `has_role()`; INSERT — own row; UPDATE — own row or `admin`. Profile + role rows are auto-created by an `on_auth_user_created` trigger.
+
 ### 2.2 `user_roles` (RBAC — separate table, mandatory)
-Follow the `<user-roles>` pattern exactly (enum `app_role` + `has_role()` security-definer). Roles: `admin`, `clinician`, `patient`.
+Follow the `<user-roles>` pattern exactly (enum `app_role` + `has_role()` security-definer). Roles: `admin`, `clinician`, `patient`. `user_id` FKs `profiles.id` (per §2.1, nothing but profiles FKs auth.users).
+
+**Policies (user_roles):** SELECT — own rows, or `admin`. Writes only via service role (signup trigger / server fns).
 
 ### 2.3 `appointments` — **contract locked by `src/lib/appointmentStore.ts`**
 
@@ -70,7 +74,10 @@ pay               text   -- Pending | Paid | Partial | Overdue | Refunded | Waiv
 notes             text
 meeting_link      text
 follow_up_id      text   → appointments.id (nullable)
+reminder_sent_at  timestamptz  -- stamped by the 24h reminder cron (§8.7); backend-only, not surfaced in the store
 ```
+
+Notes: `id` defaults to `'A-' || nextval(appointment_ref_seq)` (sequence starts at 9001, preserving the "A-9001" format). `time` is normalized server-side to 24h `HH:mm` — the public form may submit "9:00 AM". Allowed values are enforced by a `validate_appointment()` trigger mirroring the exported arrays.
 
 Allowed values are exported as `APPOINTMENT_STATUSES`, `PATIENT_TAGS`, `PAYMENT_STATUSES` from `src/lib/appointmentStore.ts` — mirror them as Postgres enums or `CHECK`-less validation triggers.
 

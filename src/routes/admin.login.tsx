@@ -1,6 +1,8 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Loader2, AlertCircle, Eye, EyeOff, Lock, Mail, ShieldCheck } from "lucide-react";
+import { toast } from "sonner";
+import { requestPasswordReset, signInWithPassword } from "@/lib/auth";
 
 export const Route = createFileRoute("/admin/login")({
   head: () => ({
@@ -36,14 +38,15 @@ function AdminLogin() {
     }
 
     setLoading(true);
-    // Simulated auth latency — no real validation yet.
-    await new Promise((r) => setTimeout(r, 900));
+    const result = await signInWithPassword(email.trim(), password);
+    setLoading(false);
 
-    // Demo error state: reject an obviously wrong demo password so users can
-    // preview the error UI. Any other input "succeeds".
-    if (password.toLowerCase() === "wrong") {
-      setLoading(false);
-      setError("Invalid email or password. Please try again.");
+    if (result.error) {
+      setError(
+        /invalid/i.test(result.error)
+          ? "Invalid email or password. Please try again."
+          : result.error,
+      );
       return;
     }
 
@@ -145,7 +148,15 @@ function AdminLogin() {
                 <button
                   type="button"
                   className="text-[11px] uppercase tracking-widest text-navy/55 hover:text-navy"
-                  onClick={() => alert("Password reset will be available once auth is connected.")}
+                  onClick={async () => {
+                    if (!emailValid) {
+                      setTouched((t) => ({ ...t, email: true }));
+                      setError("Enter your email first, then tap Forgot.");
+                      return;
+                    }
+                    await requestPasswordReset(email.trim());
+                    toast.success("If that account exists, a reset link is on its way.");
+                  }}
                 >
                   Forgot?
                 </button>
@@ -201,10 +212,7 @@ function AdminLogin() {
             </button>
 
             <div className="text-[11px] text-navy/50 text-center leading-relaxed">
-              Preview mode — no real authentication yet.{" "}
-              <Link to="/admin" className="text-navy underline underline-offset-2 hover:text-academic">
-                Skip to admin
-              </Link>
+              Authorized personnel only. Access attempts are logged.
             </div>
           </form>
         </div>

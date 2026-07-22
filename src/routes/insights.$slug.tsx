@@ -3,6 +3,7 @@ import { NotFoundInline } from "@/components/site/not-found-inline";
 import { articles } from "@/data/site";
 import { Container, Disclaimer } from "@/components/site/primitives";
 import { useState, useEffect } from "react";
+import { listApprovedCommentsFn, submitCommentFn, type CommentRecord } from "@/lib/comments.functions";
 
 export const Route = createFileRoute("/insights/$slug")({
   loader: ({ params }) => {
@@ -112,22 +113,9 @@ function ArticleDetail() {
               <h2 className="font-serif text-3xl md:text-4xl text-navy">Comments</h2>
               <p className="mt-3 text-sm text-navy/60">Sorted by most relevant · Moderated by editorial staff.</p>
 
-              <div className="mt-10 space-y-8">
-                <Comment name="Dr. Amelia Park" title="Endocrinology · Verified physician" date="3 days ago" verified>
-                  A helpful synthesis. The point about study heterogeneity is well-taken; I would add that endpoint selection remains a common weakness in this literature.
-                </Comment>
-                <Comment name="Editor" title="Editorial team" date="2 days ago" editor>
-                  Approved. Related references added under "References."
-                </Comment>
-                <Comment name="Dr. Rafael Mendez" title="Cardiology · Verified physician" date="1 day ago" verified>
-                  Agree on the caution around off-label use in otherwise healthy adults.
-                </Comment>
-                <Comment name="Anonymous" title="Awaiting moderation" date="just now" pending>
-                  [Comment awaiting moderation]
-                </Comment>
-              </div>
+              <ApprovedComments articleSlug={article.slug} />
 
-              <CommentBox />
+              <CommentBox articleSlug={article.slug} />
             </div>
           </Container>
         </section>
@@ -156,6 +144,53 @@ function ReactionBar() {
         {btn("wellReferenced", "Well Referenced")}
         {btn("saved", "Save")}
       </div>
+    </div>
+  );
+}
+
+function relativeDate(iso: string) {
+  const diffMs = Date.now() - new Date(iso).getTime();
+  const hours = Math.floor(diffMs / 3_600_000);
+  if (hours < 1) return "just now";
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return days === 1 ? "1 day ago" : `${days} days ago`;
+}
+
+function ApprovedComments({ articleSlug }: { articleSlug: string }) {
+  const [comments, setComments] = useState<CommentRecord[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    listApprovedCommentsFn({ data: { articleSlug } })
+      .then((rows) => {
+        if (!cancelled) setComments(rows);
+      })
+      .catch(() => {
+        if (!cancelled) setComments([]);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [articleSlug]);
+
+  if (comments === null) {
+    return <div className="mt-10 text-sm text-navy/45">Loading discussion…</div>;
+  }
+  if (comments.length === 0) {
+    return (
+      <div className="mt-10 text-sm text-navy/50">
+        No approved comments yet — be the first to contribute below.
+      </div>
+    );
+  }
+  return (
+    <div className="mt-10 space-y-8">
+      {comments.map((c) => (
+        <Comment key={c.id} name={c.authorName} title="Reader" date={relativeDate(c.createdAt)}>
+          {c.body}
+        </Comment>
+      ))}
     </div>
   );
 }
@@ -194,9 +229,11 @@ function formatTime(d: Date) {
   return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
 
-function CommentBox() {
+function CommentBox({ articleSlug }: { articleSlug: string }) {
   const [submitted, setSubmitted] = useState(false);
   const [value, setValue] = useState("");
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const current = history[history.length - 1];
 
@@ -267,14 +304,26 @@ function CommentBox() {
 
   return (
     <form
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
-        if (!value.trim()) return;
-        setHistory([{ status: "submitted", label: "Submitted", detail: "Your comment was received and logged in the moderation queue.", at: new Date() }]);
-        setSubmitted(true);
+        if (!value.trim() || sending) return;
+        setSending(true);
+        setError(null);
+        try {
+          await submitCommentFn({ data: { articleSlug, body: value.trim() } });
+          setHistory([{ status: "submitted", label: "Submitted", detail: "Your comment was received and logged in the moderation queue.", at: new Date() }]);
+          setSubmitted(true);
+        } catch (err) {
+          setError(err instanceof Error ? err.message : "Could not submit your comment. Please try again.");
+        } finally {
+          setSending(false);
+        }
       }}
       className="mt-12 p-6 bg-paper border border-navy/10"
     >
+      {error && (
+        <div className="mb-4 p-3 border-l-2 border-gold bg-gold/5 text-sm text-navy/70">{error}</div>
+      )}
       <label htmlFor="comment" className="block text-sm font-medium text-navy mb-3">Contribute to the discussion</label>
       <textarea
         id="comment"
@@ -293,7 +342,7 @@ function CommentBox() {
       </div>
       <div className="mt-4 flex flex-col-reverse sm:flex-row justify-center gap-3">
         <button type="reset" onClick={() => setValue("")} className="w-full sm:w-auto px-4 py-2 text-xs uppercase tracking-widest text-navy/60 hover:text-navy transition-colors">Cancel</button>
-        <button type="submit" className="w-full sm:w-auto px-5 py-2 bg-navy text-paper text-xs font-semibold uppercase tracking-widest hover:bg-academic transition-colors">Submit for review</button>
+        <button type="submit" disabled={sending} className="w-full sm:w-auto px-5 py-2 bg-navy text-paper text-xs font-semibold uppercase tracking-widest hover:bg-academic transition-colors disabled:opacity-60">{sending ? "Submitting…" : "Submit for review"}</button>
       </div>
     </form>
   );

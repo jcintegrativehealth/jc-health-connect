@@ -1,7 +1,15 @@
-// Client-side appointment store — persisted in localStorage.
-// Manual workflow: the clinician updates status, patient tag, meeting link,
-// and books a follow-up by hand. No backend yet.
+// Appointment store — same exported contract as the original localStorage
+// version (HANDOFF §3), now backed by Supabase through the server functions in
+// src/lib/appointments.functions.ts. Function names and types are locked; the
+// storage-facing functions became async because they now cross the network.
 import { useEffect, useState } from "react";
+import {
+  bookFollowUpFn,
+  createAppointmentFn,
+  getAppointmentFn,
+  listAppointmentsFn,
+  updateAppointmentFn,
+} from "@/lib/appointments.functions";
 
 export const APPOINTMENT_STATUSES = [
   "Pending",
@@ -60,119 +68,108 @@ export type AppointmentRequest = {
   followUpId?: string;
 };
 
-const KEY = "jc.appointments.v1";
+// Client-side cache so the hooks keep their synchronous "rows" shape.
+let cache: AppointmentRequest[] = [];
+let cacheReady = false;
+let cacheError: string | null = null;
 const listeners = new Set<() => void>();
 
-function read(): AppointmentRequest[] {
-  if (typeof window === "undefined") return [];
+function notify() {
+  listeners.forEach((fn) => fn());
+}
+
+async function refresh(): Promise<void> {
   try {
-    const raw = window.localStorage.getItem(KEY);
-    return raw ? (JSON.parse(raw) as AppointmentRequest[]) : [];
-  } catch {
-    return [];
+    cache = await listAppointmentsFn();
+    cacheReady = true;
+    cacheError = null;
+  } catch (err) {
+    cacheReady = true;
+    cacheError = err instanceof Error ? err.message : "Could not load appointments.";
   }
+  notify();
 }
 
-function write(rows: AppointmentRequest[]) {
-  if (typeof window === "undefined") return;
-  try {
-    window.localStorage.setItem(KEY, JSON.stringify(rows));
-    listeners.forEach((fn) => fn());
-  } catch {
-    /* ignore quota */
-  }
+function refreshSilently() {
+  refresh().catch(() => {});
 }
 
-function nextId() {
-  const rows = read();
-  const nums = rows
-    .map((r) => Number(r.id.replace(/^A-/, "")))
-    .filter((n) => Number.isFinite(n));
-  const max = nums.length ? Math.max(...nums) : 9000;
-  return `A-${max + 1}`;
+export async function listAppointments(): Promise<AppointmentRequest[]> {
+  await refresh();
+  if (cacheError) throw new Error(cacheError);
+  return cache;
 }
 
-export function listAppointments(): AppointmentRequest[] {
-  return read().sort((a, b) => (a.date + a.time < b.date + b.time ? 1 : -1));
+export async function getAppointment(id: string): Promise<AppointmentRequest | undefined> {
+  const row = await getAppointmentFn({ data: { id } });
+  return row ?? undefined;
 }
 
-export function getAppointment(id: string): AppointmentRequest | undefined {
-  return read().find((r) => r.id === id);
-}
-
-export function createAppointment(
+export async function createAppointment(
   input: Omit<AppointmentRequest, "id" | "createdAt">,
-): AppointmentRequest {
-  const record: AppointmentRequest = {
-    ...input,
-    id: nextId(),
-    createdAt: new Date().toISOString(),
-  };
-  write([record, ...read()]);
+): Promise<AppointmentRequest> {
+  const record = await createAppointmentFn({ data: input });
+  refreshSilently();
   return record;
 }
 
-export function updateAppointment(
+export async function updateAppointment(
   id: string,
   patch: Partial<Omit<AppointmentRequest, "id" | "createdAt">>,
-) {
-  write(
-    read().map((r) =>
-      r.id === id ? { ...r, ...patch, updatedAt: new Date().toISOString() } : r,
-    ),
-  );
+): Promise<AppointmentRequest> {
+  // Explicit `undefined` means "clear this field" in the old localStorage
+  // semantics; over the wire that becomes null.
+  const wirePatch: Record<string, unknown> = {};
+  for (const key of Object.keys(patch) as Array<keyof typeof patch>) {
+    wirePatch[key] = patch[key] === undefined ? null : patch[key];
+  }
+  const updated = await updateAppointmentFn({ data: { id, patch: wirePatch } });
+  refreshSilently();
+  return updated;
 }
 
-export function updateAppointmentStatus(id: string, status: AppointmentStatus) {
-  updateAppointment(id, { status });
+export async function updateAppointmentStatus(
+  id: string,
+  status: AppointmentStatus,
+): Promise<AppointmentRequest> {
+  return updateAppointment(id, { status });
 }
 
-export function bookFollowUp(
+export async function bookFollowUp(
   parentId: string,
   input: Pick<
     AppointmentRequest,
     "date" | "time" | "type" | "service" | "format" | "duration"
   > &
     Partial<Pick<AppointmentRequest, "meetingLink" | "notes" | "patientTag">>,
-): AppointmentRequest | undefined {
-  const parent = getAppointment(parentId);
-  if (!parent) return undefined;
-  const follow = createAppointment({
-    source: "admin",
-    date: input.date,
-    time: input.time,
-    patient: parent.patient,
-    patientTag: input.patientTag ?? "Follow-up",
-    email: parent.email,
-    phone: parent.phone,
-    type: input.type,
-    service: input.service,
-    state: parent.state,
-    lang: parent.lang,
-    format: input.format,
-    duration: input.duration,
-    status: "Confirmed",
-    pay: "Pending",
-    notes: input.notes,
-    meetingLink: input.meetingLink,
+): Promise<AppointmentRequest | undefined> {
+  const created = await bookFollowUpFn({
+    data: {
+      parentId,
+      date: input.date,
+      time: input.time,
+      type: input.type,
+      service: input.service,
+      format: input.format,
+      duration: input.duration,
+      meetingLink: input.meetingLink,
+      notes: input.notes,
+      patientTag: input.patientTag,
+    },
   });
-  updateAppointment(parentId, { followUpId: follow.id });
-  return follow;
+  refreshSilently();
+  return created ?? undefined;
 }
 
 export function useAppointments(): AppointmentRequest[] {
-  const [rows, setRows] = useState<AppointmentRequest[]>(() => []);
+  const [rows, setRows] = useState<AppointmentRequest[]>(() => cache);
   useEffect(() => {
-    setRows(listAppointments());
-    const sync = () => setRows(listAppointments());
+    const sync = () => setRows(cache);
     listeners.add(sync);
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === KEY) sync();
-    };
-    window.addEventListener("storage", onStorage);
+    sync();
+    refreshSilently();
     return () => {
       listeners.delete(sync);
-      window.removeEventListener("storage", onStorage);
     };
   }, []);
   return rows;
@@ -181,4 +178,18 @@ export function useAppointments(): AppointmentRequest[] {
 export function useAppointment(id: string): AppointmentRequest | undefined {
   const rows = useAppointments();
   return rows.find((r) => r.id === id);
+}
+
+/** Loading/error state for screens that need to tell "empty" from "loading". */
+export function useAppointmentsStatus(): { ready: boolean; error: string | null } {
+  const [state, setState] = useState(() => ({ ready: cacheReady, error: cacheError }));
+  useEffect(() => {
+    const sync = () => setState({ ready: cacheReady, error: cacheError });
+    listeners.add(sync);
+    sync();
+    return () => {
+      listeners.delete(sync);
+    };
+  }, []);
+  return state;
 }

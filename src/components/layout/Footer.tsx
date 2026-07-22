@@ -52,6 +52,17 @@ export function Footer() {
           </FooterCol>
         </div>
 
+        <div className="pt-10 border-t border-paper/10 grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12">
+          <div>
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-teal mb-2">General Inquiries</div>
+            <a href="mailto:info@jcintegrativehealth.com" className="text-sm text-paper/70 hover:text-paper transition-colors">info@jcintegrativehealth.com</a>
+          </div>
+          <div>
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-teal mb-2">Professional &amp; Clinical Contact</div>
+            <a href="mailto:drjason@jcintegrativehealth.com" className="text-sm text-paper/70 hover:text-paper transition-colors">drjason@jcintegrativehealth.com</a>
+          </div>
+        </div>
+
         <div className="pt-10 border-t border-paper/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <p className="text-[10px] uppercase tracking-[0.2em] text-paper/40">{t("footer.rights")}</p>
           <div className="w-full md:w-auto grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap gap-x-6 gap-y-3 text-[10px] uppercase tracking-[0.2em] text-paper/40">
