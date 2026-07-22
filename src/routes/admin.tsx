@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Users, Calendar, CalendarDays, Stethoscope, FileHeart, FlaskConical, ClipboardList,
   MessageSquare, Receipt, Contact, Beaker, Newspaper, PanelsTopLeft, MessageSquareWarning,
   BarChart3, FilePieChart, Files, ListChecks, Bell, Settings, Search, ChevronsLeft, ChevronsRight,
-  Plus, HelpCircle, Globe, X, Menu, Command, Video,
+  Plus, HelpCircle, Globe, X, Menu, Command, Video, Mail,
 } from "lucide-react";
 import { clinic, notifications as demoNotifs, patients } from "@/data/admin";
 import { toast } from "sonner";
