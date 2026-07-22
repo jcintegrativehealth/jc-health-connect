@@ -88,7 +88,7 @@ function HomePage() {
 
               {/* Clinician signature block */}
               <div className="mt-8 flex items-center gap-4 pb-6 border-b border-navy/10 max-w-md">
-                <div className="w-11 h-11 rounded-full bg-linear-to-br from-navy to-academic grid place-items-center text-paper font-serif text-sm ring-1 ring-navy/20">JC</div>
+                <img src={logoMark} alt="" className="h-11 w-11 rounded-sm" width={44} height={44} />
                 <div>
                   <div className="text-sm font-medium text-navy">Jason Chen, DO</div>
 
