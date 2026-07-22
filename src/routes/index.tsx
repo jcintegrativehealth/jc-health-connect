@@ -7,6 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 import heroClinic from "@/assets/hero-clinic.jpg";
 import heroBotanical from "@/assets/hero-botanical.jpg";
 import textureLinen from "@/assets/texture-linen.jpg";
+import logoMark from "@/assets/logo-mark.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
