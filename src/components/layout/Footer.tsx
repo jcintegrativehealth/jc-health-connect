@@ -8,9 +8,8 @@ export function Footer() {
       <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 mb-20">
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 mb-6">
-              <img src="/favicon.png" alt="JC Integrative Health" width={44} height={44} className="h-11 w-11 rounded-sm bg-paper/95 p-0.5" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-paper/60">Integrative Health</span>
+            <Link to="/" className="block mb-6">
+              <span className="text-sm font-semibold uppercase tracking-[0.22em] text-paper/90">Jc Integrative Health</span>
             </Link>
             <p className="text-sm text-paper/55 max-w-[34ch] leading-relaxed">{t("footer.tagline")}</p>
             <div className="mt-8 max-w-sm">
