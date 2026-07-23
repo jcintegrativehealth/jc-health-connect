@@ -1,22 +1,22 @@
 # LOVABLE-TODO — apply the HANDOFF backend
 
-Claude Code wrote everything below into the repo; these are the steps only the
-Lovable agent (with Lovable Cloud tools) can run. Work top to bottom. Do not
-change schema, policy audiences, or `src/lib/appointmentStore.ts` exports —
-HANDOFF.md §2/§7 is the contract.
+> **APPLIED 2026-07-23.** The Lovable agent applied the full backend and
+> consolidated the schema into its own migrations
+> (`20260723000220_*` = all tables + RLS, `20260723000245_*` = `has_role`
+> execute hardening). Auth (email/password + Google + HIBP), secrets
+> (`RESEND_API_KEY`, `APP_ORIGIN=https://jc-health-connect.lovable.app`,
+> `CRON_SECRET`, `CLINIC_TZ`) and the reminder pg_cron are live. The original
+> `20260722100001–004` files were removed as redundant duplicates. The steps
+> below are kept for reference / re-provisioning.
 
 ## 1. Apply migrations (in order)
 
-`supabase/migrations/`:
-
-1. `20260722100001_profiles_user_roles.sql` — profiles, app_role enum, user_roles,
-   `has_role()`, signup trigger, seed admin (`jcintegrativehealth3@gmail.com`).
-2. `20260722100002_appointments.sql` — appointments (§2.3 exact columns +
-   `reminder_sent_at`), sequence `A-9001…`, validation trigger, RLS.
-3. `20260722100003_comments_contact.sql` — comments + contact_submissions, RLS.
-4. `20260722100004_messages.sql` — in-platform patient ↔ clinic messaging
-   (HANDOFF §2.6) + RLS. Writes are RLS-scoped (no service role); email is a
-   notification-only side effect via the existing Resend setup.
+Schema (all tables + GRANT + RLS + policies) — now in
+`supabase/migrations/20260723000220_*.sql` (+ `…000245_*` hardening):
+profiles, `app_role`, user_roles, `has_role()`, signup trigger, seed admin
+(`jcintegrativehealth3@gmail.com`); appointments (§2.3 + `reminder_sent_at`,
+sequence `A-9001…`, validation trigger); comments + contact_submissions;
+messages (§2.6, patient ↔ clinic).
 
 Then **regenerate `src/integrations/supabase/types.ts`** so the client picks up
 the new tables, and run `supabase--linter`; fix any warnings it reports.
